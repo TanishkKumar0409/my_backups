@@ -20,10 +20,8 @@ export default function Data() {
     <>
       <section>
         <h1>
-
           {data.map((item) => {
-            return (
-
+            return item.id == 10 ? (
               <p key={item.id}>
                 Hello, my name is <span>{item.name}</span>, and my username is{" "}
                 <span>{item.username}</span>. My ID is <span>{item.id}</span>. I
@@ -38,10 +36,10 @@ export default function Data() {
                 <span>{item.company.catchPhrase}</span>" and our focus on "
                 <span>{item.company.bs}</span>".
               </p>
-              
+            ) : (
+              ""
             );
           })}
-          
         </h1>
       </section>
     </>
