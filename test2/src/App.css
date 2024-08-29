@@ -1,17 +1,21 @@
-
-body{
+body {
   background: #000;
 }
-*{
+* {
   color: white;
 }
-section{
+section {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  /* height: 200vh; */
+  position: relative;
+  top: 100px;
 }
-header{
+header {
   width: 100%;
-  position: absolute;
+  position: fixed;
+}
+span {
+  color: dodgerblue;
 }

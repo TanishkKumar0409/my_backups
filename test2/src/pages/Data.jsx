@@ -19,7 +19,10 @@ export default function Data() {
   return (
     <>
       <section>
-        <h1>Data</h1>
+        <h1>{data.map((item)=>{          return(
+            <p key={item.id}>{item.name}</p>
+          )
+})}</h1>
       </section>
     </>
   );
