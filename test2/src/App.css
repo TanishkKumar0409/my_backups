@@ -2,12 +2,14 @@
 body{
   background: #000;
 }
+*{
+  color: white;
+}
 section{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  color: #fff;
 }
 header{
   width: 100%;

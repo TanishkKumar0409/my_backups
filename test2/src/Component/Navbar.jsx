@@ -41,6 +41,11 @@ function Navbar() {
                     Contact
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-light" to="/data">
+                    data
+                  </Link>
+                </li>
               </ul>
               <form className="d-flex" role="search">
                 <input
