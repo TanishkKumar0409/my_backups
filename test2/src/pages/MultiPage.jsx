@@ -1,9 +1,9 @@
 import React from "react";
-export default function Contact() {
+export default function MultiPage(props) {
   return (
     <>
       <section>
-        <h1>Contact us</h1>
+        <h1>{props.head}</h1>
       </section>
     </>
   );

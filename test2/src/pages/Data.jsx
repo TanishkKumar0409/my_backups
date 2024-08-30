@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import Loader from "../Component/Loader";
 
 export default function Data() {
   const [data, setdata] = useState([]);
@@ -19,28 +20,83 @@ export default function Data() {
   return (
     <>
       <section>
-        <h1>
-          {data.map((item) => {
-            return item.id == 10 ? (
-              <p key={item.id}>
-                Hello, my name is <span>{item.name}</span>, and my username is{" "}
-                <span>{item.username}</span>. My ID is <span>{item.id}</span>. I
-                reside at <span>{item.address.street}</span>,{" "}
-                <span>{item.address.suite}</span>,{" "}
-                <span>{item.address.city}</span>, with the zipcode{" "}
-                <span>{item.address.zipcode}</span>. You can reach me via email
-                at <span>{item.email}</span> or call me at{" "}
-                <span>{item.phone}</span>. My personal website is{" "}
-                <span>{item.website}</span>. I work at{" "}
-                <span>{item.company.name}</span>, a company known for its "
-                <span>{item.company.catchPhrase}</span>" and our focus on "
-                <span>{item.company.bs}</span>".
-              </p>
-            ) : (
-              ""
-            );
-          })}
-        </h1>
+        {data.length > 0 ? (
+          <>
+            <h1>
+              <table className="table fs-6 table-dark border">
+                <thead>
+                  <tr>
+                    <th
+                      className="border text-center fs-1 text-uppercase"
+                      colSpan={"10"}
+                    >
+                      Details
+                    </th>
+                  </tr>
+                  <tr>
+                    <th className="border text-center" rowSpan={"3"}>
+                      Id
+                    </th>
+                    <th className="border text-center" rowSpan={"3"}>
+                      Name
+                    </th>
+                    <th className="border text-center" rowSpan={"3"}>
+                      Username
+                    </th>
+                    <th className="border text-center" rowSpan={"3"}>
+                      Email
+                    </th>
+                    <th colSpan={"6"}>Address</th>
+                  </tr>
+                  <tr>
+                    <th className="border text-center" rowSpan={"2"}>
+                      Street
+                    </th>
+                    <th className="border text-center" rowSpan={"2"}>
+                      Suite
+                    </th>
+                    <th className="border text-center" rowSpan={"2"}>
+                      City
+                    </th>
+                    <th className="border text-center" rowSpan={"2"}>
+                      Zipcode
+                    </th>
+                    <th className="border text-center" colSpan={"2"}>
+                      Geo
+                    </th>
+                  </tr>
+                  <tr>
+                    <th className="border text-center">lat</th>
+                    <th className="border text-center">lng</th>
+                  </tr>
+                </thead>
+                {data.map((item, detail) => {
+                  return (
+                    
+                    <tbody key={detail}>
+                      <tr>
+                        <td className="border">{item.id}</td>
+                        <td className="border">{item.name}</td>
+                        <td className="border">{item.username}</td>
+                        <td className="border">{item.email}</td>
+                        <td className="border">{item.address.street}</td>
+                        <td className="border">{item.address.suite}</td>
+                        <td className="border">{item.address.city}</td>
+                        <td className="border">{item.address.zipcode}</td>
+                        <td className="border">{item.address.geo.lat}</td>
+                        <td className="border">{item.address.geo.lng}</td>
+                      </tr>
+                    </tbody>
+                  );
+                })}
+              </table>
+            </h1>
+          </>
+        ) : (
+          <>
+            <Loader />
+          </>
+        )}
       </section>
     </>
   );
