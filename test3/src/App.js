@@ -1,7 +1,14 @@
 import "./App.css";
+import Accordion from "./Component/Accordion";
+import Navbar from "./Component/Navbar";
 
 function App() {
-  return <></>;
+  return (
+    <>
+    <Navbar />
+      <Accordion />
+    </>
+  );
 }
 
 export default App;
