@@ -36,24 +36,24 @@ input:hover::placeholder {
 }
 
 .nav-link:hover {
-  color: gray !important;
-  text-shadow: 1px 1px 2px rgba(255, 255, 0, 0.7) !important;
+  color: #00bcd4 !important;
+  text-shadow: 1px 1px 2px rgba(0, 188, 212, 0.7)!important;
 }
 
 .btn-outline-success:hover {
-  background-color: gray !important;
+  background-color: #00bcd4 !important;
   color: #333 !important;
-  border-color: gray !important;
+  border-color: #00bcd4 !important;
 }
 
 .dropdown-item:hover {
   background-color: #333 !important;
-  color: gray !important;
-  text-shadow: 1px 1px 2px rgba(255, 255, 0, 0.7) !important;
+  color: #00bcd4 !important;
+  text-shadow: 1px 1px 2px rgba(0, 188, 212, 0.7)!important;
 }
 
 .accordion-button:hover {
-  background-color: gray !important;
+  background-color: #00bcd4 !important;
   color: #333 !important;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7) !important;
 }
