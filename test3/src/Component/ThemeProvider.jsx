@@ -35,6 +35,7 @@ export default function ThemeProvider() {
     >
       <Navbar mystyle={currentStyle} />
       <div className="container">
+        <h1 style={{color:currentStyle.color}} className="mt-5">Dark Mode And Light Mode</h1>
         <Accordion mystyle={currentStyle} />
         <DarkMode
           mystyle={currentStyle}
