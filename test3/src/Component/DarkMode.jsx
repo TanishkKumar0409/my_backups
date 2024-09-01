@@ -12,7 +12,8 @@ export default function DarkMode({ mystyle, toggleDarkMode, theme }) {
           borderRadius: "5px",
           boxShadow: mystyle.boxShadow,
           backgroundColor: theme === "dark" ? "#4c4f52" : "#e0e0e0",
-          color: theme === "dark" ? "#ffffff" : "#333333",
+          color: theme === "dark" ? "#ffffff" : "#000",
+          border: theme === "dark" ? "2px solid white" : "2px solid black",
         }}
         onClick={toggleDarkMode}
       >

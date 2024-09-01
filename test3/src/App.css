@@ -37,7 +37,7 @@ input:hover::placeholder {
 
 .nav-link:hover {
   color: #00bcd4 !important;
-  text-shadow: 1px 1px 2px rgba(0, 188, 212, 0.7)!important;
+  text-shadow: 1px 1px 2px rgba(0, 188, 212, 0.7) !important;
 }
 
 .btn-outline-success:hover {
@@ -49,7 +49,7 @@ input:hover::placeholder {
 .dropdown-item:hover {
   background-color: #333 !important;
   color: #00bcd4 !important;
-  text-shadow: 1px 1px 2px rgba(0, 188, 212, 0.7)!important;
+  text-shadow: 1px 1px 2px rgba(0, 188, 212, 0.7) !important;
 }
 
 .accordion-button:hover {
