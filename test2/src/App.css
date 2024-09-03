@@ -1,4 +1,4 @@
-@keyframes fadeIn {
+/* @keyframes fadeIn {
   from {
     opacity: 0;
   }
@@ -58,7 +58,7 @@ header {
 }
 
 p::before {
-  content: var(--i); /* Use the variable value */
+  content: var(--i);
   display: block;
   font-weight: bold;
   color: rgb(255, 30, 30);
@@ -78,4 +78,4 @@ p {
 
 span {
   color: dodgerblue;
-}
+} */

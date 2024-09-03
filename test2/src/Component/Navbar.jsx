@@ -1,13 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar(props) {
   return (
     <header>
       <div>
-        <nav className="navbar navbar-expand-lg bg-dark">
-          <div className="container-fluid">
-            <Link className="navbar-brand text-light" to="/">
+        <nav className={`navbar navbar-expand-lg bg-${props.theme} shadow-lg`}>
+          <div className="container">
+            <Link
+              className={`navbar-brand text-${
+                props.theme == "dark" ? "light" : "dark"
+              }`}
+              to="/"
+            >
               Navbar
             </Link>
             <button
@@ -27,37 +32,64 @@ function Navbar() {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <Link className="nav-link text-light" to="/blog">
-                    Blog
+                  <Link
+                    className={`nav-link text-${
+                      props.theme == "dark" ? "light" : "dark"
+                    } active`}
+                    aria-current="page"
+                    to="/"
+                  >
+                    Home
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-light" to="/about">
+                  <Link
+                    className={`nav-link text-${
+                      props.theme == "dark" ? "light" : "dark"
+                    } active`}
+                    to="/about"
+                  >
                     About
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-light" to="/contact">
-                    Contact
+                  <Link
+                    className={`nav-link text-${
+                      props.theme == "dark" ? "light" : "dark"
+                    } active`}
+                    to="/blog"
+                  >
+                    Blog
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-light" to="/data">
-                    data
+                  <Link
+                    className={`nav-link text-${
+                      props.theme == "dark" ? "light" : "dark"
+                    } active`}
+                    to="/contact"
+                  >
+                    Contact
                   </Link>
                 </li>
               </ul>
-              <form className="d-flex" role="search">
+              <div className="form-check form-switch">
                 <input
-                  className="form-control me-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
+                  className="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                  onClick={props.toggleTheme}
                 />
-                <button className="btn btn-outline-light" type="submit">
-                  Search
-                </button>
-              </form>
+                <label
+                  className={`form-check-label text-${
+                    props.theme == "dark" ? "light" : "dark"
+                  }`}
+                  htmlFor="flexSwitchCheckDefault"
+                >
+                  {props.btnText}
+                </label>
+              </div>
             </div>
           </div>
         </nav>
