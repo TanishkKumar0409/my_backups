@@ -1,6 +1,9 @@
+//! IMPORTS
 import React from "react";
 
+//? MAIN FUNCTION
 export default function Accordion(props) {
+  //* COMPONENT CODE WITH PROPS
   return (
     <>
       <div className="container" style={props.myStyle}>

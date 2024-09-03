@@ -1,14 +1,19 @@
+//! IMPORTS
 import React from "react";
 import { useState, useEffect } from "react";
 import Loader from "../Component/Loader";
 
+//? MAIN FUNCTION
 export default function Data(props) {
+  //* USESTATE
   const [data, setdata] = useState([]);
 
+  //? USEEFFECT
   useEffect(() => {
     getdata();
   }, []);
 
+  //! FUNCTION FOR FETCH DATA
   const getdata = async () => {
     const out = await fetch("https://jsonplaceholder.typicode.com/users");
     const output = await out.json();
@@ -17,6 +22,7 @@ export default function Data(props) {
 
   console.log(data);
 
+  //* COMPONENT CODE WITH PROPS
   return (
     <>
       <section className="container my-5">

@@ -1,7 +1,10 @@
+//! IMPORTS
 import React from "react";
 import { Link } from "react-router-dom";
 
+//? MAIN FUNCTION
 function Navbar(props) {
+  //* COMPONENT CODE WITH PROPS
   return (
     <header>
       <div>

@@ -1,5 +1,9 @@
+//! IMPORTS
 import React from "react";
+
+//? MAIN FUNCTION
 export default function MultiPage(props) {
+  //* COMPONENT CODE WITH PROPS
   return (
     <>
       <section
