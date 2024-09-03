@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Loader from "../Component/Loader";
 
-export default function Data() {
+export default function Data(props) {
   const [data, setdata] = useState([]);
 
   useEffect(() => {
@@ -19,60 +19,134 @@ export default function Data() {
 
   return (
     <>
-      <section>
+      <section className="container my-5">
         {data.length > 0 ? (
           <>
             <h1>
-              <table className="table fs-6 table-dark border">
+              <table
+                className={`table table-${props.theme} border shadow-lg `}
+                style={{ fontSize: "13px", borderRadius: "50px" }}
+              >
                 <thead>
                   <tr>
                     <th
-                      className="border text-center fs-1 text-uppercase"
-                      colSpan={"10"}
+                      className="border text-center align-content-center fs-1 text-uppercase"
+                      colSpan={"15"}
                     >
-                      Details
+                      Data Fetch
                     </th>
                   </tr>
                   <tr>
-                    <th className="border text-center" rowSpan={"3"}>
+                    <th
+                      className="border text-center align-content-center"
+                      rowSpan={"3"}
+                    >
                       Id
                     </th>
-                    <th className="border text-center" rowSpan={"3"}>
+                    <th
+                      className="border text-center align-content-center"
+                      rowSpan={"3"}
+                    >
                       Name
                     </th>
-                    <th className="border text-center" rowSpan={"3"}>
+                    <th
+                      className="border text-center align-content-center"
+                      rowSpan={"3"}
+                    >
                       Username
                     </th>
-                    <th className="border text-center" rowSpan={"3"}>
+                    <th
+                      className="border text-center align-content-center"
+                      rowSpan={"3"}
+                    >
                       Email
                     </th>
-                    <th colSpan={"6"}>Address</th>
+                    <th
+                      className="border text-center align-content-center"
+                      colSpan={"6"}
+                    >
+                      Address
+                    </th>
+                    <th
+                      className="border text-center align-content-center"
+                      rowSpan={"3"}
+                    >
+                      Phone
+                    </th>
+                    <th
+                      className="border text-center align-content-center"
+                      rowSpan={"3"}
+                    >
+                      Website
+                    </th>
+                    <th
+                      className="border text-center align-content-center"
+                      colSpan={"6"}
+                    >
+                      Company
+                    </th>
                   </tr>
                   <tr>
-                    <th className="border text-center" rowSpan={"2"}>
+                    <th
+                      className="border text-center align-content-center"
+                      rowSpan={"2"}
+                    >
                       Street
                     </th>
-                    <th className="border text-center" rowSpan={"2"}>
+                    <th
+                      className="border text-center align-content-center"
+                      rowSpan={"2"}
+                    >
                       Suite
                     </th>
-                    <th className="border text-center" rowSpan={"2"}>
+                    <th
+                      className="border text-center align-content-center"
+                      rowSpan={"2"}
+                    >
                       City
                     </th>
-                    <th className="border text-center" rowSpan={"2"}>
+                    <th
+                      className="border text-center align-content-center"
+                      rowSpan={"2"}
+                    >
                       Zipcode
                     </th>
-                    <th className="border text-center" colSpan={"2"}>
+                    <th
+                      className="border text-center align-content-center"
+                      colSpan={"2"}
+                    >
                       Geo
+                    </th>
+                    <th
+                      className="border text-center align-content-center"
+                      rowSpan={"2"}
+                    >
+                      Company Name
+                    </th>
+                    <th
+                      className="border text-center align-content-center"
+                      rowSpan={"2"}
+                    >
+                      catchPhrase
+                    </th>
+                    <th
+                      className="border text-center align-content-center"
+                      rowSpan={"2"}
+                    >
+                      bs
                     </th>
                   </tr>
                   <tr>
-                    <th className="border text-center">lat</th>
-                    <th className="border text-center">lng</th>
+                    <th className="border text-center align-content-center">
+                      lat
+                    </th>
+                    <th className="border text-center align-content-center">
+                      lng
+                    </th>
                   </tr>
                 </thead>
                 {data.map((item, detail) => {
                   return (
-                    
                     <tbody key={detail}>
                       <tr>
                         <td className="border">{item.id}</td>
@@ -85,6 +159,11 @@ export default function Data() {
                         <td className="border">{item.address.zipcode}</td>
                         <td className="border">{item.address.geo.lat}</td>
                         <td className="border">{item.address.geo.lng}</td>
+                        <td className="border">{item.phone}</td>
+                        <td className="border">{item.website}</td>
+                        <td className="border">{item.company.name}</td>
+                        <td className="border">{item.company.catchPhrase}</td>
+                        <td className="border">{item.company.bs}</td>
                       </tr>
                     </tbody>
                   );

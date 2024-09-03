@@ -61,7 +61,7 @@ function App() {
             path="/accordion"
             element={<Accordion myStyle={accordionColor} btnText={btnText} />}
           />
-          <Route path="/data" element={<Data />} />
+          <Route path="/data" element={<Data theme={theme} />} />
         </Routes>
       </BrowserRouter>
     </>
