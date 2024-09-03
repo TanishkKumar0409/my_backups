@@ -9,7 +9,7 @@ function Navbar(props) {
           <div className="container">
             <Link
               className={`navbar-brand text-${
-                props.theme == "dark" ? "light" : "dark"
+                props.theme === "dark" ? "light" : "dark"
               }`}
               to="/"
             >
@@ -34,7 +34,7 @@ function Navbar(props) {
                 <li className="nav-item">
                   <Link
                     className={`nav-link text-${
-                      props.theme == "dark" ? "light" : "dark"
+                      props.theme === "dark" ? "light" : "dark"
                     } active`}
                     aria-current="page"
                     to="/"
@@ -45,7 +45,7 @@ function Navbar(props) {
                 <li className="nav-item">
                   <Link
                     className={`nav-link text-${
-                      props.theme == "dark" ? "light" : "dark"
+                      props.theme === "dark" ? "light" : "dark"
                     } active`}
                     to="/about"
                   >
@@ -55,7 +55,7 @@ function Navbar(props) {
                 <li className="nav-item">
                   <Link
                     className={`nav-link text-${
-                      props.theme == "dark" ? "light" : "dark"
+                      props.theme === "dark" ? "light" : "dark"
                     } active`}
                     to="/blog"
                   >
@@ -65,11 +65,21 @@ function Navbar(props) {
                 <li className="nav-item">
                   <Link
                     className={`nav-link text-${
-                      props.theme == "dark" ? "light" : "dark"
+                      props.theme === "dark" ? "light" : "dark"
                     } active`}
-                    to="/contact"
+                    to="/accordion"
                   >
-                    Contact
+                    Accordion
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className={`nav-link text-${
+                      props.theme === "dark" ? "light" : "dark"
+                    } active`}
+                    to="/data"
+                  >
+                    Data
                   </Link>
                 </li>
               </ul>
@@ -83,7 +93,7 @@ function Navbar(props) {
                 />
                 <label
                   className={`form-check-label text-${
-                    props.theme == "dark" ? "light" : "dark"
+                    props.theme === "dark" ? "light" : "dark"
                   }`}
                   htmlFor="flexSwitchCheckDefault"
                 >

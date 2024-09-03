@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./Component/Navbar";
 import Data from "./pages/Data";
 import MultiPage from "./pages/MultiPage";
-import Accordion from "./Component/Accordion";
+import Accordion from "./pages/Accordion";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -13,17 +13,30 @@ function App() {
 
   const [txtColor, setTxtColor] = useState("#1e1e1e");
 
+  const [accordionColor, setAccordionColor] = useState({
+    background: "white",
+    color: "black",
+  });
+
   const toggleTheme = () => {
     if (theme === "dark") {
       setTheme("light");
       setBtnText("Enable Dark Mode");
       setTxtColor("#1e1e1e");
       document.body.style.background = "white";
+      setAccordionColor({
+        background: "white",
+        color: "black",
+      });
     } else if (theme === "light") {
       setTheme("dark");
       setBtnText("Enable Light Mode");
-      document.body.style.background = "#1e1e1e";
       setTxtColor("white");
+      document.body.style.background = "#1e1e1e";
+      setAccordionColor({
+        background: "#1e1e1e",
+        color: "white",
+      });
     }
   };
 
@@ -44,7 +57,10 @@ function App() {
             path="/blog"
             element={<MultiPage head="Blog" txtColor={txtColor} />}
           />
-          <Route path="/contact" element={<Accordion txtColor={txtColor} />} />
+          <Route
+            path="/accordion"
+            element={<Accordion myStyle={accordionColor} btnText={btnText} />}
+          />
           <Route path="/data" element={<Data />} />
         </Routes>
       </BrowserRouter>
