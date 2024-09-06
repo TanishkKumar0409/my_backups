@@ -6,6 +6,7 @@ import Navbar from "./Component/Navbar";
 import Data from "./pages/Data";
 import MultiPage from "./pages/MultiPage";
 import Accordion from "./pages/Accordion";
+import View from "./pages/View/View";
 
 //? MAIN FUNCTION
 function App() {
@@ -75,6 +76,7 @@ function App() {
             element={<Accordion myStyle={accordionColor} btnText={btnText} />}
           />
           <Route path="/data" element={<Data theme={theme} />} />
+          <Route path="/View/:id" element={<View theme={theme} />} />
         </Routes>
       </BrowserRouter>
     </>

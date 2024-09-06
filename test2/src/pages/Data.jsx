@@ -2,6 +2,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Loader from "../Component/Loader";
+import { Link } from "react-router-dom";
 
 //? MAIN FUNCTION
 export default function Data(props) {
@@ -69,85 +70,9 @@ export default function Data(props) {
                     </th>
                     <th
                       className="border text-center align-content-center"
-                      colSpan={"6"}
-                    >
-                      Address
-                    </th>
-                    <th
-                      className="border text-center align-content-center"
                       rowSpan={"3"}
                     >
-                      Phone
-                    </th>
-                    <th
-                      className="border text-center align-content-center"
-                      rowSpan={"3"}
-                    >
-                      Website
-                    </th>
-                    <th
-                      className="border text-center align-content-center"
-                      colSpan={"6"}
-                    >
-                      Company
-                    </th>
-                  </tr>
-                  <tr>
-                    <th
-                      className="border text-center align-content-center"
-                      rowSpan={"2"}
-                    >
-                      Street
-                    </th>
-                    <th
-                      className="border text-center align-content-center"
-                      rowSpan={"2"}
-                    >
-                      Suite
-                    </th>
-                    <th
-                      className="border text-center align-content-center"
-                      rowSpan={"2"}
-                    >
-                      City
-                    </th>
-                    <th
-                      className="border text-center align-content-center"
-                      rowSpan={"2"}
-                    >
-                      Zipcode
-                    </th>
-                    <th
-                      className="border text-center align-content-center"
-                      colSpan={"2"}
-                    >
-                      Geo
-                    </th>
-                    <th
-                      className="border text-center align-content-center"
-                      rowSpan={"2"}
-                    >
-                      Company Name
-                    </th>
-                    <th
-                      className="border text-center align-content-center"
-                      rowSpan={"2"}
-                    >
-                      catchPhrase
-                    </th>
-                    <th
-                      className="border text-center align-content-center"
-                      rowSpan={"2"}
-                    >
-                      bs
-                    </th>
-                  </tr>
-                  <tr>
-                    <th className="border text-center align-content-center">
-                      lat
-                    </th>
-                    <th className="border text-center align-content-center">
-                      lng
+                      View
                     </th>
                   </tr>
                 </thead>
@@ -159,17 +84,11 @@ export default function Data(props) {
                         <td className="border">{item.name}</td>
                         <td className="border">{item.username}</td>
                         <td className="border">{item.email}</td>
-                        <td className="border">{item.address.street}</td>
-                        <td className="border">{item.address.suite}</td>
-                        <td className="border">{item.address.city}</td>
-                        <td className="border">{item.address.zipcode}</td>
-                        <td className="border">{item.address.geo.lat}</td>
-                        <td className="border">{item.address.geo.lng}</td>
-                        <td className="border">{item.phone}</td>
-                        <td className="border">{item.website}</td>
-                        <td className="border">{item.company.name}</td>
-                        <td className="border">{item.company.catchPhrase}</td>
-                        <td className="border">{item.company.bs}</td>
+                        <td className="border text-center">
+                          <Link to={`/View/${item.id}`}>
+                            <button className="btn btn-primary">View</button>
+                          </Link>
+                        </td>
                       </tr>
                     </tbody>
                   );
