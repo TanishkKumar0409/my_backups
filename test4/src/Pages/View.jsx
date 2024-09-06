@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function DataFetch() {
-  const [data, setData] = useState();
+export default function View() {
+  const [data, setData] = useState([]);
+
   useEffect(() => {
     getData();
   }, []);
@@ -11,5 +12,9 @@ export default function DataFetch() {
     setData(output);
   };
   console.log(data);
-  return <></>;
+  return (
+    <>
+      <h1>hello</h1>
+    </>
+  );
 }
