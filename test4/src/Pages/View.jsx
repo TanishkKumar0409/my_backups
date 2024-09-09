@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../Components/Loader";
+import { Link } from "react-router-dom";
 export default function View() {
   const { id } = useParams();
   const [data, setData] = useState(null);
@@ -73,6 +74,9 @@ export default function View() {
               </tr>
             </tbody>
           </table>
+          <Link to="/data">
+            <button className="btn btn-primary">Back</button>
+          </Link>
         </div>
       ) : (
         <Loader />
