@@ -35,9 +35,18 @@ export default function Navbar(props) {
               </Link>
             </li>
           </ul>
-          <button className="btn btn-outline-light" onClick={props.toggleTheme}>
-            Search
-          </button>
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="flexSwitchCheckChecked"
+              onClick={props.toggleTheme}
+            />
+            <label class="form-check-label" for="flexSwitchCheckChecked">
+              {props.ThemeText}
+            </label>
+          </div>
         </div>
       </div>
     </nav>

@@ -20,8 +20,11 @@ function App() {
     "--border-color": "#333",
   });
 
+  const [ThemeText, setThemeText] = useState("Enable Light Mode");
+
   const toggleTheme = () => {
     if (Theme["--secondary-color"] === "#000000") {
+      setThemeText("Enable Dark Mode");
       setTheme({
         "--primary-color": "#003366",
         "--secondary-color": "#ffffff",
@@ -33,9 +36,10 @@ function App() {
         "--box-shadow-dark": " rgba(0, 0, 0, 0.6)",
         "--box-shadow-light": "rgba(0, 0, 0, 0.3)",
         "--border-color": "#cccccc",
-        "--text-shadow": "0 0 3px rgba(255,255,255,0.1)",
+        "--text-shadow": "0 0 3px rgba(255, 255, 255, 0.1)",
       });
     } else {
+      setThemeText("Enable Light Mode");
       setTheme({
         "--primary-color": "#003366",
         "--secondary-color": "#000000",
@@ -55,7 +59,11 @@ function App() {
   return (
     <div style={Theme}>
       <BrowserRouter>
-        <Navbar RootColors={Theme} toggleTheme={toggleTheme} />
+        <Navbar
+          RootColors={Theme}
+          toggleTheme={toggleTheme}
+          ThemeText={ThemeText}
+        />
         <Routes>
           <Route
             path="/"
