@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Loader from "../Components/Loader";
 import { Link } from "react-router-dom";
 
-export default function DataShow() {
+export default function DataShow(props) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function DataShow() {
   };
 
   return (
-    <section className="data-show">
+    <section className="data-show" style={props.RootColors}>
       <div className="container">
         <div className="row w-100">
           <div className="col ">

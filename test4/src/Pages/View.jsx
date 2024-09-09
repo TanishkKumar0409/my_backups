@@ -1,12 +1,12 @@
 // View.js
 
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Loader from "../Components/Loader";
-import { Link } from "react-router-dom";
-export default function View() {
+export default function View(props) {
   const { id } = useParams();
-  const [data, setData] = useState(null);
+
+  const [data, setData] = useState();
 
   useEffect(() => {
     const getData = async () => {
@@ -21,7 +21,7 @@ export default function View() {
   }, [id]);
 
   return (
-    <div className="view-container">
+    <div className="view-container" style={props.RootColors}>
       {data ? (
         <div className="view-card">
           <h1 className="view-card-title">User Details</h1>

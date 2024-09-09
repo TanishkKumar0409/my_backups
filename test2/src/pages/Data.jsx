@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Loader from "../Component/Loader";
 import { Link } from "react-router-dom";
+import View from "./View/View";
 
 //? MAIN FUNCTION
 export default function Data(props) {
@@ -101,6 +102,7 @@ export default function Data(props) {
             <Loader />
           </>
         )}
+        <View outputData={data} />
       </section>
     </>
   );

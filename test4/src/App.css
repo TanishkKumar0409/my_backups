@@ -1,22 +1,8 @@
-:root {
-  --primary-color: #003366; /* Dark Blue */
-  --secondary-color: #000000; /* Black */
-  --background-light: #1a1a1a; /* Very Dark Gray */
-  --background-dark: #000000; /* Black */
-  --highlight-color: #3399ff; /* Light Blue */
-  --info-color: #66ccff; /* Lighter Blue */
-  --accent-color: #66ccff; /* Light Blue */
-  --table-header-bg: #003366; /* Dark Blue */
-  --table-row-bg: #1a1a1a; /* Very Dark Gray */
-  --button-bg: #003366; /* Dark Blue */
-  --button-hover-bg: #002244; /* Even Darker Blue */
-  --button-text-color: #ffffff; /* White */
-}
 
 body {
   background: linear-gradient(
       135deg,
-      var(--background-dark),
+      var(--secondary-color),
       var(--primary-color)
     )
     no-repeat;
@@ -30,7 +16,7 @@ body {
   padding: 20px;
   background: linear-gradient(
     135deg,
-    var(--background-dark),
+    var(--secondary-color),
     var(--primary-color)
   );
   min-height: 100vh;
@@ -39,7 +25,7 @@ body {
 .view-card {
   background-color: var(--background-light);
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Darker shadow for more depth */
+  box-shadow: 0 4px 8px var(--box-shadow-dark);
   padding: 30px;
   width: 100%;
   max-width: 800px;
@@ -61,20 +47,20 @@ body {
 
 .info-table th,
 .info-table td {
-  border: 1px solid #333; /* Darker border */
+  border: 1px solid var(--border-color);
   padding: 12px;
   text-align: left;
 }
 
 .info-table th {
-  background-color: var(--table-header-bg);
+  background-color: var(--primary-color);
   color: var(--button-text-color);
   font-weight: bold;
 }
 
 .info-table td {
-  background-color: #333; /* Darker gray for better contrast */
-  color: var(--accent-color);
+  background-color: var(--background-light);
+  color: var(--info-color);
 }
 
 .info-name {
@@ -101,7 +87,7 @@ body {
   padding: 20px;
   background: linear-gradient(
     135deg,
-    var(--background-dark),
+    var(--secondary-color),
     var(--primary-color)
   );
   min-height: 100vh;
@@ -119,29 +105,29 @@ body {
   width: 100%;
   border-collapse: collapse;
   background-color: var(--background-light);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Lighter shadow */
+  box-shadow: 0 4px 8px var(--box-shadow-light);
 }
 
 .data-table th,
 .data-table td {
   padding: 12px;
-  color: var(--accent-color);
+  color: var(--info-color);
   text-align: left;
-  border-bottom: 1px solid #333; /* Darker border */
+  border-bottom: 1px solid var(--border-color);
 }
 
 .data-table th {
-  background-color: var(--table-header-bg);
+  background-color: var(--primary-color);
   color: var(--button-text-color);
   font-weight: bold;
 }
 
 .data-table tr:nth-child(even) {
-  background-color: var(--table-row-bg);
+  background-color: var(--background-light);
 }
 
 .view-button {
-  background-color: var(--button-bg);
+  background-color: var(--primary-color);
   color: var(--button-text-color);
   border: none;
   padding: 8px 12px;
@@ -162,7 +148,7 @@ body {
   min-height: 100vh;
   background: linear-gradient(
     135deg,
-    var(--background-dark),
+    var(--secondary-color),
     var(--primary-color)
   );
   padding: 20px;
@@ -173,11 +159,11 @@ body {
   background-color: var(--background-light);
   border-radius: 8px;
   padding: 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Lighter shadow */
+  box-shadow: 0 4px 8px var(--box-shadow-light);
 }
 
 .main-heading {
-  color: var(--accent-color);
+  color: var(--info-color);
   font-size: 36px;
   margin-bottom: 20px;
   font-family: "Arial", sans-serif;
@@ -201,7 +187,7 @@ body {
 .navbar-custom {
   background-color: var(--primary-color);
   color: var(--button-text-color);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Lighter shadow */
+  box-shadow: 0 4px 6px var(--box-shadow-light);
 }
 
 .navbar-custom .navbar-brand {

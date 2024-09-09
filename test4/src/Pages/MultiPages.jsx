@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function MultiPages(props) {
   return (
     <>
-      <section className="multi-page-main">
+      <section className="multi-page-main" style={props.RootColors}>
         <div className="heading-container">
           <h1 className="main-heading">{props.MainHeading}</h1>
           <Link to="/data">
