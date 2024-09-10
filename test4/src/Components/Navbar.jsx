@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Navbar(props) {
+export default function Navbar({ search, setSearch, RootColors }) {
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
+
   return (
-    <nav
-      className="navbar navbar-expand-lg navbar-custom"
-      style={props.RootColors}
-    >
+    <nav className="navbar navbar-expand-lg navbar-custom" style={RootColors}>
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           MyApp
@@ -35,18 +36,16 @@ export default function Navbar(props) {
               </Link>
             </li>
           </ul>
-          <div class="form-check form-switch">
+          <form className="d-flex" role="search">
             <input
-              class="form-check-input"
-              type="checkbox"
-              role="switch"
-              id="flexSwitchCheckChecked"
-              onClick={props.toggleTheme}
+              className="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              value={search} 
+              onChange={handleSearchChange}
             />
-            <label class="form-check-label" for="flexSwitchCheckChecked">
-              {props.ThemeText}
-            </label>
-          </div>
+          </form>
         </div>
       </div>
     </nav>

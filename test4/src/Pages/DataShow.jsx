@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import Loader from "../Components/Loader";
 import { Link } from "react-router-dom";
 
-export default function DataShow(props) {
+export default function DataShow({ search, RootColors }) {
   const [data, setData] = useState([]);
+  const [filter, setFilter] = useState([]);
 
   useEffect(() => {
     getData();
@@ -13,10 +14,23 @@ export default function DataShow(props) {
     const response = await fetch("https://jsonplaceholder.typicode.com/users");
     const users = await response.json();
     setData(users);
+    setFilter(users);
   };
 
+  useEffect(() => {
+    setFilter(
+      data.filter(
+        (user) =>
+          user.name.toLowerCase().includes(search.toLowerCase()) ||
+          user.phone.toLowerCase().includes(search.toLowerCase()) ||
+          user.email.toLowerCase().includes(search.toLowerCase()) ||
+          user.username.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [search, data]);
+
   return (
-    <section className="data-show" style={props.RootColors}>
+    <section className="data-show" style={RootColors}>
       <div className="container">
         <div className="row w-100">
           <div className="col ">
@@ -33,7 +47,7 @@ export default function DataShow(props) {
                     </tr>
                   </thead>
                   <tbody>
-                    {data.map((item) => (
+                    {filter.map((item) => (
                       <tr key={item.id}>
                         <td>{item.id}</td>
                         <td>{item.name}</td>

@@ -7,6 +7,8 @@ import DataShow from "./Pages/DataShow";
 import View from "./Pages/View";
 
 function App() {
+  const [search, setSearch] = useState("");
+
   const [Theme, setTheme] = useState({
     "--primary-color": "#003366",
     "--secondary-color": "#000000",
@@ -63,13 +65,18 @@ function App() {
           RootColors={Theme}
           toggleTheme={toggleTheme}
           ThemeText={ThemeText}
+          search={search}
+          setSearch={setSearch}
         />
         <Routes>
           <Route
             path="/"
             element={<MultiPages MainHeading="Home" RootColors={Theme} />}
           />
-          <Route path="/data" element={<DataShow RootColors={Theme} />} />
+          <Route
+            path="/data"
+            element={<DataShow search={search} RootColors={Theme} />}
+          />
           <Route path="/data/view/:id" element={<View RootColors={Theme} />} />
         </Routes>
       </BrowserRouter>

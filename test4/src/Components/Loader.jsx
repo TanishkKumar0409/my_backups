@@ -7,8 +7,8 @@ export default function Loader(props) {
         className="MultiPageMain d-flex justify-content-center align-items-center"
         style={props.RootColors}
       >
-        <div class="spinner-grow text-light" role="status">
-          <span class="visually-hidden">Loading...</span>
+        <div className="spinner-grow text-light" role="status">
+          <span className="visually-hidden">Loading...</span>
         </div>
       </section>
     </>
