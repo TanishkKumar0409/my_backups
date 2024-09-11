@@ -1,16 +1,3 @@
-:root {
-  --primary-color: #336699;
-  --secondary-color: #ffffff;
-  --background-light: #f2f2f2;
-  --highlight-color: #0055cc;
-  --info-color: #003366;
-  --button-hover-bg: #6699cc;
-  --button-text-color: #ffffff;
-  --box-shadow-dark: rgba(0, 0, 0, 0.2);
-  --box-shadow-light: rgba(0, 0, 0, 0.1);
-  --border-color: #cccccc;
-}
-
 body {
   background: linear-gradient(
       135deg,
@@ -248,7 +235,11 @@ body {
   background-color: var(--button-text-color);
   color: var(--primary-color);
 }
-.Theme-Btn{
+
+.Theme-Btn {
   bottom: 20px;
   right: 20px;
+}
+label{
+  color: var(--highlight-color);
 }

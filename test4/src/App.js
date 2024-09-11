@@ -63,23 +63,16 @@ function App() {
     <div style={Theme}>
       <BrowserRouter>
         <Navbar
-          RootColors={Theme}
           toggleTheme={toggleTheme}
           ThemeText={ThemeText}
           search={search}
           setSearch={setSearch}
         />
         <Routes>
-          <Route
-            path="/"
-            element={<MultiPages MainHeading="Home" RootColors={Theme} />}
-          />
-          <Route
-            path="/data"
-            element={<DataShow search={search} RootColors={Theme} />}
-          />
-          <Route path="/data/view/:id" element={<View RootColors={Theme} />} />
-          <Route path="/form" element={<SimpleForm RootColors={Theme} />} />
+          <Route path="/" element={<MultiPages MainHeading="Home" />} />
+          <Route path="/data" element={<DataShow search={search} />} />
+          <Route path="/data/view/:id" element={<View />} />
+          <Route path="/form" element={<SimpleForm />} />
         </Routes>
       </BrowserRouter>
     </div>
