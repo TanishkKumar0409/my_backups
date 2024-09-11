@@ -5,7 +5,7 @@ export default function SimpleForm() {
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
   const [date, setDate] = useState("");
-  const [datetime, setDatetime] = useState("");
+  const datetime = "";
   const [datetimeLocal, setDatetimeLocal] = useState("");
   const [color, setColor] = useState("#000000");
   const [password, setPassword] = useState("");
@@ -46,12 +46,17 @@ export default function SimpleForm() {
   };
 
   return (
-    <div className="view-container">
+    <div
+      className="view-container"
+      style={{ top: "60px", position: "relative" }}
+    >
       <div className="view-card">
         <div className="view-card-title">Simple Form</div>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="username" className="form-label">Username:</label>
+            <label htmlFor="username" className="form-label">
+              Username:
+            </label>
             <input
               type="text"
               id="username"
@@ -63,7 +68,9 @@ export default function SimpleForm() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">Email:</label>
+            <label htmlFor="email" className="form-label">
+              Email:
+            </label>
             <input
               type="email"
               id="email"
@@ -75,7 +82,9 @@ export default function SimpleForm() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="number" className="form-label">Number:</label>
+            <label htmlFor="number" className="form-label">
+              Number:
+            </label>
             <input
               type="number"
               id="number"
@@ -87,7 +96,9 @@ export default function SimpleForm() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="date" className="form-label">Date:</label>
+            <label htmlFor="date" className="form-label">
+              Date:
+            </label>
             <input
               type="date"
               id="date"
@@ -98,7 +109,9 @@ export default function SimpleForm() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="datetime-local" className="form-label">Date & Time:</label>
+            <label htmlFor="datetime-local" className="form-label">
+              Date & Time:
+            </label>
             <input
               type="datetime-local"
               id="datetime-local"
@@ -108,7 +121,9 @@ export default function SimpleForm() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="color" className="form-label">Color:</label>
+            <label htmlFor="color" className="form-label">
+              Color:
+            </label>
             <input
               type="color"
               id="color"
@@ -118,7 +133,9 @@ export default function SimpleForm() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">Password:</label>
+            <label htmlFor="password" className="form-label">
+              Password:
+            </label>
             <input
               type="password"
               id="password"
@@ -130,7 +147,9 @@ export default function SimpleForm() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="range" className="form-label">Range (0-100):</label>
+            <label htmlFor="range" className="form-label">
+              Range (0-100):
+            </label>
             <input
               type="range"
               id="range"
@@ -142,7 +161,9 @@ export default function SimpleForm() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="tel" className="form-label">Telephone:</label>
+            <label htmlFor="tel" className="form-label">
+              Telephone:
+            </label>
             <input
               type="tel"
               id="tel"
@@ -154,7 +175,9 @@ export default function SimpleForm() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="url" className="form-label">URL:</label>
+            <label htmlFor="url" className="form-label">
+              URL:
+            </label>
             <input
               type="url"
               id="url"
@@ -165,7 +188,9 @@ export default function SimpleForm() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="search" className="form-label">Search:</label>
+            <label htmlFor="search" className="form-label">
+              Search:
+            </label>
             <input
               type="search"
               id="search"
@@ -176,7 +201,9 @@ export default function SimpleForm() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="file" className="form-label">File:</label>
+            <label htmlFor="file" className="form-label">
+              File:
+            </label>
             <input
               type="file"
               id="file"
@@ -185,7 +212,9 @@ export default function SimpleForm() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="time" className="form-label">Time:</label>
+            <label htmlFor="time" className="form-label">
+              Time:
+            </label>
             <input
               type="time"
               id="time"
@@ -195,7 +224,9 @@ export default function SimpleForm() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="week" className="form-label">Week:</label>
+            <label htmlFor="week" className="form-label">
+              Week:
+            </label>
             <input
               type="week"
               id="week"
@@ -205,7 +236,9 @@ export default function SimpleForm() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="month" className="form-label">Month:</label>
+            <label htmlFor="month" className="form-label">
+              Month:
+            </label>
             <input
               type="month"
               id="month"
@@ -215,7 +248,9 @@ export default function SimpleForm() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="radio" className="form-label">Radio:</label>
+            <label htmlFor="radio" className="form-label">
+              Radio:
+            </label>
             <div className="form-check">
               <input
                 type="radio"
@@ -226,11 +261,15 @@ export default function SimpleForm() {
                 checked={radio === "Radio Value"}
                 onChange={(e) => setRadio(e.target.value)}
               />
-              <label htmlFor="radio" className="form-check-label">Select</label>
+              <label htmlFor="radio" className="form-check-label">
+                Select
+              </label>
             </div>
           </div>
           <div className="mb-3">
-            <label htmlFor="checkbox" className="form-label">Checkbox:</label>
+            <label htmlFor="checkbox" className="form-label">
+              Checkbox:
+            </label>
             <div className="form-check">
               <input
                 type="checkbox"
@@ -239,11 +278,15 @@ export default function SimpleForm() {
                 checked={checkbox}
                 onChange={(e) => setCheckbox(e.target.checked)}
               />
-              <label htmlFor="checkbox" className="form-check-label">Agree</label>
+              <label htmlFor="checkbox" className="form-check-label">
+                Agree
+              </label>
             </div>
           </div>
           <div className="mb-3">
-            <label htmlFor="hidden" className="form-label">Hidden:</label>
+            <label htmlFor="hidden" className="form-label">
+              Hidden:
+            </label>
             <input
               type="hidden"
               id="hidden"
@@ -252,7 +295,9 @@ export default function SimpleForm() {
             />
             <p className="text-muted">Hidden value: {hidden}</p>
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
         </form>
       </div>
     </div>

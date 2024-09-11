@@ -30,8 +30,8 @@ export default function DataShow({ search, RootColors }) {
   }, [search, data]);
 
   return (
-    <section className="data-show" style={RootColors}>
-      <div className="container">
+    <section className="data-show" style={{ top: "60px", position: "relative" }}>
+      <div className="container" >
         <div className="row w-100">
           <div className="col ">
             {data.length > 0 ? (

@@ -25,7 +25,10 @@ export default function Navbar({
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-custom" style={RootColors}>
+      <nav
+        className="navbar navbar-expand-lg navbar-custom position-fixed w-100"
+        style={{ zIndex: "9999" }}
+      >
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             MyApp
@@ -60,12 +63,16 @@ export default function Navbar({
               </li>
             </ul>
             <form className="d-flex" role="search">
+              <label htmlFor="Search" className="d-none">
+                Search Label (Hidden)
+              </label>
               <input
                 className="form-control me-2"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
                 value={search}
+                id="Search"
                 onChange={handleSearchChange}
               />
             </form>
@@ -76,6 +83,7 @@ export default function Navbar({
         <button
           className="btn btn-primary position-fixed Theme-Btn"
           onClick={ToggleIcon}
+          style={{ zIndex: "9999" }}
         >
           <i className={`fa-solid fa-${Icon}`}></i>
         </button>
