@@ -5,6 +5,7 @@ import Navbar from "./Components/Navbar";
 import MultiPages from "./Pages/MultiPages";
 import DataShow from "./Pages/DataShow";
 import View from "./Pages/View";
+import SimpleForm from "./Pages/SimpleForm";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -78,6 +79,7 @@ function App() {
             element={<DataShow search={search} RootColors={Theme} />}
           />
           <Route path="/data/view/:id" element={<View RootColors={Theme} />} />
+          <Route path="/form" element={<SimpleForm />} />
         </Routes>
       </BrowserRouter>
     </div>
