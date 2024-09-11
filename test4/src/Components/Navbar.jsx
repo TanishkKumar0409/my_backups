@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar({ search, setSearch, RootColors }) {
+  const [Icon, setIcon] = useState("sun");
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
+  };
+  const ToggleIcon = () => {
+    if (Icon === "sun") {
+      setIcon("moon");
+    } else if (Icon === "moon") {
+      setIcon("sun");
+    }
   };
 
   return (
@@ -55,6 +63,14 @@ export default function Navbar({ search, setSearch, RootColors }) {
           </div>
         </div>
       </nav>
+      <div>
+        <button
+          className="btn btn-primary position-absolute Theme-Btn"
+          onClick={ToggleIcon}
+        >
+          <i class={`fa-solid fa-${Icon}`}></i>
+        </button>
+      </div>
     </>
   );
 }

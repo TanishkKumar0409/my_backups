@@ -248,3 +248,7 @@ body {
   background-color: var(--button-text-color);
   color: var(--primary-color);
 }
+.Theme-Btn{
+  bottom: 20px;
+  right: 20px;
+}
