@@ -79,7 +79,7 @@ function App() {
             element={<DataShow search={search} RootColors={Theme} />}
           />
           <Route path="/data/view/:id" element={<View RootColors={Theme} />} />
-          <Route path="/form" element={<SimpleForm />} />
+          <Route path="/form" element={<SimpleForm RootColors={Theme} />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Navbar({ search, setSearch, RootColors }) {
+export default function Navbar({
+  search,
+  setSearch,
+  RootColors,
+  toggleTheme,
+  ThemeText,
+}) {
   const [Icon, setIcon] = useState("sun");
+
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
   };
+
   const ToggleIcon = () => {
     if (Icon === "sun") {
       setIcon("moon");
     } else if (Icon === "moon") {
       setIcon("sun");
     }
+    toggleTheme(); // Call the theme toggle function when the icon is toggled
   };
 
   return (
@@ -46,7 +55,7 @@ export default function Navbar({ search, setSearch, RootColors }) {
               </li>
               <li className="nav-item">
                 <Link to="/form" className="nav-link">
-                  From
+                  Form
                 </Link>
               </li>
             </ul>
@@ -65,10 +74,10 @@ export default function Navbar({ search, setSearch, RootColors }) {
       </nav>
       <div>
         <button
-          className="btn btn-primary position-absolute Theme-Btn"
+          className="btn btn-primary position-fixed Theme-Btn"
           onClick={ToggleIcon}
         >
-          <i class={`fa-solid fa-${Icon}`}></i>
+          <i className={`fa-solid fa-${Icon}`}></i>
         </button>
       </div>
     </>
