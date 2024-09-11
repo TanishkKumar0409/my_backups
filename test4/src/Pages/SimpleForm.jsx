@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-export default function SimpleForm(props) {
-  // State for each input field
+export default function SimpleForm() {
   const [text, setText] = useState("");
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
@@ -25,7 +24,6 @@ export default function SimpleForm(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Logging each value one by one to the console
     console.log("Username: ", text);
     console.log("Email: ", email);
     console.log("Number: ", number);
@@ -53,9 +51,10 @@ export default function SimpleForm(props) {
         <div className="view-card-title">Simple Form</div>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label">Username:</label>
+            <label htmlFor="username" className="form-label">Username:</label>
             <input
               type="text"
+              id="username"
               className="form-control"
               placeholder="Enter Username"
               value={text}
@@ -64,9 +63,10 @@ export default function SimpleForm(props) {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Email:</label>
+            <label htmlFor="email" className="form-label">Email:</label>
             <input
               type="email"
+              id="email"
               className="form-control"
               placeholder="Enter your email"
               value={email}
@@ -75,9 +75,10 @@ export default function SimpleForm(props) {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Number:</label>
+            <label htmlFor="number" className="form-label">Number:</label>
             <input
               type="number"
+              id="number"
               className="form-control"
               placeholder="Enter a number"
               value={number}
@@ -86,9 +87,10 @@ export default function SimpleForm(props) {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Date:</label>
+            <label htmlFor="date" className="form-label">Date:</label>
             <input
               type="date"
+              id="date"
               className="form-control"
               value={date}
               onChange={(e) => setDate(e.target.value)}
@@ -96,27 +98,30 @@ export default function SimpleForm(props) {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Date & Time:</label>
+            <label htmlFor="datetime-local" className="form-label">Date & Time:</label>
             <input
               type="datetime-local"
+              id="datetime-local"
               className="form-control"
               value={datetimeLocal}
               onChange={(e) => setDatetimeLocal(e.target.value)}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Color:</label>
+            <label htmlFor="color" className="form-label">Color:</label>
             <input
               type="color"
+              id="color"
               className="form-control"
               value={color}
               onChange={(e) => setColor(e.target.value)}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Password:</label>
+            <label htmlFor="password" className="form-label">Password:</label>
             <input
               type="password"
+              id="password"
               className="form-control"
               placeholder="Enter your password"
               value={password}
@@ -125,9 +130,10 @@ export default function SimpleForm(props) {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Range (0-100):</label>
+            <label htmlFor="range" className="form-label">Range (0-100):</label>
             <input
               type="range"
+              id="range"
               className="form-range"
               value={rangeValue}
               onChange={(e) => setRangeValue(e.target.value)}
@@ -136,9 +142,10 @@ export default function SimpleForm(props) {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Telephone:</label>
+            <label htmlFor="tel" className="form-label">Telephone:</label>
             <input
               type="tel"
+              id="tel"
               className="form-control"
               placeholder="Enter your phone number"
               value={tel}
@@ -147,9 +154,10 @@ export default function SimpleForm(props) {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">URL:</label>
+            <label htmlFor="url" className="form-label">URL:</label>
             <input
               type="url"
+              id="url"
               className="form-control"
               placeholder="Enter a URL"
               value={url}
@@ -157,9 +165,10 @@ export default function SimpleForm(props) {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Search:</label>
+            <label htmlFor="search" className="form-label">Search:</label>
             <input
               type="search"
+              id="search"
               className="form-control"
               placeholder="Search something"
               value={search}
@@ -167,78 +176,83 @@ export default function SimpleForm(props) {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">File:</label>
+            <label htmlFor="file" className="form-label">File:</label>
             <input
               type="file"
+              id="file"
               className="form-control"
               onChange={(e) => setFile(e.target.files[0])}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Time:</label>
+            <label htmlFor="time" className="form-label">Time:</label>
             <input
               type="time"
+              id="time"
               className="form-control"
               value={time}
               onChange={(e) => setTime(e.target.value)}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Week:</label>
+            <label htmlFor="week" className="form-label">Week:</label>
             <input
               type="week"
+              id="week"
               className="form-control"
               value={week}
               onChange={(e) => setWeek(e.target.value)}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Month:</label>
+            <label htmlFor="month" className="form-label">Month:</label>
             <input
               type="month"
+              id="month"
               className="form-control"
               value={month}
               onChange={(e) => setMonth(e.target.value)}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Radio:</label>
+            <label htmlFor="radio" className="form-label">Radio:</label>
             <div className="form-check">
               <input
                 type="radio"
+                id="radio"
                 name="radioOption"
                 className="form-check-input"
                 value="Radio Value"
                 checked={radio === "Radio Value"}
                 onChange={(e) => setRadio(e.target.value)}
               />
-              <label className="form-check-label">Select</label>
+              <label htmlFor="radio" className="form-check-label">Select</label>
             </div>
           </div>
           <div className="mb-3">
-            <label className="form-label">Checkbox:</label>
+            <label htmlFor="checkbox" className="form-label">Checkbox:</label>
             <div className="form-check">
               <input
                 type="checkbox"
+                id="checkbox"
                 className="form-check-input"
                 checked={checkbox}
                 onChange={(e) => setCheckbox(e.target.checked)}
               />
-              <label className="form-check-label">Agree</label>
+              <label htmlFor="checkbox" className="form-check-label">Agree</label>
             </div>
           </div>
           <div className="mb-3">
-            <label className="form-label">Hidden:</label>
+            <label htmlFor="hidden" className="form-label">Hidden:</label>
             <input
               type="hidden"
+              id="hidden"
               value={hidden}
               onChange={(e) => setHidden(e.target.value)}
             />
             <p className="text-muted">Hidden value: {hidden}</p>
           </div>
-          <button type="submit" className="btn btn-primary w-100">
-            Submit
-          </button>
+          <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
     </div>
