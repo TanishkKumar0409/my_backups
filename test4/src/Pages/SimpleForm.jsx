@@ -19,33 +19,32 @@ export default function SimpleForm(props) {
   const [radio, setRadio] = useState("");
   const [checkbox, setCheckbox] = useState(false);
   const [file, setFile] = useState(null);
-  const hidden="";
+  const [hidden, setHidden] = useState("hiddenValue");
   const [time, setTime] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = {
-      username: text,
-      email: email,
-      number: number,
-      date: date,
-      datetime: datetime,
-      datetimeLocal: datetimeLocal,
-      color: color,
-      password: password,
-      rangeValue: rangeValue,
-      tel: tel,
-      url: url,
-      week: week,
-      month: month,
-      search: search,
-      radio: radio,
-      checkbox: checkbox,
-      file: file ? file.name : "No file chosen",
-      hidden: hidden,
-      time: time,
-    };
-    window.alert(JSON.stringify(formData, null, 2));
+
+    // Logging each value one by one to the console
+    console.log("Username: ", text);
+    console.log("Email: ", email);
+    console.log("Number: ", number);
+    console.log("Date: ", date);
+    console.log("Date & Time: ", datetime);
+    console.log("Date & Time (Local): ", datetimeLocal);
+    console.log("Color: ", color);
+    console.log("Password: ", password);
+    console.log("Range Value: ", rangeValue);
+    console.log("Telephone: ", tel);
+    console.log("URL: ", url);
+    console.log("Week: ", week);
+    console.log("Month: ", month);
+    console.log("Search: ", search);
+    console.log("Radio: ", radio);
+    console.log("Checkbox: ", checkbox);
+    console.log("File: ", file ? file.name : "No file chosen");
+    console.log("Hidden: ", hidden);
+    console.log("Time: ", time);
   };
 
   return (
@@ -91,7 +90,17 @@ export default function SimpleForm(props) {
               <div className="card-body">
                 <form className="row" onSubmit={handleSubmit}>
                   {/* Column 1 */}
+                  
                   <div className="col-md-6 mb-3">
+                  <label>Username:</label>
+                    <input
+                      type="text"
+                      className="form-control text-center"
+                      placeholder="Enter Username"
+                      value={text}
+                      onChange={(e) => setText(e.target.value)}
+                      required
+                    />
                     <label>Email:</label>
                     <input
                       type="email"
@@ -257,7 +266,7 @@ export default function SimpleForm(props) {
                     <input
                       type="hidden"
                       className="form-control mb-2"
-                      value={"hidden Input"}
+                      value={hidden}
                     />
 
                     <label>Reset:</label>
