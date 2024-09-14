@@ -9,13 +9,15 @@ export default function Projects() {
           <div class="row g-4">
             {/* <!-- Project 1: Orgaawe with modal trigger --> */}
             <div class="col-md-3">
-              <div class="card h-100">
-                <img
-                  src="https://orgaawe.com/image/logo.png"
+              <div class="card h-100 "> 
+              <div className="card-header">
+              <img
+                  src="/Images/Orgaawe.png"
                   class="card-img-top img-fluid"
                   alt="Orgaawe Project"
                   style={{ height: "200px", objectFit: "cover" }}
                 />
+              </div>
                 <div class="card-body">
                   <h5 class="card-title">Orgaawe</h5>
                   <p class="card-text">
@@ -56,7 +58,7 @@ export default function Projects() {
                   </div>
                   <div class="modal-body text-center">
                     <img
-                      src="https://orgaawe.com/image/logo.png"
+                      src="/Images/Orgaawe.png"
                       class="img-fluid"
                       alt="Orgaawe Project Image"
                       style={{maxHeight: "300px", objectFit: "cover"}}
@@ -76,7 +78,6 @@ export default function Projects() {
                     </button>
                     <a
                       href="https://orgaawe.com"
-                      target="_blank"
                       class="btn btn-primary"
                     >
                       <i class="fas fa-link"></i> View Live Project
@@ -88,13 +89,15 @@ export default function Projects() {
 
             {/* <!-- Project 2: Macs Concepts with modal trigger --> */}
             <div class="col-md-3">
-              <div class="card h-100">
-                <img
-                  src="https://macsconcepts.in/assets/images/logo/macs-logo.png"
+              <div class="card h-100 "> 
+               <div className="card-header">
+               <img
+                  src="/Images/Macs.png"
                   class="card-img-top img-fluid"
                   alt="Macs Concepts Project"
                   style={{height: "200px", objectFit: "cover"}}
                 />
+               </div>
                 <div class="card-body">
                   <h5 class="card-title">Macs Concepts</h5>
                   <p class="card-text">
@@ -134,7 +137,7 @@ export default function Projects() {
                   </div>
                   <div class="modal-body text-center">
                     <img
-                      src="https://macsconcepts.in/assets/images/logo/macs-logo.png"
+                      src="/Images/Macs.png"
                       class="img-fluid"
                       alt="Macs Concepts Project Image"
                       style={{maxHeight: "300px", objectFit: "cover"}}
@@ -154,7 +157,6 @@ export default function Projects() {
                     </button>
                     <a
                       href="https://macsconcepts.in"
-                      target="_blank"
                       class="btn btn-primary"
                     >
                       <i class="fas fa-link"></i> View Live Project
@@ -166,13 +168,15 @@ export default function Projects() {
 
             {/* <!-- Project 3: Back to Basics with modal trigger --> */}
             <div class="col-md-3">
-              <div class="card h-100">
-                <img
-                  src="https://thebacktobasics.com/images/logo/B2Blogo.png"
+              <div class="card h-100 "> 
+              <div className="card-header">
+              <img
+                  src="/Images/B2B.png"
                   class="card-img-top img-fluid"
                   alt="Back to Basics Project"
                    style={{height: "200px", objectFit: "cover"}}
                 />
+              </div>
                 <div class="card-body">
                   <h5 class="card-title">Back to Basics</h5>
                   <p class="card-text">
@@ -212,7 +216,7 @@ export default function Projects() {
                   </div>
                   <div class="modal-body text-center">
                     <img
-                      src="https://thebacktobasics.com/images/logo/B2Blogo.png"
+                      src="/Images/B2B.png"
                       class="img-fluid"
                       alt="Back to Basics Project Image"
                       style={{maxHeight: "300px", objectFit: "cover"}}
@@ -233,7 +237,6 @@ export default function Projects() {
                     </button>
                     <a
                       href="https://thebacktobasics.com"
-                      target="_blank"
                       class="btn btn-primary"
                     >
                       <i class="fas fa-link"></i> View Live Project
@@ -245,13 +248,15 @@ export default function Projects() {
 
             {/* <!-- Project 4: Offbeat Pixels with modal trigger --> */}
             <div class="col-md-3">
-              <div class="card h-100">
-                <img
-                  src="https://offbeatpixels.com/images/offbeat-pixel.png"
+              <div class="card h-100 "> 
+               <div className="card-header">
+               <img
+                  src="/Images/Offbeat.png"
                   class="card-img-top img-fluid"
                   alt="Offbeat Pixels Project"
                    style={{height: "200px", objectFit: "cover"}}
                 />
+               </div>
                 <div class="card-body">
                   <h5 class="card-title">Offbeat Pixels</h5>
                   <p class="card-text">
@@ -291,7 +296,7 @@ export default function Projects() {
                   </div>
                   <div class="modal-body text-center">
                     <img
-                      src="https://offbeatpixels.com/images/offbeat-pixel.png"
+                      src="/Images/Offbeat.png"
                       class="img-fluid"
                       alt="Offbeat Pixels Project Image"
                       style={{maxHeight: "300px", objectFit: "cover"}}
@@ -312,7 +317,6 @@ export default function Projects() {
                     </button>
                     <a
                       href="https://offbeatpixels.com"
-                      target="_blank"
                       class="btn btn-primary"
                     >
                       <i class="fas fa-link"></i> View Live Project
