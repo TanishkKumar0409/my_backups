@@ -3,19 +3,19 @@ import React from 'react'
 export default function Education() {
   return (
     <>
-      <section id="education" class="py-5 bg-dark text-light">
-      <div class="container">
-        <h2 class="text-center mb-4">Education</h2>
-        <div class="row">
-          <div class="col">
-            <div class="accordion" id="educationAccordion">
+      <section id="education" className="py-5 bg-dark text-light">
+      <div className="container">
+        <h2 className="text-center mb-4">Education</h2>
+        <div className="row">
+          <div className="col">
+            <div className="accordion" id="educationAccordion">
               {/* <!-- Bachelor of Computer Applications --> */}
               <div
-                class="accordion-item bg-dark text-light border border-light"
+                className="accordion-item bg-dark text-light border border-light"
               >
-                <h2 class="accordion-header" id="headingOne">
+                <h2 className="accordion-header" id="headingOne">
                   <button
-                    class="accordion-button bg-dark text-light border-bottom border-light"
+                    className="accordion-button bg-dark text-light border-bottom border-light"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseOne"
@@ -28,12 +28,12 @@ export default function Education() {
                 </h2>
                 <div
                   id="collapseOne"
-                  class="accordion-collapse collapse show"
+                  className="accordion-collapse collapse show"
                   aria-labelledby="headingOne"
                   data-bs-parent="#educationAccordion"
                 >
                   <div
-                    class="accordion-body bg-secondary text-light border-top border-light"
+                    className="accordion-body bg-secondary text-light border-top border-light"
                   >
                     <strong>Details:</strong>
                     <ul>
@@ -52,11 +52,11 @@ export default function Education() {
 
               {/* <!-- High School --> */}
               <div
-                class="accordion-item bg-dark text-light border border-light"
+                className="accordion-item bg-dark text-light border border-light"
               >
-                <h2 class="accordion-header" id="headingTwo">
+                <h2 className="accordion-header" id="headingTwo">
                   <button
-                    class="accordion-button collapsed bg-dark text-light border-bottom border-light"
+                    className="accordion-button collapsed bg-dark text-light border-bottom border-light"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseTwo"
@@ -68,12 +68,12 @@ export default function Education() {
                 </h2>
                 <div
                   id="collapseTwo"
-                  class="accordion-collapse collapse"
+                  className="accordion-collapse collapse"
                   aria-labelledby="headingTwo"
                   data-bs-parent="#educationAccordion"
                 >
                   <div
-                    class="accordion-body bg-secondary text-light border-top border-light"
+                    className="accordion-body bg-secondary text-light border-top border-light"
                   >
                     <strong>Details:</strong>
                     <ul>
@@ -88,11 +88,11 @@ export default function Education() {
 
               {/* <!-- Intermediate School --> */}
               <div
-                class="accordion-item bg-dark text-light border border-light"
+                className="accordion-item bg-dark text-light border border-light"
               >
-                <h2 class="accordion-header" id="headingThree">
+                <h2 className="accordion-header" id="headingThree">
                   <button
-                    class="accordion-button collapsed bg-dark text-light border-bottom border-light"
+                    className="accordion-button collapsed bg-dark text-light border-bottom border-light"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseThree"
@@ -104,12 +104,12 @@ export default function Education() {
                 </h2>
                 <div
                   id="collapseThree"
-                  class="accordion-collapse collapse"
+                  className="accordion-collapse collapse"
                   aria-labelledby="headingThree"
                   data-bs-parent="#educationAccordion"
                 >
                   <div
-                    class="accordion-body bg-secondary text-light border-top border-light"
+                    className="accordion-body bg-secondary text-light border-top border-light"
                   >
                     <strong>Details:</strong>
                     <ul>
@@ -128,11 +128,11 @@ export default function Education() {
 
               {/* <!-- Certification in Computer Basics --> */}
               <div
-                class="accordion-item bg-dark text-light border border-light"
+                className="accordion-item bg-dark text-light border border-light"
               >
-                <h2 class="accordion-header" id="headingFour">
+                <h2 className="accordion-header" id="headingFour">
                   <button
-                    class="accordion-button collapsed bg-dark text-light border-bottom border-light"
+                    className="accordion-button collapsed bg-dark text-light border-bottom border-light"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseFour"
@@ -144,12 +144,12 @@ export default function Education() {
                 </h2>
                 <div
                   id="collapseFour"
-                  class="accordion-collapse collapse"
+                  className="accordion-collapse collapse"
                   aria-labelledby="headingFour"
                   data-bs-parent="#educationAccordion"
                 >
                   <div
-                    class="accordion-body bg-secondary text-light border-top border-light"
+                    className="accordion-body bg-secondary text-light border-top border-light"
                   >
                     <strong>Details:</strong>
                     <ul>

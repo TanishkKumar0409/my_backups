@@ -3,17 +3,17 @@ import React from "react";
 export default function Skills() {
   return (
     <>
-      <section id="skills" class="py-5 bg-secondary">
-        <div class="container">
-          <h2 class="text-center mb-4">Skills</h2>
-          <div class="row">
-            <div class="col-md-6 mt-4">
-              <ul class="list-group shadow-lg">
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+      <section id="skills" className="py-5 bg-secondary">
+        <div className="container">
+          <h2 className="text-center mb-4">Skills</h2>
+          <div className="row">
+            <div className="col-md-6 mt-4">
+              <ul className="list-group shadow-lg">
+                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
                   HTML
-                  <div class="progress w-75">
+                  <div className="progress w-75">
                     <div
-                      class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                      className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
                       style={{width: "90%"}}
                       aria-valuenow="90"
@@ -22,11 +22,11 @@ export default function Skills() {
                     ></div>
                   </div>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
                   CSS
-                  <div class="progress w-75">
+                  <div className="progress w-75">
                     <div
-                      class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                      className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
                       style={{width: "85%"}}
                       aria-valuenow="85"
@@ -35,11 +35,11 @@ export default function Skills() {
                     ></div>
                   </div>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
                   SCSS
-                  <div class="progress w-75">
+                  <div className="progress w-75">
                     <div
-                      class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                      className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
                       style={{width: "80%"}}
                       aria-valuenow="80"
@@ -48,11 +48,11 @@ export default function Skills() {
                     ></div>
                   </div>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
                   Bootstrap
-                  <div class="progress w-75">
+                  <div className="progress w-75">
                     <div
-                      class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                      className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
                       style={{width: "75%"}}
                       aria-valuenow="75"
@@ -61,11 +61,11 @@ export default function Skills() {
                     ></div>
                   </div>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
                   Tailwind CSS
-                  <div class="progress w-75">
+                  <div className="progress w-75">
                     <div
-                      class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                      className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
                       style={{width: "70%"}}
                       aria-valuenow="70"
@@ -76,13 +76,13 @@ export default function Skills() {
                 </li>
               </ul>
             </div>
-            <div class="col-md-6 mt-4">
-              <ul class="list-group shadow-lg">
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+            <div className="col-md-6 mt-4">
+              <ul className="list-group shadow-lg">
+                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
                   PHP
-                  <div class="progress w-75">
+                  <div className="progress w-75">
                     <div
-                      class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                      className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
                       style={{width: "90%"}}
                       aria-valuenow="90"
@@ -91,11 +91,11 @@ export default function Skills() {
                     ></div>
                   </div>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
                   MYSQL
-                  <div class="progress w-75">
+                  <div className="progress w-75">
                     <div
-                      class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                      className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
                       style={{width: "85%"}}
                       aria-valuenow="85"
@@ -104,11 +104,11 @@ export default function Skills() {
                     ></div>
                   </div>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
                   Java
-                  <div class="progress w-75">
+                  <div className="progress w-75">
                     <div
-                      class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                      className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
                       style={{width: "80%"}}
                       aria-valuenow="80"
@@ -117,11 +117,11 @@ export default function Skills() {
                     ></div>
                   </div>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
                   Figma
-                  <div class="progress w-75">
+                  <div className="progress w-75">
                     <div
-                      class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                      className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
                       style={{width: "75%"}}
                       aria-valuenow="75"
@@ -130,11 +130,11 @@ export default function Skills() {
                     ></div>
                   </div>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
                   Git, GitHub
-                  <div class="progress w-75">
+                  <div className="progress w-75">
                     <div
-                      class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                      className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
                       style={{width: "70%"}}
                       aria-valuenow="70"

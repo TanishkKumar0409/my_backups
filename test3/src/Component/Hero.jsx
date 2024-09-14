@@ -13,7 +13,7 @@ export default function Hero() {
                 <i className="fas fa-user"></i> Learn More
               </a>
             </div>
-            <div className="col-md-6 d-none d-md-block">
+            <div className="col-md-6 d-none d-md-block ">
               <img
                 src="/Images/1706397847403.jpg"
                 className="img-fluid rounded-circle shadow-lg border border-5 border-secondary"

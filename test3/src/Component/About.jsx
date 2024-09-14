@@ -3,10 +3,10 @@ import React from 'react'
 export default function About() {
   return (
     <>
-       <section id="about" class="py-5 bg-secondary">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-6">
+       <section id="about" className="py-5 bg-secondary">
+      <div className="container">
+        <div className="row align-items-center">
+          <div className="col-md-6">
             <h2>About Me</h2>
             <p>
               I'm a passionate web developer with a knack for creating
@@ -15,10 +15,10 @@ export default function About() {
               React.
             </p>
           </div>
-          <div class="col-md-6">
+          <div className="col-md-6">
             <img
               src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg"
-              class="img-fluid rounded-circle"
+              className="img-fluid rounded-circle"
               alt="Tanishk"
             />
           </div>

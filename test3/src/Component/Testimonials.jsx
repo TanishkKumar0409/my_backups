@@ -3,51 +3,51 @@ import React from 'react'
 export default function Testimonials() {
   return (
     <>
-      <section id="testimonials" class="py-5 bg-secondary">
+      <section id="testimonials" className="py-5 bg-secondary">
       <div
         id="testimonialCarousel"
-        class="carousel slide"
+        className="carousel slide"
         data-bs-ride="carousel"
         data-bs-interval="5000"
       >
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="d-flex flex-column align-items-center text-center p-4">
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <div className="d-flex flex-column align-items-center text-center p-4">
               <img
                 src="https://via.placeholder.com/100"
-                class="rounded-circle mb-3"
+                className="rounded-circle mb-3"
                 alt="Client Photo"
               />
-              <h5 class="mb-2">John Doe</h5>
-              <p class="mb-0">
+              <h5 className="mb-2">John Doe</h5>
+              <p className="mb-0">
                 "This is a fantastic service! Highly recommended for anyone
                 looking to enhance their online presence."
               </p>
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="d-flex flex-column align-items-center text-center p-4">
+          <div className="carousel-item">
+            <div className="d-flex flex-column align-items-center text-center p-4">
               <img
                 src="https://via.placeholder.com/100"
-                class="rounded-circle mb-3"
+                className="rounded-circle mb-3"
                 alt="Client Photo"
               />
-              <h5 class="mb-2">Jane Smith</h5>
-              <p class="mb-0">
+              <h5 className="mb-2">Jane Smith</h5>
+              <p className="mb-0">
                 "An excellent experience from start to finish. The team was
                 professional and the results were outstanding."
               </p>
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="d-flex flex-column align-items-center text-center p-4">
+          <div className="carousel-item">
+            <div className="d-flex flex-column align-items-center text-center p-4">
               <img
                 src="https://via.placeholder.com/100"
-                class="rounded-circle mb-3"
+                className="rounded-circle mb-3"
                 alt="Client Photo"
               />
-              <h5 class="mb-2">Alice Johnson</h5>
-              <p class="mb-0">
+              <h5 className="mb-2">Alice Johnson</h5>
+              <p className="mb-0">
                 "Great service! The project was completed on time and exceeded
                 my expectations."
               </p>
@@ -55,22 +55,22 @@ export default function Testimonials() {
           </div>
         </div>
         <button
-          class="carousel-control-prev"
+          className="carousel-control-prev"
           type="button"
           data-bs-target="#testimonialCarousel"
           data-bs-slide="prev"
         >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
         </button>
         <button
-          class="carousel-control-next"
+          className="carousel-control-next"
           type="button"
           data-bs-target="#testimonialCarousel"
           data-bs-slide="next"
         >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
         </button>
       </div>
     </section>
