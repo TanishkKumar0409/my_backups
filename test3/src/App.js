@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
-import ThemeProvider from "./Component/ThemeProvider";
+import Navbar from "./Component/Navbar";
+import Hero from "./Component/Hero";
 
 function App() {
-  return (
-    <div>
-      <ThemeProvider />
-    </div>
-  );
+  return <>
+  <Navbar />
+  <Hero />
+  </>;
 }
 
 export default App;

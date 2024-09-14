@@ -293,7 +293,7 @@ export default function SimpleForm() {
               value={hidden}
               onChange={(e) => setHidden(e.target.value)}
             />
-            <p className="text-muted">Hidden value: {hidden}</p>
+            <p className="text-secondary">Hidden value: {hidden}</p>
           </div>
           <button type="submit" className="btn btn-primary">
             Submit
