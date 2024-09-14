@@ -1,15 +1,15 @@
 import React from "react";
 
-export default function Skills() {
+export default function Skills(props) {
   return (
     <>
-      <section id="skills" className="py-5 bg-secondary">
+      <section id="skills" className={`py-5 bg-${props.SecondaryTheme}`}>
         <div className="container">
           <h2 className="text-center mb-4">Skills</h2>
           <div className="row">
             <div className="col-md-6 mt-4">
               <ul className="list-group shadow-lg">
-                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
                   HTML
                   <div className="progress w-75">
                     <div
@@ -22,7 +22,7 @@ export default function Skills() {
                     ></div>
                   </div>
                 </li>
-                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
                   CSS
                   <div className="progress w-75">
                     <div
@@ -35,7 +35,7 @@ export default function Skills() {
                     ></div>
                   </div>
                 </li>
-                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
                   SCSS
                   <div className="progress w-75">
                     <div
@@ -48,7 +48,7 @@ export default function Skills() {
                     ></div>
                   </div>
                 </li>
-                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
                   Bootstrap
                   <div className="progress w-75">
                     <div
@@ -61,7 +61,7 @@ export default function Skills() {
                     ></div>
                   </div>
                 </li>
-                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
                   Tailwind CSS
                   <div className="progress w-75">
                     <div
@@ -78,7 +78,7 @@ export default function Skills() {
             </div>
             <div className="col-md-6 mt-4">
               <ul className="list-group shadow-lg">
-                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
                   PHP
                   <div className="progress w-75">
                     <div
@@ -91,7 +91,7 @@ export default function Skills() {
                     ></div>
                   </div>
                 </li>
-                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
                   MYSQL
                   <div className="progress w-75">
                     <div
@@ -104,7 +104,7 @@ export default function Skills() {
                     ></div>
                   </div>
                 </li>
-                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
                   Java
                   <div className="progress w-75">
                     <div
@@ -117,7 +117,7 @@ export default function Skills() {
                     ></div>
                   </div>
                 </li>
-                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
                   Figma
                   <div className="progress w-75">
                     <div
@@ -130,7 +130,7 @@ export default function Skills() {
                     ></div>
                   </div>
                 </li>
-                <li className="list-group-item d-flex justify-content-between align-items-center bg-dark text-light">
+                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
                   Git, GitHub
                   <div className="progress w-75">
                     <div

@@ -1,15 +1,15 @@
 import React from "react";
 
-export default function Projects() {
+export default function Projects(props) {
   return (
     <>
-      <section id="projects" className="py-5 bg-dark text-light">
+      <section id="projects" className={`py-5 bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
         <div className="container">
           <h2 className="text-center mb-4">Projects</h2>
           <div className="row g-4">
             {/* <!-- Project 1: Orgaawe with modal trigger --> */}
             <div className="col-md-3">
-              <div className="card h-100  bg-dark text-light shadow-lg">
+              <div className={`card h-100  bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"} shadow-lg`}>
                 <div className="card-header">
                   <img
                     src="/Images/Orgaawe.png"
@@ -44,14 +44,14 @@ export default function Projects() {
               aria-hidden="true"
             >
               <div className="modal-dialog modal-lg modal-dialog-centered">
-                <div className="modal-content bg-dark text-light">
+                <div className={`modal-content bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
                   <div className="modal-header">
                     <h5 className="modal-title" id="orgaaweModalLabel">
                       Orgaawe Project Details
                     </h5>
                     <button
                       type="button"
-                      className="btn-close btn-close-light"
+                      className={`btn-close btn-close-${props.darkTheme==="dark"?"light":"dark"}`}
                       data-bs-dismiss="modal"
                       aria-label="Close"
                     ></button>
@@ -86,7 +86,7 @@ export default function Projects() {
 
             {/* <!-- Project 2: Macs Concepts with modal trigger --> */}
             <div className="col-md-3">
-              <div className="card h-100  bg-dark text-light shadow-lg">
+              <div className={`card h-100  bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"} shadow-lg`}>
                 <div className="card-header">
                   <img
                     src="/Images/Macs.png"
@@ -120,14 +120,14 @@ export default function Projects() {
               aria-hidden="true"
             >
               <div className="modal-dialog modal-lg modal-dialog-centered">
-                <div className="modal-content bg-dark text-light">
+                <div className={`modal-content bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
                   <div className="modal-header">
                     <h5 className="modal-title" id="macsconceptsModalLabel">
                       Macs Concepts Project Details
                     </h5>
                     <button
                       type="button"
-                      className="btn-close btn-close-light"
+                      className={`btn-close btn-close-${props.darkTheme==="dark"?"light":"dark"}`}
                       data-bs-dismiss="modal"
                       aria-label="Close"
                     ></button>
@@ -147,7 +147,7 @@ export default function Projects() {
                   <div className="modal-footer">
                     <button
                       type="button"
-                      className="btn btn-secondary"
+                      className={`btn btn-secondary`}
                       data-bs-dismiss="modal"
                     >
                       <i className="fas fa-times"></i> Close
@@ -165,7 +165,7 @@ export default function Projects() {
 
             {/* <!-- Project 3: Back to Basics with modal trigger --> */}
             <div className="col-md-3">
-              <div className="card h-100  bg-dark text-light shadow-lg">
+              <div className={`card h-100  bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"} shadow-lg`}>
                 <div className="card-header">
                   <img
                     src="/Images/B2B.png"
@@ -199,14 +199,14 @@ export default function Projects() {
               aria-hidden="true"
             >
               <div className="modal-dialog modal-lg modal-dialog-centered">
-                <div className="modal-content bg-dark text-light">
+                <div className={`modal-content bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
                   <div className="modal-header">
                     <h5 className="modal-title" id="backtobasicsModalLabel">
                       Back to Basics Project Details
                     </h5>
                     <button
                       type="button"
-                      className="btn-close btn-close-light"
+                      className={`btn-close btn-close-${props.darkTheme==="dark"?"light":"dark"}`}
                       data-bs-dismiss="modal"
                       aria-label="Close"
                     ></button>
@@ -245,7 +245,7 @@ export default function Projects() {
 
             {/* <!-- Project 4: Offbeat Pixels with modal trigger --> */}
             <div className="col-md-3">
-              <div className="card h-100  bg-dark text-light shadow-lg">
+              <div className={`card h-100  bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"} shadow-lg`}>
                 <div className="card-header">
                   <img
                     src="/Images/Offbeat.png"
@@ -279,14 +279,14 @@ export default function Projects() {
               aria-hidden="true"
             >
               <div className="modal-dialog modal-lg modal-dialog-centered">
-                <div className="modal-content bg-dark text-light">
+                <div className={`modal-content bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
                   <div className="modal-header">
                     <h5 className="modal-title" id="offbeatpixelsModalLabel">
                       Offbeat Pixels Project Details
                     </h5>
                     <button
                       type="button"
-                      className="btn-close btn-close-light"
+                      className={`btn-close btn-close-${props.darkTheme==="dark"?"light":"dark"}`}
                       data-bs-dismiss="modal"
                       aria-label="Close"
                     ></button>

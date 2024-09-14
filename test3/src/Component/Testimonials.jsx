@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Testimonials() {
+export default function Testimonials(props) {
   return (
     <>
-      <section id="testimonials" className="py-5 bg-secondary">
+      <section id="testimonials" className={`py-5 bg-${props.SecondaryTheme}`}>
       <div
         id="testimonialCarousel"
         className="carousel slide"

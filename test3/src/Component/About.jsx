@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function About() {
+export default function About(props) {
   return (
     <>
-       <section id="about" className="py-5 bg-secondary">
+       <section id="about" className={`py-5 bg-${props.SecondaryTheme}`}>
       <div className="container">
         <div className="row align-items-center">
           <div className="col-md-6">

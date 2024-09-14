@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Education() {
+export default function Education(props) {
   return (
     <>
-      <section id="education" className="py-5 bg-dark text-light">
+      <section id="education" className={`py-5 bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
       <div className="container">
         <h2 className="text-center mb-4">Education</h2>
         <div className="row">
@@ -11,11 +11,11 @@ export default function Education() {
             <div className="accordion" id="educationAccordion">
               {/* <!-- Bachelor of Computer Applications --> */}
               <div
-                className="accordion-item bg-dark text-light border border-light"
+                className={`accordion-item bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"} border border-${props.darkTheme==="dark"?"light":"dark"}`}
               >
                 <h2 className="accordion-header" id="headingOne">
                   <button
-                    className="accordion-button bg-dark text-light border-bottom border-light"
+                    className={`accordion-button bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"} border-bottom border-${props.darkTheme==="dark"?"light":"dark"}`}
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseOne"
@@ -33,7 +33,7 @@ export default function Education() {
                   data-bs-parent="#educationAccordion"
                 >
                   <div
-                    className="accordion-body bg-secondary text-light border-top border-light"
+                    className={`accordion-body bg-${props.SecondaryTheme} text-${props.darkTheme==="dark"?"light":"dark"} border-top border-${props.darkTheme==="dark"?"light":"dark"}`}
                   >
                     <strong>Details:</strong>
                     <ul>
@@ -52,11 +52,11 @@ export default function Education() {
 
               {/* <!-- High School --> */}
               <div
-                className="accordion-item bg-dark text-light border border-light"
+                className={`accordion-item bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"} border border-${props.darkTheme==="dark"?"light":"dark"}`}
               >
                 <h2 className="accordion-header" id="headingTwo">
                   <button
-                    className="accordion-button collapsed bg-dark text-light border-bottom border-light"
+                    className={`accordion-button collapsed bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"} border-bottom border-${props.darkTheme==="dark"?"light":"dark"}`}
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseTwo"
@@ -73,7 +73,7 @@ export default function Education() {
                   data-bs-parent="#educationAccordion"
                 >
                   <div
-                    className="accordion-body bg-secondary text-light border-top border-light"
+                    className={`accordion-body bg-${props.SecondaryTheme} text-${props.darkTheme==="dark"?"light":"dark"} border-top border-${props.darkTheme==="dark"?"light":"dark"}`}
                   >
                     <strong>Details:</strong>
                     <ul>
@@ -88,11 +88,11 @@ export default function Education() {
 
               {/* <!-- Intermediate School --> */}
               <div
-                className="accordion-item bg-dark text-light border border-light"
+                className={`accordion-item bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"} border border-${props.darkTheme==="dark"?"light":"dark"}`}
               >
                 <h2 className="accordion-header" id="headingThree">
                   <button
-                    className="accordion-button collapsed bg-dark text-light border-bottom border-light"
+                    className={`accordion-button collapsed bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"} border-bottom border-${props.darkTheme==="dark"?"light":"dark"}`}
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseThree"
@@ -109,7 +109,7 @@ export default function Education() {
                   data-bs-parent="#educationAccordion"
                 >
                   <div
-                    className="accordion-body bg-secondary text-light border-top border-light"
+                    className={`accordion-body bg-${props.SecondaryTheme} text-${props.darkTheme==="dark"?"light":"dark"} border-top border-${props.darkTheme==="dark"?"light":"dark"}`}
                   >
                     <strong>Details:</strong>
                     <ul>
@@ -128,11 +128,11 @@ export default function Education() {
 
               {/* <!-- Certification in Computer Basics --> */}
               <div
-                className="accordion-item bg-dark text-light border border-light"
+                className={`accordion-item bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"} border border-${props.darkTheme==="dark"?"light":"dark"}`}
               >
                 <h2 className="accordion-header" id="headingFour">
                   <button
-                    className="accordion-button collapsed bg-dark text-light border-bottom border-light"
+                    className={`accordion-button collapsed bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"} border-bottom border-${props.darkTheme==="dark"?"light":"dark"}`}
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseFour"
@@ -149,7 +149,7 @@ export default function Education() {
                   data-bs-parent="#educationAccordion"
                 >
                   <div
-                    className="accordion-body bg-secondary text-light border-top border-light"
+                    className={`accordion-body bg-${props.SecondaryTheme} text-${props.darkTheme==="dark"?"light":"dark"} border-top border-${props.darkTheme==="dark"?"light":"dark"}`}
                   >
                     <strong>Details:</strong>
                     <ul>

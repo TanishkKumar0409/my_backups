@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function Navbar() {
+export default function Navbar(props) {
   return (
     <>
       <header className="shadow-lg w-100 position-fixed z-3">
         <div>
-          <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
+          <nav className={`navbar navbar-expand-lg bg-${props.darkTheme} navbar-${props.darkTheme}`}>
             <div className="container-fluid">
               <a className="navbar-brand" href="#">
                 Navbar
@@ -64,6 +64,7 @@ export default function Navbar() {
                     </a>
                   </li>
                 </ul>
+                <button className={`btn btn-outline-${props.darkTheme==="dark"?"light":"dark"}`} onClick={props.toggleTheme}>{props.ThemeText}</button>
               </div>
             </div>
           </nav>
