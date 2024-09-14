@@ -4,6 +4,7 @@ import Navbar from "./Component/Navbar";
 import Hero from "./Component/Hero";
 import Projects from "./Component/Project";
 import Skills from "./Component/Skills";
+import Education from "./Component/Education";
 
 function App() {
   return <>
@@ -11,6 +12,7 @@ function App() {
   <Hero />
   <Projects />
   <Skills />
+  <Education />
   </>;
 }
 

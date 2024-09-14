@@ -1,0 +1,171 @@
+import React from 'react'
+
+export default function Education() {
+  return (
+    <>
+      <section id="education" class="py-5 bg-dark text-light">
+      <div class="container">
+        <h2 class="text-center mb-4">Education</h2>
+        <div class="row">
+          <div class="col">
+            <div class="accordion" id="educationAccordion">
+              {/* <!-- Bachelor of Computer Applications --> */}
+              <div
+                class="accordion-item bg-dark text-light border border-light"
+              >
+                <h2 class="accordion-header" id="headingOne">
+                  <button
+                    class="accordion-button bg-dark text-light border-bottom border-light"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                    Bachelor of Computer Applications (BCA) - AJ Campus
+                    (Pursuing)
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  class="accordion-collapse collapse show"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#educationAccordion"
+                >
+                  <div
+                    class="accordion-body bg-secondary text-light border-top border-light"
+                  >
+                    <strong>Details:</strong>
+                    <ul>
+                      <li><strong>Specialization:</strong> Web Development</li>
+                      <li>
+                        <strong>Key Courses:</strong> HTML, CSS, JavaScript,
+                        Database Management
+                      </li>
+                      <li>
+                        <strong>Activities:</strong> Web Development Projects
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* <!-- High School --> */}
+              <div
+                class="accordion-item bg-dark text-light border border-light"
+              >
+                <h2 class="accordion-header" id="headingTwo">
+                  <button
+                    class="accordion-button collapsed bg-dark text-light border-bottom border-light"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    High School - SGRR Laxman Inter College (2020)
+                  </button>
+                </h2>
+                <div
+                  id="collapseTwo"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingTwo"
+                  data-bs-parent="#educationAccordion"
+                >
+                  <div
+                    class="accordion-body bg-secondary text-light border-top border-light"
+                  >
+                    <strong>Details:</strong>
+                    <ul>
+                      <li>
+                        <strong>Stream:</strong> Science (Math, Physics,
+                        Chemistry)
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* <!-- Intermediate School --> */}
+              <div
+                class="accordion-item bg-dark text-light border border-light"
+              >
+                <h2 class="accordion-header" id="headingThree">
+                  <button
+                    class="accordion-button collapsed bg-dark text-light border-bottom border-light"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree"
+                    aria-expanded="false"
+                    aria-controls="collapseThree"
+                  >
+                    Intermediate School - SGRR Laxman Inter College (2022)
+                  </button>
+                </h2>
+                <div
+                  id="collapseThree"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingThree"
+                  data-bs-parent="#educationAccordion"
+                >
+                  <div
+                    class="accordion-body bg-secondary text-light border-top border-light"
+                  >
+                    <strong>Details:</strong>
+                    <ul>
+                      <li>
+                        <strong>Stream:</strong> Science (Math, Physics,
+                        Chemistry)
+                      </li>
+                      <li>
+                        <strong>Activities:</strong> Science Exhibitions,
+                        Inter-School Competitions
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* <!-- Certification in Computer Basics --> */}
+              <div
+                class="accordion-item bg-dark text-light border border-light"
+              >
+                <h2 class="accordion-header" id="headingFour">
+                  <button
+                    class="accordion-button collapsed bg-dark text-light border-bottom border-light"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour"
+                    aria-expanded="false"
+                    aria-controls="collapseFour"
+                  >
+                    Certification - Computer Basics (ILIT Computer Institute)
+                  </button>
+                </h2>
+                <div
+                  id="collapseFour"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingFour"
+                  data-bs-parent="#educationAccordion"
+                >
+                  <div
+                    class="accordion-body bg-secondary text-light border-top border-light"
+                  >
+                    <strong>Details:</strong>
+                    <ul>
+                      <li>
+                        <strong>Institute:</strong> ILIT Computer Institute
+                      </li>
+                      <li><strong>Skills Acquired:</strong> MS Office</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </>
+  )
+}
