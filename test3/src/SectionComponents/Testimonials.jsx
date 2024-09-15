@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export default function Testimonials(props) {
   return (
@@ -21,7 +21,11 @@ export default function Testimonials(props) {
                 />
                 <h5 className="mb-2">Prince Parmar</h5>
                 <p className="mb-0">
-                  "Working with this developer has been a great experience! Their technological expertise and creativity elevated our web initiatives to a new level. They constantly provide clean, well-structured code with meticulous attention to detail. Highly recommended for all developmental needs!"
+                  "Working with this developer has been a great experience!
+                  Their technological expertise and creativity elevated our web
+                  initiatives to a new level. They constantly provide clean,
+                  well-structured code with meticulous attention to detail.
+                  Highly recommended for all developmental needs!"
                 </p>
               </div>
             </div>
@@ -35,7 +39,11 @@ export default function Testimonials(props) {
                 />
                 <h5 className="mb-2">Ankit Verma</h5>
                 <p className="mb-0">
-                  "The capacity to transform ideas into visually appealing and useful websites is simply remarkable. Deadlines are frequently met and expectations exceeded through inventive solutions. Their efforts during the internship proved critical to the team's success."
+                  "The capacity to transform ideas into visually appealing and
+                  useful websites is simply remarkable. Deadlines are frequently
+                  met and expectations exceeded through inventive solutions.
+                  Their efforts during the internship proved critical to the
+                  team's success."
                 </p>
               </div>
             </div>
@@ -49,7 +57,11 @@ export default function Testimonials(props) {
                 />
                 <h5 className="mb-2">Akshay Kumar</h5>
                 <p className="mb-0">
-                  "Every project benefits from a unique blend of technical expertise and design sensibility. Problem-solving abilities and a strong awareness of user experience contributed greatly to the improvement of our platform. A delight to work with and extremely proficient at their craft!"
+                  "Every project benefits from a unique blend of technical
+                  expertise and design sensibility. Problem-solving abilities
+                  and a strong awareness of user experience contributed greatly
+                  to the improvement of our platform. A delight to work with and
+                  extremely proficient at their craft!"
                 </p>
               </div>
             </div>
@@ -62,7 +74,9 @@ export default function Testimonials(props) {
           >
             <span
               className="carousel-control-prev-icon"
-              style={{ filter: `invert(${props.darkTheme === "dark" ? 0 : 1})` }}
+              style={{
+                filter: `invert(${props.darkTheme === "dark" ? 0 : 1})`,
+              }}
               aria-hidden="true"
             ></span>
             <span className="visually-hidden">Previous</span>
@@ -75,7 +89,9 @@ export default function Testimonials(props) {
           >
             <span
               className="carousel-control-next-icon"
-              style={{ filter: `invert(${props.darkTheme === "dark" ? 0 : 1})` }}
+              style={{
+                filter: `invert(${props.darkTheme === "dark" ? 0 : 1})`,
+              }}
               aria-hidden="true"
             ></span>
             <span className="visually-hidden">Next</span>

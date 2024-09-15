@@ -15,7 +15,9 @@ export default function Skills(props) {
                 <li
                   className={`list-group-item d-flex justify-content-between align-items-center bg-${
                     props.darkTheme
-                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                  } text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  } border-${props.darkTheme === "dark" ? "light" : "dark"}`}
                 >
                   HTML
                   <div className="progress w-75">
@@ -32,7 +34,9 @@ export default function Skills(props) {
                 <li
                   className={`list-group-item d-flex justify-content-between align-items-center bg-${
                     props.darkTheme
-                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                  } text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  } border-${props.darkTheme === "dark" ? "light" : "dark"}`}
                 >
                   CSS
                   <div className="progress w-75">
@@ -49,7 +53,9 @@ export default function Skills(props) {
                 <li
                   className={`list-group-item d-flex justify-content-between align-items-center bg-${
                     props.darkTheme
-                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                  } text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  } border-${props.darkTheme === "dark" ? "light" : "dark"}`}
                 >
                   SCSS
                   <div className="progress w-75">
@@ -66,7 +72,9 @@ export default function Skills(props) {
                 <li
                   className={`list-group-item d-flex justify-content-between align-items-center bg-${
                     props.darkTheme
-                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                  } text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  } border-${props.darkTheme === "dark" ? "light" : "dark"}`}
                 >
                   Bootstrap
                   <div className="progress w-75">
@@ -83,7 +91,9 @@ export default function Skills(props) {
                 <li
                   className={`list-group-item d-flex justify-content-between align-items-center bg-${
                     props.darkTheme
-                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                  } text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  } border-${props.darkTheme === "dark" ? "light" : "dark"}`}
                 >
                   Tailwind CSS
                   <div className="progress w-75">
@@ -104,7 +114,9 @@ export default function Skills(props) {
                 <li
                   className={`list-group-item d-flex justify-content-between align-items-center bg-${
                     props.darkTheme
-                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                  } text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  } border-${props.darkTheme === "dark" ? "light" : "dark"}`}
                 >
                   PHP
                   <div className="progress w-75">
@@ -121,7 +133,9 @@ export default function Skills(props) {
                 <li
                   className={`list-group-item d-flex justify-content-between align-items-center bg-${
                     props.darkTheme
-                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                  } text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  } border-${props.darkTheme === "dark" ? "light" : "dark"}`}
                 >
                   MYSQL
                   <div className="progress w-75">
@@ -138,7 +152,9 @@ export default function Skills(props) {
                 <li
                   className={`list-group-item d-flex justify-content-between align-items-center bg-${
                     props.darkTheme
-                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                  } text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  } border-${props.darkTheme === "dark" ? "light" : "dark"}`}
                 >
                   Java
                   <div className="progress w-75">
@@ -155,7 +171,9 @@ export default function Skills(props) {
                 <li
                   className={`list-group-item d-flex justify-content-between align-items-center bg-${
                     props.darkTheme
-                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                  } text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  } border-${props.darkTheme === "dark" ? "light" : "dark"}`}
                 >
                   Figma
                   <div className="progress w-75">
@@ -172,7 +190,9 @@ export default function Skills(props) {
                 <li
                   className={`list-group-item d-flex justify-content-between align-items-center bg-${
                     props.darkTheme
-                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                  } text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  } border-${props.darkTheme === "dark" ? "light" : "dark"}`}
                 >
                   Git, GitHub
                   <div className="progress w-75">
