@@ -44,7 +44,6 @@ function App() {
       <Gallery darkTheme={darkTheme} SecondaryTheme={SecondaryTheme} />
       <Contact darkTheme={darkTheme} SecondaryTheme={SecondaryTheme} />
       <Footer darkTheme={darkTheme} SecondaryTheme={SecondaryTheme} />
-     
     </>
   );
 }

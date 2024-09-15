@@ -170,7 +170,7 @@ export default function Footer(props) {
                 >
                   Email Address
                 </label>
-                <div className="input-group">
+                <div className="input-group shadow-lg">
                   <input
                     id="emailInput"
                     type="email"

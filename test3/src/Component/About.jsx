@@ -9,7 +9,7 @@ export default function About(props) {
             <div className="col-md-6">
               <img
                 src="/Images/Group.jpg"
-                className={`img-fluid rounded-circle shadow-lg border border-5 border-${props.darkTheme==="dark"?"light":"dark"}`}
+                className={`img-fluid rounded-circle shadow-lg border border-3 border-${props.darkTheme==="dark"?"light":"dark"}`}
                 alt="Tanishk"
               />
             </div>
