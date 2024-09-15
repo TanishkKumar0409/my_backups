@@ -10,14 +10,14 @@ export default function Gallery(props) {
           <div className="row">
             <div className="col-md-6 mt-2">
               <img
-                src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg"
+                src="/Images/gallery/g1.jpg"
                 alt=""
                 className={`img-fluid rounded border border-5 border-${props.SecondaryTheme} shadow-lg`}
               />
             </div>
             <div className="col-md-6 mt-2">
               <img
-                src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg"
+                src="/Images/gallery/g2.jpg"
                 alt=""
                 className={`img-fluid rounded border border-5 border-${props.SecondaryTheme} shadow-lg`}
               />
@@ -26,28 +26,28 @@ export default function Gallery(props) {
           <div className="row ">
             <div className="col-md-3 mt-2">
               <img
-                src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg"
+                src="/Images/gallery/g3.jpg"
                 alt=""
                 className={`img-fluid rounded border border-5 shadow-lg border-${props.SecondaryTheme}`}
               />
             </div>
             <div className="col-md-3 mt-2">
               <img
-                src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg"
+                src="/Images/gallery/g4.jpg"
                 alt=""
                 className={`img-fluid rounded border border-5 shadow-lg border-${props.SecondaryTheme}`}
               />
             </div>
             <div className="col-md-3 mt-2">
               <img
-                src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg"
+                src="/Images/gallery/g5.jpg"
                 alt=""
                 className={`img-fluid rounded border border-5 shadow-lg border-${props.SecondaryTheme}`}
               />
             </div>
             <div className="col-md-3 mt-2">
               <img
-                src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg"
+                src="/Images/gallery/g6.jpg"
                 alt=""
                 className={`img-fluid rounded border border-5 shadow-lg border-${props.SecondaryTheme}`}
               />
