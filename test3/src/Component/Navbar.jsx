@@ -5,10 +5,13 @@ export default function Navbar(props) {
     <>
       <header className="shadow-lg w-100 position-fixed z-3">
         <div>
-          <nav className={`navbar navbar-expand-lg bg-${props.darkTheme} navbar-${props.darkTheme}`}>
+          <nav
+          id="Main-Nav"
+            className={`navbar navbar-expand-lg bg-${props.darkTheme} navbar-${props.darkTheme}`}
+          >
             <div className="container-fluid">
-              <a className="navbar-brand" href="#home">
-                Navbar
+              <a className="navbar-brand ms-5" href="#home">
+                Tanishk Kumar
               </a>
               <button
                 className="navbar-toggler"
@@ -21,10 +24,17 @@ export default function Navbar(props) {
               >
                 <span className="navbar-toggler-icon"></span>
               </button>
-              <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <div
+                className="collapse navbar-collapse"
+                id="navbarSupportedContent"
+              >
+                <ul className="navbar-nav me-5 mb-2 mb-lg-0 ms-auto">
                   <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#home">
+                    <a
+                      className="nav-link active"
+                      aria-current="page"
+                      href="#home"
+                    >
                       Home
                     </a>
                   </li>
@@ -64,12 +74,20 @@ export default function Navbar(props) {
                     </a>
                   </li>
                 </ul>
-                <button className={`btn btn-outline-${props.darkTheme==="dark"?"light":"dark"}`} onClick={props.toggleTheme}>{props.ThemeText}</button>
               </div>
             </div>
           </nav>
         </div>
       </header>
+      <button
+        className={`btn btn-${
+          props.darkTheme === "dark" ? "light" : "dark"
+        } shadow-lg position-fixed z-3`}
+        style={{ bottom: "20px", right: "20px" }}
+        onClick={props.toggleTheme}
+      >
+        <i className={`fa fa-${props.ThemeText}`}></i>
+      </button>
     </>
   );
 }

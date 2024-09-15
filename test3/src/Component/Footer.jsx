@@ -161,21 +161,32 @@ export default function Footer(props) {
             {/* <!-- Newsletter Subscription --> */}
             <div className="col-md-6">
               <h5 className="mb-3">Newsletter</h5>
-              <form>
+              <form className="text-start">
+                <label
+                  htmlFor="emailInput"
+                  className={`form-label text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  }`}
+                >
+                  Email Address
+                </label>
                 <div className="input-group">
                   <input
+                    id="emailInput"
                     type="email"
                     className={`form-control border-${
                       props.darkTheme === "dark" ? "light" : "dark"
+                    } bg-${props.darkTheme} text-${
+                      props.darkTheme === "dark" ? "light" : "dark"
                     }`}
-                    placeholder="Your email address"
                     aria-label="Your email address"
                     required
                   />
+
                   <button
                     className={`btn btn-${
                       props.darkTheme === "dark" ? "light" : "dark"
-                    }`}
+                    } `}
                     type="submit"
                   >
                     Subscribe

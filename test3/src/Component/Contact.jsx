@@ -19,7 +19,11 @@ export default function Contact(props) {
                 </label>
                 <input
                   type="text"
-                  className="form-control shadow-lg"
+                  className={`form-control shadow-lg border border-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  } bg-${props.darkTheme} text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  }`}
                   id="firstName"
                   name="firstName"
                   required
@@ -31,7 +35,11 @@ export default function Contact(props) {
                 </label>
                 <input
                   type="text"
-                  className="form-control shadow-lg"
+                  className={`form-control shadow-lg border border-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  } bg-${props.darkTheme} text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  }`}
                   id="lastName"
                   name="lastName"
                   required
@@ -43,7 +51,11 @@ export default function Contact(props) {
                 </label>
                 <input
                   type="tel"
-                  className="form-control shadow-lg"
+                  className={`form-control shadow-lg border border-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  } bg-${props.darkTheme} text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  }`}
                   id="phone"
                   name="phone"
                   required
@@ -56,7 +68,11 @@ export default function Contact(props) {
                 </label>
                 <input
                   type="email"
-                  className="form-control shadow-lg"
+                  className={`form-control shadow-lg border border-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  } bg-${props.darkTheme} text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  }`}
                   id="email"
                   name="email"
                   required
@@ -69,7 +85,11 @@ export default function Contact(props) {
                 </label>
                 <input
                   type="text"
-                  className="form-control shadow-lg"
+                  className={`form-control shadow-lg border border-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  } bg-${props.darkTheme} text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  }`}
                   id="subject"
                   name="subject"
                   required
@@ -80,7 +100,11 @@ export default function Contact(props) {
                   Message
                 </label>
                 <textarea
-                  className="form-control shadow-lg"
+                  className={`form-control shadow-lg border border-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  } bg-${props.darkTheme} text-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  }`}
                   id="message"
                   name="message"
                   rows="4"
@@ -88,7 +112,12 @@ export default function Contact(props) {
                 ></textarea>
               </div>
               <div className="d-flex justify-content-center">
-                <button type="submit" className={`btn btn-${props.darkTheme==="dark"?"light":"dark"}`}>
+                <button
+                  type="submit"
+                  className={`btn btn-${
+                    props.darkTheme === "dark" ? "light" : "dark"
+                  }`}
+                >
                   Send Message
                 </button>
               </div>
