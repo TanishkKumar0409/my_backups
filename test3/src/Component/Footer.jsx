@@ -92,7 +92,7 @@ export default function Footer(props) {
               <ul className="list-unstyled">
                 <li>
                   <a
-                    href="#"
+                    href="https://www.facebook.com/"
                     className={`text-${
                       props.darkTheme === "dark" ? "light" : "dark"
                     } text-decoration-none d-flex align-items-center mb-2`}
@@ -103,7 +103,7 @@ export default function Footer(props) {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://x.com/?lang=en"
                     className={`text-${
                       props.darkTheme === "dark" ? "light" : "dark"
                     } text-decoration-none d-flex align-items-center mb-2`}
@@ -114,7 +114,7 @@ export default function Footer(props) {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://www.instagram.com/"
                     className={`text-${
                       props.darkTheme === "dark" ? "light" : "dark"
                     } text-decoration-none d-flex align-items-center mb-2`}
@@ -125,7 +125,7 @@ export default function Footer(props) {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://github.com/TanishkKumar0409"
                     className={`text-${
                       props.darkTheme === "dark" ? "light" : "dark"
                     } text-decoration-none d-flex align-items-center mb-2`}
@@ -136,7 +136,7 @@ export default function Footer(props) {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://codepen.io/Tanishk-Kumar"
                     className={`text-${
                       props.darkTheme === "dark" ? "light" : "dark"
                     } text-decoration-none d-flex align-items-center mb-2`}
@@ -147,7 +147,7 @@ export default function Footer(props) {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://www.youtube.com/"
                     className={`text-${
                       props.darkTheme === "dark" ? "light" : "dark"
                     } text-decoration-none d-flex align-items-center mb-2`}
@@ -172,7 +172,12 @@ export default function Footer(props) {
                     aria-label="Your email address"
                     required
                   />
-                  <button className="btn btn-primary" type="submit">
+                  <button
+                    className={`btn btn-${
+                      props.darkTheme === "dark" ? "light" : "dark"
+                    }`}
+                    type="submit"
+                  >
                     Subscribe
                   </button>
                 </div>

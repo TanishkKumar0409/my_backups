@@ -88,7 +88,7 @@ export default function Contact(props) {
                 ></textarea>
               </div>
               <div className="d-flex justify-content-center">
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className={`btn btn-${props.darkTheme==="dark"?"light":"dark"}`}>
                   Send Message
                 </button>
               </div>

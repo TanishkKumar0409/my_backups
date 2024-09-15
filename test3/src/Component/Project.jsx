@@ -25,7 +25,7 @@ export default function Projects(props) {
                     products.
                   </p>
                   <button
-                    className="btn btn-primary"
+                    className={`btn btn-${props.darkTheme==="dark"?"light":"dark"}`}
                     data-bs-toggle="modal"
                     data-bs-target="#orgaaweModal"
                   >
@@ -60,7 +60,7 @@ export default function Projects(props) {
                     <img
                       src="/Images/Orgaawe.png"
                       className="img-fluid"
-                      alt="Orgaawe Project Image"
+                      alt="Orgaawe Project "
                       style={{ maxHeight: "300px", objectFit: "cover" }}
                     />
                     <p className="mt-3">
@@ -76,7 +76,7 @@ export default function Projects(props) {
                     >
                       <i className="fas fa-times"></i> Close
                     </button>
-                    <a href="https://orgaawe.com" className="btn btn-primary">
+                    <a href="https://orgaawe.com" className={`btn btn-${props.darkTheme==="dark"?"light":"dark"}`}>
                       <i className="fas fa-link"></i> View Live Project
                     </a>
                   </div>
@@ -101,7 +101,7 @@ export default function Projects(props) {
                     A corporate branding and design consultancy website.
                   </p>
                   <button
-                    className="btn btn-primary"
+                    className={`btn btn-${props.darkTheme==="dark"?"light":"dark"}`}
                     data-bs-toggle="modal"
                     data-bs-target="#macsconceptsModal"
                   >
@@ -136,7 +136,7 @@ export default function Projects(props) {
                     <img
                       src="/Images/Macs.png"
                       className="img-fluid"
-                      alt="Macs Concepts Project Image"
+                      alt="Macs Concepts Project"
                       style={{ maxHeight: "300px", objectFit: "cover" }}
                     />
                     <p className="mt-3">
@@ -154,7 +154,7 @@ export default function Projects(props) {
                     </button>
                     <a
                       href="https://macsconcepts.in"
-                      className="btn btn-primary"
+                      className={`btn btn-${props.darkTheme==="dark"?"light":"dark"}`}
                     >
                       <i className="fas fa-link"></i> View Live Project
                     </a>
@@ -180,7 +180,7 @@ export default function Projects(props) {
                     A lifestyle brand focused on simplicity and minimalism.
                   </p>
                   <button
-                    className="btn btn-primary"
+                    className={`btn btn-${props.darkTheme==="dark"?"light":"dark"}`}
                     data-bs-toggle="modal"
                     data-bs-target="#backtobasicsModal"
                   >
@@ -215,7 +215,7 @@ export default function Projects(props) {
                     <img
                       src="/Images/B2B.png"
                       className="img-fluid"
-                      alt="Back to Basics Project Image"
+                      alt="Back to Basics Project"
                       style={{ maxHeight: "300px", objectFit: "cover" }}
                     />
                     <p className="mt-3">
@@ -234,7 +234,7 @@ export default function Projects(props) {
                     </button>
                     <a
                       href="https://thebacktobasics.com"
-                      className="btn btn-primary"
+                      className={`btn btn-${props.darkTheme==="dark"?"light":"dark"}`}
                     >
                       <i className="fas fa-link"></i> View Live Project
                     </a>
@@ -260,7 +260,7 @@ export default function Projects(props) {
                     A creative design studio specializing in web development.
                   </p>
                   <button
-                    className="btn btn-primary"
+                    className={`btn btn-${props.darkTheme==="dark"?"light":"dark"}`}
                     data-bs-toggle="modal"
                     data-bs-target="#offbeatpixelsModal"
                   >
@@ -295,7 +295,7 @@ export default function Projects(props) {
                     <img
                       src="/Images/Offbeat.png"
                       className="img-fluid"
-                      alt="Offbeat Pixels Project Image"
+                      alt="Offbeat Pixels Project"
                       style={{ maxHeight: "300px", objectFit: "cover" }}
                     />
                     <p className="mt-3">
@@ -314,7 +314,7 @@ export default function Projects(props) {
                     </button>
                     <a
                       href="https://offbeatpixels.com"
-                      className="btn btn-primary"
+                      className={`btn btn-${props.darkTheme==="dark"?"light":"dark"}`}
                     >
                       <i className="fas fa-link"></i> View Live Project
                     </a>
