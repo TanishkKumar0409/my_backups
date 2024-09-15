@@ -1,6 +1,9 @@
 import React from "react";
 
 export default function Skills(props) {
+  const getRandomPercentage = () =>
+    Math.floor(Math.random() * (100 - 60 + 1)) + 60; // Generates a random number between 60 and 100
+
   return (
     <>
       <section id="skills" className={`py-5 bg-${props.SecondaryTheme}`}>
@@ -9,65 +12,85 @@ export default function Skills(props) {
           <div className="row">
             <div className="col-md-6 mt-4">
               <ul className="list-group shadow-lg">
-                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
+                <li
+                  className={`list-group-item d-flex justify-content-between align-items-center bg-${
+                    props.darkTheme
+                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                >
                   HTML
                   <div className="progress w-75">
                     <div
                       className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
-                      style={{width: "90%"}}
+                      style={{ width: `${getRandomPercentage()}%` }}
                       aria-valuenow="90"
                       aria-valuemin="0"
                       aria-valuemax="100"
                     ></div>
                   </div>
                 </li>
-                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
+                <li
+                  className={`list-group-item d-flex justify-content-between align-items-center bg-${
+                    props.darkTheme
+                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                >
                   CSS
                   <div className="progress w-75">
                     <div
                       className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
-                      style={{width: "85%"}}
+                      style={{ width: `${getRandomPercentage()}%` }}
                       aria-valuenow="85"
                       aria-valuemin="0"
                       aria-valuemax="100"
                     ></div>
                   </div>
                 </li>
-                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
+                <li
+                  className={`list-group-item d-flex justify-content-between align-items-center bg-${
+                    props.darkTheme
+                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                >
                   SCSS
                   <div className="progress w-75">
                     <div
                       className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
-                      style={{width: "80%"}}
+                      style={{ width: `${getRandomPercentage()}%` }}
                       aria-valuenow="80"
                       aria-valuemin="0"
                       aria-valuemax="100"
                     ></div>
                   </div>
                 </li>
-                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
+                <li
+                  className={`list-group-item d-flex justify-content-between align-items-center bg-${
+                    props.darkTheme
+                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                >
                   Bootstrap
                   <div className="progress w-75">
                     <div
                       className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
-                      style={{width: "75%"}}
+                      style={{ width: `${getRandomPercentage()}%` }}
                       aria-valuenow="75"
                       aria-valuemin="0"
                       aria-valuemax="100"
                     ></div>
                   </div>
                 </li>
-                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
+                <li
+                  className={`list-group-item d-flex justify-content-between align-items-center bg-${
+                    props.darkTheme
+                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                >
                   Tailwind CSS
                   <div className="progress w-75">
                     <div
                       className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
-                      style={{width: "70%"}}
+                      style={{ width: `${getRandomPercentage()}%` }}
                       aria-valuenow="70"
                       aria-valuemin="0"
                       aria-valuemax="100"
@@ -78,65 +101,85 @@ export default function Skills(props) {
             </div>
             <div className="col-md-6 mt-4">
               <ul className="list-group shadow-lg">
-                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
+                <li
+                  className={`list-group-item d-flex justify-content-between align-items-center bg-${
+                    props.darkTheme
+                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                >
                   PHP
                   <div className="progress w-75">
                     <div
                       className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
-                      style={{width: "90%"}}
+                      style={{ width: `${getRandomPercentage()}%` }}
                       aria-valuenow="90"
                       aria-valuemin="0"
                       aria-valuemax="100"
                     ></div>
                   </div>
                 </li>
-                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
+                <li
+                  className={`list-group-item d-flex justify-content-between align-items-center bg-${
+                    props.darkTheme
+                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                >
                   MYSQL
                   <div className="progress w-75">
                     <div
                       className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
-                      style={{width: "85%"}}
+                      style={{ width: `${getRandomPercentage()}%` }}
                       aria-valuenow="85"
                       aria-valuemin="0"
                       aria-valuemax="100"
                     ></div>
                   </div>
                 </li>
-                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
+                <li
+                  className={`list-group-item d-flex justify-content-between align-items-center bg-${
+                    props.darkTheme
+                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                >
                   Java
                   <div className="progress w-75">
                     <div
                       className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
-                      style={{width: "80%"}}
+                      style={{ width: `${getRandomPercentage()}%` }}
                       aria-valuenow="80"
                       aria-valuemin="0"
                       aria-valuemax="100"
                     ></div>
                   </div>
                 </li>
-                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
+                <li
+                  className={`list-group-item d-flex justify-content-between align-items-center bg-${
+                    props.darkTheme
+                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                >
                   Figma
                   <div className="progress w-75">
                     <div
                       className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
-                      style={{width: "75%"}}
+                      style={{ width: `${getRandomPercentage()}%` }}
                       aria-valuenow="75"
                       aria-valuemin="0"
                       aria-valuemax="100"
                     ></div>
                   </div>
                 </li>
-                <li className={`list-group-item d-flex justify-content-between align-items-center bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
+                <li
+                  className={`list-group-item d-flex justify-content-between align-items-center bg-${
+                    props.darkTheme
+                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+                >
                   Git, GitHub
                   <div className="progress w-75">
                     <div
                       className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
                       role="progressbar"
-                      style={{width: "70%"}}
+                      style={{ width: `${getRandomPercentage()}%` }}
                       aria-valuenow="70"
                       aria-valuemin="0"
                       aria-valuemax="100"

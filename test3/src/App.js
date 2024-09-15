@@ -16,11 +16,11 @@ function App() {
   const [SecondaryTheme,setSecondaryTheme]=useState("secondary-subtle");
   const [ThemeText,setThemeText]=useState("Dark Theme")
   const toggleTheme=()=>{
-    if(darkTheme=="light"){
+    if(darkTheme==="light"){
       setDarkTheme("dark");
       setSecondaryTheme("secondary");
       setThemeText("Light Theme")
-    }else if(darkTheme=="dark"){
+    }else if(darkTheme==="dark"){
       setDarkTheme("light");
       setSecondaryTheme("secondary-subtle");
       setThemeText("Dark Theme")

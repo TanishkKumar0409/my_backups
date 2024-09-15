@@ -15,7 +15,7 @@ export default function Hero(props) {
             </div>
             <div className="col-md-6 d-none d-md-block ">
               <img
-                src="/Images/1706397847403.jpg"
+                src="/Images/TanishkKumar.jpg"
                 className={`img-fluid rounded-circle shadow-lg border border-5 border-${props.SecondaryTheme}`}
                 alt="Tanishk Kumar"
               />
