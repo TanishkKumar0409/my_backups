@@ -109,7 +109,7 @@ export default function Footer(props) {
                     } text-decoration-none d-flex align-items-center mb-2`}
                     title="Twitter"
                   >
-                    <i className="fab fa-twitter me-2"></i>Twitter
+                    <i className="fab fa-x-twitter me-2"></i>Twitter
                   </a>
                 </li>
                 <li>
@@ -156,12 +156,23 @@ export default function Footer(props) {
                     <i className="fab fa-youtube me-2"></i>YouTube
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="https://in.linkedin.com/"
+                    className={`text-${
+                      props.darkTheme === "dark" ? "light" : "dark"
+                    } text-decoration-none d-flex align-items-center mb-2`}
+                    title="YouTube"
+                  >
+                    <i className="fab fa-linkedin me-2"></i>Linkedin
+                  </a>
+                </li>
               </ul>
             </div>
             {/* <!-- Newsletter Subscription --> */}
             <div className="col-md-6">
               <h5 className="mb-3">Newsletter</h5>
-              <form className="text-start">
+              <form className="text-start mt-5">
                 <label
                   htmlFor="emailInput"
                   className={`form-label text-${
@@ -174,7 +185,7 @@ export default function Footer(props) {
                   <input
                     id="emailInput"
                     type="email"
-                    className={`form-control border-${
+                    className={`form-control shadow-sm border-3 border-top-0 border-start-0 border-end-0 border-${
                       props.darkTheme === "dark" ? "light" : "dark"
                     } bg-${props.darkTheme} text-${
                       props.darkTheme === "dark" ? "light" : "dark"

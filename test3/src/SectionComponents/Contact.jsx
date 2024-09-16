@@ -19,9 +19,9 @@ export default function Contact(props) {
                 </label>
                 <input
                   type="text"
-                  className={`form-control shadow border-top-0 border-start-0 border-end-0  border-3 border-dark bg-${props.SecondaryTheme} text-${
-                    props.darkTheme === "dark" ? "light" : "dark"
-                  }`}
+                  className={`form-control shadow border-top-0 border-start-0 border-end-0  border-3 border-dark bg-${
+                    props.SecondaryTheme
+                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
                   id="firstName"
                   name="firstName"
                   required
@@ -33,9 +33,9 @@ export default function Contact(props) {
                 </label>
                 <input
                   type="text"
-                  className={`form-control shadow border-top-0 border-start-0 border-end-0  border-3 border-dark bg-${props.SecondaryTheme} text-${
-                    props.darkTheme === "dark" ? "light" : "dark"
-                  }`}
+                  className={`form-control shadow border-top-0 border-start-0 border-end-0  border-3 border-dark bg-${
+                    props.SecondaryTheme
+                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
                   id="lastName"
                   name="lastName"
                   required
@@ -47,9 +47,9 @@ export default function Contact(props) {
                 </label>
                 <input
                   type="tel"
-                  className={`form-control shadow border-top-0 border-start-0 border-end-0  border-3 border-dark bg-${props.SecondaryTheme} text-${
-                    props.darkTheme === "dark" ? "light" : "dark"
-                  }`}
+                  className={`form-control shadow border-top-0 border-start-0 border-end-0  border-3 border-dark bg-${
+                    props.SecondaryTheme
+                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
                   id="phone"
                   name="phone"
                   required
@@ -62,9 +62,9 @@ export default function Contact(props) {
                 </label>
                 <input
                   type="email"
-                  className={`form-control shadow border-top-0 border-start-0 border-end-0  border-3 border-dark bg-${props.SecondaryTheme} text-${
-                    props.darkTheme === "dark" ? "light" : "dark"
-                  }`}
+                  className={`form-control shadow border-top-0 border-start-0 border-end-0  border-3 border-dark bg-${
+                    props.SecondaryTheme
+                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
                   id="email"
                   name="email"
                   required
@@ -77,9 +77,9 @@ export default function Contact(props) {
                 </label>
                 <input
                   type="text"
-                  className={`form-control shadow border-top-0 border-start-0 border-end-0  border-3 border-dark bg-${props.SecondaryTheme} text-${
-                    props.darkTheme === "dark" ? "light" : "dark"
-                  }`}
+                  className={`form-control shadow border-top-0 border-start-0 border-end-0  border-3 border-dark bg-${
+                    props.SecondaryTheme
+                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
                   id="subject"
                   name="subject"
                   required
@@ -90,9 +90,9 @@ export default function Contact(props) {
                   Message
                 </label>
                 <textarea
-                   className={`form-control shadow border-top-0 border-start-0 border-end-0  border-3 border-dark bg-${props.SecondaryTheme} text-${
-                    props.darkTheme === "dark" ? "light" : "dark"
-                  }`}
+                  className={`form-control shadow border-top-0 border-start-0 border-end-0  border-3 border-dark bg-${
+                    props.SecondaryTheme
+                  } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
                   id="message"
                   name="message"
                   rows="4"
