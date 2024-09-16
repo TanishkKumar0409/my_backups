@@ -33,7 +33,7 @@ export default function Modals(props) {
               <div className="ratio ratio-16x9">
                 <iframe
                   src={props.ModalVideoSrc}
-                  title="Discover Offbeat Pixels: Your Designing &amp; Marketing Pitstop for Business Growth!"
+                  title={props.ModalHead}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen

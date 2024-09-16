@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Navbar(props) {
   return (
     <>
-      <header className="shadow w-100 position-relative z-3">
+      <header className="shadow w-100 position-fixed z-3">
         <div>
           <nav
             id="Main-Nav"
@@ -60,13 +60,23 @@ export default function Navbar(props) {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#testimonials">
-                      Testimonials
+                    <a className="nav-link" href="#experience">
+                      Experience
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#qualities">
+                      Qualities
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="#gallery">
                       Gallery
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#testimonials">
+                      Testimonials
                     </a>
                   </li>
                   <li className="nav-item">

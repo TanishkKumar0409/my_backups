@@ -5,10 +5,12 @@ import About from "../../SectionComponents/About";
 import Projects from "../../SectionComponents/Project";
 import Skills from "../../SectionComponents/Skills";
 import Education from "../../SectionComponents/Education";
+import Intern from "../../SectionComponents/Intern";
 import Testimonials from "../../SectionComponents/Testimonials";
 import Gallery from "../../SectionComponents/Gallery";
 import Contact from "../../SectionComponents/Contact";
 import Footer from "../../SectionComponents/Footer";
+import Qualities from "../../SectionComponents/Qualities";
 
 export default function Home(props) {
   return (
@@ -27,6 +29,14 @@ export default function Home(props) {
         SecondaryTheme={props.SecondaryTheme}
       />
       <Education
+        darkTheme={props.darkTheme}
+        SecondaryTheme={props.SecondaryTheme}
+      />
+      <Intern
+        darkTheme={props.darkTheme}
+        SecondaryTheme={props.SecondaryTheme}
+      />
+      <Qualities
         darkTheme={props.darkTheme}
         SecondaryTheme={props.SecondaryTheme}
       />

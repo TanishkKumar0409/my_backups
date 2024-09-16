@@ -1,0 +1,36 @@
+import React from "react";
+
+export default function ListGroup(props) {
+  return (
+    <>
+      <ul className="list-group shadow-lg">
+        {props.values && props.values.length > 0 ? (
+          props.values.map((item, index) => (
+            <li
+              key={index}
+              className={`list-group-item d-flex justify-content-between align-items-center bg-${
+                props.darkTheme || "light"
+              } text-${props.darkTheme === "dark" ? "light" : "dark"} border-${
+                props.darkTheme === "dark" ? "light" : "dark"
+              }`}
+            >
+              <p>{item.name}</p>
+              <div className="progress w-75">
+                <div
+                  className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                  role="progressbar"
+                  style={{ width: `${props.getRandomPercentage()}%` }}
+                  aria-valuenow="70"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </li>
+          ))
+        ) : (
+          <li className="list-group-item">No items available</li>
+        )}
+      </ul>
+    </>
+  );
+}

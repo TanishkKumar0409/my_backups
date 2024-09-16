@@ -35,7 +35,9 @@ export default function Projects(props) {
               }
               ModalTech={"Technologies used: HTML, CSS, JavaScript, PHP."}
               ModalLink={"https://offbeatpixels.com"}
-              ModalVideoSrc={"https://www.youtube.com/embed/ALathpe0Hrc"}
+              ModalVideoSrc={
+                "https://www.youtube.com/embed/ALathpe0Hrc?autoplay=1&mute=1&loop=1&playlist=ALathpe0Hrc"
+              }
             />
             <div className="col-md-3">
               <Cards
@@ -58,7 +60,9 @@ export default function Projects(props) {
               }
               ModalTech={"Technologies used: HTML, CSS, JavaScript, PHP"}
               ModalLink={"https://orgaawe.com"}
-              ModalVideoSrc={"https://www.youtube.com/embed/p0L0FvtEenA"}
+              ModalVideoSrc={
+                "https://www.youtube.com/embed/p0L0FvtEenA?autoplay=1&mute=1&loop=1&playlist=p0L0FvtEenA"
+              }
             />
 
             <div className="col-md-3">
@@ -80,7 +84,9 @@ export default function Projects(props) {
               }
               ModalTech={"Technologies used: HTML, CSS, JavaScript."}
               ModalLink={"https://macsconcepts.in"}
-              ModalVideoSrc={"https://www.youtube.com/embed/NzuMYsPpqoQ"}
+              ModalVideoSrc={
+                "https://www.youtube.com/embed/NzuMYsPpqoQ?autoplay=1&mute=1&loop=1&playlist=NzuMYsPpqoQ"
+              }
             />
 
             <div className="col-md-3">
@@ -104,7 +110,9 @@ export default function Projects(props) {
               }
               ModalTech={"Technologies used: HTML, CSS, JavaScript."}
               ModalLink={"https://thebacktobasics.com"}
-              ModalVideoSrc={"https://www.youtube.com/embed/I7loX-BwhXc"}
+              ModalVideoSrc={
+                "https://www.youtube.com/embed/I7loX-BwhXc?autoplay=1&mute=1&loop=1&playlist=I7loX-BwhXc"
+              }
             />
           </div>
         </div>

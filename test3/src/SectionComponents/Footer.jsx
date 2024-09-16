@@ -185,7 +185,7 @@ export default function Footer(props) {
                   <input
                     id="emailInput"
                     type="email"
-                    className={`form-control shadow-sm border-3 border-top-0 border-start-0 border-end-0 border-${
+                    className={`form-control shadow-sm border-3  border-start-0 border-end-0 border-${
                       props.darkTheme === "dark" ? "light" : "dark"
                     } bg-${props.darkTheme} text-${
                       props.darkTheme === "dark" ? "light" : "dark"

@@ -8,8 +8,9 @@ export default function Hero(props) {
         className={`hero vh-100 d-flex align-items-center justify-content-center text-center position-relative bg-${
           props.darkTheme
         } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
+        style={{top:"50px"}}
       >
-        <div className="container">
+        <div className="container ">
           <div className="row align-items-center">
             <div className="col-md-6">
               <h1 className="display-3 ">Hi, I'm Tanishk Kumar</h1>
