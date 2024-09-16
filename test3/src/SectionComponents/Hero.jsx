@@ -16,12 +16,16 @@ export default function Hero(props) {
               <p className="lead mb-4 ">Web Developer | Designer</p>
               <div className="mb-4">
                 <a
-                   href="https://www.facebook.com"
+                  href="https://www.facebook.com"
                   className="text-decoration-none me-3 fs-4"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className={`fab fa-facebook bg-${props.darkTheme==="dark"?"light":"dark"} text-${props.darkTheme} p-1 rounded-circle`}></i>
+                  <i
+                    className={`fab fa-facebook bg-${
+                      props.darkTheme === "dark" ? "light" : "dark"
+                    } text-${props.darkTheme} p-1 rounded-circle`}
+                  ></i>
                 </a>
                 <a
                   href="https://www.instagram.com/"
@@ -29,16 +33,23 @@ export default function Hero(props) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className={`fab fa-instagram bg-${props.darkTheme==="dark"?"light":"dark"} text-${props.darkTheme} p-2 rounded-circle`}></i>
+                  <i
+                    className={`fab fa-instagram bg-${
+                      props.darkTheme === "dark" ? "light" : "dark"
+                    } text-${props.darkTheme} p-2 rounded-circle`}
+                  ></i>
                 </a>
                 <a
-                href="https://github.com/TanishkKumar0409"
-                 
+                  href="https://github.com/TanishkKumar0409"
                   className="text-decoration-none me-3  fs-2"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className={`fab fa-github bg-${props.darkTheme==="dark"?"light":"dark"} text-${props.darkTheme} p-3 rounded-circle`}></i>
+                  <i
+                    className={`fab fa-github bg-${
+                      props.darkTheme === "dark" ? "light" : "dark"
+                    } text-${props.darkTheme} p-3 rounded-circle`}
+                  ></i>
                 </a>
                 <a
                   href="https://codepen.io/Tanishk-Kumar"
@@ -46,7 +57,11 @@ export default function Hero(props) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className={`fab fa-codepen bg-${props.darkTheme==="dark"?"light":"dark"} text-${props.darkTheme} p-3 rounded-circle`}></i>
+                  <i
+                    className={`fab fa-codepen bg-${
+                      props.darkTheme === "dark" ? "light" : "dark"
+                    } text-${props.darkTheme} p-3 rounded-circle`}
+                  ></i>
                 </a>
                 <a
                   href="https://x.com/?lang=en"
@@ -54,16 +69,23 @@ export default function Hero(props) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className={`fab fa-x-twitter bg-${props.darkTheme==="dark"?"light":"dark"} text-${props.darkTheme} p-2 rounded-circle`}></i>
+                  <i
+                    className={`fab fa-x-twitter bg-${
+                      props.darkTheme === "dark" ? "light" : "dark"
+                    } text-${props.darkTheme} p-2 rounded-circle`}
+                  ></i>
                 </a>
                 <a
-                 href="https://in.linkedin.com/"
-                 
+                  href="https://in.linkedin.com/"
                   className="text-decoration-none me-3  fs-4"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className={`fab fa-linkedin-in bg-${props.darkTheme==="dark"?"light":"dark"} text-${props.darkTheme} p-1 rounded-circle`}></i>
+                  <i
+                    className={`fab fa-linkedin-in bg-${
+                      props.darkTheme === "dark" ? "light" : "dark"
+                    } text-${props.darkTheme} p-1 rounded-circle`}
+                  ></i>
                 </a>
               </div>
               <a
@@ -78,9 +100,7 @@ export default function Hero(props) {
             <div className="col-md-6 d-none d-md-block ">
               <img
                 src="/Images/TanishkKumar.jpg"
-                className={`img-fluid rounded-circle shadow-lg border border-3 border-${
-                  props.darkTheme === "dark" ? "light" : "dark"
-                }`}
+                className={`img-fluid rounded-5 shadow-lg w-100`}
                 alt="Tanishk Kumar"
               />
             </div>

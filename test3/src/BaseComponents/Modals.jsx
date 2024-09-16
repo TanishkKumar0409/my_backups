@@ -4,13 +4,13 @@ export default function Modals(props) {
   return (
     <>
       <div
-        className="modal fade"
+        className="modal fade "
         id={props.ModalTarget}
         tabIndex="-1"
         aria-labelledby="offbeatpixelsModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog modal-lg modal-dialog-centered">
+        <div className=" modal-dialog modal-lg modal-dialog-centered">
           <div
             className={`modal-content bg-${props.darkTheme} text-${
               props.darkTheme === "dark" ? "light" : "dark"
@@ -30,12 +30,16 @@ export default function Modals(props) {
               ></button>
             </div>
             <div className="modal-body text-center">
-              <img
-                src={props.Image}
-                className="img-fluid w-100"
-                alt="Offbeat Pixels Project"
-                style={{ maxHeight: "300px", objectFit: "cover" }}
-              />
+              <div className="ratio ratio-16x9">
+                <iframe
+                  src={props.ModalVideoSrc}
+                  title="Discover Offbeat Pixels: Your Designing &amp; Marketing Pitstop for Business Growth!"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  className="shadow rounded-5"
+                ></iframe>
+              </div>
               <p className="mt-3">{props.ModalInfo}</p>
               <p>{props.ModalTech}</p>
             </div>

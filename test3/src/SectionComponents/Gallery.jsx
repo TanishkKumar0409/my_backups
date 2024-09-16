@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 export default function Gallery(props) {
-  const [mainImage, setMainImage] = useState("/Images/gallery/g1.jpg");
   const [images, setImages] = useState([
     "/Images/gallery/g1.jpg",
     "/Images/gallery/g2.jpg",
@@ -14,13 +13,9 @@ export default function Gallery(props) {
   const handleImageClick = (src) => {
     setImages((prevImages) => {
       const index = prevImages.indexOf(src);
-      const mainImageIndex = prevImages.indexOf(mainImage);
-
       const newImages = [...prevImages];
-      newImages[mainImageIndex] = src;
-      newImages[index] = mainImage;
-
-      setMainImage(src);
+      newImages[0] = src;
+      newImages[index] = images[0];
       return newImages;
     });
   };
@@ -29,42 +24,40 @@ export default function Gallery(props) {
     <>
       <section
         id="gallery"
-        className={`py-5 bg-${props.darkTheme} text-${
+        className={`py-5 bg-${props.SecondaryTheme} text-${
           props.darkTheme === "dark" ? "light" : "dark"
         }`}
       >
         <div className="container">
           <div className="text-center">
-            <h2 className="mb-4">Gallery</h2>
-            <div className="row">
-              <div className="col-md-6 mt-2">
+            <h2 className="mb-4">Gallery </h2>
+
+            {/* Display main image (index 1) */}
+            <div className="row mb-2">
+              <div className="col-md-6 ">
                 <img
-                  src={mainImage}
+                  src={images[0]}
                   alt=""
-                  className={`img-fluid rounded border border-2 border-${
-                    props.darkTheme === "dark" ? "light" : "dark"
-                  } shadow-lg`}
+                  className={`img-fluid rounded-5 shadow `}
                 />
               </div>
-              <div className="col-md-6 mt-2">
+              <div className="col-md-6">
                 <img
                   src={images[1]}
                   alt=""
-                  className={`img-fluid rounded border border-2 border-${
-                    props.darkTheme === "dark" ? "light" : "dark"
-                  } shadow-lg`}
+                  className={`img-fluid rounded-5 shadow `}
                   onClick={() => handleImageClick(images[1])}
                 />
               </div>
             </div>
+
+            {/* Display remaining images individually */}
             <div className="row">
               <div className="col-md-3 mt-2">
                 <img
                   src={images[2]}
                   alt=""
-                  className={`img-fluid rounded border border-2 shadow-lg border-${
-                    props.darkTheme === "dark" ? "light" : "dark"
-                  }`}
+                  className={`img-fluid rounded-5 shadow mb-5`}
                   onClick={() => handleImageClick(images[2])}
                 />
               </div>
@@ -72,9 +65,7 @@ export default function Gallery(props) {
                 <img
                   src={images[3]}
                   alt=""
-                  className={`img-fluid rounded border border-2 shadow-lg border-${
-                    props.darkTheme === "dark" ? "light" : "dark"
-                  }`}
+                  className={`img-fluid rounded-5 shadow mb-5`}
                   onClick={() => handleImageClick(images[3])}
                 />
               </div>
@@ -82,9 +73,7 @@ export default function Gallery(props) {
                 <img
                   src={images[4]}
                   alt=""
-                  className={`img-fluid rounded border border-2 shadow-lg border-${
-                    props.darkTheme === "dark" ? "light" : "dark"
-                  }`}
+                  className={`img-fluid rounded-5 shadow mb-5`}
                   onClick={() => handleImageClick(images[4])}
                 />
               </div>
@@ -92,9 +81,7 @@ export default function Gallery(props) {
                 <img
                   src={images[5]}
                   alt=""
-                  className={`img-fluid rounded border border-2 shadow-lg border-${
-                    props.darkTheme === "dark" ? "light" : "dark"
-                  }`}
+                  className={`img-fluid rounded-5 shadow mb-5`}
                   onClick={() => handleImageClick(images[5])}
                 />
               </div>

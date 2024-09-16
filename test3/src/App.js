@@ -5,9 +5,9 @@ import Error from "./Pages/error/Error";
 import Home from "./Pages/Home/Home";
 
 function App() {
-  const [darkTheme, setDarkTheme] = useState("dark");
-  const [SecondaryTheme, setSecondaryTheme] = useState("secondary");
-  const [ThemeText, setThemeText] = useState("sun");
+  const [darkTheme, setDarkTheme] = useState("light");
+  const [SecondaryTheme, setSecondaryTheme] = useState("secondary-subtle");
+  const [ThemeText, setThemeText] = useState("moon");
   const toggleTheme = () => {
     if (darkTheme === "light") {
       setDarkTheme("dark");

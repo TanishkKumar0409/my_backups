@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Navbar(props) {
   return (
     <>
-      <header className="shadow-lg w-100 position-fixed z-3">
+      <header className="shadow w-100 position-relative z-3">
         <div>
           <nav
             id="Main-Nav"

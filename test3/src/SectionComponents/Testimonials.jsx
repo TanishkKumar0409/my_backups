@@ -3,7 +3,7 @@ import React from "react";
 export default function Testimonials(props) {
   return (
     <>
-      <section id="testimonials" className={`py-5 bg-${props.SecondaryTheme}`}>
+      <section id="testimonials" className={`py-5 bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
         <div
           id="testimonialCarousel"
           className="carousel slide"
@@ -15,7 +15,7 @@ export default function Testimonials(props) {
               <div className="d-flex flex-column align-items-center text-center p-4">
                 <img
                   src="/Images/prince.jpg"
-                  className="rounded-circle mb-3"
+                  className="rounded-5 mb-3"
                   width={"100px"}
                   alt="Client"
                 />
@@ -33,7 +33,7 @@ export default function Testimonials(props) {
               <div className="d-flex flex-column align-items-center text-center p-4">
                 <img
                   src="/Images/ankit.jpg"
-                  className="rounded-circle mb-3"
+                  className="rounded-5 mb-3"
                   width={"100px"}
                   alt="Client"
                 />
@@ -51,7 +51,7 @@ export default function Testimonials(props) {
               <div className="d-flex flex-column align-items-center text-center p-4">
                 <img
                   src="/Images/akshay.jpg"
-                  className="rounded-circle mb-3"
+                  className="rounded-5 mb-3"
                   width={"100px"}
                   alt="Client"
                 />

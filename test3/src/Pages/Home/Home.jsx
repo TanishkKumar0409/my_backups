@@ -30,11 +30,11 @@ export default function Home(props) {
         darkTheme={props.darkTheme}
         SecondaryTheme={props.SecondaryTheme}
       />
-      <Testimonials
+      <Gallery
         darkTheme={props.darkTheme}
         SecondaryTheme={props.SecondaryTheme}
       />
-      <Gallery
+      <Testimonials
         darkTheme={props.darkTheme}
         SecondaryTheme={props.SecondaryTheme}
       />
