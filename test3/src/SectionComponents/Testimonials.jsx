@@ -15,7 +15,7 @@ export default function Testimonials(props) {
               <div className="d-flex flex-column align-items-center text-center p-4">
                 <img
                   src="/Images/prince.jpg"
-                  className="rounded-5 mb-3"
+                  className="rounded-5 mb-3 shadow"
                   width={"100px"}
                   alt="Client"
                 />
@@ -33,7 +33,7 @@ export default function Testimonials(props) {
               <div className="d-flex flex-column align-items-center text-center p-4">
                 <img
                   src="/Images/ankit.jpg"
-                  className="rounded-5 mb-3"
+                  className="rounded-5 mb-3 shadow"
                   width={"100px"}
                   alt="Client"
                 />
@@ -51,7 +51,7 @@ export default function Testimonials(props) {
               <div className="d-flex flex-column align-items-center text-center p-4">
                 <img
                   src="/Images/akshay.jpg"
-                  className="rounded-5 mb-3"
+                  className="rounded-5 mb-3 shadow"
                   width={"100px"}
                   alt="Client"
                 />

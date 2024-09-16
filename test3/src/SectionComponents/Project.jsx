@@ -17,6 +17,29 @@ export default function Projects(props) {
             <div className="col-md-3">
               <Cards
                 darkTheme={props.darkTheme}
+                CompanyName={"Offbeat Pixels"}
+                title={
+                  "A creative design studio specializing in web development."
+                }
+                Image={"/Images/Projects/offbeatBanner.jpg"}
+                ModalTarget={"#offbeatpixelsModal"}
+              />
+            </div>
+
+            <Modals
+              darkTheme={props.darkTheme}
+              ModalTarget={"offbeatpixelsModal"}
+              ModalHead={"Offbeat Pixels Project Details"}
+              ModalInfo={
+                "Offbeat Pixels is a digital marketing and creative content agency that specializes in new methods and engaging solutions. Their expertise includes branding, content production, and digital campaigns, allowing businesses to stand out and effectively engage with their audience."
+              }
+              ModalTech={"Technologies used: HTML, CSS, JavaScript, PHP."}
+              ModalLink={"https://offbeatpixels.com"}
+              ModalVideoSrc={"https://www.youtube.com/embed/ALathpe0Hrc"}
+            />
+            <div className="col-md-3">
+              <Cards
+                darkTheme={props.darkTheme}
                 CompanyName={"Orgaawe"}
                 title={
                   " A project focusing on organic food and eco-friendly products."
@@ -82,31 +105,6 @@ export default function Projects(props) {
               ModalTech={"Technologies used: HTML, CSS, JavaScript."}
               ModalLink={"https://thebacktobasics.com"}
               ModalVideoSrc={"https://www.youtube.com/embed/I7loX-BwhXc"}
-            />
-            
-
-            <div className="col-md-3">
-              <Cards
-                darkTheme={props.darkTheme}
-                CompanyName={"Offbeat Pixels"}
-                title={
-                  "A creative design studio specializing in web development."
-                }
-                Image={"/Images/Projects/offbeatBanner.jpg"}
-                ModalTarget={"#offbeatpixelsModal"}
-              />
-            </div>
-
-            <Modals
-              darkTheme={props.darkTheme}
-              ModalTarget={"offbeatpixelsModal"}
-              ModalHead={"Offbeat Pixels Project Details"}
-              ModalInfo={
-                "Offbeat Pixels is a digital marketing and creative content agency that specializes in new methods and engaging solutions. Their expertise includes branding, content production, and digital campaigns, allowing businesses to stand out and effectively engage with their audience."
-              }
-              ModalTech={"Technologies used: HTML, CSS, JavaScript, PHP."}
-              ModalLink={"https://offbeatpixels.com"}
-              ModalVideoSrc={"https://www.youtube.com/embed/ALathpe0Hrc"}
             />
           </div>
         </div>

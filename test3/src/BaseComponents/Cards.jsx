@@ -17,7 +17,7 @@ export default function Cards(props) {
         >
           <img
             src={props.Image}
-            className="card-img-top img-fluid"
+            className="card-img-top img-fluid rounded shadow-sm"
             alt="Offbeat Pixels Project"
             style={{ height: "200px", objectFit: "cover" }}
           />

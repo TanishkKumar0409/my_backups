@@ -118,6 +118,7 @@ export default function Contact(props) {
             <iframe
               className="w-100 h-100 rounded-5 shadow border-4 border border-start-0 border-end-0 border-dark"
               src="https://www.google.com/maps/embed/v1/place?q=carnival+cinemas,seemadwar+dehradun&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+              title={"map"}
             ></iframe>
           </div>
          </div>
