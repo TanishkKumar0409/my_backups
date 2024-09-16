@@ -34,14 +34,14 @@ export default function Gallery(props) {
 
             {/* Display main image (index 1) */}
             <div className="row mb-2">
-              <div className="col-md-6 ">
+              <div className="col-md-6 pt-3">
                 <img
                   src={images[0]}
                   alt=""
                   className={`img-fluid rounded-5 shadow `}
                 />
               </div>
-              <div className="col-md-6">
+              <div className="col-md-6 pt-3">
                 <img
                   src={images[1]}
                   alt=""
@@ -53,35 +53,35 @@ export default function Gallery(props) {
 
             {/* Display remaining images individually */}
             <div className="row">
-              <div className="col-md-3 mt-2">
+              <div className="col-md-3 pt-2 pt-md-3">
                 <img
                   src={images[2]}
                   alt=""
-                  className={`img-fluid rounded-5 shadow mb-5`}
+                  className={`img-fluid rounded-5 shadow `}
                   onClick={() => handleImageClick(images[2])}
                 />
               </div>
-              <div className="col-md-3 mt-2">
+              <div className="col-md-3 pt-3">
                 <img
                   src={images[3]}
                   alt=""
-                  className={`img-fluid rounded-5 shadow mb-5`}
+                  className={`img-fluid rounded-5 shadow `}
                   onClick={() => handleImageClick(images[3])}
                 />
               </div>
-              <div className="col-md-3 mt-2">
+              <div className="col-md-3 pt-3">
                 <img
                   src={images[4]}
                   alt=""
-                  className={`img-fluid rounded-5 shadow mb-5`}
+                  className={`img-fluid rounded-5 shadow `}
                   onClick={() => handleImageClick(images[4])}
                 />
               </div>
-              <div className="col-md-3 mt-2">
+              <div className="col-md-3 pt-3">
                 <img
                   src={images[5]}
                   alt=""
-                  className={`img-fluid rounded-5 shadow mb-5`}
+                  className={`img-fluid rounded-5 shadow `}
                   onClick={() => handleImageClick(images[5])}
                 />
               </div>

@@ -5,17 +5,18 @@ export default function About(props) {
     <>
       <section id="about" className={`py-5 bg-${props.SecondaryTheme}`}>
         <div className="container">
+          <div className="row pt-4 text-center">
+            <h2>About Me</h2>
+          </div>
           <div className="row align-items-center">
-            <div className="col-md-6">
+            <div className="col-md-6 pt-3">
               <img
                 src="/Images/Group.jpg"
                 className={`img-fluid rounded-5 shadow-lg w-100`}
                 alt="Tanishk"
               />
             </div>
-            <div className="col-md-6">
-              <h2>About Me</h2>
-              <br />
+            <div className="col-md-6 pt-3">
               <p>
                 Hi, I'm <strong> Tanishk Kumar</strong>, a passionate web
                 developer with a strong background in{" "}

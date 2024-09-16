@@ -3,7 +3,12 @@ import React from "react";
 export default function Testimonials(props) {
   return (
     <>
-      <section id="testimonials" className={`py-5 bg-${props.darkTheme} text-${props.darkTheme==="dark"?"light":"dark"}`}>
+      <section
+        id="testimonials"
+        className={`py-5 bg-${props.darkTheme} text-${
+          props.darkTheme === "dark" ? "light" : "dark"
+        }`}
+      >
         <div
           id="testimonialCarousel"
           className="carousel slide"

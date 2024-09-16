@@ -127,7 +127,7 @@ export default function Intern(props) {
             </div>
           </div>
           {/* Two smaller columns for self-practice */}
-          <div className="col-md-4">
+          <div className="col-md-4 pt-3">
             <div className="d-flex flex-column h-100">
               <div
                 className={`card flex-fill bg-${props.darkTheme} text-${
@@ -143,9 +143,9 @@ export default function Intern(props) {
                 </div>
               </div>
               <div
-                className={`card rounded-5 flex-fill mt-3 bg-${props.darkTheme} text-${
-                  props.darkTheme === "dark" ? "light" : "dark"
-                }`}
+                className={`card rounded-5 flex-fill mt-3 bg-${
+                  props.darkTheme
+                } text-${props.darkTheme === "dark" ? "light" : "dark"}`}
               >
                 <div className="card-body d-flex align-items-center p-4 ">
                   <div>

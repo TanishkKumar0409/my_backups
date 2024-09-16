@@ -19,7 +19,9 @@ export default function ListGroup(props) {
               <p className="pt-3">{item.name}</p>
               <div className="progress w-75">
                 <div
-                  className="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                  className={`progress-bar bg-${
+                    props.darkTheme === "dark" ? "secondary" : "dark"
+                  } progress-bar-striped progress-bar-animated`}
                   role="progressbar"
                   style={{ width: `${getRandomPercentage()}%` }}
                   aria-valuenow="70"
