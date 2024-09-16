@@ -32,7 +32,7 @@ export default function Modals(props) {
             <div className="modal-body text-center">
               <img
                 src={props.Image}
-                className="img-fluid"
+                className="img-fluid w-100"
                 alt="Offbeat Pixels Project"
                 style={{ maxHeight: "300px", objectFit: "cover" }}
               />
