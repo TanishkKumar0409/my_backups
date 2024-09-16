@@ -2,9 +2,6 @@ import React from "react";
 import ListGroup from "../BaseComponents/ListGroup";
 
 export default function Qualities(props) {
-  const getRandomPercentage = () =>
-    Math.floor(Math.random() * (100 - 60 + 1)) + 60;
-
   return (
     <>
       <section
@@ -25,7 +22,6 @@ export default function Qualities(props) {
                   { name: "Communication" },
                   { name: "Adaptability" },
                 ]}
-                getRandomPercentage={getRandomPercentage}
                 darkTheme={props.darkTheme}
               />
             </div>
@@ -38,7 +34,6 @@ export default function Qualities(props) {
                   { name: "Conflict Resolution" },
                   { name: "Decision Making" },
                 ]}
-                getRandomPercentage={getRandomPercentage}
                 darkTheme={props.darkTheme}
               />
             </div>
