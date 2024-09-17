@@ -31,14 +31,14 @@ export default function Modals(props) {
             </div>
             <div className="modal-body text-center">
               <div className="ratio ratio-16x9">
-                <iframe
+                <video
                   src={props.ModalVideoSrc}
-                  title={props.ModalHead}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
+                  autoPlay
+                  controls
+                  muted
+                  loop
                   className="shadow rounded-5"
-                ></iframe>
+                ></video>
               </div>
               <p className="mt-3">{props.ModalInfo}</p>
               <p>{props.ModalTech}</p>

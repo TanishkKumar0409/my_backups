@@ -136,7 +136,7 @@ export default function Intern(props) {
               >
                 <div className="card-body d-flex align-items-center">
                   <img
-                    src="/Images/Logo/Offbeat.png"
+                    src="/Images/Logo/my-logo.jpg"
                     className="img-fluid w-100 rounded-5"
                     alt="Offbeat Pixels Logo"
                   />

@@ -1,0 +1,51 @@
+[
+    {
+      "pName": "Offbeat Pixels",
+      "pTitle": "A creative design studio specializing in web development.",
+      "pImage": "/Images/Projects/offbeatBanner.jpg",
+      "pTarget": "#offbeatpixelsModal",
+      "mTarget": "offbeatpixelsModal",
+      "mHead": "Offbeat Pixels Project Details",
+      "mInfo": "Offbeat Pixels is a digital marketing and creative content agency that specializes in new methods and engaging solutions. Their expertise includes branding, content production, and digital campaigns, allowing businesses to stand out and effectively engage with their audience.",
+      "mTech": "Technologies used: HTML, CSS, JavaScript, PHP.",
+      "mLink": "https://offbeatpixels.com",
+      "ModalVideoSrc": "/Videos/OffbeatPixels.mp4"
+    },
+    {
+      "pName": "Orgaawe",
+      "pTitle": "A project focusing on organic food and eco-friendly products.",
+      "pImage": "/Images/Projects/OrgaaweBanner.jpg",
+      "pTarget": "#orgaaweModal",
+      "mTarget": "orgaaweModal",
+      "mHead": "Orgaawe Project Details",
+      "mInfo": "OrgAawe is an innovative platform dedicated to blogging and content marketing, focusing on organic products, organic lifestyles, and nutrition, providing valuable insights and information for a healthier, eco-friendly lifestyle.",
+      "mTech": "Technologies used: HTML, CSS, JavaScript, PHP.",
+      "mLink": "https://orgaawe.com",
+      "ModalVideoSrc": "/Videos/Orgaawe.mp4"
+    },
+    {
+      "pName": "Macs Concepts",
+      "pTitle": "A corporate branding and design consultancy website.",
+      "pImage": "/Images/Projects/MacsBanner.jpg",
+      "pTarget": "#macsconceptsModal",
+      "mTarget": "macsconceptsModal",
+      "mHead": "Macs Concepts Project Details",
+      "mInfo": "Macs Concepts is a cutting-edge digital marketing website designed to elevate brands through strategic online presence, offering expert solutions in SEO, content marketing, and social media management to drive growth and engagement.",
+      "mTech": "Technologies used: HTML, CSS, JavaScript.",
+      "mLink": "https://macsconcepts.in",
+      "ModalVideoSrc": "/Videos/MacsConcepts.mp4"
+    },
+    {
+      "pName": "The Back TO Basics",
+      "pTitle": "A lifestyle brand focused on simplicity and minimalism.",
+      "pImage": "/Images/Projects/B2BBanner.jpg",
+      "pTarget": "#backtobasicsModal",
+      "mTarget": "backtobasicsModal",
+      "mHead": "Back to Basics Project Details",
+      "mInfo": "Back to Basics is a dynamic platform for organizing outdoor and indoor events designed for businesses, colleges, and schools. The website offers a streamlined experience for planning and monitoring interesting events and activities that promote teamwork and educational enrichment.",
+      "mTech": "Technologies used: HTML, CSS, JavaScript.",
+      "mLink": "https://thebacktobasics.com",
+      "ModalVideoSrc": "/Videos/B2B.mp4"
+    }
+  ]
+  

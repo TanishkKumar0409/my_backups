@@ -90,12 +90,12 @@ export default function Hero(props) {
                 </a>
               </div>
               <a
-                href="#about"
+                href="#contact"
                 className={`btn btn-lg btn-${
                   props.darkTheme === "dark" ? "light" : "dark"
                 } `}
               >
-                <i className="fas fa-user"></i> Learn More
+                <i className="fas fa-user"></i> Hire For More Productive Work
               </a>
             </div>
             <div className="col-md-6 d-none d-md-block ">
