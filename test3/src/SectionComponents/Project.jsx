@@ -14,8 +14,8 @@ export default function Projects(props) {
       <div className="container">
         <h2 className="text-center mb-4">Projects</h2>
         <div className="row g-4">
-          {projectsDetails.map((item, index) => (
-            <React.Fragment key={index}>
+          {projectsDetails.map((item) => (
+            <>
               <div className="col-md-3">
                 <Cards
                   darkTheme={props.darkTheme}
@@ -34,7 +34,7 @@ export default function Projects(props) {
                 ModalLink={item.mLink}
                 ModalVideoSrc={item.ModalVideoSrc}
               />
-            </React.Fragment>
+            </>
           ))}
         </div>
       </div>
