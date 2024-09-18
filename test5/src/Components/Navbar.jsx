@@ -27,6 +27,11 @@ export default function Navbar() {
                   Home
                 </Link>
               </li>
+              <li class="nav-item">
+                <Link class="nav-link active" aria-current="page" to="/data">
+                  Data
+                </Link>
+              </li>
             </ul>
             <Link to="/login">
               <button className="btn btn-outline-success">Login</button>

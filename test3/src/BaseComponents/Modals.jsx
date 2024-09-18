@@ -56,6 +56,8 @@ export default function Modals(props) {
                 className={`btn btn-${
                   props.darkTheme === "dark" ? "light" : "dark"
                 }`}
+                target="_blank"
+                rel="noreferrer"
               >
                 <i className="fas fa-link"></i> View Live Project
               </a>

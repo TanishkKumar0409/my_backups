@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Contact(props) {
+  const [iconView, setIconView] = useState("regular");
   return (
     <>
       <section
@@ -107,7 +108,14 @@ export default function Contact(props) {
                       className={`btn btn-${
                         props.darkTheme === "dark" ? "light" : "dark"
                       }`}
+                      onMouseOver={() => {
+                        setIconView("solid");
+                      }}
+                      onMouseOut={() => {
+                        setIconView("regular");
+                      }}
                     >
+                      <i className={`fa-${iconView} fa-paper-plane me-2`}></i>
                       Send Message
                     </button>
                   </div>

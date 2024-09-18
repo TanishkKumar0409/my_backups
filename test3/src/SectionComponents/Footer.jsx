@@ -9,7 +9,6 @@ export default function Footer(props) {
         } text-center py-5`}
       >
         <div className="container">
-          {/* <!-- Footer Navigation Links --> */}
           <div className="row mb-4">
             <div className="col-md-3">
               <h5 className="mb-3">Navigation</h5>
@@ -21,7 +20,7 @@ export default function Footer(props) {
                       props.darkTheme === "dark" ? "light" : "dark"
                     } text-decoration-none d-flex align-items-center mb-2`}
                   >
-                    <i className="fas fa-home me-2"></i>Home
+                    <i className="fa-solid fa-home me-2"></i>Home
                   </a>
                 </li>
                 <li>
@@ -31,7 +30,7 @@ export default function Footer(props) {
                       props.darkTheme === "dark" ? "light" : "dark"
                     } text-decoration-none d-flex align-items-center mb-2`}
                   >
-                    <i className="fas fa-user me-2"></i>About
+                    <i className="fa-solid fa-user me-2"></i>About
                   </a>
                 </li>
                 <li>
@@ -41,7 +40,7 @@ export default function Footer(props) {
                       props.darkTheme === "dark" ? "light" : "dark"
                     } text-decoration-none d-flex align-items-center mb-2`}
                   >
-                    <i className="fas fa-briefcase me-2"></i>Projects
+                    <i className="fa-solid fa-briefcase me-2"></i>Projects
                   </a>
                 </li>
                 <li>
@@ -51,7 +50,7 @@ export default function Footer(props) {
                       props.darkTheme === "dark" ? "light" : "dark"
                     } text-decoration-none d-flex align-items-center mb-2`}
                   >
-                    <i className="fas fa-cogs me-2"></i>Skills
+                    <i className="fa-solid fa-cogs me-2"></i>Skills
                   </a>
                 </li>
                 <li>
@@ -61,7 +60,7 @@ export default function Footer(props) {
                       props.darkTheme === "dark" ? "light" : "dark"
                     } text-decoration-none d-flex align-items-center mb-2`}
                   >
-                    <i className="fas fa-comments me-2"></i>Testimonials
+                    <i className="fa-solid fa-comments me-2"></i>Testimonials
                   </a>
                 </li>
                 <li>
@@ -71,7 +70,7 @@ export default function Footer(props) {
                       props.darkTheme === "dark" ? "light" : "dark"
                     } text-decoration-none d-flex align-items-center mb-2`}
                   >
-                    <i className="fas fa-images me-2"></i>Gallery
+                    <i className="fa-solid fa-images me-2"></i>Gallery
                   </a>
                 </li>
                 <li>
@@ -81,12 +80,11 @@ export default function Footer(props) {
                       props.darkTheme === "dark" ? "light" : "dark"
                     } text-decoration-none d-flex align-items-center mb-2`}
                   >
-                    <i className="fas fa-envelope me-2"></i>Contact
+                    <i className="fa-solid fa-envelope me-2"></i>Contact
                   </a>
                 </li>
               </ul>
             </div>
-            {/* <!-- Social Links --> */}
             <div className="col-md-3">
               <h5 className="mb-3">Follow Us</h5>
               <ul className="list-unstyled">
@@ -169,7 +167,6 @@ export default function Footer(props) {
                 </li>
               </ul>
             </div>
-            {/* <!-- Newsletter Subscription --> */}
             <div className="col-md-6">
               <h5 className="mb-3">Newsletter</h5>
               <form className="text-start mt-5">
@@ -206,7 +203,6 @@ export default function Footer(props) {
               </form>
             </div>
           </div>
-          {/* <!-- Footer Bottom Text --> */}
           <div className="mt-4">
             <p className="mb-0">
               &copy; 2024 Tanishk Kumar. All rights reserved.

@@ -14,7 +14,6 @@ export default function Education(props) {
           <div className="row">
             <div className="col">
               <div className="accordion" id="educationAccordion">
-                {/* <!-- Bachelor of Computer Applications --> */}
                 <div
                   className={`accordion-item bg-${props.darkTheme} text-${
                     props.darkTheme === "dark" ? "light" : "dark"
@@ -71,7 +70,6 @@ export default function Education(props) {
                   </div>
                 </div>
 
-                {/* <!-- High School --> */}
                 <div
                   className={`accordion-item bg-${props.darkTheme} text-${
                     props.darkTheme === "dark" ? "light" : "dark"
@@ -122,8 +120,6 @@ export default function Education(props) {
                     </div>
                   </div>
                 </div>
-
-                {/* <!-- Intermediate School --> */}
                 <div
                   className={`accordion-item bg-${props.darkTheme} text-${
                     props.darkTheme === "dark" ? "light" : "dark"
@@ -179,7 +175,6 @@ export default function Education(props) {
                   </div>
                 </div>
 
-                {/* <!-- Certification in Computer Basics --> */}
                 <div
                   className={`accordion-item bg-${props.darkTheme} text-${
                     props.darkTheme === "dark" ? "light" : "dark"

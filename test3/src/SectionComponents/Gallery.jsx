@@ -32,7 +32,6 @@ export default function Gallery(props) {
           <div className="text-center">
             <h2 className="mb-4">Gallery </h2>
 
-            {/* Display main image (index 1) */}
             <div className="row mb-2">
               <div className="col-md-6 pt-3">
                 <img
@@ -51,7 +50,6 @@ export default function Gallery(props) {
               </div>
             </div>
 
-            {/* Display remaining images individually */}
             <div className="row">
               <div className="col-md-3 pt-2 pt-md-3">
                 <img

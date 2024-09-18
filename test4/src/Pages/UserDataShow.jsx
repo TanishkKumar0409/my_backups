@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Loader from "../Components/Loader";
 import { Link } from "react-router-dom";
 
-export default function DataShow({ search, RootColors }) {
+export default function UserDataShow({ search, RootColors }) {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState([]);
 
@@ -30,8 +30,11 @@ export default function DataShow({ search, RootColors }) {
   }, [search, data]);
 
   return (
-    <section className="data-show" style={{ top: "60px", position: "relative" }}>
-      <div className="container" >
+    <section
+      className="data-show"
+      style={{ top: "60px", position: "relative" }}
+    >
+      <div className="container">
         <div className="row w-100">
           <div className="col ">
             {data.length > 0 ? (
@@ -54,7 +57,12 @@ export default function DataShow({ search, RootColors }) {
                         <td>{item.username}</td>
                         <td>{item.email}</td>
                         <td>
-                          <Link to={`/data/view/${item.id}`}>
+                          <Link
+                            to={{
+                              pathname: `/user-data/user-view/${item.id}`,
+                              state: { filterData: data },
+                            }}
+                          >
                             <button className="view-button">View</button>
                           </Link>
                         </td>

@@ -14,9 +14,9 @@ export default function Projects(props) {
       <div className="container">
         <h2 className="text-center mb-4">Projects</h2>
         <div className="row g-4">
-          {projectsDetails.map((item) => (
+          {projectsDetails.map((item,index) => (
             <>
-              <div className="col-md-3">
+              <div className="col-md-3" key={index}>
                 <Cards
                   darkTheme={props.darkTheme}
                   CompanyName={item.pName}

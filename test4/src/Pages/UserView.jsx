@@ -21,7 +21,10 @@ export default function View(props) {
   }, [id]);
 
   return (
-    <div className="view-container"  style={{ top: "60px", position: "relative" }}>
+    <div
+      className="view-container"
+      style={{ top: "60px", position: "relative" }}
+    >
       {data ? (
         <div className="view-card">
           <h1 className="view-card-title">User Details</h1>

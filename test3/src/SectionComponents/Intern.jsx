@@ -11,7 +11,6 @@ export default function Intern(props) {
       <div className="container">
         <h2 className="mb-4 text-center">Experience </h2>
         <div className="row">
-          {/* Larger column for internship experience */}
           <div className="col-md-8">
             <div
               className={`card rounded-5 mb-3 h-100 shadow-lg bg-${
@@ -126,7 +125,7 @@ export default function Intern(props) {
               </div>
             </div>
           </div>
-          {/* Two smaller columns for self-practice */}
+
           <div className="col-md-4 pt-3">
             <div className="d-flex flex-column h-100">
               <div

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Hero(props) {
+  const [iconView, setIconView] = useState("regular");
   return (
     <>
       <section
@@ -90,12 +91,19 @@ export default function Hero(props) {
                 </a>
               </div>
               <a
-                href="#contact"
+                href="/PDF/tanishk_kumar.pdf"
                 className={`btn btn-lg btn-${
                   props.darkTheme === "dark" ? "light" : "dark"
                 } `}
+                onMouseOver={() => {
+                  setIconView("solid");
+                }}
+                onMouseOut={() => {
+                  setIconView("regular");
+                }}
+                target="_blank"
               >
-                <i className="fas fa-user"></i> Hire For More Productive Work
+                <i className={`fa-${iconView} fa-eye me-2`}></i> Veiw CV
               </a>
             </div>
             <div className="col-md-6 d-none d-md-block ">

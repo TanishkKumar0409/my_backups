@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Cards(props) {
+  const [iconView, setIconView] = useState("regular");
   return (
     <>
       <div
@@ -29,10 +30,16 @@ export default function Cards(props) {
             className={`btn btn-${
               props.darkTheme === "dark" ? "light" : "dark"
             }`}
+            onMouseOver={() => {
+              setIconView("solid");
+            }}
+            onMouseOut={() => {
+              setIconView("regular");
+            }}
             data-bs-toggle="modal"
             data-bs-target={props.ModalTarget}
           >
-            <i className="fas fa-eye"></i> View Project
+            <i className={`fa-${iconView} fa-eye`}></i> View Project
           </button>
         </div>
       </div>

@@ -4,10 +4,19 @@ import Navbar from "./SectionComponents/Navbar";
 import Error from "./Pages/error/Error";
 import Home from "./Pages/Home/Home";
 
-function App() {
-  const [darkTheme, setDarkTheme] = useState("light");
-  const [SecondaryTheme, setSecondaryTheme] = useState("secondary-subtle");
-  const [ThemeText, setThemeText] = useState("moon");
+export default function App() {
+  const themeModeValue = Math.round(Math.random());
+  const [darkTheme, setDarkTheme] = useState(
+    themeModeValue === 1 ? "dark" : "light"
+  );
+  const [SecondaryTheme, setSecondaryTheme] = useState(
+    themeModeValue === 1 ? "secondary" : "secondary-subtle"
+  );
+  const [ThemeText, setThemeText] = useState(
+    themeModeValue === 1 ? "sun" : "moon"
+  );
+
+  console.log(themeModeValue);
   const toggleTheme = () => {
     if (darkTheme === "light") {
       setDarkTheme("dark");
@@ -18,8 +27,6 @@ function App() {
       setSecondaryTheme("secondary-subtle");
       setThemeText("moon");
     }
-    console.log(darkTheme);
-    console.log(SecondaryTheme);
   };
   return (
     <>
@@ -42,5 +49,3 @@ function App() {
     </>
   );
 }
-
-export default App;

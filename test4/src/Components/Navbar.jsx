@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Navbar({
-  search,
-  setSearch,
-  RootColors,
-  toggleTheme,
-  ThemeText,
-}) {
+export default function Navbar({ search, setSearch, toggleTheme }) {
   const [Icon, setIcon] = useState("sun");
 
   const handleSearchChange = (e) => {
@@ -20,7 +14,7 @@ export default function Navbar({
     } else if (Icon === "moon") {
       setIcon("sun");
     }
-    toggleTheme(); // Call the theme toggle function when the icon is toggled
+    toggleTheme();
   };
 
   return (
@@ -52,13 +46,28 @@ export default function Navbar({
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/data" className="nav-link">
-                  Data
+                <Link to="/user-data" className="nav-link">
+                  User Data
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/form" className="nav-link">
-                  Form
+                <Link to="/image-data" className="nav-link">
+                  Image Data
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/count" className="nav-link">
+                  Counter
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/text" className="nav-link">
+                  Text Transformer
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/todo" className="nav-link">
+                  To Do List
                 </Link>
               </li>
             </ul>
@@ -76,12 +85,18 @@ export default function Navbar({
                 onChange={handleSearchChange}
               />
             </form>
+            <Link to="/login">
+              <button className="btn-outline-light btn ms-2">Login</button>
+            </Link>
+            <Link to="/register">
+              <button className="btn-outline-light btn ms-2 shadow">Register</button>
+            </Link>
           </div>
         </div>
       </nav>
       <div>
         <button
-          className="btn btn-primary position-fixed Theme-Btn"
+          className="btn btn-primary position-fixed Theme-Btn shadow"
           onClick={ToggleIcon}
           style={{ zIndex: "9999" }}
         >
