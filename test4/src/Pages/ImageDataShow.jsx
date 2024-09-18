@@ -50,7 +50,7 @@ export default function ImageData() {
                                 className="view-img rounded"
                               />
                             </td>
-                            <td>
+                            <td className="text-center">
                               <img
                                 src={item.thumbnailUrl}
                                 width={"50px"}
