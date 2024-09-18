@@ -2,17 +2,27 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../Components/Loader";
 
-export default function ImageData() {
+export default function ImageData({ search }) {
   const [dataShowLimit, setDataShowLimit] = useState(50);
   const [data, setData] = useState([]);
+  const [filter, setFilter] = useState([]);
+
   useEffect(() => {
     getData();
   }, []);
+
   const getData = async () => {
     const out = await fetch("https://jsonplaceholder.typicode.com/photos");
     const output = await out.json();
     setData(output);
   };
+
+  useEffect(() => {
+    const filteredData = data.filter((user) =>
+      user.title.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilter(filteredData);
+  }, [search, data]);
 
   return (
     <>
@@ -22,7 +32,7 @@ export default function ImageData() {
       >
         <div className="container">
           <div className="row w-100">
-            <div className="col ">
+            <div className="col">
               {data.length > 0 ? (
                 <div className="table-container">
                   <table className="data-table">
@@ -36,39 +46,35 @@ export default function ImageData() {
                       </tr>
                     </thead>
                     <tbody>
-                      {data.map((item, index) =>
-                        item.id <= dataShowLimit ? (
-                          <tr key={index}>
-                            <td className="text-center">{item.id}</td>
-                            <td>{item.title}</td>
-                            <td className="text-center">
-                              <img
-                                src={item.url}
-                                width={"50px"}
-                                height={"50px"}
-                                alt=""
-                                className="view-img rounded shadow"
-                              />
-                            </td>
-                            <td className="text-center">
-                              <img
-                                src={item.thumbnailUrl}
-                                width={"50px"}
-                                height={"50px"}
-                                className="view-img rounded shadow"
-                                alt=""
-                              />
-                            </td>
-                            <td className="text-center">
-                              <Link to={`/image-data/image-view/${item.id}`}>
-                                <button className="view-button">View</button>
-                              </Link>
-                            </td>
-                          </tr>
-                        ) : (
-                          ""
-                        )
-                      )}
+                      {filter.slice(0, dataShowLimit).map((item, index) => (
+                        <tr key={index}>
+                          <td className="text-center">{item.id}</td>
+                          <td>{item.title}</td>
+                          <td className="text-center">
+                            <img
+                              src={item.url}
+                              width={"50px"}
+                              height={"50px"}
+                              alt=""
+                              className="view-img rounded shadow"
+                            />
+                          </td>
+                          <td className="text-center">
+                            <img
+                              src={item.thumbnailUrl}
+                              width={"50px"}
+                              height={"50px"}
+                              className="view-img rounded shadow"
+                              alt=""
+                            />
+                          </td>
+                          <td className="text-center">
+                            <Link to={`/image-data/image-view/${item.id}`}>
+                              <button className="view-button">View</button>
+                            </Link>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                   <div

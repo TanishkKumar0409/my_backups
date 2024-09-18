@@ -1,17 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-export default function Navbar({ search, setSearch, toggleTheme }) {
+export default function Navbar({ search, setSearch, toggleTheme ,ThemeText}) {
   const location = useLocation();
-  const [icon, setIcon] = useState("sun");
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
-  };
-
-  const toggleIcon = () => {
-    setIcon(icon === "sun" ? "moon" : "sun");
-    toggleTheme();
   };
 
   const getNavLinkClass = (path) => {
@@ -117,10 +111,12 @@ export default function Navbar({ search, setSearch, toggleTheme }) {
       <div>
         <button
           className="btn btn-primary position-fixed Theme-Btn shadow"
-          onClick={toggleIcon}
+          onClick={()=>{
+            toggleTheme()
+          }}
           style={{ zIndex: "9999" }}
         >
-          <i className={`fa-solid fa-${icon}`}></i>
+          <i className={`fa-solid fa-${ThemeText}`}></i>
         </button>
       </div>
     </>
