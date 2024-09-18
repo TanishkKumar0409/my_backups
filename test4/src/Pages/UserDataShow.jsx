@@ -52,7 +52,7 @@ export default function UserDataShow({ search, RootColors }) {
                   <tbody>
                     {filter.map((item) => (
                       <tr key={item.id}>
-                        <td>{item.id}</td>
+                        <td className="text-center">{item.id}</td>
                         <td>{item.name}</td>
                         <td>{item.username}</td>
                         <td>{item.email}</td>
