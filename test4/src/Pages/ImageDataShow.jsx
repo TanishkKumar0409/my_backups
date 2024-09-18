@@ -59,7 +59,7 @@ export default function ImageData() {
                                 alt=""
                               />
                             </td>
-                            <td>
+                            <td className="text-center">
                               <Link to={`/image-data/image-view/${item.id}`}>
                                 <button className="view-button">View</button>
                               </Link>
