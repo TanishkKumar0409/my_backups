@@ -56,7 +56,7 @@ export default function UserDataShow({ search, RootColors }) {
                         <td>{item.name}</td>
                         <td>{item.username}</td>
                         <td>{item.email}</td>
-                        <td>
+                        <td className="text-center">
                           <Link
                             to={{
                               pathname: `/user-data/user-view/${item.id}`,
