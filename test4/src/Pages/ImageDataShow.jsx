@@ -27,7 +27,7 @@ export default function ImageData() {
                 <div className="table-container">
                   <table className="data-table">
                     <thead>
-                      <tr>
+                      <tr className="position-sticky">
                         <th>ID</th>
                         <th>Name</th>
                         <th>Username</th>
@@ -41,12 +41,13 @@ export default function ImageData() {
                           <tr key={index}>
                             <td>{item.id}</td>
                             <td>{item.title}</td>
-                            <td>
+                            <td className="text-center">
                               <img
                                 src={item.url}
                                 width={"50px"}
                                 height={"50px"}
                                 alt=""
+                                className="view-img rounded"
                               />
                             </td>
                             <td>
@@ -54,6 +55,7 @@ export default function ImageData() {
                                 src={item.thumbnailUrl}
                                 width={"50px"}
                                 height={"50px"}
+                                className="view-img rounded"
                                 alt=""
                               />
                             </td>
