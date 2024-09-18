@@ -66,6 +66,8 @@ function App() {
     }
   };
 
+  // const lact=useLocation()
+
   return (
     <div style={Theme}>
       <BrowserRouter>

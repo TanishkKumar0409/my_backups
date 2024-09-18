@@ -1,4 +1,8 @@
-/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  transition: 0.5s ease-in-out;
+}
 body {
   background: linear-gradient(
       135deg,
@@ -16,10 +20,11 @@ body {
   align-items: center;
   padding: 40px;
   background: linear-gradient(
-    135deg,
-    var(--secondary-color),
-    var(--primary-color)
-  ) fixed;
+      135deg,
+      var(--secondary-color),
+      var(--primary-color)
+    )
+    fixed;
   min-height: 100vh;
   text-shadow: var(--text-shadow);
 }
@@ -207,10 +212,11 @@ body {
 .multi-page-main {
   padding: 40px;
   background: linear-gradient(
-    135deg,
-    var(--secondary-color),
-    var(--primary-color)
-  ) fixed;
+      135deg,
+      var(--secondary-color),
+      var(--primary-color)
+    )
+    fixed;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -258,9 +264,6 @@ label {
   color: var(--highlight-color);
 }
 
-.view-img{
-  transition: 0.5s ease-in-out;
-}
-.view-img:hover{
+.view-img:hover {
   transform: scale(1.1);
 }

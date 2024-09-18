@@ -39,7 +39,7 @@ export default function ImageData() {
                       {data.map((item, index) =>
                         item.id <= dataShowLimit ? (
                           <tr key={index}>
-                            <td>{item.id}</td>
+                            <td className="text-center">{item.id}</td>
                             <td>{item.title}</td>
                             <td className="text-center">
                               <img
@@ -47,7 +47,7 @@ export default function ImageData() {
                                 width={"50px"}
                                 height={"50px"}
                                 alt=""
-                                className="view-img rounded"
+                                className="view-img rounded shadow"
                               />
                             </td>
                             <td className="text-center">
@@ -55,7 +55,7 @@ export default function ImageData() {
                                 src={item.thumbnailUrl}
                                 width={"50px"}
                                 height={"50px"}
-                                className="view-img rounded"
+                                className="view-img rounded shadow"
                                 alt=""
                               />
                             </td>

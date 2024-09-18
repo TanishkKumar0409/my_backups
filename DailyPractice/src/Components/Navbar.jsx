@@ -1,20 +1,21 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar({ search, setSearch, toggleTheme }) {
-  const [Icon, setIcon] = useState("sun");
+  const location = useLocation();
+  const [icon, setIcon] = useState("sun");
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
   };
 
-  const ToggleIcon = () => {
-    if (Icon === "sun") {
-      setIcon("moon");
-    } else if (Icon === "moon") {
-      setIcon("sun");
-    }
+  const toggleIcon = () => {
+    setIcon(icon === "sun" ? "moon" : "sun");
     toggleTheme();
+  };
+
+  const getNavLinkClass = (path) => {
+    return location.pathname === path ? "active" : "nav-link";
   };
 
   return (
@@ -41,32 +42,49 @@ export default function Navbar({ search, setSearch, toggleTheme }) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link to="/" className="nav-link active">
+                <Link to="/" className={`nav-link ${getNavLinkClass("/")}`}>
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/user-data" className="nav-link">
+                <Link
+                  to="/user-data"
+                  className={`nav-link ${getNavLinkClass("/user-data")}`}
+                >
                   User Data
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/image-data" className="nav-link">
+                <Link
+                  to="/image-data"
+                  className={`nav-link ${getNavLinkClass(
+                    "/image-data"
+                  )} ${getNavLinkClass("/image-data/view-data/:id")}`}
+                >
                   Image Data
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/count" className="nav-link">
+                <Link
+                  to="/count"
+                  className={`nav-link ${getNavLinkClass("/count")}`}
+                >
                   Counter
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/text" className="nav-link">
+                <Link
+                  to="/text"
+                  className={`nav-link ${getNavLinkClass("/text")}`}
+                >
                   Text Transformer
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/todo" className="nav-link">
+                <Link
+                  to="/todo"
+                  className={`nav-link ${getNavLinkClass("/todo")}`}
+                >
                   To Do List
                 </Link>
               </li>
@@ -89,7 +107,9 @@ export default function Navbar({ search, setSearch, toggleTheme }) {
               <button className="btn-outline-light btn ms-2">Login</button>
             </Link>
             <Link to="/register">
-              <button className="btn-outline-light btn ms-2 shadow">Register</button>
+              <button className="btn-outline-light btn ms-2 shadow">
+                Register
+              </button>
             </Link>
           </div>
         </div>
@@ -97,10 +117,10 @@ export default function Navbar({ search, setSearch, toggleTheme }) {
       <div>
         <button
           className="btn btn-primary position-fixed Theme-Btn shadow"
-          onClick={ToggleIcon}
+          onClick={toggleIcon}
           style={{ zIndex: "9999" }}
         >
-          <i className={`fa-solid fa-${Icon}`}></i>
+          <i className={`fa-solid fa-${icon}`}></i>
         </button>
       </div>
     </>
