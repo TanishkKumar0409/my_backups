@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Loader from "../Components/Loader";
 import { Link } from "react-router-dom";
 
-export default function UserDataShow({ search}) {
+export default function UserDataShow({ search }) {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState([]);
 

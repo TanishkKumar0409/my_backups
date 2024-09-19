@@ -18,27 +18,19 @@ function App() {
   const [search, setSearch] = useState("");
   const themeValue = Math.round(Math.random());
   const darkTheme = {
-    "--primary-color": "#003366",
     "--secondary-color": "#000000",
     "--background-light": "#1a1a1a",
     "--highlight-color": "#3399ff",
     "--info-color": "#66ccff",
     "--button-hover-bg": "#002244",
-    "--button-text-color": "#ffffff",
-    "--box-shadow-dark": " rgba(0, 0, 0, 0.6)",
-    "--box-shadow-light": "rgba(0, 0, 0, 0.3)",
     "--border-color": "#333",
   };
   const lightTheme = {
-    "--primary-color": "#003366",
     "--secondary-color": "#ffffff",
     "--background-light": "#f2f2f2",
     "--highlight-color": "#0055cc",
     "--info-color": "#003366",
     "--button-hover-bg": "#6699cc",
-    "--button-text-color": "#ffffff",
-    "--box-shadow-dark": " rgba(0, 0, 0, 0.6)",
-    "--box-shadow-light": "rgba(0, 0, 0, 0.3)",
     "--border-color": "#cccccc",
     "--text-shadow": "0 0 3px rgba(255, 255, 255, 0.1)",
   };
@@ -55,7 +47,6 @@ function App() {
       setTheme(darkTheme);
     }
   };
-
 
   return (
     <div style={Theme}>

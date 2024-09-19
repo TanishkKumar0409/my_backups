@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-export default function Navbar({ search, setSearch, toggleTheme ,ThemeText}) {
+export default function Navbar({ search, setSearch, toggleTheme, ThemeText }) {
   const location = useLocation();
 
   const handleSearchChange = (e) => {
@@ -111,9 +111,7 @@ export default function Navbar({ search, setSearch, toggleTheme ,ThemeText}) {
       <div>
         <button
           className="btn btn-primary position-fixed Theme-Btn shadow"
-          onClick={()=>{
-            toggleTheme()
-          }}
+          onClick={() => toggleTheme()}
           style={{ zIndex: "9999" }}
         >
           <i className={`fa-solid fa-${ThemeText}`}></i>
