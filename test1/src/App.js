@@ -7,6 +7,7 @@ import Error from "./Pages/Error/Error";
 import Counter from "./Pages/Counter/Counter";
 import TextTransform from "./Pages/TextTransform/TextTransform";
 import UserDataFetch from "./Pages/UserData/UserDataFetch";
+import ViewData from "./Pages/UserData/ViewData/ViewData";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/count" element={<Counter />} />
           <Route path="/text" element={<TextTransform />} />
           <Route path="/userData" element={<UserDataFetch />} />
+          <Route path="/userData/view/:id" element={<ViewData />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>

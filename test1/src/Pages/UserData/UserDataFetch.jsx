@@ -12,7 +12,6 @@ export default function UserDataFetch() {
     const jsonData = await fetchdata.json();
     setData(jsonData);
   };
- 
 
   return (
     <>
@@ -52,7 +51,7 @@ export default function UserDataFetch() {
                           <td className="p-2">{item.name}</td>
                           <td className="p-2">{item.email}</td>
                           <td className="p-2  text-center">
-                            <Link path={`/user/view/${item.id}`}>
+                            <Link to={`/userData/view/${item.id}`}>
                               <button className="btn btn-custom">View</button>
                             </Link>
                           </td>
@@ -63,7 +62,7 @@ export default function UserDataFetch() {
                 </div>
               </div>
             ) : (
-             <Loader />
+              <Loader />
             )}
           </div>
         </div>
