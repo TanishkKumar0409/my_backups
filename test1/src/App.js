@@ -8,6 +8,8 @@ import Counter from "./Pages/Counter/Counter";
 import TextTransform from "./Pages/TextTransform/TextTransform";
 import UserDataFetch from "./Pages/UserData/UserDataFetch";
 import ViewData from "./Pages/UserData/ViewData/ViewData";
+import ViewDataImage from "./Pages/ImageData/ViewData/ViewDataImage";
+import ImageData from "./Pages/ImageData/ImageData";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/text" element={<TextTransform />} />
           <Route path="/userData" element={<UserDataFetch />} />
           <Route path="/userData/view/:id" element={<ViewData />} />
+          <Route path="/imageData" element={<ImageData />} />
+          <Route path="/imageData/view/:id" element={<ViewDataImage />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>

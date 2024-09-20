@@ -73,6 +73,16 @@ export default function Navbar() {
                       User Data
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    <Link
+                      className={`nav-link ${ActiveClass("/ImageData")}`}
+                      aria-current="page"
+                      to="/imageData"
+                      style={{ "--nav-color": "#00f260" }}
+                    >
+                      Image Data
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </div>
