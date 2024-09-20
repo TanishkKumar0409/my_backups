@@ -14,7 +14,7 @@ import RegistrationForm from "./Pages/RegistrationForm";
 import ImageData from "./Pages/ImageDataShow";
 import ImageShow from "./Pages/ImageShow";
 
-function App() {
+export default function App() {
   const [search, setSearch] = useState("");
   const themeValue = Math.round(Math.random());
   const darkTheme = {
@@ -77,5 +77,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

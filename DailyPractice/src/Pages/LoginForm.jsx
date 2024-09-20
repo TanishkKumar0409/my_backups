@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function LoginForm() {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const Stored = JSON.parse(localStorage.getItem("person1"));
   return (
     <div className="view-container">
       <div className="view-card">
@@ -14,6 +17,9 @@ export default function LoginForm() {
               type="email"
               id="email"
               name="email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
               required
               className="form-input"
             />
@@ -26,12 +32,27 @@ export default function LoginForm() {
               type="password"
               id="password"
               name="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               required
               className="form-input"
             />
           </div>
           <div className="form-group">
-            <button type="submit" className="view-button">
+            <button
+              type="submit"
+              className="view-button"
+              onClick={() => {
+                if (Stored.email !== email && Stored.password !== password) {
+                  alert("user Doesm't exist");
+                } else if (Stored.email !== email) {
+                  alert("Incorrect Email");
+                } else if (Stored.password !== password) {
+                  alert("Incorrect Password");
+                }
+              }}
+            >
               Login
             </button>
           </div>
