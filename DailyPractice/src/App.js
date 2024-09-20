@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import MultiPages from "./Pages/MultiPages";
@@ -15,7 +15,14 @@ import ImageData from "./Pages/ImageDataShow";
 import ImageShow from "./Pages/ImageShow";
 
 export default function App() {
+  // const [token, setToken] = useState(null);
+  // useEffect(()=>{
+  //   setToken(localStorage.getItem("token"))
+  // },[])
+
+// console.log(token)
   const [search, setSearch] = useState("");
+  
   const themeValue = Math.round(Math.random());
   const darkTheme = {
     "--secondary-color": "#000000",

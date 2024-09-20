@@ -16,25 +16,6 @@ export default function ImageData() {
     setData(jsonData);
   };
 
-  const PrimaryWidth = {
-    "--width": "15%",
-    "--left": "44%",
-  };
-  const SecondaryWidth = {
-    "--width": "100%",
-    "--left": "0",
-  };
-
-  const [width, setwidth] = useState(PrimaryWidth);
-
-  const MouseOver = () => {
-    setwidth(SecondaryWidth);
-  };
-
-  const MouseOut = () => {
-    setwidth(PrimaryWidth);
-  };
-
   return (
     <>
       <div className="container d-flex align-items-center justify-content-center">
@@ -49,15 +30,10 @@ export default function ImageData() {
                 }}
               >
                 <div>
-                  <h2
-                    className="headHeading text-light"
-                    style={{ "--text": "'Users Data'" }}
-                  >
-                    Users Data
-                  </h2>
+                  <h2 className="headHeading text-dark">Users Data</h2>
                 </div>
                 <div>
-                  <table className="table-custom shadow rounded text-light">
+                  <table className="table-custom shadow rounded text-dark">
                     <thead>
                       <tr>
                         <th className="p-3">Id</th>
@@ -88,14 +64,9 @@ export default function ImageData() {
                       ))}
                     </tbody>
                   </table>
-                  <div
-                    className="btn-box p-3 mt-3 rounded shadow d-flex justify-content-center"
-                    style={width}
-                  >
+                  <div className="btn-box p-3 mt-3 rounded shadow d-flex justify-content-center">
                     <button
                       className="btn btn-custom shadow"
-                      onMouseOver={MouseOver}
-                      onMouseOut={MouseOut}
                       onClick={() => {
                         setViewLimit(ViewLimit + 50);
                       }}

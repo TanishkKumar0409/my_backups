@@ -6,6 +6,7 @@ export default function RegistrationForm() {
   const [email, setEmail] = useState();
   const [contact, setContact] = useState();
   const [password, setPassword] = useState();
+  var tokenNumber = 0;
   const formData = {
     FirstName: FirstName,
     LastName: LastName,
@@ -117,8 +118,14 @@ export default function RegistrationForm() {
           </div> */}
           <button
             type="submit"
-            onClick={() => {
-              localStorage.setItem("person1",JSON.stringify(formData));
+            onClick={(e) => {
+              e.preventDefault();
+              localStorage.setItem(
+                "person" + tokenNumber,
+                JSON.stringify(formData)
+              );
+              localStorage.setItem("token","abcdefghijklmnopqrstuvwxyz")
+              tokenNumber++;
             }}
             className="view-button"
           >

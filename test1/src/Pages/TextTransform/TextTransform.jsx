@@ -20,24 +20,6 @@ export default function TextTransform() {
       setText("");
     }
   };
-  const PrimaryWidth = {
-    "--width": "60%",
-    "--left": "20%",
-  };
-  const SecondaryWidth = {
-    "--width": "100%",
-    "--left": "0",
-  };
-
-  const [width, setwidth] = useState(PrimaryWidth);
-
-  const MouseOver = () => {
-    setwidth(SecondaryWidth);
-  };
-
-  const MouseOut = () => {
-    setwidth(PrimaryWidth);
-  };
 
   return (
     <>
@@ -56,35 +38,27 @@ export default function TextTransform() {
                 ></textarea>
                 <label htmlFor="textArea"></label>
               </div>
-              <div className="btn-box p-3 rounded shadow " style={width}>
+              <div className="btn-bo p-3 rounded shadow ">
                 <button
-                  className="btn btn-custom"
-                  onMouseOver={MouseOver}
-                  onMouseOut={MouseOut}
+                  className="btn btn-custom shadow-sm"
                   onClick={() => handleCase("upperCase")}
                 >
                   UpperCase
                 </button>
                 <button
-                  className="btn btn-custom ms-2"
-                  onMouseOver={MouseOver}
-                  onMouseOut={MouseOut}
+                  className="btn btn-custom shadow-sm ms-2"
                   onClick={() => handleCase("lowerCase")}
                 >
                   LoweCase
                 </button>
                 <button
-                  className="btn btn-custom ms-2"
-                  onMouseOver={MouseOver}
-                  onMouseOut={MouseOut}
+                  className="btn btn-custom shadow-sm ms-2"
                   onClick={() => handleCase("capitalize")}
                 >
                   Capitalize
                 </button>
                 <button
-                  className="btn btn-custom ms-2"
-                  onMouseOver={MouseOver}
-                  onMouseOut={MouseOut}
+                  className="btn btn-custom shadow-sm ms-2"
                   onClick={() => handleCase("")}
                 >
                   Reset

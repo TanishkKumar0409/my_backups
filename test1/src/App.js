@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Home from "./Pages/Home/Home";
 import Error from "./Pages/Error/Error";
-import Counter from "./Pages/Counter/Counter";
 import TextTransform from "./Pages/TextTransform/TextTransform";
 import UserDataFetch from "./Pages/UserData/UserDataFetch";
 import ViewData from "./Pages/UserData/ViewData/ViewData";
@@ -18,7 +17,6 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/count" element={<Counter />} />
           <Route path="/text" element={<TextTransform />} />
           <Route path="/userData" element={<UserDataFetch />} />
           <Route path="/userData/view/:id" element={<ViewData />} />

@@ -27,15 +27,10 @@ export default function UserDataFetch() {
                 }}
               >
                 <div>
-                  <h2
-                    className="headHeading text-light"
-                    style={{ "--text": "'Users Data'" }}
-                  >
-                    Users Data
-                  </h2>
+                  <h2 className="headHeading text-dark">Users Data</h2>
                 </div>
                 <div>
-                  <table className="table-custom shadow rounded text-light">
+                  <table className="table-custom shadow rounded text-dark">
                     <thead>
                       <tr>
                         <th className="p-3">id</th>
@@ -52,7 +47,9 @@ export default function UserDataFetch() {
                           <td className="p-2">{item.email}</td>
                           <td className="p-2  text-center">
                             <Link to={`/userData/view/${item.id}`}>
-                              <button className="btn btn-custom">View</button>
+                              <button className="btn btn-custom shadow-sm">
+                                View
+                              </button>
                             </Link>
                           </td>
                         </tr>

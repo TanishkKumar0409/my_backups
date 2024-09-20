@@ -17,26 +17,6 @@ export default function ViewData() {
     };
     getData();
   }, [id]);
-
-  const PrimaryWidth = {
-    "--width": "12%",
-    "--left": "44%",
-  };
-  const SecondaryWidth = {
-    "--width": "100%",
-    "--left": "0",
-  };
-
-  const [width, setwidth] = useState(PrimaryWidth);
-
-  const MouseOver = () => {
-    setwidth(SecondaryWidth);
-  };
-
-  const MouseOut = () => {
-    setwidth(PrimaryWidth);
-  };
-
   return (
     <>
       {data.length > 0 ? (
@@ -51,7 +31,7 @@ export default function ViewData() {
                 }}
               >
                 <h1
-                  className="headHeading text-light"
+                  className="headHeading text-dark"
                   style={{ "--text": "'Users Data'" }}
                 >
                   User Data
@@ -59,7 +39,7 @@ export default function ViewData() {
                 <div className="text-box rounded p-3 shadow">
                   {data.map((item) => (
                     <div key={item.id}>
-                      <h3 className="mt-4 text-light">Personal</h3>
+                      <h3 className="mt-4 text-dark">Personal</h3>
                       <div className="d-flex justify-content-between">
                         <p className="Etext">Id:</p>
                         <p className="Etext">{item.id}</p>
@@ -85,7 +65,7 @@ export default function ViewData() {
                         <p className="Etext">{item.website}</p>
                       </div>
                       {/* Address Section */}
-                      <h3 className="mt-4 text-light">Address</h3>
+                      <h3 className="mt-4 text-dark">Address</h3>
                       <div className="d-flex justify-content-between">
                         <p className="Etext">Street:</p>
                         <p className="Etext">{item.address.street}</p>
@@ -111,7 +91,7 @@ export default function ViewData() {
                         <p className="Etext">{item.address.geo.lng}</p>
                       </div>
                       {/* Company Section */}
-                      <h3 className="mt-4 text-light">Company</h3>
+                      <h3 className="mt-4 text-dark">Company</h3>
                       <div className="d-flex justify-content-between">
                         <p className="Etext">Name:</p>
                         <p className="Etext">{item.company.name}</p>
@@ -126,19 +106,9 @@ export default function ViewData() {
                       </div>
                     </div>
                   ))}
-                  <div
-                    className="btn-box p-3 rounded shadow d-flex justify-content-center"
-                    style={width}
-                  >
+                  <div className="btn-box p-3 rounded shadow d-flex justify-content-center">
                     <Link to="/userData">
-                      {" "}
-                      <button
-                        className="btn btn-custom shadow"
-                        onMouseOver={MouseOver}
-                        onMouseOut={MouseOut}
-                      >
-                        Back
-                      </button>
+                      <button className="btn btn-custom shadow">Back</button>
                     </Link>
                   </div>
                 </div>

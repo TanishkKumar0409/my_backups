@@ -38,19 +38,9 @@ export default function Navbar() {
                       className={`nav-link ${ActiveClass("/")}`}
                       aria-current="page"
                       to="/"
-                      style={{ "--nav-color": "#00aaff" }}
+                      style={{ "--navLink": "#00aaff" }}
                     >
                       Home
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      className={`nav-link ${ActiveClass("/count")}`}
-                      aria-current="page"
-                      to="/count"
-                      style={{ "--nav-color": "red" }}
-                    >
-                      Count
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -58,7 +48,7 @@ export default function Navbar() {
                       className={`nav-link ${ActiveClass("/text")}`}
                       aria-current="page"
                       to="/text"
-                      style={{ "--nav-color": "#ffce00" }}
+                      style={{ "--navLink": "#ffce00" }}
                     >
                       Text Transform
                     </Link>
@@ -68,17 +58,17 @@ export default function Navbar() {
                       className={`nav-link ${ActiveClass("/userData")}`}
                       aria-current="page"
                       to="/userData"
-                      style={{ "--nav-color": "#00f260" }}
+                      style={{ "--navLink": "#00f260" }}
                     >
                       User Data
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link
-                      className={`nav-link ${ActiveClass("/ImageData")}`}
+                      className={`nav-link ${ActiveClass("/imageData")}`}
                       aria-current="page"
                       to="/imageData"
-                      style={{ "--nav-color": "#00f260" }}
+                      style={{ "--navLink": "red" }}
                     >
                       Image Data
                     </Link>

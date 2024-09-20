@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const Stored = JSON.parse(localStorage.getItem("person1"));
+  const Stored = JSON.parse(localStorage.getItem("person0"));
+  const Navigate = useNavigate();
   return (
     <div className="view-container">
       <div className="view-card">
@@ -43,14 +45,18 @@ export default function LoginForm() {
             <button
               type="submit"
               className="view-button"
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 if (Stored.email !== email && Stored.password !== password) {
-                  alert("user Doesm't exist");
+                  alert("user Doesn't exist");
                 } else if (Stored.email !== email) {
                   alert("Incorrect Email");
                 } else if (Stored.password !== password) {
                   alert("Incorrect Password");
+                } else {
+                  Navigate("/");
                 }
+                console.log(Stored);
               }}
             >
               Login

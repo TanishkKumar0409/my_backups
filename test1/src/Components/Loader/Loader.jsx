@@ -25,7 +25,7 @@ export default function Loader() {
   return (
     <>
       <div className="vh-100 d-flex align-items-center justify-content-center">
-        <h1 className="MainHeading">Loading{Display}</h1>
+        <h1 className="">Loading{Display}</h1>
       </div>
     </>
   );
