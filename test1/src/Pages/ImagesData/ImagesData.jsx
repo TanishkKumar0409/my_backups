@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Loader from "../../Components/Loader/Loader";
-import { Link } from "react-router-dom";
 
 export default function ImagesData() {
   const [data, setData] = useState([]);
   const [dataLimit, setDataLimit] = useState(10);
+
   const getdata = async () => {
     const fetchData = await fetch(
       "https://jsonplaceholder.typicode.com/photos"
@@ -12,12 +12,15 @@ export default function ImagesData() {
     const jsonData = await fetchData.json();
     setData(jsonData);
   };
+
   useEffect(() => {
     getdata();
   }, []);
+
   const LimitIncrement = () => {
     setDataLimit(dataLimit + 10);
   };
+
   return (
     <>
       {data.length > 0 ? (
@@ -32,26 +35,24 @@ export default function ImagesData() {
                 <table className="table-custom text-dark shadow text-start">
                   <thead id="theader">
                     <tr>
-                      <th className="p-3 fs-5 ">Id</th>
-                      <th className="p-3 fs-5 ">Title</th>
-                      <th className="p-3 fs-5 ">Thumbnail</th>
-                      <th className="p-3 fs-5 ">More Info</th>
+                      <th className="p-3 fs-5">Id</th>
+                      <th className="p-3 fs-5">Title</th>
+                      <th className="p-3 fs-5">Thumbnail</th>
+                      <th className="p-3 fs-5">More Info</th>
                     </tr>
                   </thead>
                   <tbody>
                     {data.slice(0, dataLimit).map((item, index) => (
                       <tr key={index}>
-                        <td className="p-3 fs-5 ">{item.id}</td>
-                        <td className="p-3 fs-5 ">{item.title}</td>
+                        <td className="p-3 fs-5">{item.id}</td>
+                        <td className="p-3 fs-5">{item.title}</td>
                         <td className="p-3 fs-5 text-center">
-                          <Link to={"/Loader"} className="btn">
-                            <img
-                              src={item.thumbnailUrl}
-                              className="rounded shadow img-custom"
-                              width={"50px"}
-                              alt="Thumbnail"
-                            />
-                          </Link>
+                          <img
+                            src={item.thumbnailUrl}
+                            width={"50px"}
+                            className="img-custom rounded"
+                            alt=""
+                          />
                         </td>
                         <td className="p-3 fs-5 text-center">
                           <button
@@ -74,7 +75,7 @@ export default function ImagesData() {
                     ))}
                   </tbody>
                 </table>
-                <div className="btn-box my-5 ">
+                <div className="btn-box my-5">
                   <button
                     className="btn p-3 button text-light"
                     style={{
