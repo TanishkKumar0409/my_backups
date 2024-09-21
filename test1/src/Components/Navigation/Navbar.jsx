@@ -36,6 +36,11 @@ export default function Navbar() {
                       Home
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    <Link className={`nav-link ${ActiveClass("/album")}`} aria-current="page" to="/album" style={{ "--navLink": "#e94560" }}>
+                      Album
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </div>

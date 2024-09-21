@@ -6,20 +6,17 @@ export default function ViewImageData() {
   const { id } = useParams();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://jsonplaceholder.typicode.com/photos"
-        );
-        const jsonData = await response.json();
-        const filterData = jsonData.filter((user) => user.id === parseInt(id));
-        setData(filterData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+    const getData = async () => {
+      const fetchData = await fetch("https://jsonplaceholder.typicode.com/photos");
+      const jsonData = await fetchData.json();
+      const filterData = jsonData.filter(
+        (user) => user.id === parseInt(id)
+      );
+      setData(filterData);
     };
-    fetchData();
+    getData();
   }, [id]);
+  console.log(data)
   return (
     <>
       <div className="container vh-100 d-flex align-items-center justify-content-center">
