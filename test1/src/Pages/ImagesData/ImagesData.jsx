@@ -1,25 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Loader from "../../Components/Loader/Loader";
+import { Link } from "react-router-dom";
 
 export default function ImagesData() {
   const [data, setData] = useState([]);
   const [dataLimit, setDataLimit] = useState(10);
 
-  const getdata = async () => {
-    const fetchData = await fetch(
-      "https://jsonplaceholder.typicode.com/photos"
-    );
-    const jsonData = await fetchData.json();
-    setData(jsonData);
-  };
-
   useEffect(() => {
-    getdata();
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/photos"
+        );
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
   }, []);
 
-  const LimitIncrement = () => {
-    setDataLimit(dataLimit + 10);
+  const handleLoadMore = () => setDataLimit((prevLimit) => prevLimit + 10);
+
+  const getButtonColor = (id) => {
+    switch (id % 4) {
+      case 0:
+        return "#f8961e";
+      case 1:
+        return "#9d4edd";
+      case 2:
+        return "#ff006e";
+      default:
+        return "blue";
+    }
   };
+
+  const renderedData = useMemo(
+    () => data.slice(0, dataLimit),
+    [data, dataLimit]
+  );
 
   return (
     <>
@@ -31,61 +51,52 @@ export default function ImagesData() {
           <div className="row">
             <div className="col text-center">
               <h2 style={{ "--afterText": "'Images Data'" }}>Images Data</h2>
-              <div>
-                <table className="table-custom text-dark shadow text-start">
-                  <thead id="theader">
-                    <tr>
-                      <th className="p-3 fs-5">Id</th>
-                      <th className="p-3 fs-5">Title</th>
-                      <th className="p-3 fs-5">Thumbnail</th>
-                      <th className="p-3 fs-5">More Info</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.slice(0, dataLimit).map((item, index) => (
-                      <tr key={index}>
-                        <td className="p-3 fs-5">{item.id}</td>
-                        <td className="p-3 fs-5">{item.title}</td>
-                        <td className="p-3 fs-5 text-center">
+              <table className="table-custom text-dark shadow text-start">
+                <thead id="theader">
+                  <tr>
+                    <th className="p-3 fs-5">Id</th>
+                    <th className="p-3 fs-5">Title</th>
+                    <th className="p-3 fs-5">Thumbnail</th>
+                    <th className="p-3 fs-5">More Info</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {renderedData.map((item) => (
+                    <tr key={item.id}>
+                      <td className="p-3 fs-5">{item.id}</td>
+                      <td className="p-3 fs-5">{item.title}</td>
+                      <td className="p-3 fs-5 text-center">
+                        <Link to={`/image/view/${item.id}`}>
                           <img
                             src={item.thumbnailUrl}
-                            width={"50px"}
+                            width="50px"
                             className="img-custom rounded"
                             alt=""
                           />
-                        </td>
-                        <td className="p-3 fs-5 text-center">
+                        </Link>
+                      </td>
+                      <td className="p-3 fs-5 text-center">
+                        <Link to={`/image/view/${item.id}`}>
                           <button
                             className="btn p-3 button text-light"
-                            style={{
-                              "--color":
-                                item.id % 4 === 0
-                                  ? "#f8961e"
-                                  : item.id % 4 === 1
-                                  ? "#9d4edd"
-                                  : item.id % 4 === 2
-                                  ? "#ff006e"
-                                  : "blue",
-                            }}
+                            style={{ "--color": getButtonColor(item.id) }}
                           >
                             <p>View More</p>
                           </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <div className="btn-box my-5">
-                  <button
-                    className="btn p-3 button text-light"
-                    style={{
-                      "--color": "#ff006e",
-                    }}
-                    onClick={LimitIncrement}
-                  >
-                    <p>View More</p>
-                  </button>
-                </div>
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className="btn-box my-5">
+                <button
+                  className="btn p-3 button text-light"
+                  style={{ "--color": "blue" }}
+                  onClick={handleLoadMore}
+                >
+                  <p>View More</p>
+                </button>
               </div>
             </div>
           </div>
