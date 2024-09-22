@@ -69,9 +69,9 @@ export default function Navbar({ search, setSearch }) {
                   </li>
                   <li className="nav-item">
                     <Link
-                      className={`nav-link ${ActiveClass("/error")}`}
+                      className={`nav-link ${ActiveClass("/abcd")}`}
                       aria-current="page"
-                      to="/error"
+                      to="/abcd"
                       style={{ "--navLink": "darkgoldenrod" }}
                     >
                       Error
