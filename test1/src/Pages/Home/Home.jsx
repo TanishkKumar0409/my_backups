@@ -6,7 +6,7 @@ export default function Home() {
       <div className="container vh-100 d-flex align-items-center justify-content-center">
         <div className="row">
           <div className="col">
-            <h2>Home</h2>
+            <h1>Home</h1>
           </div>
         </div>
       </div>
