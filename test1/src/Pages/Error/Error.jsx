@@ -6,7 +6,7 @@ export default function Error() {
     <div className="container vh-100 d-flex align-items-center justify-content-center text-center">
       <div className="row">
         <div className="col">
-          <h2>Oops!</h2>
+          <h1>Oops!</h1>
           <p>
             Something went wrong. The page you're looking for doesn't exist.
           </p>
