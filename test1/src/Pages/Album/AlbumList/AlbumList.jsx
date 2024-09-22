@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from "react";
-import Loader from "../../Components/Loader/Loader";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import Loader from "../../../Components/Loader/Loader";
 
-export default function ImagesData({ search }) {
+export default function AlbumList({ search }) {
   const [data, setData] = useState([]);
   const [dataLimit, setDataLimit] = useState(10);
+  const [display, setDisplay] = useState();
   const [filterData, setFilterData] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
+      const fetchData = await fetch(
         "https://jsonplaceholder.typicode.com/photos"
       );
+      const jsonData = await fetchData.json();
+      const Dfilter = jsonData.filter((user) => user.albumId === parseInt(id));
 
-      const jsonData = await response.json();
+      setData(Dfilter);
 
-      setData(jsonData);
-
-      setFilterData(jsonData);
+      setFilterData(Dfilter);
     };
-
     fetchData();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (search) {
@@ -39,7 +40,13 @@ export default function ImagesData({ search }) {
     }
   }, [search, data]);
 
-  const handleLoadMore = () => setDataLimit((prevLimit) => prevLimit + 10);
+  const handleLoadMore = () => {
+    setDataLimit((prevLimit) => prevLimit + 10);
+
+    if (dataLimit === 40) {
+      setDisplay("d-none");
+    }
+  };
 
   const getButtonColor = (id) => {
     switch (id % 4) {
@@ -63,7 +70,7 @@ export default function ImagesData({ search }) {
         >
           <div className="row">
             <div className="col text-center">
-              <h2 style={{ "--afterText": "'Images Data'" }}>Images Data</h2>
+              <h2 style={{ "--afterText": "'Album List'" }}>Album List</h2>
               <table className="table-custom text-dark shadow text-start">
                 <thead id="theader">
                   <tr>
@@ -104,7 +111,7 @@ export default function ImagesData({ search }) {
               </table>
               <div className="btn-box my-5">
                 <button
-                  className="btn p-3 button text-light"
+                  className={`btn p-3 button text-light ${display}`}
                   style={{ "--color": "blue" }}
                   onClick={handleLoadMore}
                 >
