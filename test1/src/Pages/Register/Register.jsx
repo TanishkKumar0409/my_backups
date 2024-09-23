@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 export default function Register() {
   return (
     <>
       <div className="container vh-100 d-flex align-items-center justify-content-center">
         <div className="row">
           <div className="col ">
-            <div className="wrapper rounded-5 register" style={{top:"20px"}}>
+            <div className="wrapper rounded-5 register" style={{ top: "20px" }}>
               <span className="bg-animate2"></span>
               <span className="bg-animate4"></span>
               <div className="form-box register">

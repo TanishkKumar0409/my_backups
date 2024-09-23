@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap");
 :root {
   --background-color: #09091f;
   --primary-color: #1d4b99;
@@ -19,6 +20,7 @@
   margin: 0;
   padding: 0;
   transition: 0.5s ease;
+  font-weight: 900;
 }
 
 ::-webkit-scrollbar {
@@ -50,6 +52,7 @@
 
 body {
   background: var(--background-color);
+  font-family: "Playwrite DE Grund", cursive;
 }
 
 .header {
@@ -95,6 +98,59 @@ body {
 .nav-link.active {
   color: var(--navLink) !important;
   z-index: 15;
+}
+.headHeading {
+  font-size: 10rem;
+  color: transparent;
+  background: url(https://i.pinimg.com/originals/75/ab/ed/75abeddffe6936d584976f3f6c752b5f.gif);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 2px aqua;
+  position: relative;
+  -webkit-box-reflect: below 0px
+    linear-gradient(transparent 35%, rgba(0, 0, 0, 0.2));
+}
+
+.headHeading::after {
+  content: "Home";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  filter: blur(10px);
+  left: 0;
+  z-index: -2;
+}
+
+.errorBox {
+  -webkit-box-reflect: right -50% linear-gradient(45deg, rgba(0, 0, 0, 0.2), transparent
+        60%);
+}
+.errorHeading {
+  font-size: 7rem;
+  width: 100%;
+  height: 180px;
+  color: transparent;
+  background: url(https://i.pinimg.com/originals/75/ab/ed/75abeddffe6936d584976f3f6c752b5f.gif);
+  background-size: cover;
+  background-clip: text;
+  -webkit-text-stroke: 2px aquamarine;
+  position: relative;
+}
+.errorBack {
+  position: absolute;
+  font-size: 10rem;
+  color: red;
+  top: 20%;
+  left: 35%;
+  z-index: -2;
+  letter-spacing: 0.5em;
+  filter: blur(10px);
+}
+.errorPara {
+  animation: TextPos 5s linear infinite;
+  text-shadow: 1px 1px 12px darkgoldenrod, -1px -1px 2px aquamarine;
+  font-size: 1.5rem;
 }
 
 h2 {
@@ -574,6 +630,45 @@ tbody tr td:hover .img-custom {
   z-index: -2;
 }
 
+.iconBox {
+  font-size: 20rem;
+  background: url(https://usagif.com/wp-content/uploads/2022/hqgif/ocean-wave-42-animated-waves-ocean-acegif.gif);
+  background-size: cover;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  transform-origin: center center;
+  animation: spin 10s linear infinite; /* Spinning animation */
+}
+
+.iconBox::after {
+  content: "\f118";
+  font-family: "FontAwesome"; /* Ensure FontAwesome is applied */
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  height: 100%;
+  top: 5%;
+  left: -3%;
+  z-index: -2;
+  animation: TextPos 5s linear infinite;
+}
+
+.iconBox::before {
+  content: "\f118";
+  font-family: "FontAwesome";
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  height: 100%;
+  top: 5%;
+  left: -3%;
+  z-index: -1;
+  background: var(--background-color);
+  background-clip: text;
+  filter: blur(5px);
+}
+
 @keyframes TextPos {
   0%,
   100% {
@@ -624,5 +719,13 @@ tbody tr td:hover .img-custom {
   }
   50% {
     background-position: 100% 100%;
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
