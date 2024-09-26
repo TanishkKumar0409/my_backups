@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(45deg, #0a0a19, #05017c, #0a0a19);
+      overflow: hidden;
+    }
+    .cardBox {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 100px 50px;
+      padding: 100px 50px;
+    }
+    .customCard {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 350px;
+      height: 300px;
+      background: #c7c6c6;
+      border-radius: 20px;
+      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
+      transition: 0.5s;
+    }
+    .customCard:hover {
+      height: 400px;
+    }
+    .imgBx {
+      position: absolute;
+      top: 20px;
+      width: 300px;
+      height: 220px;
+      background: #333;
+      border-radius: 12px;
+      transition: 0.5s;
+      overflow: hidden;
+    }
+    .customCard:hover .imgBx {
+      top: -100px;
+      scale: 0.75;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+    }
+    .imgBx img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .content {
+      position: absolute;
+      width: 100%;
+      top: 252px;
+      padding: 0 30px;
+      height: 30px;
+      overflow: hidden;
+      text-align: center;
+      transition: 0.5s;
+    }
+    .customCard:hover .content {
+      height: 250px;
+      top: 150px;
+    }
+    .cardHeading {
+      font-size: 1.5em;
+      font-weight: 700;
+      color: var(--clr);
+    }
+    .cardPara {
+      color: #333;
+    }
+    .cardLink {
+      position: relative;
+      top: 15px;
+      display: inline-block;
+      padding: 12px 25px;
+      background: var(--clr);
+      color: #fff;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: 0.5s;
+    }
+    .cardLink:hover {
+      box-shadow: 0 0 5px var(--clr);
+    }
+  </style>
+  <body>
+    <div class="cardBox">
+      <div class="customCard" style="--clr: #880000">
+        <div class="imgBx">
+          <img
+            src="https://images.pexels.com/photos/9962890/pexels-photo-9962890.jpeg?cs=srgb&dl=pexels-eury-escudero-124357529-9962890.jpg&fm=jpg"
+            alt=""
+          />
+        </div>
+        <div class="content">
+          <h2 class="cardHeading">IRON MAN</h2>
+          <p class="cardPara">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
+            tempore voluptates quaerat, cum pariatur quas accusamus
+            exercitationem inventore? Quas quia ab quaerat voluptatibus animi at
+            temporibus dicta expedita molestias sunt?
+          </p>
+          <a class="cardLink" href="#">Read More</a>
+        </div>
+      </div>
+      <div class="customCard" style="--clr: #000000">
+        <div class="imgBx">
+          <img
+            src="https://e0.pxfuel.com/wallpapers/560/570/desktop-wallpaper-marvel-background-for-marvel-black.jpg"
+            alt=""
+          />
+        </div>
+        <div class="content">
+          <h2 class="cardHeading">Captain America</h2>
+          <p class="cardPara">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
+            tempore voluptates quaerat, cum pariatur quas accusamus
+            exercitationem inventore? Quas quia ab quaerat voluptatibus animi at
+            temporibus dicta expedita molestias sunt?
+          </p>
+          <a class="cardLink" href="#">Read More</a>
+        </div>
+      </div>
+      <div class="customCard" style="--clr: #19bce0">
+        <div class="imgBx">
+          <img
+            src="https://e1.pxfuel.com/desktop-wallpaper/136/817/desktop-wallpaper-thor-logo-posted-by-ethan-tremblay-mjolnir-computer.jpg"
+            alt=""
+          />
+        </div>
+        <div class="content">
+          <h2 class="cardHeading">Thor</h2>
+          <p class="cardPara">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
+            tempore voluptates quaerat, cum pariatur quas accusamus
+            exercitationem inventore? Quas quia ab quaerat voluptatibus animi at
+            temporibus dicta expedita molestias sunt?
+          </p>
+          <a class="cardLink" href="#">Read More</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
