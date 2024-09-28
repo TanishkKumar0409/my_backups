@@ -143,7 +143,8 @@ table tbody tr {
 table tbody tr:hover {
   transform: scale(1.2);
   box-shadow: 2px 2px 12px black, -1px -1px 8px black;
-  background: conic-gradient(aqua, aquamarine, aqua) center;
+  background: linear-gradient(45deg,yellow, black, yellow) center;
+  color: white;
 }
 /* table tbody tr td img {
   transform: rotate(90deg);

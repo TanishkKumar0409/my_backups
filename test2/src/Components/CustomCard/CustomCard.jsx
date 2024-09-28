@@ -55,26 +55,32 @@ export default function CustomCard() {
         <div className="col">
           <OwlCarousel className="owl-theme" {...carouselOptions}>
             {data.map((item, index) => (
-              <div className="item" key={index}>
-                <div className="card">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    style={{ "--AngleCard": `${handleAngle(item.id)}` }}
-                    className="card-img"
-                  />
-                  <div className="card-overlay">
-                    <h5 className="card-title mb-3">{item.name}</h5>
-                    <button
-                      className="btn btn-success"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
-                    >
-                      Know More
-                    </button>
+              <>
+                {item.id % 2 === 1 ? (
+                  <div className="item" key={index}>
+                    <div className="card">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        style={{ "--AngleCard": `${handleAngle(item.id)}` }}
+                        className="card-img"
+                      />
+                      <div className="card-overlay">
+                        <h5 className="card-title mb-3">{item.name}</h5>
+                        <button
+                          className="btn btn-success"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModal"
+                        >
+                          Know More
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+                ) : (
+                  ""
+                )}
+              </>
             ))}
           </OwlCarousel>
         </div>
