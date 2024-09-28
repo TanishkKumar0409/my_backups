@@ -1,0 +1,57 @@
+.formBox {
+  width: 800px;
+  border: 0;
+  height: 250px;
+  background: transparent;
+}
+
+.card {
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+label {
+  width: 20%;
+  height: 50px;
+  border: 1px solid black;
+  border-right: 0;
+  border-bottom: 0;
+  padding-left: 100px;
+  align-content: center;
+  border-radius: 0 !important;
+}
+.labBox:nth-child(1) label{
+    border-radius: 10px 0 0 0 !important;
+}
+.labBox:nth-child(5) label {
+    border-bottom: 1px solid black;
+    border-radius: 0 0 0 10px !important;
+}
+
+input {
+  width: 80% !important;
+  height: 50px;
+  border: 0;
+  border: 1px solid black;
+  border-bottom: 0;
+  border-left: 0;
+  border-radius: 0;
+}
+.labBox:nth-child(1) input{
+    border-radius: 0 10px 0 0;
+}
+.labBox:nth-child(5) input {
+    border-radius: 0 0 10px 0;
+    border-bottom: 1px solid black;
+}
+input:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+span {
+  width: 1px;
+  height: 250px;
+  background: red;
+  position: absolute;
+  left: 80px;
+}
