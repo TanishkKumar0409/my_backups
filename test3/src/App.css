@@ -14,9 +14,9 @@
   left: 35%;
   opacity: 0;
   transform: translateY(-50px) rotateX(360deg);
-  transform: top center;
+  transform-origin: top center;
   pointer-events: none;
-  transition: opacity 0.5s, transform 0.5s;
+  transition: 1s;
 }
 
 input {

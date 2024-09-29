@@ -5,6 +5,7 @@ import Navbar from "./Components/Navigation/Navbar";
 import Home from "./Pages/Home/Home";
 import Form from "./Auth/Form";
 
+
 function App() {
   return (
     <>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
-
+import { toast } from "react-toastify";
 export default function Registration(props) {
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
@@ -22,14 +22,14 @@ export default function Registration(props) {
     emailjs
       .send(serviceId, templateId, templateParams, publicKey)
       .then(() => {
-        console.log("Mail sent");
+        toast.success("Mail Sent Succesfully");
         setName("");
         setEmail("");
         setContact("");
         setPassword("");
       })
       .catch((error) => {
-        console.log(error);
+        toast.error("An error occurred: " + error.text);;
       });
   };
 
@@ -60,7 +60,7 @@ export default function Registration(props) {
         <div className="inputBox">
           <label htmlFor="ContactReg">Contact:</label>
           <input
-            type="text"
+            type="tel"
             id="ContactReg"
             value={Contact}
             onChange={(e) => setContact(e.target.value)}
@@ -83,7 +83,7 @@ export default function Registration(props) {
         <button className="btnSub" type="submit">
           Submit
         </button>
-      </form>c
+      </form>
     </>
   );
 }
