@@ -2,7 +2,36 @@ import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 
 export default function Registration(props) {
-  
+  const [Name, setName] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Contact, setContact] = useState("");
+  const [Password, setPassword] = useState("");
+
+  const handleEmail = (e) => {
+    e.preventDefault();
+    const serviceId = "service_8q1y22g";
+    const templateId = "template_gdnvmvf";
+    const publicKey = "WJiPh3SwTtEYfH_Go";
+
+    const templateParams = {
+      from_name: Name,
+      from_email: Email,
+      from_phone: Contact,
+    };
+
+    emailjs
+      .send(serviceId, templateId, templateParams, publicKey)
+      .then(() => {
+        console.log("Mail sent");
+        setName("");
+        setEmail("");
+        setContact("");
+        setPassword("");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
