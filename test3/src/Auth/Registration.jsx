@@ -37,10 +37,6 @@ export default function Registration(props) {
       .matches(/[0-9]/, "Password must contain at least one number")
       .matches(/[\W_]/, "Password must contain at least one special character")
       .required("Password is required"),
-
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Passwords must match")
-      .required("Please confirm your password"),
   });
 
   const handleEmail = (values) => {
