@@ -15,16 +15,32 @@ export default function Registration(props) {
     phone: "",
     password: "",
   };
-
   const validationSchema = Yup.object({
-    name: Yup.string().required("Name is required"),
+    name: Yup.string()
+      .min(2, "Name must be at least 2 characters")
+      .max(50, "Name cannot exceed 50 characters")
+      .required("Name is required"),
+
     email: Yup.string()
       .email("Invalid email format")
       .required("Email is required"),
-    phone: Yup.string().required("Phone number is required"),
+
+    phone: Yup.string()
+      .matches(/^[0-9]{10}$/, "Phone number must be exactly 10 digits")
+      .required("Phone number is required"),
+
     password: Yup.string()
-      .min(6, "Password must be at least 6 characters")
+      .min(8, "Password must be at least 8 characters")
+      .max(20, "Password cannot exceed 20 characters")
+      .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+      .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+      .matches(/[0-9]/, "Password must contain at least one number")
+      .matches(/[\W_]/, "Password must contain at least one special character")
       .required("Password is required"),
+
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Please confirm your password"),
   });
 
   const handleEmail = (values) => {
@@ -70,9 +86,9 @@ export default function Registration(props) {
             value={formik.values.name}
             required
           />
-          {formik.touched.name && formik.errors.name && (
+          {formik.touched.name && formik.errors.name ? (
             <div className="error">{formik.errors.name}</div>
-          )}
+          ) : null}
         </div>
         <div className="inputBox">
           <label htmlFor="email">Email:</label>
@@ -84,9 +100,9 @@ export default function Registration(props) {
             value={formik.values.email}
             required
           />
-          {formik.touched.email && formik.errors.email && (
+          {formik.touched.email && formik.errors.email ? (
             <div className="error">{formik.errors.email}</div>
-          )}
+          ) : null}
         </div>
         <div className="inputBox">
           <label htmlFor="phone">Contact:</label>
@@ -98,9 +114,9 @@ export default function Registration(props) {
             value={formik.values.phone}
             required
           />
-          {formik.touched.phone && formik.errors.phone && (
+          {formik.touched.phone && formik.errors.phone ? (
             <div className="error">{formik.errors.phone}</div>
-          )}
+          ) : null}
         </div>
         <div className="inputBox">
           <label htmlFor="password">Password:</label>
@@ -112,9 +128,9 @@ export default function Registration(props) {
             value={formik.values.password}
             required
           />
-          {formik.touched.password && formik.errors.password && (
+          {formik.touched.password && formik.errors.password ? (
             <div className="error">{formik.errors.password}</div>
-          )}
+          ) : null}
         </div>
         <button className="btnreg" type="button" onClick={props.handleRegForm}>
           Already Have an Account
