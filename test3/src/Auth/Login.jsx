@@ -2,8 +2,11 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function Login(props) {
+  const RandomNumber = Math.round(Math.random() * 100000000);
+  const Navigate = useNavigate();
   const initialValues = {
     email: "",
     password: "",
@@ -23,11 +26,29 @@ export default function Login(props) {
       .required("Password is required"),
   });
 
+  const handleform = (values) => {
+    const localdata = localStorage.getItem("userData");
+    const ObData = JSON.parse(localdata);
+    const inputData = {
+      LogEmail: values.email,
+      LogPassword: values.password,
+    };
+    if (ObData.email !== inputData.LogEmail) {
+      toast.error("user not found");
+    } else if (ObData.password !== inputData.LogPassword) {
+      toast.error("Incorrect Password");
+    } else {
+      localStorage.setItem("token", "Token" + RandomNumber);
+      Navigate("/");
+      window.location.reload();
+    }
+  };
+
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: (values) => {
-      toast.success("form success");
+      handleform(values);
     },
   });
 
@@ -38,16 +59,17 @@ export default function Login(props) {
         <div className="inputBox">
           <label htmlFor="EmailLogin">Email:</label>
           <input
-            type="text"
+            type="email" // Changed to email for better validation
             id="EmailLogin"
             name="email"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
+            autoComplete="email"
           />
-          {formik.touched.email && formik.errors.email && (
-            <div className="error">{formik.errors.email}</div>
-          )}
+          {formik.touched.email &&
+            formik.errors.email &&
+            toast.error(formik.errors.email, { position: "top-right" })}
         </div>
         <div className="inputBox">
           <label htmlFor="PasswordLogin">Password:</label>
@@ -59,9 +81,9 @@ export default function Login(props) {
             onBlur={formik.handleBlur}
             value={formik.values.password}
           />
-          {formik.touched.password && formik.errors.password && (
-            <div className="error">{formik.errors.password}</div>
-          )}
+          {formik.touched.password &&
+            formik.errors.password &&
+            toast.error(formik.errors.password, { position: "top-right" })}
         </div>
         <button type="button" className="btnreg" onClick={props.handleRegForm}>
           Create New Account

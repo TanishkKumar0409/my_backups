@@ -10,7 +10,6 @@ export default function Form() {
   const handleRegForm = (e) => {
     e.preventDefault();
     activeClass === "active" ? setactiveClass("") : setactiveClass("active");
-    console.log("hello");
   };
   return (
     <>

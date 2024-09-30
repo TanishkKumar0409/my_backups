@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function AuthNav() {
   return (
     <>
       <header className="position-fixed shadow w-100">
@@ -33,9 +33,15 @@ export default function Navbar() {
                     </Link>
                   </li>
                 </ul>
-                <Link to="/form">
-                  <button className="btn btn-outline-dark">Login</button>
-                </Link>
+                <button
+                  className="btn btn-outline-dark"
+                  onClick={() => {
+                    localStorage.clear();
+                    window.location.reload();
+                  }}
+                >
+                  logout
+                </button>
               </div>
             </div>
           </nav>

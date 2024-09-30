@@ -44,6 +44,7 @@ export default function Registration(props) {
       from_name: values.name,
       from_email: values.email,
       from_phone: values.phone,
+      from_password: values.password,
     };
 
     emailjs
@@ -55,17 +56,37 @@ export default function Registration(props) {
       .catch((error) => {
         toast.error("An error occurred: " + error.text);
       });
-  };
 
-  const handleSubmit = (values) => {
-    handleEmail(values);
-    console.log("Form submitted", values);
+    const localadata = {
+      name: values.name,
+      email: values.email,
+      phone: values.phone,
+      password: values.password,
+    };
+
+    const StringData = JSON.stringify(localadata);
+
+    localStorage.setItem("userData", StringData);
+
+    toast.success(
+      <>
+        <div className="d-flex">
+          <p>You are registerd</p>
+          <button
+            className="btn btn-outline-dark ms-4"
+            onClick={props.handleRegForm}
+          >
+            Success
+          </button>
+        </div>
+      </>
+    );
   };
 
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: handleSubmit,
+    onSubmit: handleEmail,
   });
 
   return (
@@ -80,7 +101,7 @@ export default function Registration(props) {
             name="name"
             onChange={formik.handleChange}
             value={formik.values.name}
-            required
+            autoComplete="name"
           />
           {formik.touched.name && formik.errors.name ? (
             <div className="error">{formik.errors.name}</div>
@@ -94,7 +115,7 @@ export default function Registration(props) {
             name="email"
             onChange={formik.handleChange}
             value={formik.values.email}
-            required
+            autoComplete="email"
           />
           {formik.touched.email && formik.errors.email ? (
             <div className="error">{formik.errors.email}</div>
@@ -108,7 +129,7 @@ export default function Registration(props) {
             name="phone"
             onChange={formik.handleChange}
             value={formik.values.phone}
-            required
+            autoComplete="phone"
           />
           {formik.touched.phone && formik.errors.phone ? (
             <div className="error">{formik.errors.phone}</div>
