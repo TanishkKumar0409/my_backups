@@ -1,0 +1,172 @@
+* {
+  transition: 0.5s linear;
+}
+body {
+  background-color: #f8f9fa; /* Light background */
+  color: #212529; /* Dark text color for contrast */
+  font-family: "Arial", sans-serif; /* Clean font */
+}
+
+header {
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.form-label {
+  font-weight: 500; /* Medium weight for labels */
+}
+
+.btn-success {
+  background-color: #28a745; /* Green background for button */
+  border-color: #28a745; /* Green border for button */
+}
+
+.login-link {
+  color: #007bff; /* Bootstrap primary color */
+  text-decoration: none; /* No underline */
+}
+
+.login-link:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.carousel-item {
+  height: 100vh; /* Full height for carousel items */
+}
+
+.carousel-button {
+  filter: brightness(-100%);
+}
+
+.headingBox {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.headingBox div {
+  width: 60%;
+}
+
+.headingBox div h1 {
+  font-size: 4rem;
+  color: white;
+  font-weight: 800;
+  text-shadow: 2px 2px 12px black, -1px -1px 8px black;
+}
+
+.headingBox div p {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 2px 2px 12px black, -1px -1px 8px black;
+}
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-img {
+  width: 100%;
+  height: auto;
+  animation: imgScale 4s linear infinite;
+  animation-play-state: running;
+}
+
+.card:hover .card-img {
+  animation-play-state: paused;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.8),
+    rgba(255, 255, 255, 0.01),
+    rgba(0, 0, 0, 0.8)
+  );
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .card-overlay {
+  opacity: 1;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 1.4rem;
+  color: white;
+  text-shadow: 2px 2px 12px black, -1px -1px 8px black;
+  text-align: center;
+}
+
+@keyframes imgScale {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5) rotate(var(--AngleCard));
+  }
+}
+
+table {
+  font-size: 150%;
+  /* background: aquamarine; */
+}
+table thead {
+  background: #000;
+  color: white;
+}
+table tbody tr {
+  transition: 0.5s ease-in-out;
+}
+
+table tbody tr:hover {
+  transform: scale(1.2);
+  box-shadow: 2px 2px 12px black, -1px -1px 8px black;
+  background: linear-gradient(45deg,yellow, black, yellow) center;
+  color: white;
+}
+/* table tbody tr td img {
+  transform: rotate(90deg);
+} */
+table tbody tr td:hover img {
+  animation: TableImage 5s linear;
+}
+table tbody tr:hover td img {
+  box-shadow: 2px 2px 12px black, -1px -1px 8px black !important;
+}
+@keyframes TableImage {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.5) rotate(90deg);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  75% {
+    transform: scale(0.8) rotate(-90deg);
+  }
+}
