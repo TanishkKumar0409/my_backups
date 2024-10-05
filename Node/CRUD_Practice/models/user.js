@@ -7,19 +7,19 @@ const UserSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    required: ture,
+    required: true,
   },
   email: {
     type: String,
-    required: ture,
+    required: true,
   },
   phone: {
     type: Number,
-    required: ture,
+    required: true,
   },
   course: {
     type: String,
-    required: ture,
+    required: true,
   },
   CreatedAt: {
     type: Date,
