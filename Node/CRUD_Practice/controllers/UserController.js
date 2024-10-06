@@ -4,7 +4,11 @@ export const getUsers = async (req, res) => {
   try {
     const User = await user.find();
 
-    return res.json(User);
+    if (User === null) {
+      return res.json({ message: "User not Find" });
+    } else {
+      return res.json(User);
+    }
   } catch (error) {
     return res.json({ error: error.message });
   }
@@ -57,7 +61,23 @@ export const deleteUser = async (req, res) => {
     if (DelUser === null) {
       console.log("user Not Find");
     } else {
-      return res.json(DelUser);
+      return res.json("User Deleted Successfully");
+    }
+  } catch (error) {
+    return res.json({ error: error.message });
+  }
+};
+
+export const deleteManyUser = async (req, res) => {
+  try {
+    const { batch } = req.params;
+
+    const DelUser = await user.deleteMany({ batch });
+
+    if (DelUser === null) {
+      console.log("user Not Find");
+    } else {
+      return res.json("Users Deleted Successfully");
     }
   } catch (error) {
     return res.json({ error: error.message });
@@ -86,6 +106,32 @@ export const updateUser = async (req, res) => {
     );
 
     return res.json({ message: "User Updated Successfully", UpdateUserDetail });
+  } catch (error) {
+    return res.json({ error: error.message });
+  }
+};
+
+export const updateManyUser = async (req, res) => {
+  try {
+    const { batch } = req.params;
+
+    const { name, email, phone, city, gender } = req.body;
+
+    const UpdateUser = {
+      name,
+      email,
+      phone,
+      city,
+      gender,
+    };
+
+    const UpdateUserDetail = await user.updateMany(
+      { batch },
+      { $set: UpdateUser },
+      { new: true }
+    );
+
+    return res.json({ message: "Users Updated Successfully" });
   } catch (error) {
     return res.json({ error: error.message });
   }
