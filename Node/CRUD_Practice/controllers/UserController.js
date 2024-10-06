@@ -61,3 +61,20 @@ export const deleteUser = async (req, res) => {
     return res.json({ error: error.message });
   }
 };
+
+export const updateUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, email, phone, course } = req.body;
+
+    const UpdateUserDetail = await user.findOneAndUpdate(
+      { id },
+      { $set: { name, email, phone, course } },
+      { new: true }
+    );
+
+    return res.json({ message: "User Updated Successfully", UpdateUserDetail });
+  } catch (error) {
+    return res.json({ error: error.message });
+  }
+};
