@@ -28,14 +28,16 @@ export const getOneUsers = async (req, res) => {
 
 export const addUser = async (req, res) => {
   try {
-    const { id, name, email, phone, course } = req.body;
+    const { id, name, email, phone, city, batch, gender } = req.body;
 
     const newUser = new user({
       id,
       name,
       email,
       phone,
-      course,
+      city,
+      batch,
+      gender,
     });
 
     const SavedUser = await newUser.save();
@@ -65,11 +67,21 @@ export const deleteUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, email, phone, course } = req.body;
+
+    const { name, email, phone, city, batch, gender } = req.body;
+
+    const UpdateUser = {
+      name,
+      email,
+      phone,
+      city,
+      batch,
+      gender,
+    };
 
     const UpdateUserDetail = await user.findOneAndUpdate(
       { id },
-      { $set: { name, email, phone, course } },
+      { $set: UpdateUser },
       { new: true }
     );
 
