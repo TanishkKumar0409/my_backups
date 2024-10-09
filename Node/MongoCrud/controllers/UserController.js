@@ -15,12 +15,23 @@ export const getUser = async (req, res) => {
 };
 
 export const getUserById = async (req, res) => {
-    try {
-      const { id, name, email, phone, course, city, batch } = req.body;
-  
-      const SavedUser = await User.save();
-    } catch (error) {
-      console.log({ error: error.message });
-    }
-  };
-  
+  try {
+    const { id, name, email, phone, course, city, batch } = req.body;
+
+    const newUser = User({
+      id,
+      name,
+      email,
+      phone,
+      course,
+      city,
+      batch,
+    });
+
+    const SavedUser = await newUser.save();
+
+    return res.json({ message: "User Saved Successfully", SavedUser });
+  } catch (error) {
+    console.log({ error: error.message });
+  }
+};
