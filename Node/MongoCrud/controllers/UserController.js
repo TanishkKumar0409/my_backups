@@ -14,7 +14,7 @@ export const getUser = async (req, res) => {
   }
 };
 
-export const getUserById = async (req, res) => {
+export const addUser = async (req, res) => {
   try {
     const { id, name, email, phone, course, city, batch } = req.body;
 
