@@ -10,7 +10,6 @@ export const getUser = async (req, res) => {
       return res.json({ getData });
     }
   } catch (error) {
-    console.error({ error: error.message });
     return res.json({ error: error.message });
   }
 };
@@ -45,7 +44,7 @@ export const addUser = async (req, res) => {
 
     return res.json({ message: "User Saved Successfully", SavedUser });
   } catch (error) {
-    console.log({ error: error.message });
+    return res.json({ error: error.message });
   }
 };
 
@@ -63,7 +62,6 @@ export const UpdateUser = async (req, res) => {
 
     return res.json({ message: "User Updated Successfully", UserUpdate });
   } catch (error) {
-    console.log({ error: error.message });
     return res.json({ message: "An error occurred", error: error.message });
   }
 };
@@ -76,6 +74,6 @@ export const deleteUser = async (req, res) => {
 
     return res.json({ message: "User Deleted Successfully", deletedUser });
   } catch (error) {
-    console.log({ error: error.message });
+    return res.json({ error: error.message });
   }
 };
