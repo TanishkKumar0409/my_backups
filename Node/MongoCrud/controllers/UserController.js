@@ -14,6 +14,22 @@ export const getUser = async (req, res) => {
   }
 };
 
+export const getUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const getIdData = await User.find({ id });
+
+    if (getData === Null) {
+      return res.json({ message: "User not Find" });
+    } else {
+      return res.json({ getIdData });
+    }
+  } catch (error) {
+    console.log({ error: error.message });
+  }
+};
+
 export const addUser = async (req, res) => {
   try {
     const { id, name, email, phone, course, city, batch } = req.body;
