@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import router from "./routes";
+import router from "./routes/index.js";
 
 dotenv.config();
 
@@ -16,15 +16,12 @@ App.use(bodyParser.json());
 
 App.use("/api/", router);
 
-mongoose
-  .connect(DbName)
-  .then(() => {
+mongoose.connect(DbName).then(() => {
     console.log(`Database Connected`);
-  })
-  .catch((error) => {
+  }).catch((error) => {
     console.log(`Database not Connected`, error);
   });
 
-App.listent(PORt, () => {
+App.listen(PORT, () => {
   console.log(`Server Running on http://localhost:${PORT}`);
 });

@@ -2,15 +2,16 @@ import User from "../models/user.js";
 
 export const getUser = async (req, res) => {
   try {
-    const getData = await User.find();
+    const getData = await User.find().sort({ id: 1 });
 
-    if (getData === Null) {
-      return res.json({ message: "User not Find" });
+    if (!getData) {
+      return res.json({ message: "Users not found" });
     } else {
       return res.json({ getData });
     }
   } catch (error) {
-    console.log({ error: error.message });
+    console.error({ error: error.message });
+    return res.json({ error: error.message });
   }
 };
 
@@ -18,15 +19,11 @@ export const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const getIdData = await User.find({ id });
+    const getDataid = await User.find({ id }).sort({ id: 1 });
 
-    if (getData === Null) {
-      return res.json({ message: "User not Find" });
-    } else {
-      return res.json({ getIdData });
-    }
+    return res.json({ getDataid });
   } catch (error) {
-    console.log({ error: error.message });
+    return res.json({ error: error.message });
   }
 };
 
@@ -44,7 +41,7 @@ export const addUser = async (req, res) => {
       batch,
     });
 
-    const SavedUser = await newUser.save();
+    const SavedUser = await newUser.save().sort({ id: 1 });
 
     return res.json({ message: "User Saved Successfully", SavedUser });
   } catch (error) {
@@ -54,26 +51,20 @@ export const addUser = async (req, res) => {
 
 export const UpdateUser = async (req, res) => {
   try {
-    const { id, name, email, phone, course, city, batch } = req.body;
+    const { id } = req.params;
 
-    const CurrentUser = User({
-      id,
-      name,
-      email,
-      phone,
-      course,
-      city,
-      batch,
-    });
+    const { name, email, phone, course, city, batch } = req.body;
 
     const UserUpdate = await User.findOneAndUpdate(
       { id },
-      { $set: CurrentUser }
+      { $set: { name, email, phone, course, city, batch } },
+      { new: true }
     );
 
     return res.json({ message: "User Updated Successfully", UserUpdate });
   } catch (error) {
     console.log({ error: error.message });
+    return res.json({ message: "An error occurred", error: error.message });
   }
 };
 
@@ -83,7 +74,7 @@ export const deleteUser = async (req, res) => {
 
     const deletedUser = await User.findOneAndDelete({ id });
 
-    return res.json({ message: "User Deleted Successfully", deleteUser });
+    return res.json({ message: "User Deleted Successfully", deletedUser });
   } catch (error) {
     console.log({ error: error.message });
   }

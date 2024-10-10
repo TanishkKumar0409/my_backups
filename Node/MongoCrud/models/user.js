@@ -30,11 +30,11 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
   createdAt: {
-    type: String,
-    required: true,
+    type: Date,
+    default: Date.now(),
   },
 });
 
-const User = mongoose.model(UserSchema);
+const User = mongoose.model("User", UserSchema);
 
 export default User;
