@@ -51,3 +51,28 @@ export const addUser = async (req, res) => {
     console.log({ error: error.message });
   }
 };
+
+export const UpdateUser = async (req, res) => {
+  try {
+    const { id, name, email, phone, course, city, batch } = req.body;
+
+    const CurrentUser = User({
+      id,
+      name,
+      email,
+      phone,
+      course,
+      city,
+      batch,
+    });
+
+    const UserUpdate = await User.findOneAndUpdate(
+      { id },
+      { $set: CurrentUser }
+    );
+
+    return res.json({ message: "User Updated Successfully", UserUpdate });
+  } catch (error) {
+    console.log({ error: error.message });
+  }
+};
