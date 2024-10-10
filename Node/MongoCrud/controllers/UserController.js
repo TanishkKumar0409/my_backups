@@ -18,9 +18,9 @@ export const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const getDataid = await User.find({ id }).sort({ id: 1 });
+    const getIdUser = await User.find({ id }).sort({ id: 1 });
 
-    return res.json({ getDataid });
+    return res.json({ getIdUser });
   } catch (error) {
     return res.json({ error: error.message });
   }
