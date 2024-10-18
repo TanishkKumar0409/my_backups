@@ -49,7 +49,10 @@ export default function UserTable() {
                       >
                         View More
                       </Link>
-                      <Link to="/students/edit" className="btn btn-dark button">
+                      <Link
+                        to={`/students/edit/${item.id}`}
+                        className="btn btn-dark button"
+                      >
                         Update
                       </Link>
                       <button
