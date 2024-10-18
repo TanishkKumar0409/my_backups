@@ -8,7 +8,7 @@ export default function EditForm() {
   const [Phone, setPhone] = useState("");
   const [City, setCity] = useState("");
   const [Batch, setBatch] = useState("");
-  const [Gender, setGender] = useState("");
+  const [Gender, setGender] = useState("Male");
   const { id } = useParams();
   const Navigate = useNavigate();
 
@@ -25,7 +25,6 @@ export default function EditForm() {
         setPhone(user.phone);
         setCity(user.city);
         setBatch(user.batch);
-        setGender(user.gender);
       }
     };
     getData();
@@ -51,7 +50,6 @@ export default function EditForm() {
     Navigate("/students");
   };
 
-  console.log(Gender);
   return (
     <div className="container p-5">
       <div className="row w-100 d-flex align-items-center justify-content-center">
@@ -131,14 +129,15 @@ export default function EditForm() {
                   <label htmlFor="inputGender" className="form-label">
                     Gender
                   </label>
-                  <input
-                    type="text"
+                  <select
                     onChange={(e) => setGender(e.target.value)}
-                    value={Gender}
-                    className="form-control custom-input"
-                    id="inputBatch"
-                    placeholder="Enter your batch"
-                  />
+                    id="inputGender"
+                    className="form-select custom-input"
+                  >
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </div>
               </div>
               <div className="card-footer border-0 p-3 text-center">
