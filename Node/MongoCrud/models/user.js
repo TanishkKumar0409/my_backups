@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 const UserSchema = new mongoose.Schema({
   id: {
     type: Number,
-    required: true,
   },
   name: {
     type: String,
@@ -17,10 +16,6 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  course: {
-    type: String,
-    required: true,
-  },
   city: {
     type: String,
     required: true,
@@ -29,6 +24,13 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  gender: {
+    type: String,
+    required: true,
+  },
+  // profile: {
+  //   type: String,
+  // },
   createdAt: {
     type: Date,
     default: Date.now(),

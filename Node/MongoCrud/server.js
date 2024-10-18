@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import router from "./routes/index.js";
+import cors from "cors";
 
 dotenv.config();
 
@@ -12,13 +13,18 @@ const DbName = process.env.DbName;
 
 const App = express();
 
+App.use(cors());
+
 App.use(bodyParser.json());
 
 App.use("/api/", router);
 
-mongoose.connect(DbName).then(() => {
+mongoose
+  .connect(DbName)
+  .then(() => {
     console.log(`Database Connected`);
-  }).catch((error) => {
+  })
+  .catch((error) => {
     console.log(`Database not Connected`, error);
   });
 

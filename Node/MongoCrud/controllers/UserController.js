@@ -28,19 +28,23 @@ export const getUserById = async (req, res) => {
 
 export const addUser = async (req, res) => {
   try {
-    const { id, name, email, phone, course, city, batch } = req.body;
+    // const file = req.file ? req.file.filename : null;
+    const { name, email, phone, city, batch, gender } = req.body;
 
+    const Data = await User.findOne().sort({ _id: -1 });
+    const x = Data ? Data.id + 1 : 1;
     const newUser = User({
-      id,
+      id: x,
       name,
       email,
       phone,
-      course,
       city,
       batch,
+      gender,
+      // profile: file,
     });
 
-    const SavedUser = await newUser.save().sort({ id: 1 });
+    const SavedUser = await newUser.save();
 
     return res.json({ message: "User Saved Successfully", SavedUser });
   } catch (error) {
