@@ -65,6 +65,7 @@ export default function EditForm() {
                         onChange={(e) => {
                           setName(e.target.value);
                         }}
+                        value={item.name}
                         className="form-control custom-input"
                         id="inputName"
                         placeholder="Enter your name"
@@ -77,7 +78,7 @@ export default function EditForm() {
                       <input
                         onChange={(e) => {
                           setEmail(e.target.value);
-                        }}
+                        }}value={item.name}
                         type="email"
                         className="form-control custom-input"
                         id="inputEmail"
@@ -91,7 +92,7 @@ export default function EditForm() {
                       <input
                         onChange={(e) => {
                           setPhone(e.target.value);
-                        }}
+                        }}value={item.name}
                         type="tel"
                         className="form-control custom-input"
                         id="inputPhone"
@@ -106,7 +107,7 @@ export default function EditForm() {
                         onChange={(e) => {
                           setCity(e.target.value);
                         }}
-                        type="text"
+                        type="text"value={item.name}
                         className="form-control custom-input"
                         id="inputCity"
                         placeholder="Enter your city"
@@ -120,7 +121,7 @@ export default function EditForm() {
                         onChange={(e) => {
                           setBatch(e.target.value);
                         }}
-                        type="number"
+                        type="number"value={item.name}
                         className="form-control custom-input"
                         id="inputBatch"
                         placeholder="Enter your batch"
@@ -134,7 +135,7 @@ export default function EditForm() {
                         onChange={(e) => {
                           setGender(e.target.value);
                         }}
-                        id="inputGender"
+                        id="inputGender"value={item.name}
                         className="form-select custom-input"
                       >
                         <option value="Male">Male</option>
