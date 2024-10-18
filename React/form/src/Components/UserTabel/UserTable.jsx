@@ -20,8 +20,8 @@ export default function UserTable() {
       `http://localhost:8000/api/user/delete/${par}`
     );
     console.log(Delete);
+    window.location.reload();
   };
-  // console.log(Data);
   return (
     <div className="container mt-5">
       <div className="row w-100 d-flex align-items-center justify-content-center ">
@@ -52,7 +52,10 @@ export default function UserTable() {
                       <Link to="/students/edit" className="btn btn-dark button">
                         Update
                       </Link>
-                      <button className="btn btn-dark" onClick={handleDelete(item.id)}>
+                      <button
+                        className="btn btn-dark"
+                        onClick={() => handleDelete(item.id)}
+                      >
                         Delete
                       </button>
                     </div>
