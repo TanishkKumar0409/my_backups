@@ -28,7 +28,6 @@ export const getUserById = async (req, res) => {
 
 export const addUser = async (req, res) => {
   try {
-    // const file = req.file ? req.file.filename : null;
     const { name, email, phone, city, batch, gender } = req.body;
 
     const Data = await User.findOne().sort({ _id: -1 });

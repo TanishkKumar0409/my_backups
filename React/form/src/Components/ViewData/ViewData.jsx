@@ -1,13 +1,15 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function ViewData() {
   const { id } = useParams();
   const [Data, setData] = useState([]);
+  const Navigate = useNavigate();
 
   useEffect(() => {
     const getData = async () => {
-      const fetchData = await fetch(`http://localhost:8000/api/user/${id}`);
+      const fetchData = await fetch(`http://localhost:4000/api/user/${id}`);
       const JsonData = await fetchData.json();
       const output = JsonData.getIdUser;
       setData(output);
@@ -16,6 +18,14 @@ export default function ViewData() {
   }, [id]);
 
   console.log(Data);
+
+  const handleDelete = async (par) => {
+    const Delete = await axios.delete(
+      `http://localhost:4000/api/user/delete/${par}`
+    );
+    console.log(Delete);
+    Navigate("/students");
+  };
   return (
     <>
       <div className="container py-5">
@@ -49,9 +59,17 @@ export default function ViewData() {
                     <p>
                       <strong>Gender:</strong> {item.gender}
                     </p>
-                    <Link to="/students">
-                      <button className="btn sp-btn">Back</button>
-                    </Link>
+                    <div className="gap-1 d-flex justify-content-center">
+                      <Link to="/students">
+                        <button className="btn">Back</button>
+                      </Link>
+                      <button
+                        className="btn btn-dark"
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

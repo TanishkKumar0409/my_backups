@@ -7,7 +7,7 @@ export default function UserTable() {
 
   useEffect(() => {
     const getData = async () => {
-      const fetchData = await fetch("http://localhost:8000/api/user");
+      const fetchData = await fetch("http://localhost:4000/api/user");
       const JsonData = await fetchData.json();
       const output = JsonData.getData;
       setData(output);
@@ -17,7 +17,7 @@ export default function UserTable() {
 
   const handleDelete = async (par) => {
     const Delete = await axios.delete(
-      `http://localhost:8000/api/user/delete/${par}`
+      `http://localhost:4000/api/user/delete/${par}`
     );
     console.log(Delete);
     window.location.reload();

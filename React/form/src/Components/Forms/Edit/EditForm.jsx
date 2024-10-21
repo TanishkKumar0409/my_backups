@@ -14,7 +14,7 @@ export default function EditForm() {
 
   useEffect(() => {
     const getData = async () => {
-      const fetchData = await fetch(`http://localhost:8000/api/user/${id}`);
+      const fetchData = await fetch(`http://localhost:4000/api/user/${id}`);
       const JsonData = await fetchData.json();
       const output = JsonData.getIdUser;
 
@@ -41,9 +41,8 @@ export default function EditForm() {
       gender: Gender,
     };
 
-    console.log(Details);
     const response = await axios.put(
-      `http://localhost:8000/api/user/current/${id}`,
+      `http://localhost:4000/api/user/current/${id}`,
       Details
     );
     console.log(response);
@@ -134,8 +133,8 @@ export default function EditForm() {
                     id="inputGender"
                     className="form-select custom-input"
                   >
-                    <option value="Male">Male</option>
                     <option value="Female">Female</option>
+                    <option value="Male">Male</option>
                     <option value="Other">Other</option>
                   </select>
                 </div>

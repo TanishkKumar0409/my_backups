@@ -26,7 +26,7 @@ export default function Insert() {
     e.preventDefault();
 
     const response = await axios.post(
-      "http://localhost:8000/api/user/new",
+      "http://localhost:4000/api/user/new",
       Details
     );
 
