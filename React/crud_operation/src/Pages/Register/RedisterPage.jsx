@@ -8,7 +8,7 @@ export default function RegisterPage() {
   const [Phone, setPhone] = useState("");
   const [City, setCity] = useState("");
   const [Batch, setBatch] = useState("");
-  const [Gender, setGender] = useState("");
+  const [Gender, setGender] = useState("Male");
   const Navigate = useNavigate();
 
   const Details = {
@@ -28,6 +28,7 @@ export default function RegisterPage() {
     );
     console.log(response);
     Navigate("/students");
+    console.log(Details);
   };
 
   return (

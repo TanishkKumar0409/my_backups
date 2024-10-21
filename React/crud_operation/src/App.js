@@ -6,7 +6,7 @@ import RedisterPage from "./Pages/Register/RedisterPage";
 import UserTable from "./Pages/UserTable/UserTable";
 import EditForm from "./Pages/EditForm/EditForm";
 import ViewData from "./Pages/ViewData/ViewData";
-
+import { ToastContainer, toast } from "react-toastify";
 
 function App() {
   return (

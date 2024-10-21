@@ -30,7 +30,7 @@ export default function Navbar() {
                 <Link to="/students">Students</Link>
               </li>
               <Link to="/students/register" className="btn3">
-                Register Student
+                Register
               </Link>
             </ul>
           </nav>

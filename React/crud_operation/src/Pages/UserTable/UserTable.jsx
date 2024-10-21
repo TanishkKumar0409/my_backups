@@ -75,9 +75,12 @@ export default function UserTable() {
                             </Link>
                             <button
                               className="button"
-                              onClick={() =>
-                                window.confirm(handleDelete(item.id))
-                              }
+                              onClick={() => {
+                                window.confirm(
+                                  "Are You Want To Delete This Student"
+                                );
+                                handleDelete(item.id);
+                              }}
                             >
                               Delete
                             </button>
