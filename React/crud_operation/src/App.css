@@ -230,9 +230,16 @@ select {
   font-size: 16px;
   color: lightgreen;
   outline: none;
+  appearance: none;
   transition: border 0.3s ease;
 }
-
+option {
+  color: darkgreen;
+}
+option:hover {
+  background: darkgreen;
+  color: lightgreen;
+}
 .input-box input::placeholder {
   color: white;
   font-weight: 700;
@@ -426,4 +433,19 @@ tbody tr:hover {
   .card {
     width: 90%;
   }
+}
+.btn3 {
+  background: lightgreen;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  color: darkgreen;
+  padding: 12px;
+  text-shadow: none;
+}
+.btn3:hover {
+  letter-spacing: 0.5rem;
+  background: darkgreen;
+  color: lightgreen;
+  text-transform: uppercase;
 }

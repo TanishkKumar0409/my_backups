@@ -7,6 +7,7 @@ import UserTable from "./Pages/UserTable/UserTable";
 import EditForm from "./Pages/EditForm/EditForm";
 import ViewData from "./Pages/ViewData/ViewData";
 
+
 function App() {
   return (
     <>
@@ -14,7 +15,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/register" element={<RedisterPage />} />
+          <Route path="/students/register" element={<RedisterPage />} />
           <Route path="/students" element={<UserTable />} />
           <Route path="/students/edit/:id" element={<EditForm />} />
           <Route path="/students/view/:id" element={<ViewData />} />

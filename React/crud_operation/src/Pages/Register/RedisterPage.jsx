@@ -95,9 +95,12 @@ export default function RegisterPage() {
                   name="Rcpassword"
                   required
                 /> */}
-                <select name="" id="">
+                <select onChange={(e) => setGender(e.target.value)}>
                   <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
                 </select>
+                <i className="fa-solid fa-genderless"></i>
               </div>
               <button type="submit" className="button" name="Rbtn">
                 Register

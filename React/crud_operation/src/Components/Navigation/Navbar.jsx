@@ -29,8 +29,8 @@ export default function Navbar() {
               <li>
                 <Link to="/students">Students</Link>
               </li>
-              <Link to="/register">
-                <button className="btn">Register</button>
+              <Link to="/students/register" className="btn3">
+                Register Student
               </Link>
             </ul>
           </nav>

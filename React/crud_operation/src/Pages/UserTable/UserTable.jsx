@@ -18,7 +18,7 @@ export default function UserTable() {
       `http://localhost:8000/api/user/delete/${id}`
     );
     console.log(response);
-    Navigate("/register");
+    Navigate("/students/register");
   };
   return (
     <>
@@ -28,7 +28,10 @@ export default function UserTable() {
       >
         <div className="table">
           <div className="tableHeader">
-            <h2>Customer Orders</h2>
+            <h2>STUDENTS</h2>
+            <Link to={`/students/register`} className="btn3">
+              Register Student
+            </Link>
           </div>
           <div className="tableBody">
             <table>
@@ -72,7 +75,9 @@ export default function UserTable() {
                             </Link>
                             <button
                               className="button"
-                              onClick={() => handleDelete(item.id)}
+                              onClick={() =>
+                                window.confirm(handleDelete(item.id))
+                              }
                             >
                               Delete
                             </button>
@@ -86,15 +91,6 @@ export default function UserTable() {
                     <tr>
                       <td style={{ textAlign: "center" }} colSpan={"6"}>
                         <h1>No Data Available</h1>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colSpan={"6"} style={{ textAlign: "center" }}>
-                        <Link to={`/register`}>
-                          <button className="button" style={{ width: "20% " }}>
-                            View More
-                          </button>
-                        </Link>
                       </td>
                     </tr>
                   </>

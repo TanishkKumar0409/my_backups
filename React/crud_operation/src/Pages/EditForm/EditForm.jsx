@@ -110,14 +110,21 @@ export default function EditForm() {
                 <i className="fa-regular fa-calendar-check"></i>
               </div>
               <div className="input-box">
-                <input
-                  type="text"
-                  onChange={(e) => setGender(e.target.value)}
-                  placeholder="Gender"
-                  value={Gender}
-                  name="Rcpassword"
-                  required
-                />
+                <select onChange={(e) => setGender(e.target.value)}>
+                  {Gender === "Male" ? (
+                    <>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </>
+                  ) : (
+                    <>
+                      <option value="Female">Female</option>
+                      <option value="Male">Male</option>
+                      <option value="Other">Other</option>
+                    </>
+                  )}
+                </select>
                 <i className="fa-solid fa-genderless"></i>
               </div>
               <button type="submit" className="button" name="Rbtn">
