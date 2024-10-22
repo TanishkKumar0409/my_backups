@@ -9,7 +9,7 @@ export default function EditForm() {
   const [City, setCity] = useState("");
   const [Batch, setBatch] = useState("");
   const [Gender, setGender] = useState("");
-  const [File, setFile] = useState(null);
+  // const [File, setFile] = useState(null);
   const Navigate = useNavigate();
   const { id } = useParams();
 
@@ -29,23 +29,28 @@ export default function EditForm() {
     getData();
   }, [id]);
 
-  const formData = new FormData();
-  formData.append("profile", File);
-  formData.append("name", Name);
-  formData.append("email", Email);
-  formData.append("phone", Phone);
-  formData.append("city", City);
-  formData.append("batch", Batch);
-  formData.append("gender", Gender);
+  // const formData = new FormData();
+  // formData.append("profile", File);
+  // formData.append("name", Name);
+  // formData.append("email", Email);
+  // formData.append("phone", Phone);
+  // formData.append("city", City);
+  // formData.append("batch", Batch);
+  // formData.append("gender", Gender);
+  const Details = {
+    name: Name,
+    email: Email,
+    phone: Phone,
+    city: City,
+    batch: Batch,
+    gender: Gender,
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.put(
       `http://localhost:8000/api/user/current/${id}`,
-      formData,
-      {
-        headers: { "Content-Type": "multipart/form-data" },
-      }
+      Details
     );
     console.log(response);
     Navigate("/students");
@@ -58,7 +63,7 @@ export default function EditForm() {
           <div id="register-form" className="form-container active">
             <form onSubmit={handleSubmit}>
               <h1>Update</h1>
-              <div className="input-box">
+              {/* <div className="input-box">
                 <input
                   type="file"
                   name="Rname"
@@ -66,8 +71,7 @@ export default function EditForm() {
                   required
                 />
                 <i className="fa-solid fa-user"></i>
-                <p>{File}</p>
-              </div>
+              </div> */}
               <div className="input-box">
                 <input
                   type="text"

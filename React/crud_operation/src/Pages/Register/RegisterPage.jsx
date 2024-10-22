@@ -32,7 +32,7 @@ export default function RegisterPage() {
     );
     console.log(response);
     Navigate("/students");
-    console.log("formData");
+    console.log(formData);
   };
 
   return (
