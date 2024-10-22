@@ -4,20 +4,26 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function UserTable() {
   const Navigate = useNavigate();
+
   const [data, setData] = useState([]);
+
   useEffect(() => {
     const getData = async () => {
       const fetchData = await fetch("http://localhost:8000/api/user");
       const jsonData = await fetchData.json();
       setData(jsonData);
     };
+
     getData();
   }, []);
+
   const handleDelete = async (id) => {
     const response = await axios.delete(
       `http://localhost:8000/api/user/delete/${id}`
     );
+
     console.log(response);
+
     Navigate("/students/register");
   };
   return (

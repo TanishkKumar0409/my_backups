@@ -3,15 +3,19 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function ViewData() {
-  const [data, setData] = useState([]);
-  const { id } = useParams();
   const Navigate = useNavigate();
+
+  const { id } = useParams();
+
+  const [data, setData] = useState([]);
+
   useEffect(() => {
     const getData = async () => {
       const fetchData = await fetch(`http://localhost:8000/api/user/${id}`);
       const jsonData = await fetchData.json();
       setData(jsonData);
     };
+
     getData();
   }, [id]);
 
@@ -19,8 +23,10 @@ export default function ViewData() {
     const response = await axios.delete(
       `http://localhost:8000/api/user/delete/${id}`
     );
+
     console.log(response);
-    Navigate("/register");
+
+    Navigate("/students/register");
   };
   return (
     <>
@@ -29,7 +35,7 @@ export default function ViewData() {
           <div className="card" key={item.id}>
             <div className="cardHeader">
               <img
-                src={`http://localhost:8000/Uploads/${item.profile}`}
+                src={`http://localhost:8000/${item.profile}`}
                 alt="Profile"
               />
             </div>
@@ -47,7 +53,13 @@ export default function ViewData() {
                 <Link to={`/students/edit/${item.id}`} className="btn2">
                   Update
                 </Link>
-                <button className="btn2" onClick={() => handleDelete()}>
+                <button
+                  className="btn2"
+                  onClick={() => {
+                    window.confirm("Are You Want To Delete This Student");
+                    handleDelete(item.id);
+                  }}
+                >
                   Delete
                 </button>
               </div>

@@ -3,20 +3,23 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function EditForm() {
+  const Navigate = useNavigate();
+
+  const { id } = useParams();
+
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Phone, setPhone] = useState("");
   const [City, setCity] = useState("");
   const [Batch, setBatch] = useState("");
   const [Gender, setGender] = useState("");
-  // const [File, setFile] = useState(null);
-  const Navigate = useNavigate();
-  const { id } = useParams();
+  const [File, setFile] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
       const fetchData = await fetch(`http://localhost:8000/api/user/${id}`);
       const jsonData = await fetchData.json();
+
       if (jsonData) {
         setName(jsonData[0].name);
         setEmail(jsonData[0].email);
@@ -26,33 +29,32 @@ export default function EditForm() {
         setGender(jsonData[0].gender);
       }
     };
+
     getData();
   }, [id]);
 
-  // const formData = new FormData();
-  // formData.append("profile", File);
-  // formData.append("name", Name);
-  // formData.append("email", Email);
-  // formData.append("phone", Phone);
-  // formData.append("city", City);
-  // formData.append("batch", Batch);
-  // formData.append("gender", Gender);
-  const Details = {
-    name: Name,
-    email: Email,
-    phone: Phone,
-    city: City,
-    batch: Batch,
-    gender: Gender,
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("profile", File);
+    formData.append("name", Name);
+    formData.append("email", Email);
+    formData.append("phone", Phone);
+    formData.append("city", City);
+    formData.append("batch", Batch);
+    formData.append("gender", Gender);
+
     const response = await axios.put(
       `http://localhost:8000/api/user/current/${id}`,
-      Details
+      formData,
+      {
+        headers: { "content-type": "multipart/form-data" },
+      }
     );
+
     console.log(response);
+
     Navigate("/students");
   };
 
@@ -63,20 +65,18 @@ export default function EditForm() {
           <div id="register-form" className="form-container active">
             <form onSubmit={handleSubmit}>
               <h1>Update</h1>
-              {/* <div className="input-box">
+              <div className="input-box">
                 <input
                   type="file"
-                  name="Rname"
                   onChange={(e) => setFile(e.target.files[0])}
                   required
                 />
                 <i className="fa-solid fa-user"></i>
-              </div> */}
+              </div>
               <div className="input-box">
                 <input
                   type="text"
                   placeholder="Full Name"
-                  name="Rname"
                   value={Name}
                   onChange={(e) => setName(e.target.value)}
                   required
@@ -87,7 +87,6 @@ export default function EditForm() {
                 <input
                   type="email"
                   placeholder="Email"
-                  name="Remail"
                   value={Email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -98,7 +97,6 @@ export default function EditForm() {
                 <input
                   type="tel"
                   placeholder="Phone"
-                  name="Rphone"
                   value={Phone}
                   onChange={(e) => setPhone(e.target.value)}
                   required
@@ -109,7 +107,6 @@ export default function EditForm() {
                 <input
                   type="text"
                   placeholder="City"
-                  name="Raddress"
                   value={City}
                   onChange={(e) => setCity(e.target.value)}
                   required
@@ -122,7 +119,6 @@ export default function EditForm() {
                   onChange={(e) => setBatch(e.target.value)}
                   placeholder="Batch"
                   value={Batch}
-                  name="Rpassword"
                   required
                 />
                 <i className="fa-regular fa-calendar-check"></i>
@@ -145,7 +141,7 @@ export default function EditForm() {
                 </select>
                 <i className="fa-solid fa-genderless"></i>
               </div>
-              <button type="submit" className="button" name="Rbtn">
+              <button type="submit" className="button">
                 Register
               </button>
             </form>

@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function RegisterPage() {
+  const Navigate = useNavigate();
+
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Phone, setPhone] = useState("");
@@ -10,7 +12,6 @@ export default function RegisterPage() {
   const [Batch, setBatch] = useState("");
   const [Gender, setGender] = useState("Male");
   const [File, setFile] = useState(null);
-  const Navigate = useNavigate();
 
   const formData = new FormData();
   formData.append("profile", File);
@@ -30,9 +31,10 @@ export default function RegisterPage() {
         headers: { "Content-Type": "multipart/form-data" },
       }
     );
+
     console.log(response);
+
     Navigate("/students");
-    console.log(formData);
   };
 
   return (
@@ -45,7 +47,6 @@ export default function RegisterPage() {
               <div className="input-box">
                 <input
                   type="file"
-                  name="Rname"
                   onChange={(e) => setFile(e.target.files[0])}
                   required
                 />
@@ -55,7 +56,6 @@ export default function RegisterPage() {
                 <input
                   type="text"
                   placeholder="Full Name"
-                  name="Rname"
                   onChange={(e) => setName(e.target.value)}
                   required
                 />
@@ -65,7 +65,6 @@ export default function RegisterPage() {
                 <input
                   type="email"
                   placeholder="Email"
-                  name="Remail"
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
@@ -75,7 +74,6 @@ export default function RegisterPage() {
                 <input
                   type="tel"
                   placeholder="Phone"
-                  name="Rphone"
                   onChange={(e) => setPhone(e.target.value)}
                   required
                 />
@@ -85,7 +83,6 @@ export default function RegisterPage() {
                 <input
                   type="text"
                   placeholder="City"
-                  name="Raddress"
                   onChange={(e) => setCity(e.target.value)}
                   required
                 />
@@ -96,7 +93,6 @@ export default function RegisterPage() {
                   type="number"
                   onChange={(e) => setBatch(e.target.value)}
                   placeholder="Batch"
-                  name="Rpassword"
                   required
                 />
                 <i className="fa-regular fa-calendar-check"></i>
