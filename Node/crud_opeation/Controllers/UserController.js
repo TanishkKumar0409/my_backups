@@ -30,6 +30,7 @@ export const getUsersById = async (req, res) => {
 export const addUser = async (req, res) => {
   try {
     const { name, email, phone, city, batch, gender } = req.body;
+    const file = req.file ? req.file.filename : null;
 
     const existingEmail = await User.findOne({ email });
     if (existingEmail) {
@@ -52,6 +53,7 @@ export const addUser = async (req, res) => {
       city,
       batch,
       gender,
+      profile: file,
     });
 
     const SavedUser = await newUser.save();

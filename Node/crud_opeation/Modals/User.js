@@ -5,6 +5,9 @@ const userSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  profile: {
+    type: String,
+  },
   name: {
     type: String,
     required: true,

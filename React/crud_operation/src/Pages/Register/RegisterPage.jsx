@@ -9,26 +9,30 @@ export default function RegisterPage() {
   const [City, setCity] = useState("");
   const [Batch, setBatch] = useState("");
   const [Gender, setGender] = useState("Male");
+  const [File, setFile] = useState(null);
   const Navigate = useNavigate();
 
-  const Details = {
-    name: Name,
-    email: Email,
-    phone: Phone,
-    city: City,
-    batch: Batch,
-    gender: Gender,
-  };
+  const formData = new FormData();
+  formData.append("profile", File);
+  formData.append("name", Name);
+  formData.append("email", Email);
+  formData.append("phone", Phone);
+  formData.append("city", City);
+  formData.append("batch", Batch);
+  formData.append("gender", Gender);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.post(
       "http://localhost:8000/api/user/new",
-      Details
+      formData,
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+      }
     );
     console.log(response);
     Navigate("/students");
-    console.log(Details);
+    console.log("formData");
   };
 
   return (
@@ -38,6 +42,15 @@ export default function RegisterPage() {
           <div id="register-form" className="form-container active">
             <form onSubmit={handleSubmit}>
               <h1>Register</h1>
+              <div className="input-box">
+                <input
+                  type="file"
+                  name="Rname"
+                  onChange={(e) => setFile(e.target.files[0])}
+                  required
+                />
+                <i className="fa-solid fa-user"></i>
+              </div>
               <div className="input-box">
                 <input
                   type="text"
@@ -89,13 +102,6 @@ export default function RegisterPage() {
                 <i className="fa-regular fa-calendar-check"></i>
               </div>
               <div className="input-box">
-                {/* <input
-                  type="text"
-                  onChange={(e) => setGender(e.target.value)}
-                  placeholder="Gender"
-                  name="Rcpassword"
-                  required
-                /> */}
                 <select onChange={(e) => setGender(e.target.value)}>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>

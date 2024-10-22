@@ -25,15 +25,15 @@ export default function ViewData() {
   return (
     <>
       <section className="container">
-        <div className="card">
-          <div className="cardHeader">
-            <img
-              src="https://download-free-images.com/img/00003/nature-383446.gif"
-              alt="Profile"
-            />
-          </div>
-          {data.map((item) => (
-            <div className="cardBody" key={item.id}>
+        {data.map((item) => (
+          <div className="card" key={item.id}>
+            <div className="cardHeader">
+              <img
+                src={`http://localhost:8000/Uploads/${item.profile}`}
+                alt="Profile"
+              />
+            </div>
+            <div className="cardBody">
               <h2>{item.name}</h2>
               <h4>{item.email}</h4>
               <h4>{item.phone}</h4>
@@ -52,8 +52,8 @@ export default function ViewData() {
                 </button>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </section>
     </>
   );
