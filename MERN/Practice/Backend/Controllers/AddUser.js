@@ -31,7 +31,7 @@ const addUser = async (req, res) => {
       savedUser,
     });
   } catch (error) {
-    return res.json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 };
 
