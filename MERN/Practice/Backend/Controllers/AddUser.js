@@ -26,7 +26,7 @@ const addUser = async (req, res) => {
 
     const savedUser = await newUser.save();
 
-    return res.json({
+    return res.status(201).json({
       message: "User saved successfully",
       savedUser,
     });
