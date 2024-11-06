@@ -14,7 +14,7 @@ const addUser = async (req, res) => {
 
     const existingPhone = await User.findOne({ phone });
     if (existingPhone) {
-      return res.json({ message: "Phone number already exists" });
+      return res.status(400).json({ message: "Phone number already exists" });
     }
 
     const newUser = new User({
