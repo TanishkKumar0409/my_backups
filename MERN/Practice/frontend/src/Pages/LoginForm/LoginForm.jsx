@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 export default function LoginForm() {
+  const Navigate = useNavigate();
+
   const [errorShown, setErrorShown] = useState({
     email: false,
     password: false,
@@ -17,21 +20,42 @@ export default function LoginForm() {
       .required("Password is required"),
   });
 
+  const handleSubmit = async (values) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/user/login",
+        values
+      );
+      if (response.status === 200) {
+        toast.success(response.data.message);
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        Navigate("/");
+      }
+    } catch (error) {
+      if (error.status === 404) {
+        toast.error(error.response.data.message);
+      } else if (error.status === 500) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Something went wrong");
+      }
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     validationSchema,
-    onSubmit: (values) => {
-      console.log("Login submitted:", values);
-    },
+    onSubmit: handleSubmit,
   });
 
   const handleToastError = (field) => {
     if (!errorShown[field]) {
       setErrorShown((prev) => ({ ...prev, [field]: true }));
-      toast.error(formik.errors[field],{position:"top-right"});
+      toast.error(formik.errors[field], { position: "top-right" });
     }
   };
 
@@ -57,7 +81,9 @@ export default function LoginForm() {
               value={formik.values.email}
               autoComplete="email"
             />
-            {formik.touched.email && formik.errors.email && handleToastError("email")}
+            {formik.touched.email &&
+              formik.errors.email &&
+              handleToastError("email")}
           </div>
           <div className="mb-3">
             <label className="form-label" htmlFor="password">
@@ -75,7 +101,9 @@ export default function LoginForm() {
               onBlur={formik.handleBlur}
               value={formik.values.password}
             />
-            {formik.touched.password && formik.errors.password && handleToastError("password")}
+            {formik.touched.password &&
+              formik.errors.password &&
+              handleToastError("password")}
           </div>
           <div className="d-flex justify-content-end mb-3">
             <Link to="/register" className="text-decoration-none text-light">

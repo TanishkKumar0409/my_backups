@@ -3,8 +3,11 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterForm() {
+  const Navigate = useNavigate();
+
   const [errorShown, setErrorShown] = useState({
     name: false,
     email: false,
@@ -44,7 +47,10 @@ export default function RegisterForm() {
           "http://localhost:8000/api/user/new",
           values
         );
-        toast.success(response.data.message);
+        if (response.status === 201) {
+          toast.success(response.data.message);
+          Navigate("/login");
+        }
       } catch (error) {
         if (error.status === 400) {
           toast.error(error.response.data.message);
@@ -91,7 +97,9 @@ export default function RegisterForm() {
               handleToastError("name")}
           </div>
           <div className="mb-3">
-            <label className="form-label" htmlFor="email">Email</label>
+            <label className="form-label" htmlFor="email">
+              Email
+            </label>
             <input
               type="email"
               name="email"
@@ -110,7 +118,9 @@ export default function RegisterForm() {
               handleToastError("email")}
           </div>
           <div className="mb-3">
-            <label className="form-label" htmlFor="phone">Phone</label>
+            <label className="form-label" htmlFor="phone">
+              Phone
+            </label>
             <input
               type="text"
               name="phone"
@@ -129,7 +139,9 @@ export default function RegisterForm() {
               handleToastError("phone")}
           </div>
           <div className="mb-3">
-            <label className="form-label" htmlFor="password">Password</label>
+            <label className="form-label" htmlFor="password">
+              Password
+            </label>
             <input
               type="password"
               name="password"
