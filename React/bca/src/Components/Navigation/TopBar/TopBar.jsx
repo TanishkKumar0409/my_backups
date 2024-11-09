@@ -18,15 +18,6 @@ export default function TopBar(props) {
           <i className="fa fa-bars"></i>
         </p>
 
-        <form action="" className="d-none d-md-flex ms-4">
-          <input
-            type="search"
-            name=""
-            id=""
-            className="form-control custom-placeholder bg-dark border-0"
-            placeholder="Search"
-          />
-        </form>
 
         <div className="navbar-nav align-items-center ms-auto">
           <div className="nav-item dropdown">

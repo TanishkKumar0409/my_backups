@@ -1,56 +1,101 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 export default function SignIn() {
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters")
+      .required("Password is required"),
+  });
+
+  const handleSubmit = (values) => {
+    console.log(values);
+  };
+
+  const formik = useFormik({
+    initialValues: { email: "", password: "" },
+    validationSchema: validationSchema,
+    onSubmit: handleSubmit,
+  });
+
   return (
-    <>
-      <div class="container-fluid">
-        <div
-          class="row h-100 bg-black align-items-center justify-content-center"
-          style={{ minHeight: "100vh" }}
-        >
-          <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
-            <div class="bg-sec-custom rounded p-4 p-sm-5 my-4 mx-3">
-              <div class="d-flex align-items-center justify-content-between mb-3">
-                <Link to="/">
-                  <h3 class="text-red">
-                    <i class="fa fa-user-edit me-2"> DarkPan </i>
-                  </h3>
-                </Link>
-                <h3>Sign In</h3>
-              </div>
-              <form action="">
-                <div class="mb-3">
-                  <label for="exampleInputEmail" class="form-label">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="exampleInputEmail"
-                    class="form-control"
-                    aria-describedby="emailHelp"
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword" class="form-label">
-                    Password
-                  </label>
-                  <input
-                    type="email"
-                    id="exampleInputPassword"
-                    class="form-control"
-                    aria-describedby="emailHelp"
-                  />
-                </div>
-                <button class="btn btn-red py-3 w-100 mb-4">Sign In</button>
-                <p class="text-center mb-0">
-                  Don't Have an account? <Link to="/sign-up">Sign Up</Link>
-                </p>
-              </form>
+    <div className="container-fluid">
+      <div
+        className="row h-100 bg-black align-items-center justify-content-center"
+        style={{ minHeight: "100vh" }}
+      >
+        <div className="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+          <div className="bg-sec-custom rounded p-4 p-sm-5 my-4 mx-3">
+            <div className="d-flex align-items-center justify-content-between mb-3">
+              <Link to="/">
+                <h3 className="text-red">
+                  <i className="fa fa-user-edit me-2"> DarkPan </i>
+                </h3>
+              </Link>
+              <h3>Sign In</h3>
             </div>
+            <form onSubmit={formik.handleSubmit}>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className={`form-control ${
+                    formik.touched.email && formik.errors.email
+                      ? "is-invalid"
+                      : ""
+                  }`}
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  aria-describedby="emailHelp"
+                />
+                {formik.touched.email && formik.errors.email ? (
+                  <div className="invalid-feedback">{formik.errors.email}</div>
+                ) : null}
+              </div>
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  className={`form-control ${
+                    formik.touched.password && formik.errors.password
+                      ? "is-invalid"
+                      : ""
+                  }`}
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  aria-describedby="passwordHelp"
+                />
+                {formik.touched.password && formik.errors.password ? (
+                  <div className="invalid-feedback">
+                    {formik.errors.password}
+                  </div>
+                ) : null}
+              </div>
+              <button type="submit" className="btn btn-red py-3 w-100 mb-4">
+                Sign In
+              </button>
+              <p className="text-center mb-0">
+                Don't have an account? <Link to="/sign-up">Sign Up</Link>
+              </p>
+            </form>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

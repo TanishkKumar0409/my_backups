@@ -6,30 +6,42 @@ import { Link } from "react-router-dom";
 import Stats from "../../Components/DashboardComponents/Stats/Stats";
 import Graphs from "../../Components/DashboardComponents/Graphs/Graphs";
 import Extras from "../../Components/DashboardComponents/Extras/Extras";
-import Table from "../../Components/Table/Table";
+import Data from "../ManageUser/User.json";
+import Table from "../../Components/DashboardComponents/Table/Table";
 
 export default function Dashboard(props) {
+  const heading = [
+    "Id",
+    "Date",
+    "Name",
+    "Email",
+    "Phone No",
+    "Course",
+    "Action",
+  ];
+  const values = Data;
+
   return (
     <>
       <div className="container-fluid position-relative d-flex p-0">
         <Sidebar openClass={props.openClass} />
         <div className={`content ${props.openClass}`}>
           <TopBar toggleOpenClass={props.toggleOpenClass} />
-         <Stats/>
+          <Stats />
 
-          <Graphs/>
+          <Graphs />
 
           <div className="container-fluid pt-4 px-4">
             <div className="bg-sec-custom text-center rounded p-4">
               <div className="d-flex align-items-center justify-content-between mb-4">
-                <h6 className="mb-0">Recent Sales</h6>
-                <Link to="/">Show All</Link>
+                <h6 className="mb-0">All Students</h6>
+                <Link to="/manage-user">Show All</Link>
               </div>
-             <Table />
+              <Table heading={heading} values={values} />
             </div>
           </div>
 
-         <Extras/>
+          <Extras />
           <Footer />
         </div>
       </div>

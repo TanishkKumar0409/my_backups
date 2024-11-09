@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import Chart from "chart.js/auto"; // Importing Chart.js
+import Chart from "chart.js/auto";
 
 export default function WorldWideSales() {
   const canvasRef = useRef(null);
@@ -13,18 +12,18 @@ export default function WorldWideSales() {
         labels: ["2018", "2019", "2020", "2021", "2022", "2023", "2024"],
         datasets: [
           {
-            label: "USA",
-            data: [10, 25, 40, 55, 70, 85, 100],
+            label: "BCA",
+            data: [15, 25, 40, 55, 70, 85, 100],
             backgroundColor: "rgba(235,22,22,1)",
           },
           {
-            label: "UK",
-            data: [20, 35, 50, 65, 80, 95, 110],
+            label: "BBA",
+            data: [10, 15, 30, 10, 60, 55, 85],
             backgroundColor: "rgba(235,22,22,0.7)",
           },
           {
-            label: "AU",
-            data: [15, 30, 45, 60, 75, 90, 105],
+            label: "BHA",
+            data: [12, 20, 25, 50, 65, 80, 95],
             backgroundColor: "rgba(235,22,22,0.5)",
           },
         ],
@@ -35,7 +34,6 @@ export default function WorldWideSales() {
     });
 
     return () => {
-      // Clean up the chart when the component is unmounted
       myChart.destroy();
     };
   }, []);
@@ -44,8 +42,7 @@ export default function WorldWideSales() {
     <div className="col-sm-12 col-xl-6">
       <div className="bg-sec-custom text-center rounded p-4">
         <div className="d-flex align-items-center justify-content-between mb-4">
-          <h6 className="mb-0">Worldwide Sale</h6>
-          <Link to="/">Show All</Link>
+          <h4 className="mb-0 text-white">Results Comparison</h4>
         </div>
         <div className="chart-container">
           <canvas ref={canvasRef} id="worldWide-sale"></canvas>

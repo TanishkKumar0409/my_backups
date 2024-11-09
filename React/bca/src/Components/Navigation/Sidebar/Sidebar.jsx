@@ -1,7 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Sidebar(props) {
+  const location = useLocation(); // Get the current location
+
+  // Function to determine if the link should have the active class
+  const getActiveClass = (path) => {
+    return location.pathname === path ? "active" : "";
+  };
+
   return (
     <>
       <div className={`sidebar pe-4 pb-3 ${props.openClass}`}>
@@ -30,7 +37,7 @@ export default function Sidebar(props) {
           </div>
 
           <div className="navbar-nav w-100">
-            <Link to="/" className="nav-item nav-link active">
+            <Link to="/" className={`nav-item nav-link ${getActiveClass("/")}`}>
               <i className="fa fa-tachometer-alt me-2"></i>Dashboard
             </Link>
 
@@ -43,18 +50,20 @@ export default function Sidebar(props) {
               </button>
 
               <div className="dropdown-menu bg-transparent border-0">
-                <Link to="/add-user" className="dropdown-item">
+                <Link
+                  to="/add-user"
+                  className={`dropdown-item ${getActiveClass("/add-user")}`}
+                >
                   Add User
                 </Link>
-                <Link to="/manage-user" className="dropdown-item">
-                  Manage users
+                <Link
+                  to="/manage-user"
+                  className={`dropdown-item ${getActiveClass("/manage-user")}`}
+                >
+                  Manage Users
                 </Link>
               </div>
             </div>
-
-            <Link to="/product" className="nav-item nav-link">
-              <i className="fa fa-th me-2"></i>Product
-            </Link>
           </div>
         </nav>
       </div>

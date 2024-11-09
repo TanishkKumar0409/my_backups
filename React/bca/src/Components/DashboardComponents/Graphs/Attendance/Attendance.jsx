@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -46,17 +45,17 @@ export default function SalesAndRevenue() {
           labels: ["2018", "2019", "2020", "2021", "2022", "2023", "2024"],
           datasets: [
             {
-              label: "Sales",
-              data: [10, 25, 50, 70, 60, 85, 90],
+              label: "BBA",
+              data: [0, 25, 26, 22, 56, 85, 90],
+              backgroundColor: "rgba(235,22,22,0.7)",
               borderColor: "rgba(0,0,0,0.7)",
-              backgroundColor: "rgba(235,22,22,0.5)",
               fill: true,
             },
             {
-              label: "Revenue",
-              data: [20, 35, 60, 5, 85, 95, 105],
-              backgroundColor: "rgba(235,22,22,0.7)",
+              label: "BCA",
+              data: [35, 45, 55, 76, 80, 95, 98],
               borderColor: "rgba(0,0,0,0.7)",
+              backgroundColor: "rgba(235,22,22,0.5)",
               fill: true,
             },
           ],
@@ -78,8 +77,7 @@ export default function SalesAndRevenue() {
     <div className="col-sm-12 col-xl-6">
       <div className="bg-sec-custom text-center rounded p-4">
         <div className="d-flex align-items-center justify-content-between mb-4">
-          <h6 className="mb-0">Sales Revenue</h6>
-          <Link to="/">Show All</Link>
+          <h4 className="mb-0 text-white">Attendance Difference</h4>
         </div>
         <div className="chart-container">
           <canvas ref={chartRef}></canvas>

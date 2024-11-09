@@ -7,7 +7,6 @@ import AddUser from "./Pages/AddUser/AddUser";
 import ManageUser from "./Pages/ManageUser/ManageUser";
 import SignIn from "./Pages/Forms/SignIn/SignIn";
 import SignUp from "./Pages/Forms/SignUp/SignUp";
-import Product from "./Pages/Product/Product";
 import { useState } from "react";
 
 function App() {
@@ -47,15 +46,6 @@ function App() {
             path="/manage-user"
             element={
               <ManageUser
-                toggleOpenClass={toggleOpenClass}
-                openClass={openClass}
-              />
-            }
-          />
-          <Route
-            path="/product"
-            element={
-              <Product
                 toggleOpenClass={toggleOpenClass}
                 openClass={openClass}
               />
