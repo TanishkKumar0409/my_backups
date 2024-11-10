@@ -43,24 +43,24 @@ export default function View(props) {
                       <table className="table text-start align-middle table-bordered table-hover mb-0">
                         <tbody>
                           <tr>
-                            <th>Id</th>
-                            <td>{item.id}</td>
+                            <th className="fs-3">Id</th>
+                            <td className="fs-3">{item.id}</td>
                           </tr>
                           <tr>
-                            <th>Name</th>
-                            <td>{item.name}</td>
+                            <th className="fs-3">Name</th>
+                            <td className="fs-3">{item.name}</td>
                           </tr>
                           <tr>
-                            <th>Email</th>
-                            <td>{item.email}</td>
+                            <th className="fs-3">Email</th>
+                            <td className="fs-3">{item.email}</td>
                           </tr>
                           <tr>
-                            <th>Phone</th>
-                            <td>{item.contact}</td>
+                            <th className="fs-3">Phone</th>
+                            <td className="fs-3">{item.contact}</td>
                           </tr>
                           <tr>
-                            <th>Course</th>
-                            <td>{item.course}</td>
+                            <th className="fs-3">Course</th>
+                            <td className="fs-3">{item.course}</td>
                           </tr>
                           <tr>
                             <td colSpan={"2"}>
