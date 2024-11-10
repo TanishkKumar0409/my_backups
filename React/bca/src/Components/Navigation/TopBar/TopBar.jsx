@@ -27,6 +27,12 @@ export default function TopBar(props) {
         >
           <i className={`fa fa-${props.theme}`}></i>
         </button>
+        <button
+          onClick={props.toggleFullScreen}
+          className="sidebar-toggler flex-shrink-0 m-0 ms-2"
+        >
+          <i className={`fa fa-${props.fullIcon}`}></i>
+        </button>
 
         <div className="navbar-nav align-items-center ms-auto">
           <div className="nav-item dropdown">

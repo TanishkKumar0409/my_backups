@@ -1,3 +1,7 @@
+
+*{
+  scrollbar-width: none;
+}
 h1,
 h2,
 h3,
@@ -30,7 +34,7 @@ input[type="checkbox"]:checked {
 input:focus {
   box-shadow: 0 0 0 0.2rem var(--primary-hover) !important;
 }
-input {
+input,select {
   background: var(--dark) !important;
   border: none !important;
   color: var(--light) !important;

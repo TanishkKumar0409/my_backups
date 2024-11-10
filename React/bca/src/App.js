@@ -48,11 +48,30 @@ function App() {
     theme === "sun" ? setTheme("moon") : setTheme("sun");
   };
 
+  const [fullIcon, setFullIcon] = useState(
+    randomTheme === 1 ? "compress" : "expand"
+  );
+
+  const toggleFullScreen = () => {
+    const element = document.getElementById("root");
+    const isFullScreen = document.fullscreenElement;
+    if (isFullScreen) {
+      document.exitFullscreen();
+      setFullIcon("expand");
+    } else {
+      element.requestFullscreen();
+      setFullIcon("compress");
+    }
+  };
+
   return (
     <>
       <div style={theme === "sun" ? light : dark}>
         <BrowserRouter>
-          <ToastContainer theme={theme === "sun" ? "light" : "dark"} position="top-center" />
+          <ToastContainer
+            theme={theme === "sun" ? "light" : "dark"}
+            position="top-center"
+          />
           <Routes>
             {token !== null ? (
               <>
@@ -64,7 +83,8 @@ function App() {
                       openClass={openClass}
                       handleTheme={handleTheme}
                       theme={theme}
-                      light={light}
+                      toggleFullScreen={toggleFullScreen}
+                      fullIcon={fullIcon}
                     />
                   }
                 />
@@ -76,6 +96,8 @@ function App() {
                       openClass={openClass}
                       handleTheme={handleTheme}
                       theme={theme}
+                      toggleFullScreen={toggleFullScreen}
+                      fullIcon={fullIcon}
                     />
                   }
                 />
@@ -87,6 +109,8 @@ function App() {
                       openClass={openClass}
                       handleTheme={handleTheme}
                       theme={theme}
+                      toggleFullScreen={toggleFullScreen}
+                      fullIcon={fullIcon}
                     />
                   }
                 />
@@ -98,6 +122,8 @@ function App() {
                       openClass={openClass}
                       handleTheme={handleTheme}
                       theme={theme}
+                      toggleFullScreen={toggleFullScreen}
+                      fullIcon={fullIcon}
                     />
                   }
                 />

@@ -43,6 +43,8 @@ export default function ManageUser(props) {
             toggleOpenClass={props.toggleOpenClass}
             handleTheme={props.handleTheme}
             theme={props.theme}
+            toggleFullScreen={props.toggleFullScreen}
+            fullIcon={props.fullIcon}
           />
           <div className="container pt-4 px-4">
             <div className="bg-sec-custom text-center rounded p-4">

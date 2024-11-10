@@ -25,6 +25,8 @@ export default function View(props) {
             toggleOpenClass={props.toggleOpenClass}
             handleTheme={props.handleTheme}
             theme={props.theme}
+            toggleFullScreen={props.toggleFullScreen}
+            fullIcon={props.fullIcon}
           />
           <div className="container-fluid pt-4 px-4">
             <div className="bg-sec-custom text-center rounded p-4">
@@ -32,7 +34,7 @@ export default function View(props) {
                 <div className="row" key={index}>
                   <div className="col-md-5">
                     <img
-                      src="https://i0.wp.com/picjumbo.com/wp-content/uploads/amazing-stone-path-in-forest-free-image.jpg?w=600&quality=80"
+                      src={item.image}
                       alt=""
                       className="img-fluid rounded shadow"
                     />

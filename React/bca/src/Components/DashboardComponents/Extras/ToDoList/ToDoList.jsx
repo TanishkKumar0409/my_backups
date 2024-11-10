@@ -1,11 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function ToDoList() {
+  const [task, setTask] = useState("");
+  const [tasks, setTasks] = useState([]);
+
+  const handleAddTask = () => {
+    if (task.trim()) {
+      setTasks([...tasks, task]);
+      setTask(""); // Clear the input field
+    }
+  };
+
+  const handleDeleteTask = (index) => {
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
+  };
+
+  const handleToggleComplete = (index) => {
+    const updatedTasks = tasks.map((task, i) =>
+      i === index ? { ...task, completed: !task.completed } : task
+    );
+    setTasks(updatedTasks);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleAddTask();
+    }
+  };
+
   return (
     <>
-      <div className="col-sm-12 col-md-6 col-xl-4">
-        <div className="h-100 bg-sec-custom rounded p-4">
+      <div className="col-sm-12 col-md-6 col-xl-4" >
+        <div className="h-100 bg-sec-custom rounded p-4" style={{maxHeight:"350px",overflow:"auto"}}>
           <div className="d-flex align-items-center justify-content-between mb-4">
             <h6 className="mb-0 text-theme">To Do List</h6>
             <Link to="/">Show All</Link>
@@ -14,54 +42,39 @@ export default function ToDoList() {
             <input
               type="text"
               placeholder="Enter Task"
+              value={task}
+              onChange={(e) => setTask(e.target.value)}
+              onKeyDown={handleKeyDown} // Trigger add task on Enter
               className="form-control custom-placeholder bg-dark border-0"
             />
-            <button className="btn btn-red ms-2">Add</button>
+            <button className="btn btn-red ms-2" onClick={handleAddTask}>
+              Add
+            </button>
           </div>
-          <div className="d-flex align-items-center border-bottom py-2">
-            <input type="checkbox" className="form-check-input m-0" />
-            <div className="w-100 ms-3">
-              <div className="d-flex w-100 align-items-center justify-content-between">
-                <span>Short task goes here...</span>
-                <button className="btn btn-sm btn-red">
-                  <i className="fa fa-times"></i>
-                </button>
+
+          {/* Task List */}
+          {tasks.map((task, index) => (
+            <div key={index} className="d-flex align-items-center border-bottom py-2">
+              <input
+                type="checkbox"
+                className="form-check-input m-0"
+                onChange={() => handleToggleComplete(index)}
+              />
+              <div className="w-100 ms-3">
+                <div className="d-flex w-100 align-items-center justify-content-between">
+                  <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+                    {task}
+                  </span>
+                  <button
+                    className="btn btn-sm btn-red"
+                    onClick={() => handleDeleteTask(index)}
+                  >
+                    <i className="fa fa-times"></i>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="d-flex align-items-center border-bottom py-2">
-            <input type="checkbox" className="form-check-input m-0" />
-            <div className="w-100 ms-3">
-              <div className="d-flex w-100 align-items-center justify-content-between">
-                <span>Short task goes here...</span>
-                <button className="btn btn-sm btn-red">
-                  <i className="fa fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="d-flex align-items-center border-bottom py-2">
-            <input type="checkbox" className="form-check-input m-0" />
-            <div className="w-100 ms-3">
-              <div className="d-flex w-100 align-items-center justify-content-between">
-                <span>Short task goes here...</span>
-                <button className="btn btn-sm btn-red">
-                  <i className="fa fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="d-flex align-items-center border-bottom py-2">
-            <input type="checkbox" className="form-check-input m-0" />
-            <div className="w-100 ms-3">
-              <div className="d-flex w-100 align-items-center justify-content-between">
-                <span>Short task goes here...</span>
-                <button className="btn btn-sm btn-red">
-                  <i className="fa fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </>
