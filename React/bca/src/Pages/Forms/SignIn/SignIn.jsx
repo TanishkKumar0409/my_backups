@@ -1,9 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
 
-export default function SignIn() {
+export default function SignIn(props) {
+  const Navigate = useNavigate();
+
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Invalid email address")
@@ -14,7 +17,21 @@ export default function SignIn() {
   });
 
   const handleSubmit = (values) => {
-    console.log(values);
+    const userValue = localStorage.getItem("user");
+    const user = JSON.parse(userValue);
+    if (values.email !== user.email) {
+      toast.error("Email Doesn't Found");
+    } else if (values.password !== user.password) {
+      toast.error("Incorrect Password");
+    } else if (
+      values.email === user.email &&
+      values.password === user.password
+    ) {
+      const token = "token";
+      localStorage.setItem("token", token);
+      Navigate("/");
+      window.location.reload();
+    }
   };
 
   const formik = useFormik({
@@ -26,7 +43,9 @@ export default function SignIn() {
   return (
     <div className="container-fluid">
       <div
-        className="row h-100 bg-black align-items-center justify-content-center"
+        className={`row h-100 ${
+          props.theme === "sun" ? "bg-white" : "bg-black"
+        } align-items-center justify-content-center`}
         style={{ minHeight: "100vh" }}
       >
         <div className="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">

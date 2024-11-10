@@ -7,7 +7,7 @@ export default function Notification() {
       <div className="col-sm-12 col-md-6 col-xl-4">
         <div className="h-100 bg-sec-custom rounded p-4">
           <div className="d-flex align-items-center justify-content-between mb-2">
-            <h6 className="mb-0 text-white">Notification</h6>
+            <h6 className="mb-0 text-theme">Notification</h6>
             <Link to="/">Show All</Link>
           </div>
           <div className="d-flex align-items-center border-bottom py-3">

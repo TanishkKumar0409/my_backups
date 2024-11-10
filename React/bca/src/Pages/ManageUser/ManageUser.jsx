@@ -12,15 +12,7 @@ export default function ManageUser(props) {
   const [more, setMore] = useState(10);
   const [none, setNone] = useState("");
 
-  const heading = [
-    "Id",
-    "Date",
-    "Name",
-    "Email",
-    "Phone No",
-    "Course",
-    "Action",
-  ];
+  const heading = ["Id", "Name", "Email", "Phone No", "Course", "Action"];
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -34,7 +26,7 @@ export default function ManageUser(props) {
       item.course?.toLowerCase().includes(searchTerm.toLowerCase())
     );
   });
-  
+
   const handleData = () => {
     setMore(more + 10);
     if (more >= filteredValues.length - 10) {
@@ -47,7 +39,11 @@ export default function ManageUser(props) {
       <div className="container-fluid position-relative d-flex p-0">
         <Sidebar openClass={props.openClass} />
         <div className={`content ${props.openClass}`}>
-          <TopBar toggleOpenClass={props.toggleOpenClass} />
+          <TopBar
+            toggleOpenClass={props.toggleOpenClass}
+            handleTheme={props.handleTheme}
+            theme={props.theme}
+          />
           <div className="container pt-4 px-4">
             <div className="bg-sec-custom text-center rounded p-4">
               <input
@@ -62,7 +58,7 @@ export default function ManageUser(props) {
           <div className="container-fluid pt-4 px-4">
             <div className="bg-sec-custom text-center rounded p-4">
               <div className="d-flex align-items-center justify-content-between mb-4">
-                <h5 className="mb-0 text-white">Manage User</h5>
+                <h5 className="mb-0 text-theme">Manage User</h5>
                 <Link to="/">Show All</Link>
               </div>
               <Table heading={heading} values={filteredValues} more={more} />

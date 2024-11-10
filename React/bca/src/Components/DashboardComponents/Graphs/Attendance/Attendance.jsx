@@ -25,7 +25,7 @@ ChartJS.register(
   LineController
 );
 
-export default function SalesAndRevenue() {
+export default function Attendance(props) {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
@@ -47,7 +47,10 @@ export default function SalesAndRevenue() {
             {
               label: "BBA",
               data: [0, 25, 26, 22, 56, 85, 90],
-              backgroundColor: "rgba(235,22,22,0.7)",
+              backgroundColor:
+                props.theme === "moon"
+                  ? "rgba(235,22,22,1)"
+                  : "rgba(0,123,255,1)",
               borderColor: "rgba(0,0,0,0.7)",
               fill: true,
             },
@@ -55,7 +58,10 @@ export default function SalesAndRevenue() {
               label: "BCA",
               data: [35, 45, 55, 76, 80, 95, 98],
               borderColor: "rgba(0,0,0,0.7)",
-              backgroundColor: "rgba(235,22,22,0.5)",
+              backgroundColor:
+                props.theme === "moon"
+                  ? "rgba(235,22,22,0.7)"
+                  : "rgba(0,123,255,0.7)",
               fill: true,
             },
           ],
@@ -71,13 +77,13 @@ export default function SalesAndRevenue() {
         chartInstance.current.destroy();
       }
     };
-  }, []);
+  }, [props.theme]);
 
   return (
     <div className="col-sm-12 col-xl-6">
       <div className="bg-sec-custom text-center rounded p-4">
         <div className="d-flex align-items-center justify-content-between mb-4">
-          <h4 className="mb-0 text-white">Attendance Difference</h4>
+          <h4 className="mb-0 text-theme">Attendance Difference</h4>
         </div>
         <div className="chart-container">
           <canvas ref={chartRef}></canvas>

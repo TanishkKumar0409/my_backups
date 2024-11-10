@@ -8,8 +8,13 @@ import ManageUser from "./Pages/ManageUser/ManageUser";
 import SignIn from "./Pages/Forms/SignIn/SignIn";
 import SignUp from "./Pages/Forms/SignUp/SignUp";
 import { useState } from "react";
+import Home from "./Pages/Home/Home";
+import View from "./Pages/View/View";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  const token = localStorage.getItem("token");
   const [openClass, setOpenClass] = useState("");
   const toggleOpenClass = () => {
     if (openClass === "") {
@@ -17,44 +22,97 @@ function App() {
     } else if (openClass === "open") {
       setOpenClass("");
     }
-    console.log(openClass);
+  };
+
+  const randomTheme = Math.floor(Math.random() * 2);
+
+  const light = {
+    "--primary": "#007bff",
+    "--primary-hover": "#0056b3",
+    "--secondary": "#ebedef",
+    "--light": "#000000",
+    "--dark": "#ffffff",
+  };
+
+  const dark = {
+    "--primary": "#ed1616",
+    "--primary-hover": "#bc1212",
+    "--secondary": "#191c24",
+    "--light": "#6c7293",
+    "--dark": "#000000",
+  };
+
+  const [theme, setTheme] = useState(randomTheme === 1 ? "sun" : "moon");
+
+  const handleTheme = () => {
+    theme === "sun" ? setTheme("moon") : setTheme("sun");
   };
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Dashboard
-                toggleOpenClass={toggleOpenClass}
-                openClass={openClass}
-              />
-            }
-          />
-          <Route
-            path="/add-user"
-            element={
-              <AddUser
-                toggleOpenClass={toggleOpenClass}
-                openClass={openClass}
-              />
-            }
-          />
-          <Route
-            path="/manage-user"
-            element={
-              <ManageUser
-                toggleOpenClass={toggleOpenClass}
-                openClass={openClass}
-              />
-            }
-          />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-        </Routes>
-      </BrowserRouter>
+      <div style={theme === "sun" ? light : dark}>
+        <BrowserRouter>
+          <ToastContainer theme={theme === "sun" ? "light" : "dark"} position="top-center" />
+          <Routes>
+            {token !== null ? (
+              <>
+                <Route
+                  path="/"
+                  element={
+                    <Dashboard
+                      toggleOpenClass={toggleOpenClass}
+                      openClass={openClass}
+                      handleTheme={handleTheme}
+                      theme={theme}
+                      light={light}
+                    />
+                  }
+                />
+                <Route
+                  path="/add-user"
+                  element={
+                    <AddUser
+                      toggleOpenClass={toggleOpenClass}
+                      openClass={openClass}
+                      handleTheme={handleTheme}
+                      theme={theme}
+                    />
+                  }
+                />
+                <Route
+                  path="/manage-user"
+                  element={
+                    <ManageUser
+                      toggleOpenClass={toggleOpenClass}
+                      openClass={openClass}
+                      handleTheme={handleTheme}
+                      theme={theme}
+                    />
+                  }
+                />
+                <Route
+                  path="/view/:id"
+                  element={
+                    <View
+                      toggleOpenClass={toggleOpenClass}
+                      openClass={openClass}
+                      handleTheme={handleTheme}
+                      theme={theme}
+                    />
+                  }
+                />
+              </>
+            ) : (
+              <>
+                <Route path="/" element={<Home theme={theme} />} />
+                <Route path="*" element={<SignIn theme={theme} />} />
+                <Route path="/sign-in" element={<SignIn theme={theme} />} />
+                <Route path="/sign-up" element={<SignUp theme={theme} />} />
+              </>
+            )}
+          </Routes>
+        </BrowserRouter>
+      </div>
     </>
   );
 }

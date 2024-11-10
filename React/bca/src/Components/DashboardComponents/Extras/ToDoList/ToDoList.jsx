@@ -7,7 +7,7 @@ export default function ToDoList() {
       <div className="col-sm-12 col-md-6 col-xl-4">
         <div className="h-100 bg-sec-custom rounded p-4">
           <div className="d-flex align-items-center justify-content-between mb-4">
-            <h6 className="mb-0 text-white">To Do List</h6>
+            <h6 className="mb-0 text-theme">To Do List</h6>
             <Link to="/">Show All</Link>
           </div>
           <div className="d-flex mb-2">

@@ -2,6 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function TopBar(props) {
+  const handleSignOut = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
   return (
     <>
       <nav className="navbar navbar-expand bg-sec-custom navbar-dark sticky-top px-4 py-0">
@@ -17,7 +21,12 @@ export default function TopBar(props) {
         >
           <i className="fa fa-bars"></i>
         </p>
-
+        <button
+          onClick={props.handleTheme}
+          className="sidebar-toggler flex-shrink-0 m-0 ms-2"
+        >
+          <i className={`fa fa-${props.theme}`}></i>
+        </button>
 
         <div className="navbar-nav align-items-center ms-auto">
           <div className="nav-item dropdown">
@@ -25,80 +34,8 @@ export default function TopBar(props) {
               className="nav-link dropdown-toggle"
               data-bs-toggle="dropdown"
             >
-              <i className="fa fa-envelope me-lg-2"></i>
-              <span className="d-none d-lg-inline-flex">Message</span>
-            </button>
-            <div className="dropdown-menu dropdown-menu-end bg-sec-custom border-0 rounded-0 rounded-bottom m-0">
-              <button className="dropdown-item">
-                <div className="d-flex align-items-center">
-                  <img
-                    src="img//user.jpg"
-                    alt=""
-                    className="rounded-circle"
-                    style={{ width: "40px", height: "40px" }}
-                  />
-                  <div className="ms-2">
-                    <h6 className="fw-normal mb-0">
-                      Tanishk Kumar Send you a message
-                    </h6>
-                    <small>15 minutes ago</small>
-                  </div>
-                </div>
-              </button>
-              <hr className="dropdown-divider" />
-              <button className="dropdown-item">
-                <div className="d-flex align-items-center">
-                  <img
-                    src="img//user.jpg"
-                    alt=""
-                    className="rounded-circle"
-                    style={{ width: "40px", height: "40px" }}
-                  />
-                  <div className="ms-2">
-                    <h6 className="fw-normal mb-0">
-                      Tanishk Kumar Send you a message
-                    </h6>
-                    <small>15 minutes ago</small>
-                  </div>
-                </div>
-              </button>
-              <hr className="dropdown-divider" />
-              <button className="dropdown-item text-center">
-                See all Messages
-              </button>
-            </div>
-          </div>
-          <div className="nav-item dropdown">
-            <button
-              className="nav-link dropdown-toggle"
-              data-bs-toggle="dropdown"
-            >
-              <i className="fa fa-bell me-lg-2"></i>
-              <span className="d-none d-lg-inline-flex">Notification</span>
-            </button>
-            <div className="dropdown-menu dropdown-menu-end bg-sec-custom border-0 rounded-0 rounded-bottom m-0">
-              <button className="dropdown-item">
-                <h6 className="fw-normal mb-0">Profile Updated</h6>
-                <small>15 minutes ago</small>
-              </button>
-              <hr className="dropdown-divider" />
-              <button className="dropdown-item">
-                <h6 className="fw-normal mb-0">Password Changed</h6>
-                <small>15 minutes ago</small>
-              </button>
-              <hr className="dropdown-divider" />
-              <button className="dropdown-item text-center">
-                See all Notification
-              </button>
-            </div>
-          </div>
-          <div className="nav-item dropdown">
-            <button
-              className="nav-link dropdown-toggle"
-              data-bs-toggle="dropdown"
-            >
               <img
-                src="img/user.jpg"
+                src="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg"
                 style={{ width: "40px", height: "40px" }}
                 alt=""
                 className="rounded-circle me-lg-2"
@@ -106,11 +43,12 @@ export default function TopBar(props) {
               <span className="d-none d-lg-inline-flex">Tanishk Kumar</span>
             </button>
             <div className="dropdown-menu dropdown-menu-end bg-sec-custom border-0 rounded-0 rounded-bottom m-0">
-              <button className="dropdown-item">My Profile</button>
-              <button className="dropdown-item">Settings</button>
-              <Link to="/sign-in" className="dropdown-item">
-                Sign In
+              <Link to={`/view/1`} className="dropdown-item">
+                My Profile
               </Link>
+              <p className="dropdown-item" onClick={handleSignOut}>
+                Sign Out
+              </p>
             </div>
           </div>
         </div>

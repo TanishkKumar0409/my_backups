@@ -9,7 +9,11 @@ export default function AddUser(props) {
       <div className="container-fluid position-relative d-flex p-0">
         <Sidebar openClass={props.openClass} />
         <div className={`content ${props.openClass}`}>
-          <TopBar toggleOpenClass={props.toggleOpenClass} />
+          <TopBar
+            toggleOpenClass={props.toggleOpenClass}
+            handleTheme={props.handleTheme}
+            theme={props.theme}
+          />
           <div className="container-fluid pt-4 px-4">
             <div className="row g-4 justify-content-center">
               <div className="col-sm-12 col-xl-6">

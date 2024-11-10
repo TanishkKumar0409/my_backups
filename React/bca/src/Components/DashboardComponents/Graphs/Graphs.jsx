@@ -2,13 +2,13 @@ import React from "react";
 import Results from "./Results/Result";
 import Attendance from "./Attendance/Attendance";
 
-export default function Graphs() {
+export default function Graphs(props) {
   return (
     <>
       <div className="container-fluid pt-4 px-4">
         <div className="row g-4">
-          <Results />
-          <Attendance />
+          <Results theme={props.theme} />
+          <Attendance theme={props.theme} />
         </div>
       </div>
     </>

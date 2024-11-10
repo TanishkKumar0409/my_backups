@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Table({ heading, values, more }) {
   const location = useLocation();
@@ -9,7 +9,7 @@ export default function Table({ heading, values, more }) {
     <div className="table-responsive">
       <table className="table text-start align-middle table-bordered table-hover mb-0">
         <thead>
-          <tr className="text-white">
+          <tr className="text-theme">
             {heading &&
               heading.map((item, index) => (
                 <th scope="col" key={index}>
@@ -24,20 +24,24 @@ export default function Table({ heading, values, more }) {
               (item, index) => (
                 <tr key={index}>
                   <td>{item.id}</td>
-                  <td>{item.date}</td>
                   <td>{item.name}</td>
                   <td>{item.email}</td>
                   <td>{item.contact}</td>
                   <td>{item.course}</td>
-                  <td>
-                    <button className="btn btn-sm btn-danger">Details</button>
+                  <td className="text-center">
+                    <Link
+                      to={`/view/${item.id}`}
+                      className="btn btn-sm btn-red"
+                    >
+                      View User {item.id}
+                    </Link>
                   </td>
                 </tr>
               )
             )
           ) : (
             <tr>
-              <td colSpan={heading.length}>No data available</td>
+              <td colSpan={heading.length} className="text-center fs-1 fw-semibold">No data available</td>
             </tr>
           )}
         </tbody>

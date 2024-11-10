@@ -10,15 +10,7 @@ import Data from "../ManageUser/User.json";
 import Table from "../../Components/DashboardComponents/Table/Table";
 
 export default function Dashboard(props) {
-  const heading = [
-    "Id",
-    "Date",
-    "Name",
-    "Email",
-    "Phone No",
-    "Course",
-    "Action",
-  ];
+  const heading = ["Id", "Name", "Email", "Phone No", "Course", "Action"];
   const values = Data;
 
   return (
@@ -26,10 +18,14 @@ export default function Dashboard(props) {
       <div className="container-fluid position-relative d-flex p-0">
         <Sidebar openClass={props.openClass} />
         <div className={`content ${props.openClass}`}>
-          <TopBar toggleOpenClass={props.toggleOpenClass} />
+          <TopBar
+            toggleOpenClass={props.toggleOpenClass}
+            handleTheme={props.handleTheme}
+            theme={props.theme}
+          />
           <Stats />
 
-          <Graphs />
+          <Graphs theme={props.theme} />
 
           <div className="container-fluid pt-4 px-4">
             <div className="bg-sec-custom text-center rounded p-4">
