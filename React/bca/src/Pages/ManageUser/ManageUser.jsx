@@ -59,7 +59,7 @@ export default function ManageUser(props) {
             <div className="bg-sec-custom text-center rounded p-4">
               <div className="d-flex align-items-center justify-content-between mb-4">
                 <h5 className="mb-0 text-theme">Manage User</h5>
-                <Link to="/">Show All</Link>
+                <Link to="/add-user">Add User</Link>
               </div>
               <Table heading={heading} values={filteredValues} more={more} />
               <button
