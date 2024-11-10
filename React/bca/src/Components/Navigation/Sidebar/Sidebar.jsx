@@ -9,6 +9,7 @@ export default function Sidebar(props) {
     return location.pathname === path ? "active" : "";
   };
 
+  const Admin = JSON.parse(localStorage.getItem("user"));
   return (
     <>
       <div className={`sidebar pe-4 pb-3 ${props.openClass}`}>
@@ -21,17 +22,21 @@ export default function Sidebar(props) {
 
           <div className="d-flex align-items-center ms-4 mb-4">
             <div className="position-relative">
-              <img
-                src="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg"
-                className="rounded-circle"
-                style={{ width: "40px", height: "40px" }}
-                alt=""
-              />
+              <Link to={`/`}>
+                <img
+                  src="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg"
+                  className="rounded-circle"
+                  style={{ width: "40px", height: "40px" }}
+                  alt=""
+                />
+              </Link>
               <div className="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
             </div>
 
             <div className="ms-3">
-              <h6 className="mb-0">Tanishk Kumar</h6>
+              <Link to={`/`} className="text-decoration-none">
+                <h6 className="mb-0">{Admin.username}</h6>
+              </Link>
               <span>Admin</span>
             </div>
           </div>

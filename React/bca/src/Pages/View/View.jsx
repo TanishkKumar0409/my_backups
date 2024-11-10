@@ -36,7 +36,7 @@ export default function View(props) {
                     <img
                       src={item.image}
                       alt=""
-                      className="img-fluid rounded shadow"
+                      className="img-fluid rounded"
                     />
                   </div>
                   <div className="col-md-7 p-5">
@@ -73,7 +73,8 @@ export default function View(props) {
                                 <button class="btn btn-red btn-lg">
                                   Delete
                                 </button>
-                                <Link to={`/manage-user`}
+                                <Link
+                                  to={`/manage-user`}
                                   class="btn btn-red btn-lg"
                                 >
                                   Back

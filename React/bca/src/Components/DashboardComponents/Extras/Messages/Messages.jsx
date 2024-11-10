@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 export default function Messages() {
   return (
@@ -8,7 +7,6 @@ export default function Messages() {
         <div className="h-100 bg-sec-custom rounded p-4" style={{maxHeight:"350px",overflow:"auto"}}>
           <div className="d-flex align-items-center justify-content-between mb-2">
             <h6 className="mb-0 text-theme">Message</h6>
-            <Link to="/">Show All</Link>
           </div>
           <div className="d-flex align-items-center border-bottom py-3">
             <img

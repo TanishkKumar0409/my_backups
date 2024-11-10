@@ -6,6 +6,7 @@ export default function TopBar(props) {
     localStorage.clear();
     window.location.reload();
   };
+  const Admin=JSON.parse(localStorage.getItem("user"));
   return (
     <>
       <nav className="navbar navbar-expand bg-sec-custom navbar-dark sticky-top px-4 py-0">
@@ -46,10 +47,10 @@ export default function TopBar(props) {
                 alt=""
                 className="rounded-circle me-lg-2"
               />
-              <span className="d-none d-lg-inline-flex">Tanishk Kumar</span>
+              <span className="d-none d-lg-inline-flex">{Admin.username}</span>
             </button>
             <div className="dropdown-menu dropdown-menu-end bg-sec-custom border-0 rounded-0 rounded-bottom m-0">
-              <Link to={`/view/1`} className="dropdown-item">
+              <Link to={`/admin`} className="dropdown-item">
                 My Profile
               </Link>
               <p className="dropdown-item" onClick={handleSignOut}>

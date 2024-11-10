@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
 export default function ToDoList() {
   const [task, setTask] = useState("");
@@ -8,7 +7,7 @@ export default function ToDoList() {
   const handleAddTask = () => {
     if (task.trim()) {
       setTasks([...tasks, task]);
-      setTask(""); // Clear the input field
+      setTask("");
     }
   };
 
@@ -36,7 +35,6 @@ export default function ToDoList() {
         <div className="h-100 bg-sec-custom rounded p-4" style={{maxHeight:"350px",overflow:"auto"}}>
           <div className="d-flex align-items-center justify-content-between mb-4">
             <h6 className="mb-0 text-theme">To Do List</h6>
-            <Link to="/">Show All</Link>
           </div>
           <div className="d-flex mb-2">
             <input
@@ -44,7 +42,7 @@ export default function ToDoList() {
               placeholder="Enter Task"
               value={task}
               onChange={(e) => setTask(e.target.value)}
-              onKeyDown={handleKeyDown} // Trigger add task on Enter
+              onKeyDown={handleKeyDown} 
               className="form-control custom-placeholder bg-dark border-0"
             />
             <button className="btn btn-red ms-2" onClick={handleAddTask}>

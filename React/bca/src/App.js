@@ -12,6 +12,7 @@ import Home from "./Pages/Home/Home";
 import View from "./Pages/View/View";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AdminProfile from "./Pages/View/AdminProfile/AdminProfile";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -48,9 +49,7 @@ function App() {
     theme === "sun" ? setTheme("moon") : setTheme("sun");
   };
 
-  const [fullIcon, setFullIcon] = useState(
-    randomTheme === 1 ? "compress" : "expand"
-  );
+  const [fullIcon, setFullIcon] = useState("expand");
 
   const toggleFullScreen = () => {
     const element = document.getElementById("root");
@@ -118,6 +117,19 @@ function App() {
                   path="/view/:id"
                   element={
                     <View
+                      toggleOpenClass={toggleOpenClass}
+                      openClass={openClass}
+                      handleTheme={handleTheme}
+                      theme={theme}
+                      toggleFullScreen={toggleFullScreen}
+                      fullIcon={fullIcon}
+                    />
+                  }
+                />
+                <Route
+                  path="/admin"
+                  element={
+                    <AdminProfile
                       toggleOpenClass={toggleOpenClass}
                       openClass={openClass}
                       handleTheme={handleTheme}

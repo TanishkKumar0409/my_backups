@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="row">
             <div className="col-12 col-sm-6 text-center text-sm-start">
               <h6>
-                &copy; <Link to="/">DarkPan</Link>, All Right Reserved.
+                &copy; <Link to="/">BCA</Link>, All Right Reserved.
               </h6>
             </div>
             <div className="col-12 col-sm-6 text-center text-sm-end">

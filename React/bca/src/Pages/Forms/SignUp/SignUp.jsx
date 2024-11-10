@@ -17,6 +17,7 @@ export default function SignUp(props) {
     phone: Yup.string()
       .matches(/^\d{10}$/, "Phone number must be 10 digits")
       .required("Phone is required"),
+    file: Yup.mixed().required("File is required"),
   });
 
   const handleSubmit = (values) => {
@@ -26,10 +27,14 @@ export default function SignUp(props) {
   };
 
   const formik = useFormik({
-    initialValues: { username: "", email: "", phone: "", password: "" },
+    initialValues: { username: "", email: "", phone: "", password: "", file: "" },
     validationSchema: validationSchema,
     onSubmit: handleSubmit,
   });
+
+  const handleFileChange = (event) => {
+    formik.setFieldValue("file", event.currentTarget.files[0]);
+  };
 
   return (
     <div className="container-fluid">
@@ -51,6 +56,23 @@ export default function SignUp(props) {
             </div>
             <form onSubmit={formik.handleSubmit}>
               <div className="mb-3">
+                <label htmlFor="file" className="form-label">
+                  Upload File
+                </label>
+                <input
+                  type="file"
+                  id="file"
+                  name="file"
+                  className="form-control"
+                  onChange={handleFileChange}
+                  onBlur={formik.handleBlur}
+                  autoComplete="off"
+                />
+                {formik.touched.file && formik.errors.file && (
+                  <div className="text-danger">{formik.errors.file}</div>
+                )}
+              </div>
+              <div className="mb-3">
                 <label htmlFor="username" className="form-label">
                   Username
                 </label>
@@ -62,6 +84,7 @@ export default function SignUp(props) {
                   value={formik.values.username}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
+                  autoComplete="username"
                 />
                 {formik.touched.username && formik.errors.username && (
                   <div className="text-danger">{formik.errors.username}</div>
@@ -79,6 +102,7 @@ export default function SignUp(props) {
                   value={formik.values.email}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
+                  autoComplete="email"
                 />
                 {formik.touched.email && formik.errors.email && (
                   <div className="text-danger">{formik.errors.email}</div>
@@ -96,6 +120,7 @@ export default function SignUp(props) {
                   value={formik.values.phone}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
+                  autoComplete="tel"
                 />
                 {formik.touched.phone && formik.errors.phone && (
                   <div className="text-danger">{formik.errors.phone}</div>
@@ -113,6 +138,7 @@ export default function SignUp(props) {
                   value={formik.values.password}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
+                  autoComplete="new-password"
                 />
                 {formik.touched.password && formik.errors.password && (
                   <div className="text-danger">{formik.errors.password}</div>
