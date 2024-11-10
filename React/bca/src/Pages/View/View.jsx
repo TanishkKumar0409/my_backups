@@ -38,44 +38,49 @@ export default function View(props) {
                     />
                   </div>
                   <div className="col-md-7 p-5">
-                    <div className="d-flex justify-content-between">
-                      <h1>id:</h1>
-                      <h1>{item.id}</h1>
-                    </div>
-                    <div className="d-flex justify-content-between">
-                      <h1>Name:</h1>
-                      <h1>{item.name}</h1>
-                    </div>
-                    <div className="d-md-flex text-start justify-content-between">
-                      <h1>Email:</h1>
-                      <h3>{item.email}</h3>
-                    </div>
-                    <div className="d-flex justify-content-between">
-                      <h1>Phone:</h1>
-                      <h1>{item.contact}</h1>
-                    </div>
-                    <div className="d-flex justify-content-between">
-                      <h1>Course:</h1>
-                      <h1>{item.course}</h1>
-                    </div>
-                    <div className="btn-group mt-5 w-100">
-                      <Link
-                        to={`/`}
-                        type="button"
-                        className="btn btn-lg btn-red"
-                      >
-                        Update
-                      </Link>
-                      <button type="button" className="btn btn-lg btn-red">
-                        Delete
-                      </button>
-                      <Link
-                        to="/manage-user"
-                        type="button"
-                        className="btn btn-lg btn-red"
-                      >
-                        Back
-                      </Link>
+                    <h3>User Details</h3>
+                    <div className="table-responsive">
+                      <table className="table text-start align-middle table-bordered table-hover mb-0">
+                        <tbody>
+                          <tr>
+                            <th>Id</th>
+                            <td>{item.id}</td>
+                          </tr>
+                          <tr>
+                            <th>Name</th>
+                            <td>{item.name}</td>
+                          </tr>
+                          <tr>
+                            <th>Email</th>
+                            <td>{item.email}</td>
+                          </tr>
+                          <tr>
+                            <th>Phone</th>
+                            <td>{item.contact}</td>
+                          </tr>
+                          <tr>
+                            <th>Course</th>
+                            <td>{item.course}</td>
+                          </tr>
+                          <tr>
+                            <td colSpan={"2"}>
+                              <div class="btn-group w-100">
+                                <Link to={`/`} class="btn btn-red btn-lg">
+                                  Update
+                                </Link>
+                                <button class="btn btn-red btn-lg">
+                                  Delete
+                                </button>
+                                <Link to={`/manage-user`}
+                                  class="btn btn-red btn-lg"
+                                >
+                                  Back
+                                </Link>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
