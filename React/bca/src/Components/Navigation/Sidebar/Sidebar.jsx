@@ -69,6 +69,7 @@ export default function Sidebar(props) {
                 </Link>
               </div>
             </div>
+            
           </div>
         </nav>
       </div>

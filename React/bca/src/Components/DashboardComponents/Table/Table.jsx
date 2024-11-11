@@ -31,7 +31,7 @@ export default function Table({ heading, values, more }) {
                   <td className="text-center">
                     <Link
                       to={`/view/${item.id}`}
-                      className="btn btn-sm btn-red"
+                      className="btn btn-red"
                     >
                       View User {item.id}
                     </Link>

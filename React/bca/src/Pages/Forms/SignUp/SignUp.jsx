@@ -144,16 +144,7 @@ export default function SignUp(props) {
                   <div className="text-danger">{formik.errors.password}</div>
                 )}
               </div>
-              <div className="d-flex align-items-center justify-content-between mb-4">
-                <div className="form-check">
-                  <input
-                    type="checkbox"
-                    name="egCheck1"
-                    id="egCheck1"
-                    className="form-check-input"
-                  />
-                  <label htmlFor="egCheck1">Check me Out</label>
-                </div>
+              <div className="d-flex align-items-center justify-content-end mb-4">
                 <a href="/">Forgot Password</a>
               </div>
               <button type="submit" className="btn btn-red py-3 w-100 mb-4">

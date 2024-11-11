@@ -19,6 +19,10 @@
   opacity: 1;
 }
 
+*{
+  transition: 0.5s;
+}
+
 html {
   scrollbar-width: none;
 }
@@ -267,6 +271,10 @@ tr {
   border-radius: 40px;
   color: var(--primary);
   border: none;
+}
+.content .navbar .sidebar-toggler:hover{
+  background: var(--primary);
+  color: var(--dark);
 }
 
 .content .navbar .dropdown-item {
