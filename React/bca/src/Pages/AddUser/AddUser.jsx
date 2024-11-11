@@ -53,6 +53,27 @@ export default function AddUser() {
               <h2 className="mb-4">Add User</h2>
               <form onSubmit={formik.handleSubmit}>
                 <div className="mb-3">
+                  <label htmlFor="file" className="form-label">
+                    Upload File
+                  </label>
+                  <input
+                    type="file"
+                    id="file"
+                    name="file"
+                    className="form-control"
+                    onChange={(event) => {
+                      formik.setFieldValue(
+                        "file",
+                        event.currentTarget.files[0]
+                      );
+                    }}
+                  />
+                  {formik.touched.file && formik.errors.file && (
+                    <div className="text-danger">{formik.errors.file}</div>
+                  )}
+                </div>
+
+                <div className="mb-3">
                   <label htmlFor="fullName" className="form-label">
                     Full Name
                   </label>
@@ -125,27 +146,6 @@ export default function AddUser() {
                   </select>
                   {formik.touched.course && formik.errors.course && (
                     <div className="text-danger">{formik.errors.course}</div>
-                  )}
-                </div>
-
-                <div className="mb-3">
-                  <label htmlFor="file" className="form-label">
-                    Upload File
-                  </label>
-                  <input
-                    type="file"
-                    id="file"
-                    name="file"
-                    className="form-control"
-                    onChange={(event) => {
-                      formik.setFieldValue(
-                        "file",
-                        event.currentTarget.files[0]
-                      );
-                    }}
-                  />
-                  {formik.touched.file && formik.errors.file && (
-                    <div className="text-danger">{formik.errors.file}</div>
                   )}
                 </div>
 

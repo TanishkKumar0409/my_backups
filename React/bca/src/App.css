@@ -66,6 +66,11 @@ select {
   color: var(--light) !important;
 }
 
+input::file-selector-button{
+background: var(--dark) !important;
+color: var(--light) !important;
+}
+
 .btn-red {
   background: var(--primary) !important;
   color: white !important;
