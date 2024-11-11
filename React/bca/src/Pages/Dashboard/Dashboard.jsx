@@ -8,7 +8,9 @@ import Table from "../../Components/DashboardComponents/Table/Table";
 
 export default function Dashboard(props) {
   const heading = ["Id", "Name", "Email", "Phone No", "Course", "Action"];
+
   const values = Data;
+
   const [courseStats, setCourseStats] = useState({});
 
   useEffect(() => {
