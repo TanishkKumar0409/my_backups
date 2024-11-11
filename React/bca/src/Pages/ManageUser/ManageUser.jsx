@@ -5,6 +5,7 @@ import Table from "../../Components/DashboardComponents/Table/Table";
 
 export default function ManageUser() {
   const values = Data;
+
   const [searchTerm, setSearchTerm] = useState("");
   const [more, setMore] = useState(10);
   const [none, setNone] = useState("");
@@ -50,7 +51,9 @@ export default function ManageUser() {
             <h5 className="mb-0 text-theme">Manage User</h5>
             <Link to="/add-user">Add User</Link>
           </div>
+
           <Table heading={heading} values={filteredValues} more={more} />
+
           <button className={`btn btn-red ${none} mt-4`} onClick={handleData}>
             Show More
           </button>

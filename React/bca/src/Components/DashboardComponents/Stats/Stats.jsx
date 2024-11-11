@@ -2,7 +2,6 @@ import React from "react";
 
 export default function Stats(props) {
   const courseStats = props.courseStats;
-  console.log(courseStats);
 
   return (
     <>

@@ -4,6 +4,7 @@ import Data from "../ManageUser/User.json";
 
 export default function View() {
   const values = Data;
+
   const { id } = useParams();
   const [mapData, setMapData] = useState([]);
 
@@ -12,7 +13,6 @@ export default function View() {
     setMapData(filterData);
   }, [values, id]);
 
-  console.log(id);
   return (
     <>
       <div className="container-fluid pt-4 px-4">
@@ -49,14 +49,14 @@ export default function View() {
                       </tr>
                       <tr>
                         <td colSpan={"2"}>
-                          <div class="btn-group w-100">
-                            <Link to={`/`} class="btn btn-red btn-lg">
+                          <div className="btn-group w-100">
+                            <Link to={`/`} className="btn btn-red btn-lg">
                               Update
                             </Link>
-                            <button class="btn btn-red btn-lg">Delete</button>
+                            <button className="btn btn-red btn-lg">Delete</button>
                             <Link
                               to={`/manage-user`}
-                              class="btn btn-red btn-lg"
+                              className="btn btn-red btn-lg"
                             >
                               Back
                             </Link>
