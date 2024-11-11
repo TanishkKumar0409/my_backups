@@ -1,7 +1,13 @@
 import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.js";
+import "./App.css";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import AddUser from "./Pages/AddUser/AddUser";
 import ManageUser from "./Pages/ManageUser/ManageUser";
@@ -12,12 +18,10 @@ import View from "./Pages/View/View";
 import AdminProfile from "./Pages/View/AdminProfile/AdminProfile";
 import AllProducts from "./Pages/Products/AllProducts";
 import DashboardLayout from "./Layouts/DashboardLayout";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.js";
-import "./App.css";
 
 function App() {
   const token = localStorage.getItem("token");
+
   const [openClass, setOpenClass] = useState("");
   const [theme, setTheme] = useState("moon");
   const [fullIcon, setFullIcon] = useState("expand");
