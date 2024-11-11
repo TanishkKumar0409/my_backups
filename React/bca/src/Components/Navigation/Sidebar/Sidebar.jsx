@@ -2,9 +2,8 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Sidebar(props) {
-  const location = useLocation(); // Get the current location
+  const location = useLocation();
 
-  // Function to determine if the link should have the active class
   const getActiveClass = (path) => {
     return location.pathname === path ? "active" : "";
   };
@@ -69,7 +68,13 @@ export default function Sidebar(props) {
                 </Link>
               </div>
             </div>
-            
+
+            <Link
+              to="/products"
+              className={`nav-item nav-link ${getActiveClass("/products")}`}
+            >
+              <i className="fa fa-shopping-cart me-2"></i>Products
+            </Link>
           </div>
         </nav>
       </div>

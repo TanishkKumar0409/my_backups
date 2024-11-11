@@ -31,8 +31,11 @@ export default function ToDoList() {
 
   return (
     <>
-      <div className="col-sm-12 col-md-6 col-xl-4" >
-        <div className="h-100 bg-sec-custom rounded p-4" style={{maxHeight:"350px",overflow:"auto"}}>
+      <div className="col-sm-12 col-md-6 col-xl-4">
+        <div
+          className="h-100 bg-sec-custom rounded p-4"
+          style={{ maxHeight: "350px", overflow: "auto" }}
+        >
           <div className="d-flex align-items-center justify-content-between mb-4">
             <h6 className="mb-0 text-theme">To Do List</h6>
           </div>
@@ -42,7 +45,7 @@ export default function ToDoList() {
               placeholder="Enter Task"
               value={task}
               onChange={(e) => setTask(e.target.value)}
-              onKeyDown={handleKeyDown} 
+              onKeyDown={handleKeyDown}
               className="form-control custom-placeholder bg-dark border-0"
             />
             <button className="btn btn-red ms-2" onClick={handleAddTask}>
@@ -50,9 +53,11 @@ export default function ToDoList() {
             </button>
           </div>
 
-          {/* Task List */}
           {tasks.map((task, index) => (
-            <div key={index} className="d-flex align-items-center border-bottom py-2">
+            <div
+              key={index}
+              className="d-flex align-items-center border-bottom py-2"
+            >
               <input
                 type="checkbox"
                 className="form-check-input m-0"
@@ -60,7 +65,11 @@ export default function ToDoList() {
               />
               <div className="w-100 ms-3">
                 <div className="d-flex w-100 align-items-center justify-content-between">
-                  <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+                  <span
+                    style={{
+                      textDecoration: task.completed ? "line-through" : "none",
+                    }}
+                  >
                     {task}
                   </span>
                   <button

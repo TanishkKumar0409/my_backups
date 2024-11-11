@@ -12,7 +12,6 @@ import {
   LineController,
 } from "chart.js";
 
-// Register the necessary components with ChartJS
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -33,12 +32,10 @@ export default function Attendance(props) {
     if (chartRef.current) {
       const ctx = chartRef.current.getContext("2d");
 
-      // Destroy the previous chart if it exists
       if (chartInstance.current) {
         chartInstance.current.destroy();
       }
 
-      // Initialize the chart
       chartInstance.current = new ChartJS(ctx, {
         type: "line",
         data: {

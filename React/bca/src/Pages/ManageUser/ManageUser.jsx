@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Data from "./User.json";
 import Table from "../../Components/DashboardComponents/Table/Table";
 
 export default function ManageUser() {
-  const values = Data;
-
+  const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCourse, setSelectedCourse] = useState("");
   const [more, setMore] = useState(10);
-  const [none, setNone] = useState("");
+  const [none, setNone] = useState("d-none");
 
-  const heading = ["Id", "Name", "Email", "Phone No", "Course", "Action"];
+  useEffect(() => {
+    const getData = async () => {
+      const fetchData = await fetch(
+        "https://673200597aaf2a9aff130eaa.mockapi.io/fakeTanishk/fakeTanishk"
+      );
+      const jsonData = await fetchData.json();
+      setData(jsonData);
+    };
+    getData();
+  }, []);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -21,7 +28,7 @@ export default function ManageUser() {
     setSelectedCourse(e.target.value);
   };
 
-  const filteredValues = values.filter((item) => {
+  const filteredValues = data.filter((item) => {
     const matchesSearchTerm =
       item.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -36,10 +43,15 @@ export default function ManageUser() {
 
   const handleData = () => {
     setMore(more + 10);
-    if (more >= filteredValues.length - 10) {
-      setNone("d-none");
-    }
   };
+
+  useEffect(() => {
+    if (filteredValues.length <= more) {
+      setNone("d-none");
+    } else {
+      setNone("");
+    }
+  }, [filteredValues, more]);
 
   return (
     <>
@@ -60,7 +72,7 @@ export default function ManageUser() {
             value={selectedCourse}
           >
             <option value="">All Courses</option>
-            {Array.from(new Set(values.map((item) => item.course))).map(
+            {Array.from(new Set(data.map((item) => item.course))).map(
               (course, index) => (
                 <option key={index} value={course}>
                   {course}
@@ -77,11 +89,7 @@ export default function ManageUser() {
             <Link to="/add-user">Add User</Link>
           </div>
 
-          {filteredValues.length > 0 ? (
-            <Table heading={heading} values={filteredValues.slice(0, more)} />
-          ) : (
-            <p>No users found.</p>
-          )}
+          <Table values={filteredValues.slice(0, more)} />
 
           <button className={`btn btn-red ${none} mt-4`} onClick={handleData}>
             Show More

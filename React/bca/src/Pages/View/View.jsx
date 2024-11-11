@@ -1,23 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import Data from "../ManageUser/User.json";
 
 export default function View() {
-  const values = Data;
-
+  const [data, setData] = useState([]);
   const { id } = useParams();
-  const [mapData, setMapData] = useState([]);
 
   useEffect(() => {
-    const filterData = values.filter((user) => user.id === parseInt(id));
-    setMapData(filterData);
-  }, [values, id]);
+    const getData = async () => {
+      const fetchData = await fetch(
+        "https://673200597aaf2a9aff130eaa.mockapi.io/fakeTanishk/fakeTanishk"
+      );
+      const jsonData = await fetchData.json();
+      const filterData = jsonData.filter((user) => user.id === parseInt(id));
+      setData(filterData);
+    };
+    getData();
+  }, [id]);
 
   return (
     <>
       <div className="container-fluid pt-4 px-4">
         <div className="bg-sec-custom text-center rounded p-4">
-          {mapData.map((item, index) => (
+          {data.map((item, index) => (
             <div className="row" key={index}>
               <div className="col-md-5">
                 <img src={item.image} alt="" className="img-fluid rounded" />

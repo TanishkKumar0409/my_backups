@@ -26,8 +26,16 @@ export default function SignUp(props) {
     Navigate("/sign-in");
   };
 
+  const initialValues = {
+    username: "",
+    email: "",
+    phone: "",
+    password: "",
+    file: "",
+  };
+
   const formik = useFormik({
-    initialValues: { username: "", email: "", phone: "", password: "", file: "" },
+    initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: handleSubmit,
   });
@@ -54,6 +62,7 @@ export default function SignUp(props) {
               </Link>
               <h3>Sign Up</h3>
             </div>
+
             <form onSubmit={formik.handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="file" className="form-label">
@@ -72,6 +81,7 @@ export default function SignUp(props) {
                   <div className="text-danger">{formik.errors.file}</div>
                 )}
               </div>
+
               <div className="mb-3">
                 <label htmlFor="username" className="form-label">
                   Username
@@ -90,6 +100,7 @@ export default function SignUp(props) {
                   <div className="text-danger">{formik.errors.username}</div>
                 )}
               </div>
+
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
                   Email
@@ -108,6 +119,7 @@ export default function SignUp(props) {
                   <div className="text-danger">{formik.errors.email}</div>
                 )}
               </div>
+
               <div className="mb-3">
                 <label htmlFor="phone" className="form-label">
                   Phone
@@ -126,6 +138,7 @@ export default function SignUp(props) {
                   <div className="text-danger">{formik.errors.phone}</div>
                 )}
               </div>
+
               <div className="mb-3">
                 <label htmlFor="password" className="form-label">
                   Password
@@ -144,6 +157,7 @@ export default function SignUp(props) {
                   <div className="text-danger">{formik.errors.password}</div>
                 )}
               </div>
+
               <div className="d-flex align-items-center justify-content-end mb-4">
                 <a href="/">Forgot Password</a>
               </div>

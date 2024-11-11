@@ -23,7 +23,7 @@ function App() {
   const token = localStorage.getItem("token");
 
   const [openClass, setOpenClass] = useState("");
-  const [theme, setTheme] = useState("moon");
+  const [theme, setTheme] = useState("sun");
   const [fullIcon, setFullIcon] = useState("expand");
 
   const toggleOpenClass = () => {

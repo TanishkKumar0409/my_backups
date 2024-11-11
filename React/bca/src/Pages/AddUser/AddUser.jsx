@@ -143,6 +143,11 @@ export default function AddUser() {
                     <option value="BCA">BCA</option>
                     <option value="BBA">BBA</option>
                     <option value="BA">BA</option>
+                    <option value="B.Tech">B.Tech</option>
+                    <option value="MCA">MCA</option>
+                    <option value="MBA">MBA</option>
+                    <option value="MA">MA</option>
+                    <option value="M.Tech">M.Tech</option>
                   </select>
                   {formik.touched.course && formik.errors.course && (
                     <div className="text-danger">{formik.errors.course}</div>
