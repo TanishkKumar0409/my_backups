@@ -53,7 +53,9 @@ export default function View() {
                             <Link to={`/`} className="btn btn-red btn-lg">
                               Update
                             </Link>
-                            <button className="btn btn-red btn-lg">Delete</button>
+                            <button className="btn btn-red btn-lg">
+                              Delete
+                            </button>
                             <Link
                               to={`/manage-user`}
                               className="btn btn-red btn-lg"

@@ -320,3 +320,7 @@ img {
   aspect-ratio: 4/4;
   object-fit: cover;
 }
+
+.custom-group{
+  border-left: 1px solid var(--light) !important;
+}
