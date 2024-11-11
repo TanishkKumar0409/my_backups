@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Data from "../ManageUser/User.json";
 
-export default function View(props) {
+export default function View() {
   const values = Data;
   const { id } = useParams();
   const [mapData, setMapData] = useState([]);

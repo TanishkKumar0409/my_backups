@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Data from "./User.json";
 import Table from "../../Components/DashboardComponents/Table/Table";
 
-export default function ManageUser(props) {
+export default function ManageUser() {
   const values = Data;
   const [searchTerm, setSearchTerm] = useState("");
   const [more, setMore] = useState(10);

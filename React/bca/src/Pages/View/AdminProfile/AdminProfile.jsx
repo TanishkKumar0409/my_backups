@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function AdminProfile(props) {
+export default function AdminProfile() {
   const mapData = JSON.parse(localStorage.getItem("user"));
 
   return (
