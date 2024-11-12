@@ -6,9 +6,8 @@ export default function TopBar(props) {
     localStorage.clear();
     window.location.reload();
   };
-
-  const Admin = JSON.parse(localStorage.getItem("user"));
   
+  const Admin = JSON.parse(localStorage.getItem("user"));
   return (
     <>
       <nav className="navbar navbar-expand bg-sec-custom  sticky-top px-4 py-0">

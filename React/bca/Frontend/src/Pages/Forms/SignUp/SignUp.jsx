@@ -57,7 +57,7 @@ export default function SignUp(props) {
             <div className="d-flex align-items-center justify-content-between mb-3">
               <Link to="/">
                 <h3 className="text-red">
-                  <i className="fa fa-user-edit me-2">DarkPan</i>
+                  <i className="fa fa-user-edit me-2"> BCA </i>
                 </h3>
               </Link>
               <h3>Sign Up</h3>

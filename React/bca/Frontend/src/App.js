@@ -92,7 +92,10 @@ function App() {
             </Route>
           ) : (
             <>
-              <Route path="/" element={<Home theme={theme} />} />
+              <Route
+                path="/"
+                element={<Home handleTheme={handleTheme} theme={theme} />}
+              />
               <Route path="/sign-in" element={<SignIn theme={theme} />} />
               <Route path="/sign-up" element={<SignUp theme={theme} />} />
               <Route path="*" element={<SignIn theme={theme} />} />

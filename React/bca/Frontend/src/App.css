@@ -19,7 +19,7 @@
   opacity: 1;
 }
 
-*{
+* {
   transition: 0.5s;
 }
 
@@ -66,9 +66,9 @@ select {
   color: var(--light) !important;
 }
 
-input::file-selector-button{
-background: var(--dark) !important;
-color: var(--light) !important;
+input::file-selector-button {
+  background: var(--dark) !important;
+  color: var(--light) !important;
 }
 
 .btn-red {
@@ -265,6 +265,7 @@ tr {
   color: var(--primary) !important;
 }
 
+.navbar .sidebar-toggler,
 .content .navbar .sidebar-toggler,
 .content .navbar .navbar-nav .nav-link i {
   width: 40px;
@@ -277,7 +278,7 @@ tr {
   color: var(--primary);
   border: none;
 }
-.content .navbar .sidebar-toggler:hover{
+.content .navbar .sidebar-toggler:hover {
   background: var(--primary);
   color: var(--dark);
 }
@@ -321,6 +322,6 @@ img {
   object-fit: cover;
 }
 
-.custom-group{
+.custom-group {
   border-left: 1px solid var(--light) !important;
 }

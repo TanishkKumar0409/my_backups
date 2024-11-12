@@ -29,12 +29,18 @@ export default function Home(props) {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <div
+              className="collapse navbar-collapse"
+              id="navbarSupportedContent"
+            >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <Link className="nav-link active" aria-current="page" to="/">
-                    Home
-                  </Link>
+                  <button
+                    onClick={props.handleTheme}
+                    className="sidebar-toggler flex-shrink-0 m-0 ms-2"
+                  >
+                    <i className={`fa fa-${props.theme}`}></i>
+                  </button>
                 </li>
               </ul>
               <Link to={`/sign-in`} className="btn btn-red" type="submit">
@@ -49,7 +55,7 @@ export default function Home(props) {
               <div className="p-5 rounded bg-sec-custom">
                 <h1 className="display-1 fw-bold">Home</h1>
                 <p>
-                  For Access The All Data, Please{" "}
+                  For Access The All Data, Please
                   <Link to={`/sign-in`}>Sign In</Link>
                 </p>
               </div>
