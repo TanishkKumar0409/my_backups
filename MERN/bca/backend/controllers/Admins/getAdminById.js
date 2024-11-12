@@ -1,11 +1,11 @@
 import Admin from "../../modals/Admins/Admin.js";
 
-const deleteAdmin = async (req, res) => {
+const getIdUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedAdmin = await Admin.findOneAndDelete({ id });
-    if (deletedAdmin) {
-      return res.status(201).json({ message: "Admin Deleted Successfully" });
+    const getAdmin = await Admin.findOne({ id });
+    if (getAdmin) {
+      return res.status(201).json({ getAdmin });
     } else {
       return res.status(404).json({ error: "Admin Does Not Found" });
     }
@@ -13,5 +13,4 @@ const deleteAdmin = async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 };
-
-export default deleteAdmin;4
+export default getIdUser;

@@ -16,6 +16,9 @@ app.use(cors());
 
 app.use(bodyParser.json());
 
+app.use(express.static("public"))
+app.use("/Uploads",express.static("Uploads"))
+
 app.use("/api/", router);
 
 mongoose

@@ -43,7 +43,7 @@ export default function AdminProfile() {
           <div className="row">
             <div className="col-md-5">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-C_UAhXq9GfuGO452EEzfbKnh1viQB9EDBQ&s"
+                src={`http://localhost:5000/${mapData.profile}`}
                 alt=""
                 className="img-fluid rounded"
               />
@@ -72,7 +72,10 @@ export default function AdminProfile() {
                     <tr>
                       <td colSpan={"2"}>
                         <div className="btn-group w-100">
-                          <Link to={`/`} className="btn btn-red btn-lg">
+                          <Link
+                            to={`/update-admin/${id}`}
+                            className="btn btn-red btn-lg"
+                          >
                             Update
                           </Link>
                           <button

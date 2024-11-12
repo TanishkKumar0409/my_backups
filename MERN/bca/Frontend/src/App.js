@@ -18,6 +18,7 @@ import View from "./Pages/View/View";
 import AdminProfile from "./Pages/View/AdminProfile/AdminProfile";
 import AllProducts from "./Pages/Products/AllProducts";
 import DashboardLayout from "./Layouts/DashboardLayout";
+import UpdateAdminForm from "./Pages/Forms/UpdateForm/UpdateAdminForm";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -89,6 +90,7 @@ function App() {
               <Route path="/view/:id" element={<View />} />
               <Route path={`/admin/:id`} element={<AdminProfile />} />
               <Route path="/products" element={<AllProducts />} />
+              <Route path="/update-admin/:id" element={<UpdateAdminForm />} />
             </Route>
           ) : (
             <>
