@@ -2,6 +2,8 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function SignUp(props) {
   const Navigate = useNavigate();
@@ -13,25 +15,55 @@ export default function SignUp(props) {
     password: Yup.string()
       .min(6, "Password must be at least 6 characters")
       .required("Password is required"),
-    username: Yup.string().required("Username is required"),
-    phone: Yup.string()
-      .matches(/^\d{10}$/, "Phone number must be 10 digits")
-      .required("Phone is required"),
-    file: Yup.mixed().required("File is required"),
+    name: Yup.string().required("Name is required"),
+    contact: Yup.string()
+      .matches(/^\d{10}$/, "Contact number must be 10 digits")
+      .required("Contact is required"),
+    profile: Yup.mixed()
+      .required("Profile is required")
+      .test("fileSize", "File size is too large (max: 5MB)", (value) => {
+        return !value || (value && value.size <= 5 * 1024 * 1024); // max 5MB
+      })
+      .test("fileType", "Unsupported file format (only JPG/PNG)", (value) => {
+        return (
+          !value || (value && ["image/jpeg", "image/png"].includes(value.type))
+        );
+      }),
   });
 
-  const handleSubmit = (values) => {
-    const formValues = JSON.stringify(values);
-    localStorage.setItem("user", formValues);
-    Navigate("/sign-in");
+  const handleSubmit = async (values) => {
+    const formData = new FormData();
+    formData.append("name", values.name);
+    formData.append("email", values.email);
+    formData.append("contact", values.contact);
+    formData.append("password", values.password);
+    formData.append("profile", values.profile);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/add-admin",
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      toast.success(response.data.message);
+      Navigate("/sign-in");
+    } catch (error) {
+      if (error.status === 404) {
+        toast.error(error.response.data.error);
+      } else if (error.status === 400) {
+        toast.error(error.response.data.error);
+      } else if (error.status === 500) {
+        toast.error(error.response.data.error);
+      }
+    }
   };
 
   const initialValues = {
-    username: "",
+    name: "",
     email: "",
-    phone: "",
+    contact: "",
     password: "",
-    file: "",
+    profile: null,
   };
 
   const formik = useFormik({
@@ -41,7 +73,7 @@ export default function SignUp(props) {
   });
 
   const handleFileChange = (event) => {
-    formik.setFieldValue("file", event.currentTarget.files[0]);
+    formik.setFieldValue("profile", event.currentTarget.files[0]);
   };
 
   return (
@@ -65,39 +97,39 @@ export default function SignUp(props) {
 
             <form onSubmit={formik.handleSubmit}>
               <div className="mb-3">
-                <label htmlFor="file" className="form-label">
-                  Upload File
+                <label htmlFor="profile" className="form-label">
+                  Upload Profile
                 </label>
                 <input
                   type="file"
-                  id="file"
-                  name="file"
+                  id="profile"
+                  name="profile"
                   className="form-control"
                   onChange={handleFileChange}
                   onBlur={formik.handleBlur}
                   autoComplete="off"
                 />
-                {formik.touched.file && formik.errors.file && (
-                  <div className="text-danger">{formik.errors.file}</div>
+                {formik.touched.profile && formik.errors.profile && (
+                  <div className="text-danger">{formik.errors.profile}</div>
                 )}
               </div>
 
               <div className="mb-3">
-                <label htmlFor="username" className="form-label">
-                  Username
+                <label htmlFor="name" className="form-label">
+                  Name
                 </label>
                 <input
                   type="text"
-                  id="username"
-                  name="username"
+                  id="name"
+                  name="name"
                   className="form-control"
-                  value={formik.values.username}
+                  value={formik.values.name}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  autoComplete="username"
+                  autoComplete="name"
                 />
-                {formik.touched.username && formik.errors.username && (
-                  <div className="text-danger">{formik.errors.username}</div>
+                {formik.touched.name && formik.errors.name && (
+                  <div className="text-danger">{formik.errors.name}</div>
                 )}
               </div>
 
@@ -121,21 +153,21 @@ export default function SignUp(props) {
               </div>
 
               <div className="mb-3">
-                <label htmlFor="phone" className="form-label">
-                  Phone
+                <label htmlFor="contact" className="form-label">
+                  Contact
                 </label>
                 <input
                   type="tel"
-                  id="phone"
-                  name="phone"
+                  id="contact"
+                  name="contact"
                   className="form-control"
-                  value={formik.values.phone}
+                  value={formik.values.contact}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   autoComplete="tel"
                 />
-                {formik.touched.phone && formik.errors.phone && (
-                  <div className="text-danger">{formik.errors.phone}</div>
+                {formik.touched.contact && formik.errors.contact && (
+                  <div className="text-danger">{formik.errors.contact}</div>
                 )}
               </div>
 

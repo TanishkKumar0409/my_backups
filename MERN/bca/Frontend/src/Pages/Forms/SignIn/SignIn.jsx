@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 export default function SignIn(props) {
   const Navigate = useNavigate();
@@ -16,21 +17,31 @@ export default function SignIn(props) {
       .required("Password is required"),
   });
 
-  const handleSubmit = (values) => {
-    const userValue = localStorage.getItem("user");
-    const user = JSON.parse(userValue);
-    if (values.email !== user.email) {
-      toast.error("Email Doesn't Found");
-    } else if (values.password !== user.password) {
-      toast.error("Incorrect Password");
-    } else if (
-      values.email === user.email &&
-      values.password === user.password
-    ) {
-      const token = "token";
-      localStorage.setItem("token", token);
-      Navigate("/");
-      window.location.reload();
+  const handleSubmit = async (values) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/login",
+        values
+      );
+      if (response.status === 200) {
+        toast.success(response.data.message);
+
+        const token = response.data.token;
+        const adminData = JSON.stringify(response.data.existingAdmin);
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("admin", adminData);
+
+        Navigate("/");
+
+        window.location.reload();
+      }
+    } catch (error) {
+      if (error.status === 404) {
+        toast.error(error.response.data.error);
+      } else if (error.status === 500) {
+        toast.error(error.response.data.error);
+      }
     }
   };
 

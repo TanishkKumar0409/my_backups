@@ -87,7 +87,7 @@ function App() {
               <Route path="/add-user" element={<AddUser />} />
               <Route path="/manage-user" element={<ManageUser />} />
               <Route path="/view/:id" element={<View />} />
-              <Route path="/admin" element={<AdminProfile />} />
+              <Route path={`/admin/:id`} element={<AdminProfile />} />
               <Route path="/products" element={<AllProducts />} />
             </Route>
           ) : (

@@ -8,7 +8,7 @@ export default function Sidebar(props) {
     return location.pathname === path ? "active" : "";
   };
 
-  const Admin = JSON.parse(localStorage.getItem("user"));
+  const Admin = JSON.parse(localStorage.getItem("admin"));
   return (
     <>
       <div className={`sidebar pe-4 pb-3 ${props.openClass}`}>
@@ -34,7 +34,7 @@ export default function Sidebar(props) {
 
             <div className="ms-3">
               <Link to={`/`} className="text-decoration-none">
-                <h6 className="mb-0">{Admin.username}</h6>
+                <h6 className="mb-0">{Admin.name}</h6>
               </Link>
               <span>Admin</span>
             </div>

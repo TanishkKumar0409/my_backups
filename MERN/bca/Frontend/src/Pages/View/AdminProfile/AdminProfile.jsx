@@ -1,8 +1,40 @@
+import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function AdminProfile() {
-  const mapData = JSON.parse(localStorage.getItem("user"));
+  const mapData = JSON.parse(localStorage.getItem("admin"));
+  const Navigate = useNavigate();
+  const { id } = useParams();
+
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this admin?"
+    );
+    if (confirmDelete) {
+      try {
+        const response = await axios.delete(
+          `http://localhost:5000/api/delete-admin/${id}`
+        );
+        if (response.status === 201) {
+          Navigate("/");
+          localStorage.clear();
+          window.location.reload();
+        }
+      } catch (error) {
+        if (error.response) {
+          if (error.response.status === 404) {
+            toast.error(error.response.data.error);
+          } else if (error.response.status === 400) {
+            toast.error(error.response.data.error);
+          } else if (error.response.status === 500) {
+            toast.error(error.response.data.error);
+          }
+        }
+      }
+    }
+  };
 
   return (
     <>
@@ -23,11 +55,11 @@ export default function AdminProfile() {
                   <tbody>
                     <tr>
                       <th className="fs-3">Id</th>
-                      <td className="fs-3">1</td>
+                      <td className="fs-3">{mapData.id}</td>
                     </tr>
                     <tr>
                       <th className="fs-3">Name</th>
-                      <td className="fs-3">{mapData.username}</td>
+                      <td className="fs-3">{mapData.name}</td>
                     </tr>
                     <tr>
                       <th className="fs-3">Email</th>
@@ -35,7 +67,7 @@ export default function AdminProfile() {
                     </tr>
                     <tr>
                       <th className="fs-3">Phone</th>
-                      <td className="fs-3">{mapData.phone}</td>
+                      <td className="fs-3">{mapData.contact}</td>
                     </tr>
                     <tr>
                       <td colSpan={"2"}>
@@ -43,7 +75,12 @@ export default function AdminProfile() {
                           <Link to={`/`} className="btn btn-red btn-lg">
                             Update
                           </Link>
-                          <button className="btn btn-red btn-lg">Delete</button>
+                          <button
+                            className="btn btn-red btn-lg"
+                            onClick={handleDelete}
+                          >
+                            Delete
+                          </button>
                           <Link to={`/`} className="btn btn-red btn-lg">
                             Back
                           </Link>

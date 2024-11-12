@@ -6,6 +6,9 @@ const addAdmin = async (req, res) => {
     const { name, email, contact, password } = req.body;
 
     const file = req.file ? req.file.filename : null;
+    if (file === null) {
+      return res.json(404).json({ error: "file is required" });
+    }
 
     const lastAdmin = await Admin.findOne().sort({ id: -1 });
 
@@ -16,16 +19,13 @@ const addAdmin = async (req, res) => {
 
     const existingAdminByEmail = await Admin.findOne({ email });
     if (existingAdminByEmail) {
-      return res
-        .status(400)
-        .json({ error: "Email already exists. Please use another email." });
+      return res.status(400).json({ error: "Email already exists." });
     }
 
     const existingAdminByContact = await Admin.findOne({ contact });
     if (existingAdminByContact) {
       return res.status(400).json({
-        error:
-          "Contact number already exists. Please use another contact number.",
+        error: "Contact number already exists.",
       });
     }
 
