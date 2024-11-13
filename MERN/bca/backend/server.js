@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import router from "./routes/index.js";
+import getAllUsers from "./controllers/Users/getAllUsers.js";
 
 dotenv.config();
 
@@ -20,6 +21,8 @@ app.use("/api/", router);
 
 app.use(express.static("public"));
 app.use("/Uploads", express.static("Uploads"));
+
+app.get("/user/all", getAllUsers);
 
 mongoose
   .connect(DbName)
