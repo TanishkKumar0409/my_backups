@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const privateKey = "tanishkKumar";
+    const privateKey = "tanishk";
 
     const user = await User.findOne({ email });
     if (!user) {

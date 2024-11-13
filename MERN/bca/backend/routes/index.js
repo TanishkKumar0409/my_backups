@@ -5,6 +5,7 @@ import multer from "multer";
 import deleteAdmin from "../controllers/Admins/DeleteAdmin.js";
 import getIdUser from "../controllers/Admins/getAdminById.js";
 import updateAdmin from "../controllers/Admins/UpdateAdmin.js";
+import addUser from "../controllers/Users/AddUser.js";
 
 const router = express.Router();
 
@@ -24,5 +25,7 @@ router.post("/login", login);
 router.delete("/delete-admin/:id", deleteAdmin);
 router.put("/update-admin/:id", upload.single("profile"), updateAdmin);
 router.get("/get-admin/:id", getIdUser);
+
+router.post("/add-user", upload.single("profile"), addUser);
 
 export default router;
