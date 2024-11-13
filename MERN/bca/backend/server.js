@@ -2,8 +2,8 @@ import bodyParser from "body-parser";
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import router from "./routes/index.js";
 import cors from "cors";
+import router from "./routes/index.js";
 
 dotenv.config();
 
@@ -16,10 +16,10 @@ app.use(cors());
 
 app.use(bodyParser.json());
 
-app.use(express.static("public"))
-app.use("/Uploads",express.static("Uploads"))
-
 app.use("/api/", router);
+
+app.use(express.static("public"));
+app.use("/Uploads", express.static("Uploads"));
 
 mongoose
   .connect(DbName)

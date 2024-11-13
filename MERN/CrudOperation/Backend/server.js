@@ -4,11 +4,11 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import router from "./Routes/Index.js";
 import cors from "cors";
-import getAllUsers from "./Controllers/GetAllUsers.js";
 
 dotenv.config();
 
-const PORT = process.env.PORT;
+// const PORT = process.env.PORT;
+const PORT=4000;
 
 const DbName = process.env.DbName;
 
@@ -23,8 +23,6 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/api/", router);
-
-app.get("/user", getAllUsers);
 
 mongoose
   .connect(DbName)

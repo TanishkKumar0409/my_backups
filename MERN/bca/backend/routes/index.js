@@ -15,27 +15,38 @@ import deleteUser from "../controllers/Users/deleteUser.js";
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
+const storage1 = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./");
   },
   filename: function (req, file, cb) {
-    cb(null, "Uploads/" + file.originalname);
+    cb(null, "Uploads/Admin/" + file.originalname);
   },
 });
 
-const upload = multer({ storage: storage });
+const upload1 = multer({ storage: storage1 });
 
-router.post("/add-admin", upload.single("profile"), addAdmin);
+const storage2 = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./");
+  },
+  filename: function (req, file, cb) {
+    cb(null, "Uploads/Users/" + file.originalname);
+  },
+});
+
+const upload2 = multer({ storage: storage2 });
+
+router.post("/add-admin", upload1.single("profile"), addAdmin);
 router.post("/login", login);
 router.delete("/delete-admin/:id", deleteAdmin);
-router.put("/update-admin/:id", upload.single("profile"), updateAdmin);
+router.put("/update-admin/:id", upload1.single("profile"), updateAdmin);
 router.get("/get-admin/:id", getIdAdmin);
 
-router.post("/user/add", upload.single("profile"), addUser);
+router.post("/user/add", upload2.single("profile"), addUser);
 router.get("/user/all", getAllUsers);
 router.get("/user/:id", getIdUser);
-router.put("/user/update/:id", upload.single("profile"), UpdateUser);
+router.put("/user/update/:id", upload2.single("profile"), UpdateUser);
 router.delete("/user/delete/:id", deleteUser);
 
 export default router;
