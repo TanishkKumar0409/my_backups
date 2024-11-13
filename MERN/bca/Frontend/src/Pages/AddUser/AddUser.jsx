@@ -1,16 +1,21 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function AddUser() {
+  const Navigate = useNavigate();
+
   const validationSchema = Yup.object({
-    fullName: Yup.string().required("Full Name is required"),
+    name: Yup.string().required("Full Name is required"),
     email: Yup.string()
       .email("Invalid email format")
       .required("Email is required"),
-    phone: Yup.string()
-      .matches(/^[0-9]{10}$/, "Phone number must be 10 digits")
-      .required("Phone number is required"),
+    contact: Yup.string()
+      .matches(/^[0-9]{10}$/, "contact number must be 10 digits")
+      .required("contact number is required"),
     course: Yup.string().required("Course selection is required"),
     file: Yup.mixed()
       .required("File is required")
@@ -29,19 +34,45 @@ export default function AddUser() {
   });
 
   const initialValues = {
-    fullName: "",
+    name: "",
     email: "",
-    phone: "",
+    contact: "",
     course: "",
     file: null,
+  };
+
+  const handleSubmit = async (values) => {
+    const formData = new FormData();
+    formData.append("name", values.name);
+    formData.append("email", values.email);
+    formData.append("contact", values.contact);
+    formData.append("course", values.course);
+    formData.append("profile", values.file);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/user/add",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        toast.success(response.data.message);
+        Navigate("/manage-user");
+      }
+    } catch (error) {
+      toast.error(error.response.data.error);
+    }
   };
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
-    },
+    onSubmit: handleSubmit,
   });
 
   return (
@@ -74,20 +105,20 @@ export default function AddUser() {
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="fullName" className="form-label">
+                  <label htmlFor="name" className="form-label">
                     Full Name
                   </label>
                   <input
                     type="text"
-                    id="fullName"
-                    name="fullName"
+                    id="name"
+                    name="name"
                     className="form-control"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.fullName}
+                    value={formik.values.name}
                   />
-                  {formik.touched.fullName && formik.errors.fullName && (
-                    <div className="text-danger">{formik.errors.fullName}</div>
+                  {formik.touched.name && formik.errors.name && (
+                    <div className="text-danger">{formik.errors.name}</div>
                   )}
                 </div>
 
@@ -110,20 +141,20 @@ export default function AddUser() {
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="phone" className="form-label">
-                    Phone
+                  <label htmlFor="contact" className="form-label">
+                    contact
                   </label>
                   <input
                     type="tel"
-                    id="phone"
-                    name="phone"
+                    id="contact"
+                    name="contact"
                     className="form-control"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.phone}
+                    value={formik.values.contact}
                   />
-                  {formik.touched.phone && formik.errors.phone && (
-                    <div className="text-danger">{formik.errors.phone}</div>
+                  {formik.touched.contact && formik.errors.contact && (
+                    <div className="text-danger">{formik.errors.contact}</div>
                   )}
                 </div>
 

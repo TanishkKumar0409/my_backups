@@ -1,21 +1,46 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function View() {
   const [data, setData] = useState([]);
   const { id } = useParams();
+  const Navigate = useNavigate();
 
   useEffect(() => {
     const getData = async () => {
-      const fetchData = await fetch(
-        "https://673200597aaf2a9aff130eaa.mockapi.io/fakeTanishk/fakeTanishk"
-      );
-      const jsonData = await fetchData.json();
-      const filterData = jsonData.filter((user) => user.id === parseInt(id));
-      setData(filterData);
+      try {
+        const fetchData = await fetch(`http://localhost:5000/api/user/${id}`);
+        const jsonData = await fetchData.json();
+
+        setData([jsonData]);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
     getData();
   }, [id]);
+
+  const handleDelete = async () => {
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+
+    if (isConfirmed) {
+      try {
+        const response = await axios.delete(
+          `http://localhost:5000/api/user/delete/${id}`
+        );
+        Navigate("/manage-user");
+        toast.success(response.data.message);
+      } catch (error) {
+        toast.error(error.response.data.error);
+      }
+    } else {
+      toast.info("Delete action was canceled.");
+    }
+  };
 
   return (
     <>
@@ -24,7 +49,11 @@ export default function View() {
           {data.map((item, index) => (
             <div className="row" key={index}>
               <div className="col-md-5">
-                <img src={item.image} alt="" className="img-fluid rounded" />
+                <img
+                  src={`http://localhost:5000/${item.profile}`}
+                  alt=""
+                  className="img-fluid rounded"
+                />
               </div>
               <div className="col-md-7 p-5">
                 <h3>User Details</h3>
@@ -54,10 +83,16 @@ export default function View() {
                       <tr>
                         <td colSpan={"2"}>
                           <div className="btn-group w-100">
-                            <Link to={`/`} className="btn btn-red btn-lg">
+                            <Link
+                              to={`/update-user/${item.id}`}
+                              className="btn btn-red btn-lg"
+                            >
                               Update
                             </Link>
-                            <button className="btn btn-red btn-lg">
+                            <button
+                              className="btn btn-red btn-lg"
+                              onClick={handleDelete}
+                            >
                               Delete
                             </button>
                             <Link

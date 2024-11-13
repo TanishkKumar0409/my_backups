@@ -23,16 +23,10 @@ export default function AdminProfile() {
           window.location.reload();
         }
       } catch (error) {
-        if (error.response) {
-          if (error.response.status === 404) {
-            toast.error(error.response.data.error);
-          } else if (error.response.status === 400) {
-            toast.error(error.response.data.error);
-          } else if (error.response.status === 500) {
-            toast.error(error.response.data.error);
-          }
-        }
+        toast.error(error.response.data.error);
       }
+    } else {
+      toast.info("Delete action was canceled.");
     }
   };
 
