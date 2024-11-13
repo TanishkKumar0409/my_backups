@@ -35,7 +35,7 @@ export default function Table({ values, more }) {
                   <td>{item.id}</td>
                   <td>
                     <img
-                      src={item.image}
+                      src={`http://localhost:5000/${item.profile}`}
                       width={"50px"}
                       height={"50px"}
                       alt=""

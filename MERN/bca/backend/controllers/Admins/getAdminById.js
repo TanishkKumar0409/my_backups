@@ -1,6 +1,6 @@
 import Admin from "../../modals/Admins/Admin.js";
 
-const getIdUser = async (req, res) => {
+const getIdAdmin = async (req, res) => {
   try {
     const { id } = req.params;
     const getAdmin = await Admin.findOne({ id });
@@ -13,4 +13,4 @@ const getIdUser = async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 };
-export default getIdUser;
+export default getIdAdmin;

@@ -6,16 +6,13 @@ import Extras from "../../Components/DashboardComponents/Extras/Extras";
 import Table from "../../Components/DashboardComponents/Table/Table";
 
 export default function Dashboard(props) {
- 
   const [data, setData] = useState([]);
   const [courseStats, setCourseStats] = useState({});
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const fetchData = await fetch(
-          "https://673200597aaf2a9aff130eaa.mockapi.io/fakeTanishk/fakeTanishk"
-        );
+        const fetchData = await fetch("http://localhost:5000/api/user/all");
         const jsonData = await fetchData.json();
         setData(jsonData);
       } catch (error) {

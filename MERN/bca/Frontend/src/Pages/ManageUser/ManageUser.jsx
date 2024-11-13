@@ -11,9 +11,7 @@ export default function ManageUser() {
 
   useEffect(() => {
     const getData = async () => {
-      const fetchData = await fetch(
-        "https://673200597aaf2a9aff130eaa.mockapi.io/fakeTanishk/fakeTanishk"
-      );
+      const fetchData = await fetch("http://localhost:5000/api/user/all");
       const jsonData = await fetchData.json();
       setData(jsonData);
     };
