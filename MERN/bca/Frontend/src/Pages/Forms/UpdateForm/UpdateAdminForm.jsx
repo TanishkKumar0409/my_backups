@@ -37,9 +37,7 @@ export default function UpdateAdminForm() {
 
   useEffect(() => {
     const getData = async () => {
-      const fetchData = await fetch(
-        `http://localhost:5000/api/get-admin/${id}`
-      );
+      const fetchData = await fetch(`http://localhost:5000/api/admin/${id}`);
       const jsonData = await fetchData.json();
       const outputData = jsonData.getAdmin;
       setData(outputData);
@@ -57,26 +55,20 @@ export default function UpdateAdminForm() {
       formData.append("profile", values.profile);
 
       const response = await axios.put(
-        `http://localhost:5000/api/update-admin/${id}`,
+        `http://localhost:5000/api/admin/update/${id}`,
         formData
       );
       if (response.status === 201) {
         toast.success(response.data.message);
 
-        const Admin = JSON.stringify(response.data.updatedUser);
+        localStorage.clear();
 
-        localStorage.setItem("admin", Admin);
-
-        Navigate(`/admin/${id}`);
+        Navigate(`/sign-in`);
 
         window.location.reload();
       }
     } catch (error) {
-      if (error.status === 404) {
-        toast.error(error.response.data.error);
-      } else if (error.status === 500) {
-        toast.error(error.response.data.error);
-      }
+      toast.error(error.response.data.error);
     }
   };
 

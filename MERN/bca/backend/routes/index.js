@@ -39,9 +39,9 @@ const upload2 = multer({ storage: storage2 });
 
 router.post("/admin/add", upload1.single("profile"), addAdmin);
 router.post("/admin/login", login);
-router.delete("/delete-admin/:id", deleteAdmin);
-router.put("/update-admin/:id", upload1.single("profile"), updateAdmin);
-router.get("/get-admin/:id", getIdAdmin);
+router.delete("/admin/delete/:id", deleteAdmin);
+router.put("/admin/update/:id", upload1.single("profile"), updateAdmin);
+router.get("/admin/:id", getIdAdmin);
 
 router.post("/user/add", upload2.single("profile"), addUser);
 router.get("/user/all", getAllUsers);

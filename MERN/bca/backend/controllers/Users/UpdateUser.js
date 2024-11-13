@@ -21,7 +21,8 @@ const UpdateUser = async (req, res) => {
 
     const UpdatedUser = await User.findOneAndUpdate(
       { id: id },
-      { $set: updateData }
+      { $set: updateData },
+      { new: true }
     );
 
     return res

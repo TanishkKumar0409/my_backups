@@ -15,7 +15,7 @@ export default function AdminProfile() {
     if (confirmDelete) {
       try {
         const response = await axios.delete(
-          `http://localhost:5000/api/delete-admin/${id}`
+          `http://localhost:5000/api/admin/delete/${id}`
         );
         if (response.status === 201) {
           Navigate("/");
