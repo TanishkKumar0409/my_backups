@@ -37,8 +37,8 @@ const storage2 = multer.diskStorage({
 
 const upload2 = multer({ storage: storage2 });
 
-router.post("/add-admin", upload1.single("profile"), addAdmin);
-router.post("/login", login);
+router.post("/admin/add", upload1.single("profile"), addAdmin);
+router.post("/admin/login", login);
 router.delete("/delete-admin/:id", deleteAdmin);
 router.put("/update-admin/:id", upload1.single("profile"), updateAdmin);
 router.get("/get-admin/:id", getIdAdmin);

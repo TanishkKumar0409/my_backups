@@ -41,7 +41,7 @@ export default function SignUp(props) {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/add-admin",
+        "http://localhost:5000/api/admin/add",
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

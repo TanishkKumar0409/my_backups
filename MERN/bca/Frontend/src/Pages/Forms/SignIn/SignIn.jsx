@@ -20,7 +20,7 @@ export default function SignIn(props) {
   const handleSubmit = async (values) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/login",
+        "http://localhost:5000/api/admin/login",
         values
       );
       if (response.status === 200) {
