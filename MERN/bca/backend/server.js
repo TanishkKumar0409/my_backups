@@ -22,7 +22,7 @@ app.use("/api/", router);
 app.use(express.static("public"));
 app.use("/Uploads", express.static("Uploads"));
 
-app.get("/user/all", getAllUsers);
+app.get("/user", getAllUsers);
 
 mongoose
   .connect(DbName)

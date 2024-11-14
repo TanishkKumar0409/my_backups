@@ -26,6 +26,12 @@ const storage1 = multer.diskStorage({
 
 const upload1 = multer({ storage: storage1 });
 
+router.post("/admin/add", upload1.single("profile"), addAdmin);
+router.post("/admin/login", login);
+router.delete("/admin/delete/:id", deleteAdmin);
+router.put("/admin/update/:id", upload1.single("profile"), updateAdmin);
+router.get("/admin/:id", getIdAdmin);
+
 const storage2 = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./");
@@ -36,12 +42,6 @@ const storage2 = multer.diskStorage({
 });
 
 const upload2 = multer({ storage: storage2 });
-
-router.post("/admin/add", upload1.single("profile"), addAdmin);
-router.post("/admin/login", login);
-router.delete("/admin/delete/:id", deleteAdmin);
-router.put("/admin/update/:id", upload1.single("profile"), updateAdmin);
-router.get("/admin/:id", getIdAdmin);
 
 router.post("/user/add", upload2.single("profile"), addUser);
 router.get("/user/all", getAllUsers);

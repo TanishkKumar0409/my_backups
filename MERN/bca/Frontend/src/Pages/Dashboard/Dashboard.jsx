@@ -16,7 +16,7 @@ export default function Dashboard(props) {
         const jsonData = await fetchData.json();
         setData(jsonData);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error({ error: error.message });
       }
     };
 

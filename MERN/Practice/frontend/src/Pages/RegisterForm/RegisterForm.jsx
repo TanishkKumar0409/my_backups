@@ -3,10 +3,11 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function RegisterForm() {
-  const Navigate = useNavigate();
+  const reDirect = useNavigate();
+  const token = localStorage.getItem("token");
 
   const [errorShown, setErrorShown] = useState({
     name: false,
@@ -49,7 +50,7 @@ export default function RegisterForm() {
         );
         if (response.status === 201) {
           toast.success(response.data.message);
-          Navigate("/login");
+          reDirect("/login");
         }
       } catch (error) {
         if (error.status === 400) {
@@ -69,6 +70,10 @@ export default function RegisterForm() {
       toast.error(formik.errors[field], { position: "top-right" });
     }
   };
+
+  if (token) {
+    return <Navigate to={"/dashboard"} replace />;
+  }
 
   return (
     <section className="container-fluid bg-dark text-light vh-100 d-flex align-items-center justify-content-center">

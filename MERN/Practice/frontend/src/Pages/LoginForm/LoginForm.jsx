@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 
 export default function LoginForm() {
-  const Navigate = useNavigate();
+  const reDirect = useNavigate();
+
+  const token = localStorage.getItem("token");
 
   const [errorShown, setErrorShown] = useState({
     email: false,
@@ -30,7 +32,7 @@ export default function LoginForm() {
         toast.success(response.data.message);
         const token = response.data.token;
         localStorage.setItem("token", token);
-        Navigate("/");
+        reDirect("/");
       }
     } catch (error) {
       if (error.status === 404) {
@@ -58,6 +60,10 @@ export default function LoginForm() {
       toast.error(formik.errors[field], { position: "top-right" });
     }
   };
+
+  if (token) {
+    return <Navigate to={"/dashboard"} replace />;
+  }
 
   return (
     <section className="container-fluid bg-dark text-light vh-100 d-flex align-items-center justify-content-center">
