@@ -7,8 +7,8 @@ export default function Graphs(props) {
     <>
       <div className="container-fluid pt-4 px-4">
         <div className="row g-4">
-          <Results theme={props.theme} />
-          <Attendance theme={props.theme} />
+          <Results />
+          <Attendance />
         </div>
       </div>
     </>

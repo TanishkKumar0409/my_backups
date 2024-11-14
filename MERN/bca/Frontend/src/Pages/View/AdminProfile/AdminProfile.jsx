@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function AdminProfile() {
-  const Navigate = useNavigate();
+  const reDirector = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState([]);
 
@@ -27,7 +27,7 @@ export default function AdminProfile() {
           `http://localhost:5000/api/admin/delete/${id}`
         );
         if (response.status === 201) {
-          Navigate("/");
+          reDirector("/");
           localStorage.clear();
           window.location.reload();
         }

@@ -24,28 +24,10 @@ import UpdateUser from "./Pages/UpdateUser/UpdateUser";
 function App() {
   const token = localStorage.getItem("token");
 
-  const [openClass, setOpenClass] = useState("");
   const [theme, setTheme] = useState("moon");
-  const [fullIcon, setFullIcon] = useState("expand");
-
-  const toggleOpenClass = () => {
-    setOpenClass(openClass === "" ? "open" : "");
-  };
 
   const handleTheme = () => {
     setTheme(theme === "sun" ? "moon" : "sun");
-  };
-
-  const toggleFullScreen = () => {
-    const element = document.getElementById("root");
-    const isFullScreen = document.fullscreenElement;
-    if (isFullScreen) {
-      document.exitFullscreen();
-      setFullIcon("expand");
-    } else {
-      element.requestFullscreen();
-      setFullIcon("compress");
-    }
   };
 
   const light = {
@@ -57,8 +39,8 @@ function App() {
   };
 
   const dark = {
-    "--primary": "#ed1616",
-    "--primary-hover": "#bc1212",
+    "--primary": "#0a84ff",
+    "--primary-hover": "#0066cc",
     "--secondary": "#191c24",
     "--light": "#6c7293",
     "--dark": "#000000",
@@ -75,14 +57,7 @@ function App() {
           {token ? (
             <Route
               element={
-                <DashboardLayout
-                  toggleOpenClass={toggleOpenClass}
-                  openClass={openClass}
-                  handleTheme={handleTheme}
-                  theme={theme}
-                  toggleFullScreen={toggleFullScreen}
-                  fullIcon={fullIcon}
-                />
+                <DashboardLayout handleTheme={handleTheme} theme={theme} />
               }
             >
               <Route path="/" element={<Dashboard theme={theme} />} />

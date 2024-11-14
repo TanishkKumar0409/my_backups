@@ -24,7 +24,7 @@ ChartJS.register(
   LineController
 );
 
-export default function Attendance(props) {
+export default function Attendance() {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
@@ -44,21 +44,15 @@ export default function Attendance(props) {
             {
               label: "BBA",
               data: [0, 25, 26, 22, 56, 85, 90],
-              backgroundColor:
-                props.theme === "moon"
-                  ? "rgba(235,22,22,1)"
-                  : "rgba(0,123,255,1)",
+              backgroundColor: "rgba(10,132,255,1)",
               borderColor: "rgba(0,0,0,0.7)",
               fill: true,
             },
             {
               label: "BCA",
               data: [35, 45, 55, 76, 80, 95, 98],
-              borderColor: "rgba(0,0,0,0.7)",
-              backgroundColor:
-                props.theme === "moon"
-                  ? "rgba(235,22,22,0.7)"
-                  : "rgba(0,123,255,0.7)",
+              backgroundColor: "rgba(10,132,255,0.7)",
+              borderColor: "rgba(0,0,0,1)",
               fill: true,
             },
           ],
@@ -74,7 +68,7 @@ export default function Attendance(props) {
         chartInstance.current.destroy();
       }
     };
-  }, [props.theme]);
+  }, []);
 
   return (
     <div className="col-sm-12 col-xl-6">

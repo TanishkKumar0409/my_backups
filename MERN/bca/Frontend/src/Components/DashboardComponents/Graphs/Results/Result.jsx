@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 
-export default function Result(props) {
+export default function Result() {
   const canvasRef = useRef(null);
   useEffect(() => {
     const ctx = canvasRef.current.getContext("2d");
@@ -13,26 +13,17 @@ export default function Result(props) {
           {
             label: "BCA",
             data: [15, 25, 40, 55, 70, 85, 100],
-            backgroundColor:
-              props.theme === "moon"
-                ? "rgba(235,22,22,1)"
-                : "rgba(0,123,255,1)",
+            backgroundColor: "rgba(10,132,255,1)",
           },
           {
             label: "BBA",
             data: [10, 15, 30, 10, 60, 55, 85],
-            backgroundColor:
-              props.theme === "moon"
-                ? "rgba(235,22,22,0.7)"
-                : "rgba(0,123,255,0.7)",
+            backgroundColor: "rgba(10,132,255,0.7)",
           },
           {
             label: "BHA",
             data: [12, 20, 25, 50, 65, 80, 95],
-            backgroundColor:
-              props.theme === "moon"
-                ? "rgba(235,22,22,0.5)"
-                : "rgba(0,123,255,0.5)",
+            backgroundColor: "rgba(10,132,255,0.5)",
           },
         ],
       },
@@ -44,7 +35,7 @@ export default function Result(props) {
     return () => {
       myChart.destroy();
     };
-  }, [props.theme]);
+  }, []);
 
   return (
     <div className="col-sm-12 col-xl-6">
