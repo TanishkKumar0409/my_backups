@@ -17,11 +17,14 @@ const updateAdmin = async (req, res) => {
 
     const updatedUser = await Admin.findOneAndUpdate(
       { id },
-      { $set: updateFields }
+      { $set: updateFields },
+      { new: true }
     );
 
     if (updatedUser) {
-      return res.status(201).json({ message:"Admin Updated Successfully",updatedUser });
+      return res
+        .status(201)
+        .json({ message: "Admin Updated Successfully", updatedUser });
     } else {
       return res.status(404).json({ error: "Admin not found" });
     }

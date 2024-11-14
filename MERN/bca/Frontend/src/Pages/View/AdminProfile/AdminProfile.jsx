@@ -1,12 +1,21 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function AdminProfile() {
-  const mapData = JSON.parse(localStorage.getItem("admin"));
   const Navigate = useNavigate();
   const { id } = useParams();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const getAdmin = async () => {
+      const fetchData = await fetch(`http://localhost:5000/api/admin/${id}`);
+      const jsonData = await fetchData.json();
+      setData(jsonData.getAdmin);
+    };
+    getAdmin();
+  }, [id]);
 
   const handleDelete = async () => {
     const confirmDelete = window.confirm(
@@ -37,7 +46,7 @@ export default function AdminProfile() {
           <div className="row">
             <div className="col-md-5">
               <img
-                src={`http://localhost:5000/${mapData.profile}`}
+                src={`http://localhost:5000/${data.profile}`}
                 alt=""
                 className="img-fluid rounded"
               />
@@ -49,25 +58,25 @@ export default function AdminProfile() {
                   <tbody>
                     <tr>
                       <th className="fs-3">Id</th>
-                      <td className="fs-3">{mapData.id}</td>
+                      <td className="fs-3">{data.id}</td>
                     </tr>
                     <tr>
                       <th className="fs-3">Name</th>
-                      <td className="fs-3">{mapData.name}</td>
+                      <td className="fs-3">{data.name}</td>
                     </tr>
                     <tr>
                       <th className="fs-3">Email</th>
-                      <td className="fs-3">{mapData.email}</td>
+                      <td className="fs-3">{data.email}</td>
                     </tr>
                     <tr>
                       <th className="fs-3">Phone</th>
-                      <td className="fs-3">{mapData.contact}</td>
+                      <td className="fs-3">{data.contact}</td>
                     </tr>
                     <tr>
                       <td colSpan={"2"}>
                         <div className="btn-group w-100">
                           <Link
-                            to={`/update-admin/${id}`}
+                            to={`/update-admin/${data.id}`}
                             className="btn btn-red btn-lg"
                           >
                             Update

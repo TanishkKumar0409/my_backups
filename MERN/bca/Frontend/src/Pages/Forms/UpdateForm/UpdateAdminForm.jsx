@@ -61,9 +61,12 @@ export default function UpdateAdminForm() {
       if (response.status === 201) {
         toast.success(response.data.message);
 
-        localStorage.clear();
+        localStorage.setItem(
+          "admin",
+          JSON.stringify(response.data.updatedUser)
+        );
 
-        Navigate(`/sign-in`);
+        Navigate(`/admin/${id}`);
 
         window.location.reload();
       }
