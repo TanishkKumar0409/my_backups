@@ -47,8 +47,27 @@ a:hover {
   color: var(--primary-hover);
 }
 
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+img {
+  width: 100%;
+  aspect-ratio: 4/4;
+  object-fit: cover;
+}
+
 .text-theme {
   color: var(--light);
+}
+
+.text-red {
+  color: var(--primary);
+}
+
+.bg-sec-custom {
+  background: var(--secondary);
 }
 
 input[type="checkbox"]:checked {
@@ -59,6 +78,7 @@ input[type="checkbox"]:checked {
 input:focus {
   box-shadow: 0 0 0 0.2rem var(--primary-hover) !important;
 }
+
 input,
 select {
   background: var(--dark) !important;
@@ -71,15 +91,6 @@ input::file-selector-button {
   color: var(--light) !important;
 }
 
-.btn-red {
-  background: var(--primary) !important;
-  color: white !important;
-  text-wrap: nowrap;
-}
-.btn-red:hover {
-  background: var(--primary-hover) !important;
-}
-
 .custom-placeholder {
   color: var(--light) !important;
   background: var(--dark) !important;
@@ -88,13 +99,6 @@ input::file-selector-button {
   color: var(--light);
 }
 
-.bg-sec-custom {
-  background: var(--secondary);
-}
-
-.text-red {
-  color: var(--primary);
-}
 th,
 td,
 tr {
@@ -102,6 +106,15 @@ tr {
   border-color: var(--dark) !important;
   background: var(--secondary) !important;
   text-wrap: nowrap;
+}
+
+.btn-red {
+  background: var(--primary) !important;
+  color: white !important;
+  text-wrap: nowrap;
+}
+.btn-red:hover {
+  background: var(--primary-hover) !important;
 }
 
 #spinner {
@@ -115,36 +128,6 @@ tr {
   visibility: visible;
   opacity: 1;
   z-index: 9999;
-}
-
-.btn {
-  transition: 0.5s;
-}
-
-.btn-square {
-  width: 38px;
-  height: 38px;
-}
-
-.btn-sm-square {
-  width: 32px;
-  height: 32px;
-}
-
-.btn-lg-square {
-  width: 48px;
-  height: 48px;
-}
-
-.btn-square,
-.btn-sm-square,
-.btn-lg-square {
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: normal;
-  border-radius: 50px;
 }
 
 .sidebar {
@@ -311,17 +294,45 @@ tr {
   }
 }
 
-canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-img {
-  width: 100%;
-  aspect-ratio: 4/4;
-  object-fit: cover;
-}
-
 .custom-group {
   border-left: 1px solid var(--light) !important;
+}
+
+.react-calendar {
+  background: var(--secondary) !important;
+  border: none !important;
+  color: var(--light) !important;
+}
+
+.react-calendar__tile {
+  color: var(--light);
+}
+.react-calendar__tile:hover {
+  color: var(--dark) !important;
+  background: var(--primary-hover) !important;
+  border-radius: 5px;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: var(--primary) !important;
+}
+
+.react-calendar__tile--now {
+  background: var(--dark) !important;
+  color: var(--primary) !important;
+  border-radius: 5px;
+}
+.react-calendar__tile--active {
+  background: var(--primary) !important;
+  color: var(--dark) !important;
+  border-radius: 5px;
+}
+
+.react-calendar__navigation button {
+  color: var(--primary) !important;
+  border-radius: 5px;
+}
+.react-calendar__navigation button:hover {
+  color: var(--primary) !important;
+  background: var(--dark) !important;
 }

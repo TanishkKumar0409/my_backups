@@ -1,7 +1,7 @@
 import React from "react";
 import Messages from "./Messages/Messages";
 import ToDoList from "./ToDoList/ToDoList";
-import Notification from "./Notification/Notification";
+import DashCalendar from "./DashCalendar/DashCalendar";
 
 export default function Extras() {
   return (
@@ -9,7 +9,7 @@ export default function Extras() {
       <div className="container-fluid pt-4 px-4">
         <div className="row g-4">
           <Messages />
-          <Notification />
+          <DashCalendar />
           <ToDoList />
         </div>
       </div>

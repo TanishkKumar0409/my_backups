@@ -28,6 +28,12 @@ export default function ToDoList() {
     setTasks(updatedTasks);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleAddTask();
+    }
+  };
+
   const formatTime = (hours, minutes) => {
     let timeString = "";
     if (hours > 0) {
@@ -68,7 +74,7 @@ export default function ToDoList() {
     <div className="col-sm-12 col-md-6 col-xl-4">
       <div
         className="h-100 bg-sec-custom rounded p-4"
-        style={{ maxHeight: "350px", overflow: "auto" }}
+        style={{ maxHeight: "360px", overflow: "auto" }}
       >
         <div className="d-flex align-items-center justify-content-between mb-4">
           <h6 className="mb-0 text-theme">To Do List</h6>
@@ -79,6 +85,7 @@ export default function ToDoList() {
             placeholder="Enter Task"
             value={task}
             onChange={(e) => setTask(e.target.value)}
+            onKeyPress={handleKeyPress}
             className="form-control custom-placeholder bg-dark border-0"
           />
           <input
@@ -86,6 +93,7 @@ export default function ToDoList() {
             placeholder="Hours"
             value={hours}
             onChange={(e) => setHours(e.target.value)}
+            onKeyPress={handleKeyPress}
             className="form-control custom-placeholder bg-dark border-0 custom-group"
           />
           <input
@@ -93,6 +101,7 @@ export default function ToDoList() {
             placeholder="Minutes"
             value={minutes}
             onChange={(e) => setMinutes(e.target.value)}
+            onKeyPress={handleKeyPress}
             className="form-control custom-placeholder bg-dark border-0 custom-group"
           />
           <button className="btn btn-red ms-2" onClick={handleAddTask}>

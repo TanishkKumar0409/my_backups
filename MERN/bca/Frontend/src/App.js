@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
 import "./App.css";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -60,7 +60,7 @@ function App() {
                 <DashboardLayout handleTheme={handleTheme} theme={theme} />
               }
             >
-              <Route path="/" element={<Dashboard theme={theme} />} />
+              <Route path="/" element={<Dashboard />} />
               <Route path="/add-user" element={<AddUser />} />
               <Route path="/manage-user" element={<ManageUser />} />
               <Route path="/view/:id" element={<View />} />
@@ -68,6 +68,7 @@ function App() {
               <Route path="/products" element={<AllProducts />} />
               <Route path="/update-admin/:id" element={<UpdateAdminForm />} />
               <Route path="/update-user/:id" element={<UpdateUser />} />
+              <Route path="*" element={<Navigate to={`/`} replace />} />
             </Route>
           ) : (
             <>
@@ -77,7 +78,7 @@ function App() {
               />
               <Route path="/sign-in" element={<SignIn theme={theme} />} />
               <Route path="/sign-up" element={<SignUp theme={theme} />} />
-              <Route path="*" element={<SignIn theme={theme} />} />
+              <Route path="*" element={<Navigate to={`/sign-in`} replace />} />
             </>
           )}
         </Routes>

@@ -4,7 +4,7 @@ export default function Messages() {
   return (
     <>
       <div className="col-sm-12 col-md-6 col-xl-4">
-        <div className="h-100 bg-sec-custom rounded p-4" style={{maxHeight:"350px",overflow:"auto"}}>
+        <div className="h-100 bg-sec-custom rounded p-4" style={{maxHeight:"360px",overflow:"auto"}}>
           <div className="d-flex align-items-center justify-content-between mb-2">
             <h6 className="mb-0 text-theme">Message</h6>
           </div>

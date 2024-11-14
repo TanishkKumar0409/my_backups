@@ -5,7 +5,7 @@ import Graphs from "../../Components/DashboardComponents/Graphs/Graphs";
 import Extras from "../../Components/DashboardComponents/Extras/Extras";
 import Table from "../../Components/DashboardComponents/Table/Table";
 
-export default function Dashboard(props) {
+export default function Dashboard() {
   const [data, setData] = useState([]);
   const [courseStats, setCourseStats] = useState({});
 
@@ -39,7 +39,7 @@ export default function Dashboard(props) {
   return (
     <>
       <Stats courseStats={courseStats} />
-      <Graphs theme={props.theme} />
+      <Graphs />
       <div className="container-fluid pt-4 px-4">
         <div className="bg-sec-custom text-center rounded p-4">
           <div className="d-flex align-items-center justify-content-between mb-4">

@@ -2,7 +2,7 @@ import React from "react";
 import Results from "./Results/Result";
 import Attendance from "./Attendance/Attendance";
 
-export default function Graphs(props) {
+export default function Graphs() {
   return (
     <>
       <div className="container-fluid pt-4 px-4">

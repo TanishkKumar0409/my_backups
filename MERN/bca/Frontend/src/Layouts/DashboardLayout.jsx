@@ -10,8 +10,8 @@ export default function DashboardLayout(props) {
     setOpenClass(openClass === "" ? "open" : "");
   };
 
-  
   const [fullIcon, setFullIcon] = useState("expand");
+
   const toggleFullScreen = () => {
     const element = document.getElementById("root");
     const isFullScreen = document.fullscreenElement;
