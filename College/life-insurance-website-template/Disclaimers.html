@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LifeSure - Life Insurance Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+    <script
+      src="https://kit.fontawesome.com/87f0afa689.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="lib/animate/animate.min.css" />
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- Spinner Start -->
+    <div
+      id="spinner"
+      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+    >
+      <div
+        class="spinner-border text-dark"
+        style="width: 3rem; height: 3rem"
+        role="status"
+      ></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Topbar Start -->
+    <div
+      class="container-fluid topbar px-0 px-lg-4 bg-light py-2 d-none d-lg-block"
+    >
+      <div class="container">
+        <div class="row gx-0 align-items-center">
+          <div class="col-lg-8 text-center text-lg-start mb-lg-0">
+            <div class="d-flex flex-wrap">
+              <div class="border-end border-dark pe-3">
+                <a
+                  href="https://www.google.com/maps"
+                  target="_blank"
+                  class="text-muted small"
+                  ><i class="fas fa-map-marker-alt text-dark me-2"></i>Find A
+                  Location</a
+                >
+              </div>
+              <div class="ps-3">
+                <a href="mailto:LifeSure@gmail.com" class="text-muted small"
+                  ><i class="fas fa-envelope text-dark me-2"></i
+                  >LifeSure@gmail.com</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 text-center text-lg-end">
+            <div class="d-flex justify-content-end">
+              <div class="d-flex">
+                <a
+                  class="btn p-0 text-dark me-3"
+                  href="https://www.facebook.com/"
+                  target="_blank"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a
+                  class="btn p-0 text-dark me-3"
+                  href="https://x.com/?lang=en"
+                  target="_blank"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a
+                  class="btn p-0 text-dark me-3"
+                  href="https://www.instagram.com/"
+                  target="_blank"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a
+                  class="btn p-0 text-dark me-0"
+                  href="https://in.linkedin.com/"
+                  target="_blank"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Topbar End -->
+
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <a href="#" class="navbar-brand p-0">
+            <h1 class="text-dark mb-0">
+              <i class="fab fa-slack me-2"></i> LifeSure
+            </h1>
+            <!-- <img src="img/logo.png" alt="Logo"> -->
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+          >
+            <span class="fa fa-bars"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav mx-0 mx-lg-auto">
+              <a href="index.html" class="nav-item nav-link">Home</a>
+              <a href="about.html" class="nav-item nav-link">About</a>
+              <a href="feature.html" class="nav-item nav-link">Features</a>
+              <a href="service.html" class="nav-item nav-link">Services</a>
+              <a href="blog.html" class="nav-item nav-link active">Blog</a>
+              <a href="contact.html" class="nav-item nav-link">Contact</a>
+              <div class="nav-btn px-3">
+                <a
+                  href="https://www.adobe.com/express/discover/quotes/life"
+                  target="_blank"
+                  class="btn btn-dark rounded-pill py-2 px-4 ms-3 flex-shrink-0"
+                >
+                  Get a Quote</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-flex flex-shrink-0 ps-4">
+            <a
+              href="contact.html"
+              class="btn btn-light btn-lg-square rounded-circle position-relative wow tada"
+              data-wow-delay=".9s"
+            >
+              <i
+                class="fa fa-phone-alt fa-2x"
+                style="transform: rotatey(180deg)"
+              ></i>
+              <div class="position-absolute" style="top: 7px; right: 12px">
+                <span><i class="fa fa-comment-dots text-dark"></i></span>
+              </div>
+            </a>
+            <div class="d-flex flex-column ms-3">
+              <span>Reach Us</span>
+              <a href="tel:+91 95576 23131" class="text-decoration-none"
+                ><span class="text-dark">Free: +91 95576 23131</span></a
+              >
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+      <div class="container text-center py-5" style="max-width: 900px">
+        <h4
+          class="text-white display-4 mb-4 wow fadeInDown headText"
+          data-wow-delay="0.1s"
+        >
+          Our Privacy Policies
+        </h4>
+        <ol
+          class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown"
+          data-wow-delay="0.3s"
+        >
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active text-dark">Privay Policy</li>
+        </ol>
+      </div>
+    </div>
+    <!-- Header End -->
+
+   <!-- Disclaimer Start -->
+<div class="container-fluid disclaimer-section py-5">
+    <div class="container py-5">
+      <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+        <h4 class="text-dark">Legal Notices and Information</h4>
+        <h1 class="display-4 mb-4">Disclaimer</h1>
+        <p class="mb-0">
+          The information provided by LifeSure on this website is intended for general informational purposes only.
+          By using our website, you agree to the terms and conditions outlined in this disclaimer.
+        </p>
+      </div>
+  
+      <div class="row g-4 justify-content-center">
+        <div class="col-lg-12 col-xl-12 wow fadeInUp" data-wow-delay="0.2s">
+          <div class="disclaimer-item shadow rounded p-4">
+            <div class="disclaimer-content">
+              <h5 class="mb-3">
+                <i class="fa fa-exclamation-circle text-dark me-2"></i>General Information Disclaimer
+              </h5>
+              <p class="mb-3">
+                The content provided on LifeSure’s website, including any text, images, graphics, or links, is for general informational purposes only. It does not constitute advice, legal, financial, or professional consultation.
+                We endeavor to ensure that the information is up to date and accurate. However, LifeSure makes no representations or warranties, express or implied, regarding the accuracy, completeness, or reliability of the content provided.
+              </p>
+              <p>
+                Users of the site are encouraged to verify any information before relying on it, as LifeSure will not be held responsible for any inaccuracies, errors, or omissions in the content. Use of the information is at your own risk.
+              </p>
+  
+              <h5 class="mb-3">
+                <i class="fa fa-hand-paper text-dark me-2"></i>No Warranty or Guarantee
+              </h5>
+              <p class="mb-3">
+                While LifeSure aims to provide accurate and up-to-date information, all content on this website is provided "as is" without any warranty or guarantee, express or implied. This includes, but is not limited to, warranties of merchantability, fitness for a particular purpose, or non-infringement of intellectual property.
+              </p>
+              <p>
+                LifeSure disclaims any responsibility for any damage, loss, or inconvenience resulting from the use of our website, including technical errors, security breaches, or any other issues that may occur while browsing the website.
+              </p>
+  
+              <h5 class="mb-3">
+                <i class="fa fa-user-shield text-dark me-2"></i>External Links and Third-Party Websites
+              </h5>
+              <p class="mb-3">
+                LifeSure’s website may contain links to third-party websites or services that are not owned or controlled by us. These links are provided for your convenience and do not imply endorsement or approval of the content, policies, or practices of those third-party sites.
+              </p>
+              <p>
+                LifeSure is not responsible for the content, accuracy, or reliability of third-party websites and assumes no liability for any damages or loss incurred by users as a result of visiting such websites. Users should read and understand the privacy policies and terms of service of any third-party sites they interact with.
+              </p>
+  
+              <h5 class="mb-3">
+                <i class="fa fa-money-bill text-dark me-2"></i>Financial and Insurance Product Disclaimer
+              </h5>
+              <p class="mb-3">
+                The financial and insurance products mentioned on LifeSure’s website are subject to the terms, conditions, exclusions, and limitations outlined in their respective policy documents. The availability of products and services, including pricing and eligibility, may vary based on your location, profile, and regulatory guidelines.
+              </p>
+              <p>
+                LifeSure does not guarantee approval of any insurance policy or financial product. All insurance coverage is subject to underwriting approval, and the decision to offer a policy rests solely with the insurer. We recommend consulting with a licensed financial advisor or insurance agent before making any decisions regarding financial products or insurance coverage.
+              </p>
+  
+              <h5 class="mb-3">
+                <i class="fa fa-globe text-dark me-2"></i>Geographical Disclaimer
+              </h5>
+              <p class="mb-3">
+                LifeSure’s products and services are intended for residents of jurisdictions where LifeSure is authorized to operate. We do not represent that materials or services on this website are appropriate or available for use in locations outside of our service regions.
+              </p>
+              <p>
+                Users who access our website from outside of these regions do so at their own risk and are responsible for compliance with local laws.
+              </p>
+  
+              <h5 class="mb-3">
+                <i class="fa fa-balance-scale text-dark me-2"></i>Limitation of Liability
+              </h5>
+              <p class="mb-3">
+                To the fullest extent permitted by law, LifeSure, its officers, employees, agents, or affiliates shall not be held liable for any direct, indirect, consequential, or incidental damages, including, but not limited to, lost profits, data loss, or business interruptions, arising out of the use of, or inability to use, this website.
+              </p>
+              <p>
+                This includes damages resulting from technical errors, security vulnerabilities, or the reliance on any information provided by the website. You agree to use the website at your own risk.
+              </p>
+  
+              <h5 class="mb-3">
+                <i class="fa fa-lock text-dark me-2"></i>Intellectual Property and Copyright
+              </h5>
+              <p class="mb-3">
+                All content, including text, images, logos, and graphics on the LifeSure website, is protected by copyright, trademark, and other intellectual property rights. Unauthorized reproduction, distribution, or use of the content is strictly prohibited.
+              </p>
+              <p>
+                Users may not modify, copy, distribute, display, or transmit any content from the website without prior written consent from LifeSure.
+              </p>
+  
+              <h5 class="mb-3">
+                <i class="fa fa-edit text-dark me-2"></i>Changes to the Disclaimer
+              </h5>
+              <p class="mb-3">
+                LifeSure reserves the right to modify or update this Disclaimer at any time without prior notice. Changes will be effective immediately upon posting to the website. We encourage users to review this page periodically to stay informed about the terms governing the use of our website.
+              </p>
+  
+              <h5 class="mb-3">
+                <i class="fa fa-envelope text-dark me-2"></i>Contact Us
+              </h5>
+              <p class="mb-3">
+                If you have any questions regarding this Disclaimer or any other aspect of the website, feel free to contact us at <strong>lifeSure@gmail.com</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Disclaimer End -->
+  
+
+    <!-- Footer Start -->
+    <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+      <div class="container py-5">
+        <div class="row g-5">
+          <div class="col-xl-9">
+            <div class="mb-5">
+              <div class="row g-4">
+                <div class="col-md-6 col-lg-6 col-xl-5">
+                  <div class="footer-item">
+                    <a href="index.html" class="p-0">
+                      <h3 class="text-white">
+                        <i class="fab fa-slack me-3"></i> LifeSure
+                      </h3>
+                      <!-- <img src="img/logo.png" alt="Logo"> -->
+                    </a>
+                    <p class="text-white mb-4">
+                      Secure your future with confidence. Reliable coverage,
+                      expert guidance, and peace of mind await....
+                    </p>
+                    <div class="footer-btn d-flex">
+                      <a
+                        class="btn btn-md-square rounded-circle me-3"
+                        href="https://www.facebook.com/"
+                        ><i class="fab fa-facebook-f"></i
+                      ></a>
+                      <a
+                        class="btn btn-md-square rounded-circle me-3"
+                        href="https://x.com/?lang=en"
+                        ><i class="fab fa-twitter"></i
+                      ></a>
+                      <a
+                        class="btn btn-md-square rounded-circle me-3"
+                        href="https://www.instagram.com/"
+                        ><i class="fab fa-instagram"></i
+                      ></a>
+                      <a
+                        class="btn btn-md-square rounded-circle me-0"
+                        href="https://in.linkedin.com/"
+                        ><i class="fab fa-linkedin-in"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                  <div class="footer-item">
+                    <h4 class="text-white mb-4">Useful Links</h4>
+                    <a href="about.html"
+                      ><i class="fas fa-angle-right me-2"></i> About Us</a
+                    >
+                    <a href="feature.html"
+                      ><i class="fas fa-angle-right me-2"></i> Features</a
+                    >
+                    <a href="service.html"
+                      ><i class="fas fa-angle-right me-2"></i> Services</a
+                    >
+                    <a href="blog.html"
+                      ><i class="fas fa-angle-right me-2"></i> Blogs</a
+                    >
+                    <a href="contact.html"
+                      ><i class="fas fa-angle-right me-2"></i> Contact</a
+                    >
+                    <a href="privacyPolicy.html"
+                      ><i class="fas fa-angle-right me-2"></i> Pivacy
+                      Policies</a
+                    >
+                    <a href="TermsAndConditions.html"
+                      ><i class="fas fa-angle-right me-2"></i> Terms and
+                      Conditions</a
+                    >
+                    <a href="Disclaimers.html"
+                      ><i class="fas fa-angle-right me-2"></i> Disclaimers</a
+                    >
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-4">
+                  <div class="footer-item">
+                    <h4 class="mb-4 text-white">Instagram</h4>
+                    <div class="row g-3">
+                      <div class="col-4">
+                        <div class="footer-instagram rounded">
+                          <img
+                            src="img/instagram-footer-1.jpg"
+                            class="img-fluid w-100"
+                            alt=""
+                          />
+                          <div class="footer-search-icon">
+                            <a
+                              href="img/instagram-footer-1.jpg"
+                              data-lightbox="footerInstagram-1"
+                              class="my-auto"
+                              ><i class="fas fa-link text-white"></i
+                            ></a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="footer-instagram rounded">
+                          <img
+                            src="img/instagram-footer-2.jpg"
+                            class="img-fluid w-100"
+                            alt=""
+                          />
+                          <div class="footer-search-icon">
+                            <a
+                              href="img/instagram-footer-2.jpg"
+                              data-lightbox="footerInstagram-2"
+                              class="my-auto"
+                              ><i class="fas fa-link text-white"></i
+                            ></a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="footer-instagram rounded">
+                          <img
+                            src="img/instagram-footer-3.jpg"
+                            class="img-fluid w-100"
+                            alt=""
+                          />
+                          <div class="footer-search-icon">
+                            <a
+                              href="img/instagram-footer-3.jpg"
+                              data-lightbox="footerInstagram-3"
+                              class="my-auto"
+                              ><i class="fas fa-link text-white"></i
+                            ></a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="footer-instagram rounded">
+                          <img
+                            src="img/instagram-footer-4.jpg"
+                            class="img-fluid w-100"
+                            alt=""
+                          />
+                          <div class="footer-search-icon">
+                            <a
+                              href="img/instagram-footer-4.jpg"
+                              data-lightbox="footerInstagram-4"
+                              class="my-auto"
+                              ><i class="fas fa-link text-white"></i
+                            ></a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="footer-instagram rounded">
+                          <img
+                            src="img/instagram-footer-5.jpg"
+                            class="img-fluid w-100"
+                            alt=""
+                          />
+                          <div class="footer-search-icon">
+                            <a
+                              href="img/instagram-footer-5.jpg"
+                              data-lightbox="footerInstagram-5"
+                              class="my-auto"
+                              ><i class="fas fa-link text-white"></i
+                            ></a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="footer-instagram rounded">
+                          <img
+                            src="img/instagram-footer-6.jpg"
+                            class="img-fluid w-100"
+                            alt=""
+                          />
+                          <div class="footer-search-icon">
+                            <a
+                              href="img/instagram-footer-6.jpg"
+                              data-lightbox="footerInstagram-6"
+                              class="my-auto"
+                              ><i class="fas fa-link text-white"></i
+                            ></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="pt-5"
+              style="border-top: 1px solid rgba(255, 255, 255, 0.08)"
+            >
+              <div class="row g-0">
+                <div class="col-12">
+                  <div class="row g-4">
+                    <div class="col-lg-6 col-xl-4">
+                      <div class="d-flex">
+                        <div
+                          class="btn-xl-square bg-dark text-white rounded p-4 me-4"
+                        >
+                          <i class="fas fa-map-marker-alt fa-2x"></i>
+                        </div>
+                        <div>
+                          <h4 class="text-white">Address</h4>
+                          <p class="mb-0 text-white">123 Street Dehradun</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-4">
+                      <div class="d-flex">
+                        <div
+                          class="btn-xl-square bg-dark text-white rounded p-4 me-4"
+                        >
+                          <i class="fas fa-envelope fa-2x"></i>
+                        </div>
+                        <div>
+                          <h4 class="text-white">Mail Us</h4>
+                          <p class="mb-0 text-white">LifeSure@gmail.com</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-4">
+                      <div class="d-flex">
+                        <div
+                          class="btn-xl-square bg-dark text-white rounded p-4 me-4"
+                        >
+                          <i
+                            class="fa fa-phone-alt fa-2x"
+                            style="transform: rotatey(180deg)"
+                          ></i>
+                        </div>
+                        <div>
+                          <h4 class="text-white">Telephone</h4>
+                          <p class="mb-0 text-white">+91 95576 23131</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3">
+            <div class="footer-item">
+              <h4 class="text-white mb-4">Newsletter</h4>
+              <p class="text-white mb-3">
+                Stay informed with our newsletter! Get the latest updates,
+                expert tips, and exclusive offers directly to your inbox each
+                month.
+              </p>
+              <div class="position-relative rounded-pill mb-4">
+                <input
+                  class="form-control rounded-pill w-100 py-3 ps-4 pe-5"
+                  type="text"
+                  placeholder="Enter your email"
+                />
+                <button
+                  type="button"
+                  class="btn btn-dark rounded-pill position-absolute top-0 end-0 py-2 mt-2 me-2"
+                >
+                  SignUp
+                </button>
+              </div>
+              <div class="d-flex flex-shrink-0">
+                <div class="footer-btn">
+                  <a
+                    href="contact.html"
+                    class="btn btn-lg-square rounded-circle position-relative wow tada"
+                    data-wow-delay=".9s"
+                  >
+                    <i
+                      class="fa fa-phone-alt fa-2x"
+                      style="transform: rotatey(180deg)"
+                    ></i>
+                    <div
+                      class="position-absolute"
+                      style="top: 2px; right: 12px"
+                    >
+                      <span
+                        ><i class="fa fa-comment-dots text-secondary"></i
+                      ></span>
+                    </div>
+                  </a>
+                </div>
+                <div class="d-flex flex-column ms-3 flex-shrink-0 text-light">
+                  <span>Reach Us</span>
+                  <a href="tel:+91 95576 23131"
+                    ><span class="text-white">+91 95576 23131</span></a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-md-6 text-center text-md-end mb-md-0">
+            <span class="text-white"
+              ><a href="index.html#" class="border-bottom text-white"
+                ><i class="fas fa-copyright text-light me-2"></i>Life Sure </a
+              >, All right reserved.</span
+            >
+          </div>
+          <div class="col-md-6 text-center text-md-start text-white">
+            <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+            <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+            <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+            Designed By
+            <a
+              class="border-bottom text-white"
+              href="https://github.com/TanishkKumar0409"
+              >Tanishk Kumar</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Copyright End -->
+
+    <!-- Back to Top -->
+    <a
+      href="#"
+      class="btn btn-light shadow-lg btn-lg-square rounded-circle back-to-top"
+      ><i class="fa fa-arrow-up"></i
+    ></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
