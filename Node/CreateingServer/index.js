@@ -7,7 +7,7 @@ const app = http.createServer((req, res) => {
     if (!error) {
       res.end("Hello i am Server");
     } else if (error) {
-      res.end(error);
+      res.end(error.message);
     }
   });
 });
