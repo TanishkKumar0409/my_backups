@@ -1,7 +1,7 @@
 import http from "http";
+import fs from "fs"
 
 const app = http.createServer((req, res) => {
-  console.log("Requested");
   res.end("Hello i am Server");
 });
 
