@@ -40,7 +40,7 @@ export default function LoginForm() {
       } else if (error.status === 500) {
         toast.error(error.response.data.message);
       } else {
-        toast.error("Something went wrong");
+        toast.error(error);
       }
     }
   };

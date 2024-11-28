@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
+import { API } from "../../Services/API";
 
 export default function RegisterForm() {
   const reDirect = useNavigate();
@@ -44,10 +45,7 @@ export default function RegisterForm() {
     validationSchema,
     onSubmit: async (values) => {
       try {
-        const response = await axios.post(
-          "http://localhost:8000/api/user/new",
-          values
-        );
+        const response = await API.post("/user/new", values);
         if (response.status === 201) {
           toast.success(response.data.message);
           reDirect("/login");
