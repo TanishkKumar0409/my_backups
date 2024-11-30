@@ -10,6 +10,7 @@ import Register from "./Pages/Forms/Register/Register";
 import Main from "./Pages/Main/Main";
 import UserHistory from "./Pages/UserHistory/UserHistory";
 import UserStorage from "./Pages/UserStorage/UserStorage";
+import ContactUs from "./Pages/ContactUs/ContactUs";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
           <Route path="/main" element={<Main />} />
           <Route path="/main/history" element={<UserHistory />} />
           <Route path="main/storage" element={<UserStorage />} />
+
+          <Route path="/contact" element={<ContactUs />} />
         </Routes>
       </BrowserRouter>
     </>
