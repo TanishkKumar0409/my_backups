@@ -1,14 +1,11 @@
 :root {
   --primary-dark-blue: #1e3a8a;
   --primary-soft-gray: #ececec;
-
   --accent-cyan: #06b6d4;
   --accent-purple: #a78bfa;
-
   --success-green: #10b981;
   --warning-yellow: #fbbf24;
   --error-red: #ef4444;
-
   --background-dark: #111827;
   --text-primary: #ffffff;
   --text-secondary: #9ca3af;
@@ -61,18 +58,10 @@
 
 .custom-btn {
   color: #fff;
-  border-radius: 5px;
   padding: 10px 25px;
-  font-family: "Lato", sans-serif;
-  font-weight: 500;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
   position: relative;
-  display: inline-block;
   box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
     7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
-  outline: none;
 }
 
 .btn-custom {
@@ -94,37 +83,15 @@
     var(--primary-dark-blue) 75%
   );
   z-index: -1;
-
   transition: all 0.3s ease;
 }
 .btn-custom:hover {
   background: transparent;
-  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.5),
-    -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
-    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5),
-    inset 4px 4px 6px 0 rgba(116, 125, 136, 0.3);
   color: #fff;
 }
 .btn-custom:hover:after {
   -webkit-transform: scale(2) rotate(180deg);
   transform: scale(2) rotate(180deg);
-  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.5),
-    -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
-    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5),
-    inset 4px 4px 6px 0 rgba(116, 125, 136, 0.3);
-}
-
-.dropzone {
-  position: relative;
-  background: #f9f9f9;
-  border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.dropzone:hover {
-  transform: scale(1.02);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
 .form-box {
@@ -155,6 +122,23 @@
   border-radius: 50%;
 }
 
+.dropzone {
+  position: relative;
+  background: #f9f9f9;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.dropzone:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.dropzone .animate-hide {
+  transition: 0.2s;
+}
+
 .dropzone:hover .animate-hide {
   opacity: 0.3;
 }
@@ -169,8 +153,6 @@
   justify-content: center;
   align-items: center;
   z-index: -2;
-  pointer-events: none;
-  flex-direction: column;
 }
 
 .dropBoxElements p {
@@ -191,6 +173,31 @@
 .dropBoxElements p:nth-child(3) {
   color: var(--primary-dark-blue);
   animation: float3 5s ease-in-out infinite;
+}
+
+.AnimatedIcons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+.AnimatedIcons i {
+  position: absolute;
+  font-size: 10rem;
+  background: linear-gradient(
+    var(--error-red),
+    var(--primary-soft-gray),
+    var(--primary-dark-blue)
+  );
+  filter: drop-shadow(0 0 1px var(--text-secondary));
+  background-clip: text;
+  color: transparent;
+  animation: animatedIconsMove 80s ease-in-out infinite;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
 }
 
 @keyframes float1 {
@@ -227,112 +234,69 @@
   }
 }
 
-@keyframes move {
-  0% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(50px, -50px);
-  }
-  50% {
-    transform: translate(-50px, 50px);
-  }
-  75% {
-    transform: translate(-100px, -100px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-.AnimatedIcons {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1; /* Make sure the icons are in the background */
-}
-
-.AnimatedIcons i {
-  position: absolute;
-  font-size: 10rem;
-  background: linear-gradient(
-    var(--error-red),
-    var(--primary-soft-gray),
-    var(--primary-dark-blue)
-  );
-  filter: drop-shadow(0 0 1px var(--text-secondary));
-  background-clip: text;
-  color: transparent;
-  animation: animatedIconsMove 80s ease-in-out infinite;
-  opacity: 0.4;
-  transition: opacity 0.3s ease;
-}
 @keyframes animatedIconsMove {
   0% {
-    top: var(--x);
-    left: var(--y);
+    top: var(--start-top);
+    left: var(--start-left);
   }
   6.25% {
-    top: var(--z);
-    left: var(--w);
+    top: var(--end-top);
+    left: var(--end-left);
   }
   12.5% {
-    top: var(--w);
-    left: var(--x);
+    top: var(--end-left);
+    left: var(--start-top);
   }
   18.75% {
-    top: var(--y);
-    left: var(--z);
+    top: var(--start-left);
+    left: var(--end-top);
   }
   25% {
-    top: var(--w);
-    left: var(--y);
+    top: var(--end-left);
+    left: var(--start-left);
   }
   31.25% {
-    top: var(--x);
-    left: var(--w);
+    top: var(--start-top);
+    left: var(--end-left);
   }
   37.5% {
-    top: var(--z);
-    left: var(--y);
+    top: var(--end-top);
+    left: var(--start-left);
   }
   43.75% {
-    top: var(--w);
-    left: var(--z);
+    top: var(--end-left);
+    left: var(--end-top);
   }
   50% {
-    top: var(--x);
-    left: var(--z);
+    top: var(--start-top);
+    left: var(--end-top);
   }
   56.25% {
-    top: var(--y);
-    left: var(--w);
+    top: var(--start-left);
+    left: var(--end-left);
   }
   62.5% {
-    top: var(--z);
-    left: var(--x);
+    top: var(--end-top);
+    left: var(--start-top);
   }
   68.75% {
-    top: var(--y);
-    left: var(--x);
+    top: var(--start-left);
+    left: var(--start-top);
   }
   75% {
-    top: var(--x);
-    left: var(--z);
+    top: var(--start-top);
+    left: var(--end-top);
   }
   81.25% {
-    top: var(--z);
-    left: var(--x);
+    top: var(--end-top);
+    left: var(--start-top);
   }
   87.5% {
-    top: var(--x);
-    left: var(--w);
+    top: var(--start-top);
+    left: var(--end-left);
   }
   100% {
-    top: var(--y);
-    left: var(--z);
+    top: var(--start-left);
+    left: var(--end-top);
   }
 }

@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DragAndDropBox from "./DragAndDropBox/DragAndDropBox";
 
 export default function Banner() {
-  const randomStyle = (index) => ({
-    "--w": `${Math.floor(Math.random() * 100)}%`,
-    "--x": `${Math.floor(Math.random() * 75) - 20}%`,
-    "--y": `${Math.floor(Math.random() * 60) - 20}%`,
-    "--z": `${Math.floor(Math.random() * 90) + 10}%`,
-  });
+  const [iconStyles, setIconStyles] = useState([]);
+
+  const generateRandomStyles = () => {
+    const styles = Array.from({ length: 9 }, (_, index) => ({
+      "--end-left": `${Math.floor(Math.random() * 100) - index * 10}%`,
+      "--start-top": `${Math.floor(Math.random() * 100) - index * 10}%`,
+      "--start-left": `${Math.floor(Math.random() * 100) - index * 10}%`,
+      "--end-top": `${Math.floor(Math.random() * 100) - index * 10}%`,
+    }));
+    setIconStyles(styles);
+  };
+
+  useEffect(() => {
+    generateRandomStyles();
+    const interval = setInterval(() => {
+      generateRandomStyles();
+    }, 45000);
+    return () => clearInterval(interval);
+  }, []);
 
   const iconsArray = [
     "file",
@@ -37,7 +50,7 @@ export default function Banner() {
               your files here to start sharing them securely with others.
             </p>
             <button className="btn btn-custom custom-btn overflow-hidden border-0 mt-4">
-              Let's Start With login
+              Let's Start With Login
             </button>
           </div>
           <div className="col-md-6 d-flex justify-content-center align-items-center">
@@ -52,7 +65,7 @@ export default function Banner() {
               className={`fa-solid fa-${icon} ${
                 index % 2 === 0 ? "d-md-block d-none" : ""
               }`}
-              style={randomStyle(index)} // Pass index for uniqueness
+              style={iconStyles[index]}
             ></i>
           ))}
         </div>
