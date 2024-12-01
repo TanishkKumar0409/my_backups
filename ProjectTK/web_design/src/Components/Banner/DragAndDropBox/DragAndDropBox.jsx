@@ -16,7 +16,7 @@ export default function DragAndDropBox() {
 
   return (
     <div className="container-fluid py-5 ">
-      <div className="bg-light text-dark p-md-5 p-3 rounded shadow-sm form-box">
+      <div className="bg-white text-dark p-md-5 p-3 rounded shadow-sm form-box">
         <form>
           <div
             {...getRootProps()}
