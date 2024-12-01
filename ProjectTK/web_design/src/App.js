@@ -11,11 +11,13 @@ import Main from "./Pages/Main/Main";
 import UserHistory from "./Pages/UserHistory/UserHistory";
 import UserStorage from "./Pages/UserStorage/UserStorage";
 import ContactUs from "./Pages/ContactUs/ContactUs";
+import Navbar from "./Components/Navigation/Navbar/Navbar";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

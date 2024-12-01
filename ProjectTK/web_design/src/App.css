@@ -1,0 +1,24 @@
+:root {
+  --primary-dark-blue: #1e3a8a;
+  --primary-soft-gray: #f3f4f6;
+
+  --accent-cyan: #06b6d4;
+  --accent-purple: #a78bfa;
+
+  --success-green: #10b981;
+  --warning-yellow: #fbbf24;
+  --error-red: #ef4444;
+
+  --background-dark: #111827;
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+}
+
+.navBg {
+  background: linear-gradient(
+    45deg,
+    var(--primary-dark-blue),
+    var(--accent-purple),
+    var(--accent-cyan)
+  );
+}
