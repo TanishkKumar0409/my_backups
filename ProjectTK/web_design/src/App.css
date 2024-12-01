@@ -143,6 +143,13 @@
   opacity: 0.3;
 }
 
+.selected{
+  color: var(--warning-yellow);
+}
+.selected span{
+  color: var(--success-green);
+}
+
 .dropBoxElements {
   height: 100%;
   width: 100%;
