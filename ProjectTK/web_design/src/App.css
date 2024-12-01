@@ -55,9 +55,8 @@
   );
 }
 
-
-.textJustify{
-    text-align: justify;
+.textJustify {
+  text-align: justify;
 }
 
 .custom-btn {
@@ -245,28 +244,95 @@
     transform: translate(0, 0);
   }
 }
-.bgGradient {
-    background: linear-gradient(
-      90deg,
-      var(--primary-dark-blue),
-      var(--accent-purple),
-      var(--accent-cyan)
-    );
-    position: relative;
-    z-index: 0;
+
+.AnimatedIcons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1; /* Make sure the icons are in the background */
+}
+
+.AnimatedIcons i {
+  position: absolute;
+  font-size: 10rem;
+  background: linear-gradient(
+    var(--error-red),
+    var(--primary-soft-gray),
+    var(--primary-dark-blue)
+  );
+  filter: drop-shadow(0 0 1px var(--text-secondary));
+  background-clip: text;
+  color: transparent;
+  animation: animatedIconsMove 80s ease-in-out infinite;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+@keyframes animatedIconsMove {
+  0% {
+    top: var(--x);
+    left: var(--y);
   }
-  
-  .text-light {
-    color: var(--text-primary);
+  6.25% {
+    top: var(--z);
+    left: var(--w);
   }
-  
-  .textJustify {
-    text-align: justify;
+  12.5% {
+    top: var(--w);
+    left: var(--x);
   }
-  
-  @media (max-width: 767px) {
-    .col-md-6 {
-      margin-bottom: 20px;
-    }
+  18.75% {
+    top: var(--y);
+    left: var(--z);
   }
-  
+  25% {
+    top: var(--w);
+    left: var(--y);
+  }
+  31.25% {
+    top: var(--x);
+    left: var(--w);
+  }
+  37.5% {
+    top: var(--z);
+    left: var(--y);
+  }
+  43.75% {
+    top: var(--w);
+    left: var(--z);
+  }
+  50% {
+    top: var(--x);
+    left: var(--z);
+  }
+  56.25% {
+    top: var(--y);
+    left: var(--w);
+  }
+  62.5% {
+    top: var(--z);
+    left: var(--x);
+  }
+  68.75% {
+    top: var(--y);
+    left: var(--x);
+  }
+  75% {
+    top: var(--x);
+    left: var(--z);
+  }
+  81.25% {
+    top: var(--z);
+    left: var(--x);
+  }
+  87.5% {
+    top: var(--x);
+    left: var(--w);
+  }
+  100% {
+    top: var(--y);
+    left: var(--z);
+  }
+}
