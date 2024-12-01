@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ProfileOffcanvas from "../../ProfileOffcanvas/ProfileOffcanvas";
 
 export default function Navbar() {
+  const [shadowClass, setShadowClass] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      var scroll = window.scrollY;
+      setShadowClass(scroll > 100 ? "shadow" : "");
+    };
+    window.addEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="shadow navBg">
+    <header className={`bgGradient sticky-top ${shadowClass}`}>
       <nav className="navbar navbar-expand-lg navbar-dark">
         <div className="container-fluid">
           <Link className="navbar-brand fs-4 fw-bold" to="/">
@@ -12,7 +22,6 @@ export default function Navbar() {
           </Link>
 
           <div className="d-flex align-items-center">
-            {/* Offcanvas Trigger for Small Screens */}
             <button
               className="btn btn-outline-light d-lg-none me-2"
               type="button"
@@ -55,7 +64,6 @@ export default function Navbar() {
               </li>
             </ul>
 
-            {/* Offcanvas Trigger for Larger Screens */}
             <button
               className="btn btn-outline-light d-none d-lg-flex align-items-center ms-3"
               type="button"
@@ -75,7 +83,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Offcanvas Component */}
       <ProfileOffcanvas />
     </header>
   );
