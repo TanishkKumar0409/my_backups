@@ -14,6 +14,51 @@
   --text-secondary: #9ca3af;
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    45deg,
+    var(--primary-dark-blue),
+    var(--accent-purple),
+    var(--accent-cyan)
+  );
+  border-radius: 6px;
+  animation: scroll-animate 3s ease infinite;
+  transition: 0.5s;
+}
+
+@keyframes scroll-animate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    45deg,
+    var(--accent-cyan),
+    var(--accent-purple),
+    var(--primary-dark-blue)
+  );
+}
+
+.border-dashed-1 {
+  border: 1px dashed var(--accent-cyan);
+}
+
 .bgGradient {
   background: linear-gradient(
     90deg,
@@ -24,8 +69,6 @@
 }
 
 .custom-btn {
-  width: 130px;
-  height: 40px;
   color: #fff;
   border-radius: 5px;
   padding: 10px 25px;
@@ -78,7 +121,9 @@
     -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
     inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5),
     inset 4px 4px 6px 0 rgba(116, 125, 136, 0.3);
-}.dropzone {
+}
+
+.dropzone {
   position: relative;
   background: #f9f9f9;
   border-radius: 10px;
@@ -91,11 +136,36 @@
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-.animate-hide {
-    transition: 0.2s;
+.form-box {
+  position: relative;
+  overflow: hidden;
 }
+
+.form-box:after {
+  content: "";
+  position: absolute;
+  background: var(--error-red);
+  opacity: 0.3;
+  top: -20%;
+  left: -10%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+.form-box::before {
+  content: "";
+  position: absolute;
+  background: var(--warning-yellow);
+  opacity: 0.3;
+  bottom: -20%;
+  right: -10%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
 .dropzone:hover .animate-hide {
-    opacity: 0.3; /* Hide the element with class animate-hide on hover */
+  opacity: 0.3;
 }
 
 .dropBoxElements {
@@ -107,7 +177,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: -1;
+  z-index: -2;
   pointer-events: none;
   flex-direction: column;
 }
@@ -115,19 +185,20 @@
 .dropBoxElements p {
   font-weight: 900;
   font-size: 2rem;
-  color: #007bff;
-  opacity: 0.8;
   position: absolute;
   transition: transform 1s ease;
 }
 
 .dropBoxElements p:nth-child(1) {
+  color: var(--accent-cyan);
   animation: float1 5s ease-in-out infinite;
 }
 .dropBoxElements p:nth-child(2) {
+  color: var(--accent-purple);
   animation: float2 5s ease-in-out infinite;
 }
 .dropBoxElements p:nth-child(3) {
+  color: var(--primary-dark-blue);
   animation: float3 5s ease-in-out infinite;
 }
 
@@ -139,6 +210,7 @@
   }
   50% {
     top: 0;
+    transform: scale(0.8) rotate(120deg);
   }
 }
 
@@ -160,5 +232,24 @@
   }
   50% {
     top: 0;
+    transform: scale(1.2) rotate(70deg);
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(50px, -50px);
+  }
+  50% {
+    transform: translate(-50px, 50px);
+  }
+  75% {
+    transform: translate(-100px, -100px);
+  }
+  100% {
+    transform: translate(0, 0);
   }
 }
