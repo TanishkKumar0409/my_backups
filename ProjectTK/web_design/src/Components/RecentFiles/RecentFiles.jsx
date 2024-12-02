@@ -23,6 +23,18 @@ export default function RecentFiles() {
     },
   };
 
+  const urls = [
+    "background.png",
+    "FileSharingAndPasswordManagementSystem.pdf",
+    "javascript.xlsx",
+    "lock.png",
+    "MyResume.pdf",
+    "ProjectTK Design.jpg",
+    "Ria DB.xlsx",
+    "Tan.png",
+    "WhatsApp 2024-11-22 10-53-53.mp4",
+  ];
+
   return (
     <>
       <section className="container">
@@ -30,24 +42,23 @@ export default function RecentFiles() {
           <h2>Recent Files</h2>
           <div className="col">
             <OwlCarousel className="owl-theme" {...owlOptions}>
-              <div className="item">
-                <h4>1</h4>
-              </div>
-              <div className="item">
-                <h4>2</h4>
-              </div>
-              <div className="item">
-                <h4>3</h4>
-              </div>
-              <div className="item">
-                <h4>4</h4>
-              </div>
-              <div className="item">
-                <h4>5</h4>
-              </div>
-              <div className="item">
-                <h4>6</h4>
-              </div>
+              {urls.map((item, index) => (
+                <div className="item" key={index}>
+                  <div className="card">
+                    <div className="card-body">
+                      <img
+                        src={`https://pixlr.com/images/generator/photo-generator.webp`}
+                        className="img-fluid"
+                        alt=""
+                      />
+                    </div>
+                    <div className="card-footer d-flex justify-content-between">
+                      <p className="truncated-file-name">{item}</p>
+                      <button className="btn custom-btn btn-custom overflow-hidden">View File</button>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </OwlCarousel>
           </div>
         </div>
