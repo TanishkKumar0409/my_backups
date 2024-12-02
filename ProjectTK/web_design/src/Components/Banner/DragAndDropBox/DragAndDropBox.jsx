@@ -80,7 +80,7 @@ export default function DragAndDropBox() {
                     key={index}
                     className="list-group-item d-flex justify-content-between align-items-center shadow-sm"
                   >
-                    <span className="truncated-file-name" >{fileName}</span>
+                    <span className="truncated-file-name">{fileName}</span>
                     <button
                       type="button"
                       className="btn custom-btn btn-custom border-0 overflow-hidden btn-sm"

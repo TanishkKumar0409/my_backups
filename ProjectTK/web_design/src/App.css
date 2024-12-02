@@ -21,18 +21,18 @@
 
 ::-webkit-scrollbar-track {
   background: radial-gradient(
-    circle,
-    var(--accent-purple) 20%,
-    var(--accent-cyan) 60%,
-    var(--primary-soft-gray) 100%
-  ),
-  linear-gradient(
-    135deg,
-    var(--primary-dark-blue),
-    var(--accent-purple),
-    var(--accent-cyan)
-  );
-background-blend-mode: overlay; 
+      circle,
+      var(--accent-purple) 20%,
+      var(--accent-cyan) 60%,
+      var(--primary-soft-gray) 100%
+    ),
+    linear-gradient(
+      135deg,
+      var(--primary-dark-blue),
+      var(--accent-purple),
+      var(--accent-cyan)
+    );
+  background-blend-mode: overlay;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -41,7 +41,7 @@ background-blend-mode: overlay;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background:var(--accent-purple);
+  background: var(--accent-purple);
 }
 
 .border-dashed-1 {
@@ -49,9 +49,16 @@ background-blend-mode: overlay;
 }
 
 .navbarCustom {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(5px);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  z-index: 999;
+}
+
+.navbarCustom::before {
+  content: "";
+  position: absolute;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  height: 100%;
 }
 
 .bgGradient {

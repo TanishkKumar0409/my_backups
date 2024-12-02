@@ -23,7 +23,7 @@ export default function Banner() {
   }, []);
 
   const iconsArray = [
-    "file",
+    "file-audio",
     "file-image",
     "file-video",
     "folder-open",
