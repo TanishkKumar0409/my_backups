@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ProfileOffcanvas from "../../ProfileOffcanvas/ProfileOffcanvas";
 
 export default function Navbar() {
+  const [navClass, setNavClass] = useState("");
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      const scroll = window.scrollY;
+      setNavClass(scroll > 100 ? "navbarCustom" : "");
+    });
+  }, []);
   return (
-    <header className={` position-fixed w-100 navbarCustom`}>
+    <header className={` position-fixed w-100 ${navClass}`}style={{zIndex:999}}>
       <nav className="navbar navbar-expand-lg navbar-dark">
         <div className="container-fluid">
           <Link className="navbar-brand fs-4 fw-bold" to="/">

@@ -11,10 +11,6 @@
   --text-secondary: #9ca3af;
 }
 
-* {
-  transition: 0.5s linear;
-}
-
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -46,10 +42,6 @@
 
 .border-dashed-1 {
   border: 1px dashed var(--accent-cyan);
-}
-
-.navbarCustom {
-  z-index: 999;
 }
 
 .navbarCustom::before {
