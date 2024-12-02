@@ -36,7 +36,7 @@ export default function Banner() {
 
   return (
     <section
-      className="bgGradient py-5 overflow-hidden position-relative"
+      className="bgGradient py-5 overflow-hidden position-relative vh-100 align-content-center"
       style={{ zIndex: "0" }}
     >
       <div className="container">

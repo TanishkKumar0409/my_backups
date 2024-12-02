@@ -3,19 +3,21 @@ import { Link } from "react-router-dom";
 import ProfileOffcanvas from "../../ProfileOffcanvas/ProfileOffcanvas";
 
 export default function Navbar() {
-  const [shadowClass, setShadowClass] = useState("");
+  const [navClass, setNavClass] = useState("");
 
   useEffect(() => {
-    const handleScroll = () => {
-      var scroll = window.scrollY;
-      setShadowClass(scroll > 100 ? "shadow" : "");
+    const handleNavClass = () => {
+      var Scroll = window.scrollY;
+      setNavClass(Scroll > 100 ? "navbarCustom" : "");
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleNavClass);
   }, []);
-
   return (
-    <header className={`bgGradient sticky-top ${shadowClass}`}>
-      <nav className="navbar navbar-expand-lg navbar-dark">
+    <header
+      className={`${navClass} position-fixed w-100`}
+      style={{ zIndex: 999 }}
+    >
+      <nav className={`navbar navbar-expand-lg navbar-dark`}>
         <div className="container-fluid">
           <Link className="navbar-brand fs-4 fw-bold" to="/">
             Project TK
