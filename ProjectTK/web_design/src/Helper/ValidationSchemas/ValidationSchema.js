@@ -8,9 +8,9 @@ const BannerValidationSchema = () => {
     files: Yup.array()
       .min(1, "At least one file is required")
       .required("Files are required"),
-      message: Yup.string()
+    message: Yup.string()
       .max(500, "Message cannot exceed 500 characters")
-      .nullable(), 
+      .nullable(),
   });
 };
 

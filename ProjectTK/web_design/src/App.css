@@ -143,11 +143,17 @@
   opacity: 0.3;
 }
 
-.selected{
+.selected {
   color: var(--warning-yellow);
 }
-.selected span{
+.selected span {
   color: var(--success-green);
+}
+.truncated-file-name {
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .dropBoxElements {
