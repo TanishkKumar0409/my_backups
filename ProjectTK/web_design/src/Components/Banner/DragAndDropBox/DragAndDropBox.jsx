@@ -83,7 +83,7 @@ export default function DragAndDropBox() {
                     <span className="truncated-file-name">{fileName}</span>
                     <button
                       type="button"
-                      className="btn custom-btn btn-custom border-0 overflow-hidden btn-sm"
+                      className="btn btn-danger"
                       onClick={() => {
                         const updatedFiles = fileNames.filter(
                           (_, i) => i !== index
@@ -92,7 +92,7 @@ export default function DragAndDropBox() {
                         formik.setFieldValue("files", updatedFiles);
                       }}
                     >
-                      Remove
+                      <i className="fa fa-x"></i>
                     </button>
                   </li>
                 ))}
