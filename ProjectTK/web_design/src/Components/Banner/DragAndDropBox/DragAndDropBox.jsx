@@ -16,11 +16,13 @@ export default function DragAndDropBox() {
     multiple: true,
   });
 
+  const initialValues = {
+    email: "",
+    message: "",
+  }
+
   const formik = useFormik({
-    initialValues: {
-      email: "",
-      message: "",
-    },
+    initialValues: initialValues,
     validationSchema: BannerValidationSchema(),
     onSubmit: async (values) => {
       setLoading(true);

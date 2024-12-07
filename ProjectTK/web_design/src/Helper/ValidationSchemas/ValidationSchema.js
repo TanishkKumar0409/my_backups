@@ -5,9 +5,6 @@ const BannerValidationSchema = () => {
     email: Yup.string()
       .email("Invalid email address")
       .required("Email is required"),
-    // files: Yup.array()
-    //   .min(1, "At least one file is required")
-    //   .required("Files are required"),
     message: Yup.string()
       .max(500, "Message cannot exceed 500 characters")
       .nullable(),
