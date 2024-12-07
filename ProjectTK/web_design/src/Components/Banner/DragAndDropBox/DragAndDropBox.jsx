@@ -6,7 +6,6 @@ import BannerValidationSchema from "../../../Helper/ValidationSchemas/Validation
 
 export default function DragAndDropBox() {
   const [files, setFiles] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -21,43 +20,42 @@ export default function DragAndDropBox() {
     message: "",
   }
 
+  const handleSubmit = async (values) => {
+    setErrorMessage("");
+
+    try {
+      const formData = new FormData();
+
+      files.forEach((file) => {
+        formData.append("files", file);
+      });
+
+      formData.append("email", values.email);
+      formData.append("message", values.message || "No message provided");
+
+      const response = await axios.post(
+        "http://localhost:5000/api/upload",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+
+      console.log("Form submitted successfully:", response);
+      alert("Data submitted successfully!");
+
+      formik.resetForm();
+      setFiles([]);
+    } catch (error) {
+      console.error({ error: error.message });
+      setErrorMessage("Failed to submit data. Please try again later.");
+    }
+  }
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: BannerValidationSchema(),
-    onSubmit: async (values) => {
-      setLoading(true);
-      setErrorMessage("");
-
-      try {
-        const formData = new FormData();
-
-        files.forEach((file) => {
-          formData.append("files", file);
-        });
-
-        formData.append("email", values.email);
-        formData.append("message", values.message || "No message provided");
-
-        const response = await axios.post(
-          "http://localhost:5000/api/upload",
-          formData,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
-
-        console.log("Form submitted successfully:", response);
-        alert("Data submitted successfully!");
-
-        formik.resetForm();
-        setFiles([]);
-      } catch (error) {
-        console.error("Error submitting form:", error);
-        setErrorMessage("Failed to submit data. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
-    },
+    onSubmit: handleSubmit,
   });
 
   return (
@@ -159,9 +157,8 @@ export default function DragAndDropBox() {
             <button
               type="submit"
               className="btn custom-btn btn-custom border-0 overflow-hidden"
-              disabled={loading}
             >
-              {loading ? "Submitting..." : "Submit"}
+              Submit
             </button>
           </div>
         </form>
