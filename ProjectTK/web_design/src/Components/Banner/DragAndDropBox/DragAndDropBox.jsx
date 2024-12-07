@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import { useFormik } from "formik";
 import BannerValidationSchema from "../../../Helper/ValidationSchemas/ValidationSchema";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { API } from "../../../Services/API/API";
 
 export default function DragAndDropBox() {
   const [files, setFiles] = useState([]);
@@ -33,16 +35,10 @@ export default function DragAndDropBox() {
       formData.append("email", values.email);
       formData.append("message", values.message || "No message provided");
 
-      const response = await axios.post(
-        "http://localhost:5000/api/upload",
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+      const response = await API.post("/upload", formData);
 
       console.log("Form submitted successfully:", response);
-      alert("Data submitted successfully!");
+      toast.success("Data submitted successfully!");
 
       formik.resetForm();
       setFiles([]);

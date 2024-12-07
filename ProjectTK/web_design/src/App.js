@@ -12,11 +12,13 @@ import UserHistory from "./Pages/UserHistory/UserHistory";
 import UserStorage from "./Pages/UserStorage/UserStorage";
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import Navbar from "./Components/Navigation/Navbar/Navbar";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+        <ToastContainer position="top-center" />
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />

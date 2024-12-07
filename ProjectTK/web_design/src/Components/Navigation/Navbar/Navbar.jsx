@@ -11,7 +11,7 @@ export default function Navbar() {
     });
   }, []);
   return (
-    <header className={` position-fixed w-100 ${navClass}`}style={{zIndex:999}}>
+    <header className={` position-fixed w-100 ${navClass}`} style={{ zIndex: 999 }}>
       <nav className="navbar navbar-expand-lg navbar-dark">
         <div className="container-fluid">
           <Link className="navbar-brand fs-4 fw-bold" to="/">
