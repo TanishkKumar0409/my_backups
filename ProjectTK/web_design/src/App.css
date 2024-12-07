@@ -12,24 +12,15 @@
 }
 
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 3px;
 }
 
 ::-webkit-scrollbar-track {
-  background: radial-gradient(circle,
-      var(--accent-purple) 20%,
-      var(--accent-cyan) 60%,
-      var(--primary-soft-gray) 100%),
-    linear-gradient(135deg,
-      var(--primary-dark-blue),
-      var(--accent-purple),
-      var(--accent-cyan));
-  background-blend-mode: overlay;
+  background: whitesmoke;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent-cyan);
-  transition: 0.5s;
+  background: gray;
 }
 
 ::-webkit-scrollbar-thumb:hover {
