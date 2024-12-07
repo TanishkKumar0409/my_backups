@@ -36,8 +36,8 @@ export default function Banner() {
 
   return (
     <section
-      className="bgGradient py-5 overflow-hidden position-relative vh-100 align-content-center"
-      style={{ zIndex: "0" }}
+      className="bgGradient py-5 overflow-hidden position-relative align-content-center"
+      style={{ zIndex: "0", minHeight: "100vh" }}
     >
       <div className="container">
         <div className="row flex-column-reverse flex-md-row align-items-center">
@@ -62,9 +62,8 @@ export default function Banner() {
           {iconsArray.map((icon, index) => (
             <i
               key={icon}
-              className={`fa-solid fa-${icon} ${
-                index % 2 === 0 ? "d-md-block d-none" : ""
-              }`}
+              className={`fa-solid fa-${icon} ${index % 2 === 0 ? "d-md-block d-none" : ""
+                }`}
               style={iconStyles[index]}
             ></i>
           ))}

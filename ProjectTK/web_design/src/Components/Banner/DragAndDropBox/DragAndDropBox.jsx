@@ -1,95 +1,104 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import { useFormik } from "formik";
 import BannerValidationSchema from "../../../Helper/ValidationSchemas/ValidationSchema";
 
 export default function DragAndDropBox() {
-  const [fileNames, setFileNames] = useState([]);
+  const [files, setFiles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
-      setFileNames((prevFileNames) => [
-        ...prevFileNames,
-        ...acceptedFiles.map((file) => file.name),
-      ]);
+      setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
     },
     multiple: true,
   });
 
-  const initialValues = {
-    email: "",
-    message: "",
-    files: fileNames,
-  };
-
   const formik = useFormik({
-    initialValues: initialValues,
+    initialValues: {
+      email: "",
+      message: "",
+    },
     validationSchema: BannerValidationSchema(),
-    onSubmit: (values) => {
-      console.log("Form submitted with values:", {
-        email: values.email,
-        message: values.message || "No message provided",
-        files: fileNames,
-      });
+    onSubmit: async (values) => {
+      setLoading(true);
+      setErrorMessage("");
+
+      try {
+        const formData = new FormData();
+
+        files.forEach((file) => {
+          formData.append("files", file);
+        });
+
+        formData.append("email", values.email);
+        formData.append("message", values.message || "No message provided");
+
+        const response = await axios.post(
+          "http://localhost:5000/api/upload",
+          formData,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          }
+        );
+
+        console.log("Form submitted successfully:", response);
+        alert("Data submitted successfully!");
+
+        formik.resetForm();
+        setFiles([]);
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        setErrorMessage("Failed to submit data. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
     },
   });
 
   return (
     <div className="container-fluid py-5">
       <div className="bg-white text-dark p-md-5 p-3 rounded shadow-sm form-box">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            formik.setFieldValue("files", fileNames);
-            formik.handleSubmit();
-          }}
-        >
+        <form onSubmit={formik.handleSubmit}>
           <div
             {...getRootProps()}
             className="dropzone position-relative align-content-center rounded text-center p-5 border-dashed-1 overflow-hidden"
           >
             <input {...getInputProps()} />
-            <p className="text-muted animate-hide">
-              Drag and drop {fileNames.length ? "more" : "a"} files here or
+            <p className="text-muted">
+              Drag and drop {files.length ? "more" : "a"} files here or{" "}
               <span className="text-primary fw-bold ms-2">click</span> to select
               files
             </p>
-
-            <div className="dropBoxElements">
-              <p className="animated-text">Drop</p>
-              <p className="animated-text">Your</p>
-              <p className="animated-text">Files</p>
-            </div>
           </div>
 
           {formik.errors.files && formik.touched.files && (
             <div className="text-danger mt-2">{formik.errors.files}</div>
           )}
 
-          {fileNames.length > 0 && (
+          {files.length > 0 && (
             <div className="mt-3">
               <strong className="selected fs-4">
-                Selected Files: <span>{fileNames.length}</span>
+                Selected Files: <span>{files.length}</span>
               </strong>
               <ul
                 className="list-group mt-2"
                 style={{ maxHeight: "70px", overflow: "auto" }}
               >
-                {fileNames.map((fileName, index) => (
+                {files.map((file, index) => (
                   <li
                     key={index}
                     className="list-group-item d-flex justify-content-between align-items-center shadow-sm"
                   >
-                    <span className="truncated-file-name">{fileName}</span>
+                    <span className="truncated-file-name">{file.name}</span>
                     <button
                       type="button"
                       className="btn btn-danger"
                       onClick={() => {
-                        const updatedFiles = fileNames.filter(
-                          (_, i) => i !== index
-                        );
-                        setFileNames(updatedFiles);
-                        formik.setFieldValue("files", updatedFiles);
+                        const updatedFiles = files.filter((_, i) => i !== index);
+                        setFiles(updatedFiles);
                       }}
                     >
                       <i className="fa fa-x"></i>
@@ -109,11 +118,8 @@ export default function DragAndDropBox() {
                 type="email"
                 id="email"
                 name="email"
-                className={`form-control ${
-                  formik.touched.email && formik.errors.email
-                    ? "is-invalid"
-                    : ""
-                }`}
+                className={`form-control ${formik.touched.email && formik.errors.email ? "is-invalid" : ""
+                  }`}
                 placeholder="Enter Receiver Email"
                 autoComplete="email"
                 value={formik.values.email}
@@ -141,19 +147,19 @@ export default function DragAndDropBox() {
                 onChange={formik.handleChange}
               />
             </div>
-            {formik.touched.message && formik.errors.message ? (
-              <div className="text-danger text-end">
-                {formik.errors.message}
-              </div>
-            ) : null}
           </div>
+
+          {errorMessage && (
+            <div className="text-danger mt-3">{errorMessage}</div>
+          )}
 
           <div className="mt-4 text-center">
             <button
               type="submit"
               className="btn custom-btn btn-custom border-0 overflow-hidden"
+              disabled={loading}
             >
-              Submit
+              {loading ? "Submitting..." : "Submit"}
             </button>
           </div>
         </form>
