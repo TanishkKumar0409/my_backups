@@ -89,13 +89,13 @@ export default function RecentFiles() {
           <OwlCarousel className="owl-theme" {...owlOptions}>
             {urls.map((item, index) => (
               <div className="item" key={index}>
-                <div className="cardCustom mx-auto">
-                  <div className="cardCustomHead">
-                    <i className={`fa ${getFileIcon(item)}`}></i>
+                <div className="cardCustom rounded-3 overflow-hidden bg-white">
+                  <div className="cardCustomHead h-50 d-flex justify-content-center align-items-center">
+                    <i className={`fa text-light fa-beat-fade ${getFileIcon(item)}`}></i>
                   </div>
-                  <div className="cardCustomBody">
-                    <h2 className="">{item}</h2>
-                    <button className="btn btn-primary viewButton mt-3">View</button>
+                  <div className="cardCustomBody h-50 d-flex justify-content-center align-items-center text-center p-4 flex-column">
+                    <h2 className="fs-5 fw-bold text-break">{item}</h2>
+                    <button className="btn custom-btn btn-custom border-0 mt-3 overflow-hidden">View</button>
                   </div>
                 </div>
               </div>
