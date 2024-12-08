@@ -6,7 +6,7 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 export default function RecentFiles() {
   const owlOptions = {
     loop: true,
-    margin: 0,
+    margin: 10,
     dots: true,
     items: 4,
     autoplay: true,
@@ -20,71 +20,45 @@ export default function RecentFiles() {
   };
 
   const urls = [
-    "background.png",
-    "FileSharingAndPasswordManagementSystem.pdf",
-    "javascript.xlsx",
-    "lock.png",
-    "MyResume.pdf",
-    "ProjectTK Design.jpg",
-    "Ria DB.xlsx",
-    "Tan.png",
-    "WhatsApp 2024-11-22 10-53-53.mp4",
-    "report.docx",
-    "presentation.pptx",
-    "invoice.csv",
-    "image1.gif",
-    "document.txt",
-    "notes.md",
-    "audio.mp3",
-    "video.mp4",
-    "data.json",
-    "archive.zip",
-    "logo.svg",
-    "spreadsheet.ods",
-    "font.ttf",
-    "game.exe",
-    "app.apk",
-    "code.js",
-    "style.css",
-    "index.html",
-    "about.txt",
-    "userGuide.pdf",
-    "resume.docx",
+    "file1.pdf", "file2.mp4", "file3.jpg", "file4.png", "file5.mp3", 
+    "file6.html", "file7.css", "file8.js", "file9.java", "file10.txt", 
+    "file11.docx", "file12.xlsx", "file13.pptx", "file14.csv", "file15.xml", 
+    "file16.json", "file17.php", "file18.ts", "file19.py", "file20.gif"
   ];
+  
 
   const getFileIcon = (fileName) => {
     const extension = fileName.split('.').pop().toLowerCase();
 
     const iconMap = {
       pdf: "fa-file-pdf",
-      xlsx: "fa-file-excel", xls: "fa-file-excel",
-      png: "fa-file-image", jpg: "fa-file-image", jpeg: "fa-file-image", gif: "fa-file-image",
-      mp4: "fa-file-video", avi: "fa-file-video", mov: "fa-file-video", mkv: "fa-file-video",
-      docx: "fa-file-word", doc: "fa-file-word",
-      pptx: "fa-file-powerpoint", ppt: "fa-file-powerpoint",
+      xlsx: "fa-file-excel",
+      xls: "fa-file-excel",
+      png: "fa-file-image",
+      jpg: "fa-file-image",
+      jpeg: "fa-file-image",
+      gif: "fa-file-image",
+      mp4: "fa-file-video",
+      docx: "fa-file-word",
+      doc: "fa-file-word",
+      pptx: "fa-file-powerpoint",
+      ppt: "fa-file-powerpoint",
       csv: "fa-file-csv",
-      zip: "fa-file-archive", rar: "fa-file-archive", "7z": "fa-file-archive",
-      json: "fa-file-code",
       mp3: "fa-file-audio",
-      txt: "fa-file-alt", md: "fa-file-alt",
-      exe: "fa-gamepad",
-      apk: "fa-mobile",
-      ods: "fa-file-excel",
-      svg: "fa-file-image",
-      ttf: "fa-font",
       html: "fa-file-code",
       css: "fa-file-code",
       js: "fa-file-code"
     };
 
-    return iconMap[extension] || "fa-file";
+    return iconMap[extension] || "fa-file-alt";
   };
 
 
   return (
     <section className="container mt-5">
       <div className="row">
-        <h2 className="text-center mb-4">Recent Files</h2>
+        <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": "'Recent Files'" }}>Recent Files</h2>
+        <p className="px-5 text-center">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea eveniet tempora, eius cumque necessitatibus nihil.</p>
         <div className="col">
           <OwlCarousel className="owl-theme" {...owlOptions}>
             {urls.map((item, index) => (
@@ -94,7 +68,7 @@ export default function RecentFiles() {
                     <i className={`fa text-light fa-beat-fade ${getFileIcon(item)}`}></i>
                   </div>
                   <div className="cardCustomBody h-50 d-flex justify-content-center align-items-center text-center p-4 flex-column">
-                    <h2 className="fs-5 fw-bold text-break">{item}</h2>
+                    <h2 className="fs-5 fw-bold text-break text-capitalize">{item}</h2>
                     <button className="btn custom-btn btn-custom border-0 mt-3 overflow-hidden">View</button>
                   </div>
                 </div>
