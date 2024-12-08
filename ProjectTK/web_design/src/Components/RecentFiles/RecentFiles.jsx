@@ -4,22 +4,18 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 
 export default function RecentFiles() {
-  // Define your OwlCarousel options here
   const owlOptions = {
     loop: true,
-    margin: 10,
+    margin: 0,
     dots: true,
     items: 4,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
     responsive: {
-      0: {
-        items: 1,
-      },
-      600: {
-        items: 2,
-      },
-      1000: {
-        items: 4,
-      },
+      0: { items: 1 },
+      600: { items: 2 },
+      1000: { items: 4 },
     },
   };
 
@@ -35,34 +31,45 @@ export default function RecentFiles() {
     "WhatsApp 2024-11-22 10-53-53.mp4",
   ];
 
+  const getFileIcon = (fileName) => {
+    const extension = fileName.split('.').pop();
+    switch (extension) {
+      case "pdf":
+        return "fa-file-pdf";
+      case "xlsx":
+        return "fa-file-excel";
+      case "png":
+      case "jpg":
+        return "fa-file-image";
+      case "mp4":
+        return "fa-file-video";
+      default:
+        return "fa-file-alt";
+    }
+  };
+
   return (
-    <>
-      <section className="container">
-        <div className="row">
-          <h2>Recent Files</h2>
-          <div className="col">
-            <OwlCarousel className="owl-theme" {...owlOptions}>
-              {urls.map((item, index) => (
-                <div className="item" key={index}>
-                  <div className="card">
-                    <div className="card-body">
-                      <img
-                        src={`https://pixlr.com/images/generator/photo-generator.webp`}
-                        className="img-fluid"
-                        alt=""
-                      />
-                    </div>
-                    <div className="card-footer d-flex justify-content-between">
-                      <p className="truncated-file-name">{item}</p>
-                      <button className="btn custom-btn btn-custom overflow-hidden">View File</button>
-                    </div>
+    <section className="container mt-5">
+      <div className="row">
+        <h2 className="text-center mb-4">Recent Files</h2>
+        <div className="col">
+          <OwlCarousel className="owl-theme" {...owlOptions}>
+            {urls.map((item, index) => (
+              <div className="item" key={index}>
+                <div className="cardCustom mx-auto">
+                  <div className="cardCustomHead">
+                    <i className={`fa ${getFileIcon(item)}`}></i>
+                  </div>
+                  <div className="cardCustomBody">
+                    <h2 className="">{item}</h2>
+                    <button className="btn btn-primary viewButton mt-3">View</button>
                   </div>
                 </div>
-              ))}
-            </OwlCarousel>
-          </div>
+              </div>
+            ))}
+          </OwlCarousel>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
