@@ -29,24 +29,57 @@ export default function RecentFiles() {
     "Ria DB.xlsx",
     "Tan.png",
     "WhatsApp 2024-11-22 10-53-53.mp4",
+    "report.docx",
+    "presentation.pptx",
+    "invoice.csv",
+    "image1.gif",
+    "document.txt",
+    "notes.md",
+    "audio.mp3",
+    "video.mp4",
+    "data.json",
+    "archive.zip",
+    "logo.svg",
+    "spreadsheet.ods",
+    "font.ttf",
+    "game.exe",
+    "app.apk",
+    "code.js",
+    "style.css",
+    "index.html",
+    "about.txt",
+    "userGuide.pdf",
+    "resume.docx",
   ];
 
   const getFileIcon = (fileName) => {
-    const extension = fileName.split('.').pop();
-    switch (extension) {
-      case "pdf":
-        return "fa-file-pdf";
-      case "xlsx":
-        return "fa-file-excel";
-      case "png":
-      case "jpg":
-        return "fa-file-image";
-      case "mp4":
-        return "fa-file-video";
-      default:
-        return "fa-file-alt";
-    }
+    const extension = fileName.split('.').pop().toLowerCase();
+
+    const iconMap = {
+      pdf: "fa-file-pdf",
+      xlsx: "fa-file-excel", xls: "fa-file-excel",
+      png: "fa-file-image", jpg: "fa-file-image", jpeg: "fa-file-image", gif: "fa-file-image",
+      mp4: "fa-file-video", avi: "fa-file-video", mov: "fa-file-video", mkv: "fa-file-video",
+      docx: "fa-file-word", doc: "fa-file-word",
+      pptx: "fa-file-powerpoint", ppt: "fa-file-powerpoint",
+      csv: "fa-file-csv",
+      zip: "fa-file-archive", rar: "fa-file-archive", "7z": "fa-file-archive",
+      json: "fa-file-code",
+      mp3: "fa-file-audio",
+      txt: "fa-file-alt", md: "fa-file-alt",
+      exe: "fa-gamepad",
+      apk: "fa-mobile",
+      ods: "fa-file-excel",
+      svg: "fa-file-image",
+      ttf: "fa-font",
+      html: "fa-file-code",
+      css: "fa-file-code",
+      js: "fa-file-code"
+    };
+
+    return iconMap[extension] || "fa-file";
   };
+
 
   return (
     <section className="container mt-5">
