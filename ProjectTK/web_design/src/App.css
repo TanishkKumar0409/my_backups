@@ -41,6 +41,24 @@
   height: 100%;
 }
 
+
+.mainHeading {
+  z-index: 0;
+  position: relative;
+}
+
+.mainHeading::before {
+  content: var(--text);
+  position: absolute;
+  transform: scale(2);
+  z-index: -1;
+  filter: opacity(0.2);
+  -webkit-text-stroke: 2px rgb(185, 185, 185);
+  top: -30%;
+  color: lightgray;
+}
+
+
 .bgGradient {
   background: radial-gradient(circle,
       var(--accent-purple) 20%,
@@ -106,7 +124,8 @@
 }
 
 .owl-dot.active span {
-  width: 35px !important;
+  width: 15px !important;
+  border-radius: 3px !important;
   background: linear-gradient(315deg,
       var(--error-red) 0%,
       var(--warning-yellow) 50%,
@@ -165,21 +184,6 @@
 
 .selected span {
   color: var(--success-green);
-}
-
-.mainHeading {
-  position: relative;
-}
-
-.mainHeading::before {
-  content: var(--text);
-  position: absolute;
-  transform: scale(2);
-  z-index: -1;
-  filter: opacity(0.2);
-  -webkit-text-stroke: 2px rgb(185, 185, 185);
-  top: -30%;
-  color: lightgray;
 }
 
 .truncated-file-name {
