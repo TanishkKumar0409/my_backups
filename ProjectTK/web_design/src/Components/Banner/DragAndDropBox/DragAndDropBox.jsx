@@ -64,8 +64,8 @@ export default function DragAndDropBox() {
           >
             <input {...getInputProps()} />
             <p className="text-muted">
-              Drag and drop {files.length ? "more" : "a"} files here or{" "}
-              <span className="text-primary fw-bold ms-2">click</span> to select
+              Drag and drop {files.length ? "more" : "a"} files here or
+              <span className="text-primary fw-bold ms-1">click</span> to select
               files
             </p>
           </div>

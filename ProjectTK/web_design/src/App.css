@@ -138,12 +138,8 @@
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-.dropzone .animate-hide {
-  transition: 0.2s;
-}
-
-.dropzone:hover .animate-hide {
-  opacity: 0.3;
+.dropzone p span:hover {
+  text-decoration: underline;
 }
 
 .selected {
