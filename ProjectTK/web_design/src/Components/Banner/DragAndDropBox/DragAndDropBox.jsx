@@ -131,7 +131,7 @@ export default function DragAndDropBox() {
 
             <div className="col-md-6">
               <label htmlFor="message" className="form-label">
-                Message (Optional)
+                Message
               </label>
               <textarea
                 id="message"

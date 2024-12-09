@@ -7,7 +7,7 @@ const BannerValidationSchema = () => {
       .required("Email is required"),
     message: Yup.string()
       .max(500, "Message cannot exceed 500 characters")
-      .nullable(),
+      .notRequired(),
   });
 };
 
