@@ -158,11 +158,6 @@
       var(--success-green) 75%) !important;
 }
 
-.form-box {
-  position: relative;
-  overflow: hidden;
-}
-
 .form-box:after {
   content: "";
   position: absolute;
@@ -188,7 +183,6 @@
 }
 
 .dropzone {
-  position: relative;
   background: #f9f9f9;
   border-radius: 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;

@@ -56,11 +56,11 @@ export default function DragAndDropBox() {
 
   return (
     <div className="container-fluid py-5">
-      <div className="bg-white text-dark p-md-5 p-3 rounded shadow-sm form-box">
+      <div className="bg-white text-dark p-md-5 p-3 rounded shadow form-box position-relative overflow-hidden">
         <form onSubmit={formik.handleSubmit}>
           <div
             {...getRootProps()}
-            className="dropzone position-relative align-content-center rounded text-center p-5 border-dashed-1 overflow-hidden"
+            className="dropzone bg-white position-relative align-content-center rounded text-center p-5 border-dashed-1 overflow-hidden"
           >
             <input {...getInputProps()} />
             <p className="text-muted">
