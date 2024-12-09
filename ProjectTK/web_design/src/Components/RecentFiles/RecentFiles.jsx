@@ -66,7 +66,7 @@ export default function RecentFiles() {
                 <div className="item" key={index}>
                   <div className="cardCustom rounded-3 overflow-hidden bg-white">
                     <div className="cardCustomHead h-50 d-flex justify-content-center align-items-center">
-                      <i className={`fa text-light fa-beat-fade ${getFileIcon(item)}`}></i>
+                      <i className={`fa text-light fa-beat-fade shadow ${getFileIcon(item)}`}></i>
                     </div>
                     <div className="cardCustomBody h-50 d-flex justify-content-center align-items-center text-center p-4 flex-column">
                       <h2 className="fs-5 fw-bold text-break text-capitalize">{item}</h2>

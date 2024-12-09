@@ -58,8 +58,8 @@
         var(--primary-dark-blue),
         var(--accent-purple),
         var(--accent-cyan));
-        background-blend-mode: overlay;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    background-blend-mode: overlay;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
   }
 
   .navbarCustom::before {
