@@ -58,11 +58,11 @@ export default function Banner() {
           </div>
         </div>
 
-        <div className="AnimatedIcons">
+        <div className="AnimatedIcons position-absolute top-0 start-0 w-100 h-100 pe-none">
           {iconsArray.map((icon, index) => (
             <i
               key={icon}
-              className={`fa-solid fa-${icon} ${index % 2 === 0 ? "d-md-block d-none" : ""
+              className={`position-absolute fa-solid fa-${icon} ${index % 2 === 0 ? "d-md-block d-none" : ""
                 }`}
               style={iconStyles[index]}
             ></i>
