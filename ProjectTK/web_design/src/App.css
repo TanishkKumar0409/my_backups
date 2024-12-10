@@ -89,8 +89,6 @@
 }
 
 
-
-
 .bgGradient {
   background: radial-gradient(circle,
       var(--accent-purple) 20%,
@@ -109,6 +107,17 @@
       var(--accent-cyan));
   color: white;
   text-shadow: 0 0 0.2rem gray;
+
+}
+
+.tableBodyCustom tr td {
+  font-weight: 700;
+  color: var(--accent-cyan);
+  transition: 0.2s;
+}
+
+.tableBodyCustom tr:hover td {
+  color: var(--primary-dark-blue);
 }
 
 .textJustify {
