@@ -139,6 +139,7 @@ export default function DragAndDropBox() {
                 className="form-control"
                 placeholder="Enter your message"
                 rows="1"
+                maxLength={"500"}
                 value={formik.values.message}
                 onChange={formik.handleChange}
               />
