@@ -2,6 +2,7 @@ import React from "react";
 import Banner from "../../Components/Banner/Banner";
 import RecentFiles from "../../Components/RecentFiles/RecentFiles";
 import FileHistory from "../../Components/FileHistory/FileHistory";
+import Footer from "../../Components/Footer/Footer";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Banner />
       <RecentFiles />
       <FileHistory />
+      <Footer/>
     </>
   );
 }
