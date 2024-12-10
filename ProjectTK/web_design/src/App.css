@@ -12,7 +12,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 3px !important;
 }
 
 ::-webkit-scrollbar-track {
@@ -26,6 +26,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-purple);
 }
+
 
 .border-dashed-1 {
   border: 1px dashed var(--accent-cyan);
@@ -67,6 +68,9 @@
   }
 }
 
+.table-responsive {
+  scrollbar-width: thin;
+}
 
 .mainHeading {
   z-index: 0;
@@ -76,13 +80,15 @@
 .mainHeading::before {
   content: var(--text);
   position: absolute;
-  transform: scale(2);
+  transform: scale(1.5);
   z-index: -1;
   filter: opacity(0.2);
   -webkit-text-stroke: 2px rgb(185, 185, 185);
   top: -30%;
   color: lightgray;
 }
+
+
 
 
 .bgGradient {
@@ -94,7 +100,15 @@
       var(--primary-dark-blue),
       var(--accent-purple),
       var(--accent-cyan));
-  background-blend-mode: overlay;
+
+}
+
+.tableHeadCustom tr th {
+  background:
+    linear-gradient(var(--accent-purple),
+      var(--accent-cyan));
+  color: white;
+  text-shadow: 0 0 0.2rem gray;
 }
 
 .textJustify {

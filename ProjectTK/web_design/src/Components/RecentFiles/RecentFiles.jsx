@@ -57,26 +57,28 @@ export default function RecentFiles() {
 
   return (
     <>
-      <section className="container mt-5 bg-white">
-        <div className="row">
-          <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": "'Recent Files'" }}>Recent Files</h2>
-          <p className="px-5 text-center">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea eveniet tempora, eius cumque necessitatibus nihil.</p>
-          <div className="col">
-            <OwlCarousel className="owl-theme" {...owlOptions}>
-              {urls.map((item, index) => (
-                <div className="item" key={index}>
-                  <div className="cardCustom rounded-3 overflow-hidden bg-white">
-                    <div className="cardCustomHead h-50 d-flex justify-content-center align-items-center">
-                      <i className={`fa text-light fa-beat-fade shadow ${getFileIcon(item)}`}></i>
-                    </div>
-                    <div className="cardCustomBody h-50 d-flex justify-content-center align-items-center text-center p-4 flex-column">
-                      <h2 className="fs-5 fw-bold text-break text-capitalize">{item}</h2>
-                      <button className="btn custom-btn btn-custom border-0 mt-3 overflow-hidden">View</button>
+      <section>
+        <div className="container py-5 mt-5 bg-white">
+          <div className="row">
+            <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": "'Recent Files'" }}>Recent Files</h2>
+            <p className="px-5 text-center">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea eveniet tempora, eius cumque necessitatibus nihil.</p>
+            <div className="col">
+              <OwlCarousel className="owl-theme" {...owlOptions}>
+                {urls.map((item, index) => (
+                  <div className="item" key={index}>
+                    <div className="cardCustom rounded-3 overflow-hidden bg-white">
+                      <div className="cardCustomHead h-50 d-flex justify-content-center align-items-center">
+                        <i className={`fa text-light fa-beat-fade shadow ${getFileIcon(item)}`}></i>
+                      </div>
+                      <div className="cardCustomBody h-50 d-flex justify-content-center align-items-center text-center p-4 flex-column">
+                        <h2 className="fs-5 fw-bold text-break text-capitalize">{item}</h2>
+                        <button className="btn custom-btn btn-custom border-0 mt-3 overflow-hidden">View</button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </OwlCarousel>
+                ))}
+              </OwlCarousel>
+            </div>
           </div>
         </div>
       </section>
