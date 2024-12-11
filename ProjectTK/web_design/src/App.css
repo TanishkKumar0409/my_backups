@@ -116,16 +116,14 @@
   transition: 0.2s;
 }
 
-.tableBodyCustom tr:hover td {
-  color: var(--primary-dark-blue);
-  background: linear-gradient(var(--accent-cyan), var(--accent-purple));
-}
 
 .tableBodyCustom:hover tr td {
   filter: blur(2px);
 }
 
 .tableBodyCustom:hover tr:hover td {
+  color: var(--primary-dark-blue);
+  background: linear-gradient(var(--accent-cyan), var(--accent-purple));
   filter: blur(0);
 }
 
