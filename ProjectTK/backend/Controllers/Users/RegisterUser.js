@@ -7,27 +7,30 @@ const registerUser = async (req, res) => {
         const PrivateKey = process.env.PrivateKey
         const { username, name, email, contact, password } = req.body;
 
-        const lastUser = await Users.findOne().sort({ userID: -1 });
-        const userID = lastUser ? lastUser.userID + 1 : 1;
         const role = "user";
 
         var salt = bcryptjs.genSaltSync(10);
         var hashedPassword = bcryptjs.hashSync(password, salt);
 
+        const isExistingUsername = await Users.findOne({ username })
+        if (isExistingUsername) {
+            return res.status(400).json({ error: "Username Already Exist." })
+        }
+
         const isExistingEmail = await Users.findOne({ email });
         if (isExistingEmail) {
-            return res.status(400).json({ error: "Email Already Exist" });
+            return res.status(400).json({ error: "Email Already Exist." });
         }
 
         const isExistingContact = await Users.findOne({ contact });
         if (isExistingContact) {
-            return res.status(400).json({ error: "Contact Already Exist" });
+            return res.status(400).json({ error: "Contact Already Exist." });
         }
 
         const loginToken = jwt.sign({ username, email, contact }, PrivateKey)
 
         const newUser = new Users({
-            userID, username, name, email, contact, role, password: hashedPassword
+            username, name, email, contact, role, password: hashedPassword
         });
 
         const savedUser = await newUser.save();
