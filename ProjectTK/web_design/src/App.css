@@ -118,7 +118,15 @@
 
 .tableBodyCustom tr:hover td {
   color: var(--primary-dark-blue);
-  background:linear-gradient(var(--accent-cyan),var(--accent-purple));
+  background: linear-gradient(var(--accent-cyan), var(--accent-purple));
+}
+
+.tableBodyCustom:hover tr td {
+  filter: blur(2px);
+}
+
+.tableBodyCustom:hover tr:hover td {
+  filter: blur(0);
 }
 
 .textJustify {
