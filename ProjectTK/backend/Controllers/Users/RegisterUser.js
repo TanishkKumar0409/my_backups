@@ -1,8 +1,10 @@
 import Users from "../../Modals/Users.js";
 import bcryptjs from "bcryptjs";
+import jwt from "jsonwebtoken"
 
 const registerUser = async (req, res) => {
     try {
+        const PrivateKey = process.env.PrivateKey
         const { username, name, email, contact, password } = req.body;
 
         const lastUser = await Users.findOne().sort({ userID: -1 });
@@ -22,6 +24,8 @@ const registerUser = async (req, res) => {
             return res.status(400).json({ error: "Contact Already Exist" });
         }
 
+        const loginToken = jwt.sign({ username, email, contact }, PrivateKey)
+
         const newUser = new Users({
             userID, username, name, email, contact, role, password: hashedPassword
         });
@@ -29,7 +33,7 @@ const registerUser = async (req, res) => {
         const savedUser = await newUser.save();
 
         if (savedUser) {
-            return res.status(201).json({ message: "User Saved Successfully", savedUser });
+            return res.status(201).json({ message: "User Saved Successfully", savedUser, loginToken });
         }
 
     } catch (error) {
