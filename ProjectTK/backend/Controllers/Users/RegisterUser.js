@@ -7,6 +7,8 @@ const registerUser = async (req, res) => {
         const PrivateKey = process.env.PrivateKey
         const { username, name, email, contact, password } = req.body;
 
+        const file = req.file ? req.file.filename : "Uploads/Users/DefaultProfiles/DefaultProfiles.jpg"
+
         const role = "user";
 
         var salt = bcryptjs.genSaltSync(10);
@@ -30,8 +32,16 @@ const registerUser = async (req, res) => {
         const loginToken = jwt.sign({ username, email, contact }, PrivateKey)
 
         const newUser = new Users({
-            username, name, email, contact, role, password: hashedPassword
+            profile: file,
+            username,
+            name,
+            email,
+            contact,
+            role,
+            password: hashedPassword
         });
+
+        console.log(file)
 
         const savedUser = await newUser.save();
 
