@@ -25,14 +25,15 @@ const UsersSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    status: {
+        type: String,
+        requried: true
+    },
     password: {
         type: String,
         required: true
-    },
-    createdAt: {
-        type: Date,
     }
-})
+}, { timestamps: true })
 
 const Users = mongoose.model("Users", UsersSchema)
 

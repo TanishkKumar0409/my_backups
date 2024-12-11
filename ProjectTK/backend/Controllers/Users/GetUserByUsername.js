@@ -4,10 +4,7 @@ const getUserByUsername = async (req, res) => {
     try {
         const { username } = req.params;
 
-
-        const getUser = await Users.findOne(
-            { username },
-            { _id: 0, role: 0, password: 0, __v: 0 })
+        const getUser = await Users.findOne({ username })
 
         if (getUser) {
             return res.status(200).json(getUser)

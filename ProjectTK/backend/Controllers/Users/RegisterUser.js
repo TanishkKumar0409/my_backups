@@ -9,7 +9,8 @@ const registerUser = async (req, res) => {
 
         const file = req.file ? req.file.filename : "Uploads/Users/DefaultProfiles/DefaultProfiles.jpg"
 
-        const role = "user";
+        const role = "USER";
+        const status = "ACTIVE"
 
         var salt = bcryptjs.genSaltSync(10);
         var hashedPassword = bcryptjs.hashSync(password, salt);
@@ -37,6 +38,7 @@ const registerUser = async (req, res) => {
             name,
             email,
             contact,
+            status,
             role,
             password: hashedPassword
         });

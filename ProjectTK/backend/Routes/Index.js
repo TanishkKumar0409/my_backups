@@ -3,6 +3,9 @@ import RegisterUser from "../Controllers/Users/RegisterUser.js";
 import multer from "multer"
 import getUsers from "../Controllers/Users/GetUsers.js";
 import getUserByUsername from "../Controllers/Users/GetUserByUsername.js";
+import DeleteUser from "../Controllers/Users/DeleteUser.js";
+import UpdateByUser from "../Controllers/Users/UpdateByUser.js";
+import Login from "../Controllers/Users/Login.js";
 
 const router = express.Router()
 
@@ -18,8 +21,12 @@ const UserProfileStorage = multer.diskStorage({
 const uploadProfile = multer({ storage: UserProfileStorage })
 
 router.post("/user/register", uploadProfile.single("profile"), RegisterUser)
+router.post("/user/login", Login)
 
 router.get("/user/all", getUsers)
 router.get("/user/:username", getUserByUsername)
+
+router.put("/user/delete/:username", DeleteUser)
+router.put("/user/update/:username", uploadProfile.single("profile"), UpdateByUser)
 
 export default router
