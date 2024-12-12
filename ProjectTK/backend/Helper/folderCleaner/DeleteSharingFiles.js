@@ -40,8 +40,6 @@ const deleteSharingFiles = async (req, res) => {
             }
         }
     }
-
-
 };
 
 export default deleteSharingFiles;

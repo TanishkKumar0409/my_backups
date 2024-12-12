@@ -28,7 +28,7 @@ const ShareFiles = async (req, res) => {
             files,
             receiverEmail: email,
             downloadLink: `http://localhost:5000/api/share/download/${SharingId}`,
-            downloadLinkExpiry: Date.now() + 10000,
+            downloadLinkExpiry: Date.now() + 60000,
             deleteStatus: "PENDING",
             message
         });
