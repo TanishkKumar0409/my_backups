@@ -8,6 +8,7 @@ export const DownloadFiles = async (req, res) => {
         const { sharingId } = req.params;
 
         const historyRecord = await History.findOne({ SharingId: sharingId });
+        const Username=historyRecord.SenderUsername;
         if (!historyRecord) {
             return res.status(404).json({ error: "No files found for the given SharingId." });
         }
@@ -18,7 +19,7 @@ export const DownloadFiles = async (req, res) => {
             return res.status(404).json({ error: "No files to download." });
         }
 
-        const zipFilename = `shared-files-${sharingId}.zip`;
+        const zipFilename = `shared-files-${Username}.zip`;
         const zipPath = path.join("./Uploads/shareFiles", zipFilename);
         const archive = archiver("zip", { zlib: { level: 9 } });
 

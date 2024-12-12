@@ -23,12 +23,14 @@ const ShareFiles = async (req, res) => {
             filePath: file.path
         }));
 
+        const downloadLink = `http://localhost:5000/api/share/download/${SharingId}`;
+
         const newHistory = new History({
             SenderUsername: username,
             SharingId,
             files,
             receiverEmail: email,
-            downloadLink: `http://localhost:5000/api/share/download/${SharingId}`,
+            downloadLink,
             downloadLinkExpiry: Date.now() + 60000,
             deleteStatus: "PENDING",
             message
@@ -36,7 +38,7 @@ const ShareFiles = async (req, res) => {
 
         const savedHistory = await newHistory.save();
 
-        SharingMailer({ SharingId, email })
+        SharingMailer({ email, downloadLink })
 
         if (savedHistory) {
             res.status(200).json({

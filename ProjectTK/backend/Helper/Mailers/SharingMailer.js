@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer"
 
-const SharingMailer = async ({ SharingId, email }) => {
+const SharingMailer = async ({ email, downloadLink }) => {
     try {
         var transport = nodemailer.createTransport({
             host: "sandbox.smtp.mailtrap.io",
@@ -16,7 +16,7 @@ const SharingMailer = async ({ SharingId, email }) => {
             to: email,
             subject: "Shared Files Email",
             text: "You Got Email With File Download Link",
-            html: `<a href='http://localhost:5000/api/share/download/${SharingId}'>Download</a>`,
+            html: `<a href=${downloadLink}>Download</a>`,
         }
 
         const info = await transport.sendMail(MailSchema);
