@@ -3,7 +3,7 @@ import bodyparser from "body-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import router from "./Routes/Index.js";
-import deleteShareingFiles from "./Controllers/SharedFiles/DeleteSharingFiles.js";
+import deleteShareingFiles from "./Helper/folderCleaner/DeleteSharingFiles.js";
 
 dotenv.config()
 
