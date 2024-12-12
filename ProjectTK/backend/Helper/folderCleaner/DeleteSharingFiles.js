@@ -16,7 +16,6 @@ const deleteSharingFiles = async (req, res) => {
                         await fs.access(file.filePath);
 
                         await fs.unlink(file.filePath);
-                        console.log("File Deleted:", file.filePath);
                     } catch (err) {
                         if (err.code === "ENOENT") {
                             console.log(`File does not exist: ${file.filePath}`);
@@ -32,9 +31,7 @@ const deleteSharingFiles = async (req, res) => {
                     { new: true }
                 );
 
-                if (updateResult) {
-                    console.log(`Record with SharingId ${record.SharingId} marked as deleted.`);
-                } else {
+                if (!updateResult) {
                     console.log(`Record with SharingId ${record.SharingId} not found.`);
                 }
             }
