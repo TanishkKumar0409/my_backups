@@ -1,3 +1,4 @@
+import SharingMailer from "../../Helper/Mailers/SharingMailer.js";
 import History from "../../Modals/History.js";
 
 const ShareFiles = async (req, res) => {
@@ -34,6 +35,8 @@ const ShareFiles = async (req, res) => {
         });
 
         const savedHistory = await newHistory.save();
+
+        SharingMailer({ SharingId, email })
 
         if (savedHistory) {
             res.status(200).json({

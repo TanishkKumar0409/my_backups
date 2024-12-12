@@ -1,7 +1,6 @@
 import nodemailer from "nodemailer"
-import bcryptjs from "bcryptjs"
 
-const SharingMailer = async () => {
+const SharingMailer = async ({ SharingId, email }) => {
     try {
         var transport = nodemailer.createTransport({
             host: "sandbox.smtp.mailtrap.io",
@@ -11,6 +10,16 @@ const SharingMailer = async () => {
                 pass: "1ec06c5bff684d"
             }
         });
+
+        const MailSchema = {
+            from: 'tanishkk60@gmail.com',
+            to: email,
+            subject: "Shared Files Email",
+            text: "You Got Email With File Download Link",
+            html: `<a href='http://localhost:5000/api/share/download/${SharingId}'>Download</a>`,
+        }
+
+        const info = await transport.sendMail(MailSchema);
     } catch (error) {
         console.error("Error sending verification email: ", error.message);
     }
