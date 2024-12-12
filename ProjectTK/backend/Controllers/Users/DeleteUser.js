@@ -5,7 +5,6 @@ const DeleteUser = async (req, res) => {
         const { username } = req.params;
 
         const DeletedUser = await Users.findOneAndUpdate({ username }, { $set: { status: "DELETED" } }, { new: true })
-        // const DeletedUser=await Users.findOneAndDelete({ username })
 
         if (DeletedUser) {
             return res.status(200).json(DeletedUser)
@@ -16,4 +15,4 @@ const DeleteUser = async (req, res) => {
         return res.status(500).json({ error: error.message })
     }
 }
-export default DeleteUser
+export default DeleteUser;

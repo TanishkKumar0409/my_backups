@@ -3,6 +3,7 @@ import bodyparser from "body-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import router from "./Routes/Index.js";
+import deleteShareingFiles from "./Controllers/SharedFiles/DeleteSharingFiles.js";
 
 dotenv.config()
 
@@ -14,7 +15,12 @@ const app = express()
 
 app.use(bodyparser.json())
 
-app.use("/api/",router)
+app.use("/api/", router)
+
+
+setInterval(() => {
+    deleteShareingFiles()
+}, 1000)
 
 mongoose.connect(DbName)
     .then(() => console.log(`Database Connected`))

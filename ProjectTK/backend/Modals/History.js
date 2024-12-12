@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const HistorySchema = mongoose.Schema({
     SenderUsername: {
         type: String,
@@ -15,9 +16,9 @@ const HistorySchema = mongoose.Schema({
                 type: String,
                 required: true
             },
-            filePath:{
-                type:String,
-                required:true
+            filePath: {
+                type: String,
+                required: true
             }
         }
     ],
@@ -26,6 +27,18 @@ const HistorySchema = mongoose.Schema({
         requried: true
     },
     message: {
+        type: String,
+        required: true
+    },
+    downloadLink: {
+        type: String,
+        required: true
+    },
+    downloadLinkExpiry: {
+        type: Date,
+        required: true
+    },
+    deleteStatus: {
         type: String,
         required: true
     },
