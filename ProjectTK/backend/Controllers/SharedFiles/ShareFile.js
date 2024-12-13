@@ -18,17 +18,16 @@ const ShareFiles = async (req, res) => {
             return res.status(400).json({ error: "No files uploaded." });
         }
 
-        const files = req.files.map(file => ({
-            fileName: file.originalname,
-            filePath: file.path
-        }));
+        const fileNames = req.files.map(file => file.originalname);
+        const filePaths = req.files.map(file => file.path);
 
         const downloadLink = `http://localhost:5000/api/share/download/${SharingId}`;
 
         const newHistory = new History({
             SenderUsername: username,
             SharingId,
-            files,
+            fileName: fileNames,
+            filePath: filePaths,
             receiverEmail: email,
             downloadLink,
             downloadLinkExpiry: Date.now() + 60000,

@@ -10,18 +10,14 @@ const HistorySchema = mongoose.Schema({
         type: Number,
         requried: true
     },
-    files: [
-        {
-            fileName: {
-                type: String,
-                required: true
-            },
-            filePath: {
-                type: String,
-                required: true
-            }
-        }
-    ],
+    fileName: {
+        type: [String],
+        required: true
+    },
+    filePath: {
+        type: [String],
+        required: true
+    },
     reciverEmail: {
         type: String,
         requried: true
