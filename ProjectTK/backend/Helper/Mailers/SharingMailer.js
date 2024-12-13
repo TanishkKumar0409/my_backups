@@ -20,7 +20,7 @@ const SharingMailer = async ({ email, downloadLink }) => {
         }
 
         const info = await transport.sendMail(MailSchema);
-        console.log(info)
+        console.log(info.response)
     } catch (error) {
         console.error("Error sending verification email: ", error.message);
     }
