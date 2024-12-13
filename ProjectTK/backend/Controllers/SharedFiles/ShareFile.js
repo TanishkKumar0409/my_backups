@@ -30,7 +30,7 @@ const ShareFiles = async (req, res) => {
             filePath: filePaths,
             receiverEmail: email,
             downloadLink,
-            downloadLinkExpiry: Date.now() + 60000,
+            downloadLinkExpiry: new Date(Date.now() + 60000),
             deleteStatus: "PENDING",
             message
         });

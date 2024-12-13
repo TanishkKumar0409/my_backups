@@ -7,7 +7,7 @@ import DeleteUser from "../Controllers/Users/DeleteUser.js";
 import UpdateByUser from "../Controllers/Users/UpdateByUser.js";
 import Login from "../Controllers/Users/Login.js";
 import ShareFiles from "../Controllers/SharedFiles/ShareFile.js";
-import { DownloadFiles } from "../Controllers/SharedFiles/DownloadFiles.js";
+import { DownloadFiles } from "../Helper/DownloadFiles/DownloadFiles.js";
 
 const router = express.Router()
 
@@ -45,7 +45,7 @@ const UploadFileShare = multer({ storage: FileShare })
 router.post("/share/:username", UploadFileShare.array("files", 10), ShareFiles)
 
 
-router.get("/share/download/:sharingId",DownloadFiles)
+router.get("/share/download/:sharingId", DownloadFiles)
 
 
 export default router
