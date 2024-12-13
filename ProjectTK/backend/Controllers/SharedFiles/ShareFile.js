@@ -6,7 +6,6 @@ const ShareFiles = async (req, res) => {
         let { email, message } = req.body;
         const { username } = req.params;
 
-
         if (!message) {
             message = "No Message provided"
         }
@@ -45,7 +44,6 @@ const ShareFiles = async (req, res) => {
                 savedHistory
             });
         }
-
 
     } catch (error) {
         return res.status(500).json({ error: error.message })
