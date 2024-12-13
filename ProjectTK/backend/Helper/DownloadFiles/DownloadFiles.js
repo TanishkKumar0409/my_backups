@@ -25,7 +25,6 @@ export const DownloadFiles = async (req, res) => {
         const output = fs.createWriteStream(zipPath);
         archive.pipe(output);
 
-        // Add files to the archive
         filePaths.forEach((filePath, index) => {
             archive.file(filePath, { name: fileNames[index] });
         });
@@ -38,7 +37,6 @@ export const DownloadFiles = async (req, res) => {
                     console.error("Error downloading the ZIP file:", err);
                 }
 
-                // Clean up the generated ZIP file
                 fs.unlink(zipPath, (err) => {
                     if (err) {
                         console.error("Error deleting the ZIP file:", err);
