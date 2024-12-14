@@ -13,6 +13,7 @@ import createAdmin from "../Controllers/Admin/CreateAdmin.js";
 
 const router = express.Router()
 
+//? User profile Multer
 const UserProfileStorage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './')
@@ -24,18 +25,7 @@ const UserProfileStorage = multer.diskStorage({
 
 const uploadProfile = multer({ storage: UserProfileStorage })
 
-router.post("/user/register", uploadProfile.single("profile"), RegisterUser)
-router.post("/user/login", Login)
-
-router.get("/user/all", getUsers)
-router.get("/user/:username", getUserByUsername)
-
-router.put("/user/delete/:username", DeleteUser)
-router.put("/user/update/:username", uploadProfile.single("profile"), UpdateByUser)
-
-router.put("/user/block/:username", blockUser)
-router.put("/user/promote/:username", createAdmin)
-
+//? Sharing File Multer
 const FileShare = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './')
@@ -47,9 +37,20 @@ const FileShare = multer.diskStorage({
 
 const UploadFileShare = multer({ storage: FileShare })
 
+//? Users Routes
+router.post("/user/register", uploadProfile.single("profile"), RegisterUser)
+router.post("/user/login", Login)
+router.get("/user/all", getUsers)
+router.get("/user/:username", getUserByUsername)
+router.put("/user/delete/:username", DeleteUser)
+router.put("/user/update/:username", uploadProfile.single("profile"), UpdateByUser)
+
+//? Admin Actions
+router.put("/user/block/:username", blockUser)
+router.put("/user/promote/:username", createAdmin)
+
+//? Sharing Routes
 router.post("/share/:username", UploadFileShare.array("files", 10), ShareFiles)
-
-
 router.get("/share/download/:sharingId", DownloadFiles)
 
 
