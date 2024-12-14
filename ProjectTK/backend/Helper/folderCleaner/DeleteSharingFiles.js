@@ -1,49 +1,78 @@
 import History from "../../Modals/History.js";
 import fs from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const deleteSharingFiles = async (req, res) => {
     const fileData = await History.find().sort({ sharingId: 1 });
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
 
-    for (const record of fileData) {
-        if (record.deleteStatus === "PENDING") {
-            const currentTime = Date.now();
+    const templatePath = path.join(__dirname, "../../Uploads/ShareFiles");
 
-            if (currentTime > new Date(record.downloadLinkExpiry).getTime()) {
-                for (let i = 0; i < record.filePath.length; i++) {
-                    try {
-                        const filePath = record.filePath[i];
-                        await fs.access(filePath);
-                        await fs.unlink(filePath);
-                    } catch (err) {
-                        if (err.code === "ENOENT") {
-                            console.log(`File does not exist: ${record.filePath[i]}`);
-                        } else {
-                            console.error(`Error deleting file: ${record.filePath[i]}`, err);
-                        }
-                    }
-                }
+    try {
+        const filesInFolder = await fs.readdir(templatePath);
 
-                const updateResult = await History.findOneAndUpdate(
-                    { sharingId: record.sharingId },
-                    {
-                        $set: { deleteStatus: "DELETED" },
-                        $unset: {
-                            filePath: "",
-                            downloadLinkExpiry: "",
-                            downloadLink: ""
-                        }
-                    },
-                    { new: true }
-                );
-
-                if (!updateResult) {
-                    console.log(`Record with sharingId ${record.sharingId} not found.`);
-                }
-
+        const dbFilePaths = new Set();
+        for (const record of fileData) {
+            for (const filePath of record.filePath) {
+                dbFilePaths.add(path.basename(filePath));
             }
         }
-    }
 
+        for (const fileName of filesInFolder) {
+            if (!dbFilePaths.has(fileName)) {
+                const filePathToDelete = path.join(templatePath, fileName);
+                try {
+                    await fs.unlink(filePathToDelete);
+                    console.log(`Deleted file not in database: ${fileName}`);
+                } catch (err) {
+                    console.error(`Error deleting file: ${fileName}`, err);
+                }
+            }
+        }
+
+        for (const record of fileData) {
+            if (record.deleteStatus === "PENDING") {
+                const currentTime = Date.now();
+
+                if (currentTime > new Date(record.downloadLinkExpiry).getTime()) {
+                    for (let i = 0; i < record.filePath.length; i++) {
+                        try {
+                            const filePath = record.filePath[i];
+                            await fs.access(filePath);
+                            await fs.unlink(filePath);
+                        } catch (err) {
+                            if (err.code === "ENOENT") {
+                                console.log(`File does not exist: ${record.filePath[i]}`);
+                            } else {
+                                console.error(`Error deleting file: ${record.filePath[i]}`, err);
+                            }
+                        }
+                    }
+
+                    const updateResult = await History.findOneAndUpdate(
+                        { sharingId: record.sharingId },
+                        {
+                            $set: { deleteStatus: "DELETED" },
+                            $unset: {
+                                filePath: "",
+                                downloadLinkExpiry: "",
+                                downloadLink: ""
+                            }
+                        },
+                        { new: true }
+                    );
+
+                    if (!updateResult) {
+                        console.log(`Record with sharingId ${record.sharingId} not found.`);
+                    }
+                }
+            }
+        }
+    } catch (err) {
+        console.error("Error accessing templatePath or reading files:", err);
+    }
 };
 
 export default deleteSharingFiles;
