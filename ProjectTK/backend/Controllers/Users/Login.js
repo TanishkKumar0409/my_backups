@@ -7,6 +7,11 @@ const Login = async (req, res) => {
         const PrivateKey = process.env.PrivateKey;
         const { email, password } = req.body;
 
+        const blockedUser = await Users.findOne({ email, status: "BLOCKED" });
+        if (blockedUser) {
+            return res.status(403).json({ error: "Sorry, You are Blocked." });
+        }
+
         const LoginUser = await Users.findOne({ email })
         if (!LoginUser) {
             return res.status(404).json({ error: "Email Not Found" })
@@ -23,6 +28,13 @@ const Login = async (req, res) => {
         }
 
         const LoginToken = jwt.sign({ email, password }, PrivateKey)
+
+        const isAdmin = LoginUser.role;
+
+        if (isAdmin === "ADMIN") {
+            const AdminToken = jwt.sign({ email, password, isAdmin }, PrivateKey)
+            return res.status(200).json({ message: "Login Successfully", LoginToken, AdminToken })
+        }
 
         if (LoginUser && isMatch && LoginToken) {
             return res.status(200).json({ message: "Login Successfully", LoginToken })
