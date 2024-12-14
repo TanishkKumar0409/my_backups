@@ -39,6 +39,7 @@ const deleteSharingFiles = async (req, res) => {
                 if (!updateResult) {
                     console.log(`Record with sharingId ${record.sharingId} not found.`);
                 }
+
             }
         }
     }
