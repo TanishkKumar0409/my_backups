@@ -2,7 +2,7 @@ import Users from "../../Modals/Users.js";
 
 const createAdmin = async (req, res) => {
     try {
-        const { username } = req.body;
+        const { username } = req.params;
 
         const newAdmin = await Users.findOneAndUpdate({ username }, { $set: { role: "ADMIN" } }, { new: true })
 

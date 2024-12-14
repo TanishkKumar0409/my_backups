@@ -10,6 +10,9 @@ import ShareFiles from "../Controllers/SharedFiles/ShareFile.js";
 import { DownloadFiles } from "../Helper/DownloadFiles/DownloadFiles.js";
 import blockUser from "../Controllers/Admin/BlockUser.js";
 import createAdmin from "../Controllers/Admin/CreateAdmin.js";
+import getSharedHistory from "../Controllers/SharedFiles/GetSharedHistory.js";
+import getSharedHistoryBySharingId from "../Controllers/SharedFiles/GetSharedHistoryBySharingId.js";
+import getSharedHistoryByUsername from "../Controllers/SharedFiles/GetSharedHistoryByUsername.js";
 
 const router = express.Router()
 
@@ -52,6 +55,9 @@ router.put("/user/promote/:username", createAdmin)
 //? Sharing Routes
 router.post("/share/:username", UploadFileShare.array("files", 10), ShareFiles)
 router.get("/share/download/:sharingId", DownloadFiles)
+router.get("/share/history", getSharedHistory)
+router.get("/share/history/user/:username", getSharedHistoryByUsername)
+router.get("/share/history/id/:sharingId", getSharedHistoryBySharingId)
 
 
 export default router

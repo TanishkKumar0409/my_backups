@@ -21,13 +21,13 @@ const registerUser = async (req, res) => {
             return res.status().json({ error: "All Fields are Required" })
         }
 
-        const blockedUser = await Users.findOne({ email, status: "BLOCKED" });
+        const blockedUser = await Users.findOne({ $or: [{ email }, { contact }], status: "BLOCKED" });
         if (blockedUser) {
             return res.status(403).json({ error: "Sorry, You are Blocked." });
         }
 
         const ReActivating = await Users.findOneAndUpdate(
-            { email, contact, status: "DELETED" },
+            { $or: [{ email }, { contact }], status: "DELETED" },
             {
                 $set: {
                     profile: file,

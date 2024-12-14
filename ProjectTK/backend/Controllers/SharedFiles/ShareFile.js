@@ -10,8 +10,8 @@ const ShareFiles = async (req, res) => {
             message = "No Message provided"
         }
 
-        const lastSharedFile = await History.findOne().sort({ SharingId: -1 })
-        const SharingId = lastSharedFile ? lastSharedFile.SharingId + 1 : 1;
+        const lastSharedFile = await History.findOne().sort({ sharingId: -1 })
+        const sharingId = lastSharedFile ? lastSharedFile.sharingId + 1 : 1;
 
         if (!req.files || req.files.length === 0) {
             return res.status(400).json({ error: "No files uploaded." });
@@ -20,16 +20,16 @@ const ShareFiles = async (req, res) => {
         const fileNames = req.files.map(file => file.originalname);
         const filePaths = req.files.map(file => file.path);
 
-        const downloadLink = `http://localhost:5000/api/share/download/${SharingId}`;
+        const downloadLink = `http://localhost:5000/api/share/download/${sharingId}`;
 
         const newHistory = new History({
-            SenderUsername: username,
-            SharingId,
+            senderUsername: username,
+            sharingId,
             fileName: fileNames,
             filePath: filePaths,
             receiverEmail: email,
             downloadLink,
-            downloadLinkExpiry: new Date(Date.now() + 60000),
+            downloadLinkExpiry: new Date(Date.now() + 600000),
             deleteStatus: "PENDING",
             message
         });

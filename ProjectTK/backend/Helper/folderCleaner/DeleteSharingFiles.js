@@ -2,7 +2,7 @@ import History from "../../Modals/History.js";
 import fs from "fs/promises";
 
 const deleteSharingFiles = async (req, res) => {
-    const fileData = await History.find().sort({ SharingId: 1 });
+    const fileData = await History.find().sort({ sharingId: 1 });
 
     for (const record of fileData) {
         if (record.deleteStatus === "PENDING") {
@@ -24,20 +24,20 @@ const deleteSharingFiles = async (req, res) => {
                 }
 
                 const updateResult = await History.findOneAndUpdate(
-                    { SharingId: record.SharingId },
+                    { sharingId: record.sharingId },
                     {
                         $set: { deleteStatus: "DELETED" },
                         $unset: {
+                            filePath: "",
                             downloadLinkExpiry: "",
-                            downloadLink: "",
-                            filePath: ""
+                            downloadLink: ""
                         }
                     },
                     { new: true }
                 );
 
                 if (!updateResult) {
-                    console.log(`Record with SharingId ${record.SharingId} not found.`);
+                    console.log(`Record with sharingId ${record.sharingId} not found.`);
                 }
             }
         }

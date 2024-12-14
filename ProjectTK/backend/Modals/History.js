@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 
 const HistorySchema = mongoose.Schema({
-    SenderUsername: {
+    senderUsername: {
         type: String,
         required: true
     },
-    SharingId: {
+    sharingId: {
         type: Number,
         requried: true
     },
@@ -18,7 +18,7 @@ const HistorySchema = mongoose.Schema({
         type: [String],
         required: true
     },
-    reciverEmail: {
+    receiverEmail: {
         type: String,
         requried: true
     },
