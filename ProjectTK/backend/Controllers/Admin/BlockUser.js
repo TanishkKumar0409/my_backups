@@ -3,6 +3,7 @@ import Users from "../../Modals/Users.js";
 const blockUser = async (req, res) => {
     try {
         const { username } = req.params;
+
         const blockedUser = await Users.findOneAndUpdate({ username }, {
             $set: {
                 status: "BLOCKED"
@@ -10,7 +11,7 @@ const blockUser = async (req, res) => {
         }, { new: true })
 
         if (blockedUser) {
-            return res.status(200).json({ message: "User is Blocked" })
+            return res.status(200).json({ message: "User is Blocked", blockedUser })
         } else {
             return res.status(404).json({ error: "User Not Found" })
         }

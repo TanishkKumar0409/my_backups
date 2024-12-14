@@ -8,6 +8,8 @@ import UpdateByUser from "../Controllers/Users/UpdateByUser.js";
 import Login from "../Controllers/Users/Login.js";
 import ShareFiles from "../Controllers/SharedFiles/ShareFile.js";
 import { DownloadFiles } from "../Helper/DownloadFiles/DownloadFiles.js";
+import blockUser from "../Controllers/Admin/BlockUser.js";
+import createAdmin from "../Controllers/Admin/CreateAdmin.js";
 
 const router = express.Router()
 
@@ -30,6 +32,9 @@ router.get("/user/:username", getUserByUsername)
 
 router.put("/user/delete/:username", DeleteUser)
 router.put("/user/update/:username", uploadProfile.single("profile"), UpdateByUser)
+
+router.put("/user/block/:username", blockUser)
+router.put("/user/promote/:username", createAdmin)
 
 const FileShare = multer.diskStorage({
     destination: function (req, file, cb) {
