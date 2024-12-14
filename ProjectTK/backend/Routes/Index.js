@@ -41,23 +41,22 @@ const FileShare = multer.diskStorage({
 const UploadFileShare = multer({ storage: FileShare })
 
 //? Users Routes
-router.post("/user/register", uploadProfile.single("profile"), RegisterUser)
-router.post("/user/login", Login)
-router.get("/user/all", getUsers)
-router.get("/user/:username", getUserByUsername)
-router.put("/user/delete/:username", DeleteUser)
-router.put("/user/update/:username", uploadProfile.single("profile"), UpdateByUser)
+router.post("/user/register", uploadProfile.single("profile"), RegisterUser);
+router.post("/user/login", Login);
+router.get("/user/all", getUsers);
+router.get("/user/:username", getUserByUsername);
+router.put("/user/delete/:username", DeleteUser);
+router.put("/user/update/:username", uploadProfile.single("profile"), UpdateByUser);
 
 //? Admin Actions
-router.put("/user/block/:username", blockUser)
-router.put("/user/promote/:username", createAdmin)
+router.put("/user/block/:username", blockUser);
+router.put("/user/promote/:username", createAdmin);
 
 //? Sharing Routes
-router.post("/share/:username", UploadFileShare.array("files", 10), ShareFiles)
-router.get("/share/download/:sharingId", DownloadFiles)
-router.get("/share/history", getSharedHistory)
-router.get("/share/history/user/:username", getSharedHistoryByUsername)
-router.get("/share/history/id/:sharingId", getSharedHistoryBySharingId)
+router.post("/share/:username", UploadFileShare.array("files", 10), ShareFiles);
+router.get("/share/download/:sharingId", DownloadFiles);
+router.get("/share/history", getSharedHistory);
+router.get("/share/history/user/:username", getSharedHistoryByUsername);
+router.get("/share/history/id/:sharingId", getSharedHistoryBySharingId);
 
-
-export default router
+export default router;
