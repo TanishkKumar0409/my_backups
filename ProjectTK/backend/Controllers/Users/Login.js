@@ -12,6 +12,11 @@ const Login = async (req, res) => {
             return res.status(404).json({ error: "Email Not Found" })
         }
 
+        const isDeleted = LoginUser.status;
+        if (isDeleted === "DELETED") {
+            return res.status(404).json({ error: "Account Does not Exist." })
+        }
+
         const isMatch = await bcryptjs.compare(password, LoginUser.password)
         if (!isMatch) {
             return res.status(404).json({ error: "Incorrect Password" })
