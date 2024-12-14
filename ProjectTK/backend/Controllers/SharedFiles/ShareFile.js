@@ -7,7 +7,7 @@ const ShareFiles = async (req, res) => {
         const { username } = req.params;
 
         if (!message) {
-            message = "No Message provided"
+            message = "No Message provided";
         }
 
         const lastSharedFile = await History.findOne().sort({ sharingId: -1 })
@@ -29,14 +29,14 @@ const ShareFiles = async (req, res) => {
             filePath: filePaths,
             receiverEmail: email,
             downloadLink,
-            downloadLinkExpiry: new Date(Date.now() + 600000),
+            downloadLinkExpiry: new Date(Date.now() + 60000),
             deleteStatus: "PENDING",
             message
         });
 
         const savedHistory = await newHistory.save();
 
-        SharingMailer({ email, downloadLink })
+        SharingMailer({ email, downloadLink });
 
         if (savedHistory) {
             res.status(200).json({
@@ -50,4 +50,4 @@ const ShareFiles = async (req, res) => {
     }
 }
 
-export default ShareFiles
+export default ShareFiles;

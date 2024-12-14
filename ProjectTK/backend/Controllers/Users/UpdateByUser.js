@@ -19,7 +19,7 @@ const UpdateByUser = async (req, res) => {
 
         const file = req.file ? req.file.filename :
             existingUser ? existingUser.profile :
-                "Uploads/Users/DefaultProfiles/DefaultProfiles.jpg"
+                "Uploads/Users/DefaultProfiles/DefaultProfiles.jpg";
 
         const updatedUser = await Users.findOneAndUpdate({ username },
             { $set: { profile: file, name, email, contact, password: updatedPassword } },
@@ -34,4 +34,4 @@ const UpdateByUser = async (req, res) => {
     }
 }
 
-export default UpdateByUser
+export default UpdateByUser;

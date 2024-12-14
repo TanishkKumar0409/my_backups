@@ -8,10 +8,10 @@ const deleteSharingFiles = async (req, res) => {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
 
-    const templatePath = path.join(__dirname, "../../Uploads/ShareFiles");
+    const unKnownFilePaths = path.join(__dirname, "../../Uploads/ShareFiles");
 
     try {
-        const filesInFolder = await fs.readdir(templatePath);
+        const filesInFolder = await fs.readdir(unKnownFilePaths);
 
         const dbFilePaths = new Set();
         for (const record of fileData) {

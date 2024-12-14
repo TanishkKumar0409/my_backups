@@ -4,7 +4,7 @@ const getSharedHistoryByUsername = async (req, res) => {
     try {
         const { username } = req.params;
 
-        const UserHistory = await History.find({ senderUsername:username });
+        const UserHistory = await History.find({ senderUsername: username });
 
         if (UserHistory) {
             return res.status(200).json(UserHistory)

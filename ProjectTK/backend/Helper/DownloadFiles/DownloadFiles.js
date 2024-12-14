@@ -3,7 +3,7 @@ import archiver from "archiver";
 import path from "path";
 import fs from "fs";
 
-export const DownloadFiles = async (req, res) => {
+const DownloadFiles = async (req, res) => {
     try {
         const { sharingId } = req.params;
 
@@ -53,3 +53,5 @@ export const DownloadFiles = async (req, res) => {
         return res.status(500).json({ error: error.message });
     }
 };
+
+export default DownloadFiles;

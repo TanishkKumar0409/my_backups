@@ -2,6 +2,7 @@ import express from "express";
 import bodyparser from "body-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+
 import router from "./Routes/Index.js";
 import deleteShareingFiles from "./Helper/folderCleaner/DeleteSharingFiles.js";
 
@@ -16,7 +17,6 @@ const app = express()
 app.use(bodyparser.json())
 
 app.use("/api/", router)
-
 
 setInterval(() => {
     deleteShareingFiles()

@@ -1,18 +1,21 @@
 import express from "express";
 import RegisterUser from "../Controllers/Users/RegisterUser.js";
 import multer from "multer"
+
 import getUsers from "../Controllers/Users/GetUsers.js";
 import getUserByUsername from "../Controllers/Users/GetUserByUsername.js";
 import DeleteUser from "../Controllers/Users/DeleteUser.js";
 import UpdateByUser from "../Controllers/Users/UpdateByUser.js";
 import Login from "../Controllers/Users/Login.js";
-import ShareFiles from "../Controllers/SharedFiles/ShareFile.js";
-import { DownloadFiles } from "../Helper/DownloadFiles/DownloadFiles.js";
+
 import blockUser from "../Controllers/Admin/BlockUser.js";
 import createAdmin from "../Controllers/Admin/CreateAdmin.js";
+
+import ShareFiles from "../Controllers/SharedFiles/ShareFile.js";
 import getSharedHistory from "../Controllers/SharedFiles/GetSharedHistory.js";
 import getSharedHistoryBySharingId from "../Controllers/SharedFiles/GetSharedHistoryBySharingId.js";
 import getSharedHistoryByUsername from "../Controllers/SharedFiles/GetSharedHistoryByUsername.js";
+import DownloadFiles from "../Helper/DownloadFiles/DownloadFiles.js";
 
 const router = express.Router()
 
@@ -34,7 +37,7 @@ const FileShare = multer.diskStorage({
         cb(null, './')
     },
     filename: function (req, file, cb) {
-        cb(null, "Uploads/shareFiles/" + Date.now() + file.originalname + ".jpg")
+        cb(null, "Uploads/shareFiles/" + Date.now() + ".jpg")
     }
 })
 
