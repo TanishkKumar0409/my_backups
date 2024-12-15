@@ -2,6 +2,7 @@ import express from "express";
 import bodyparser from "body-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cors from "cors";
 
 import router from "./Routes/Index.js";
 import deleteShareingFiles from "./Helper/folderCleaner/DeleteSharingFiles.js";
@@ -14,6 +15,8 @@ const PORT = process.env.PORT;
 const DbName = process.env.DbName;
 
 const app = express()
+
+app.use(cors())
 
 app.use(bodyparser.json())
 

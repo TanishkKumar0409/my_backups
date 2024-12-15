@@ -22,7 +22,7 @@ const deleteSharingFiles = async (req, res) => {
 
         for (const fileName of filesInFolder) {
             if (!dbFilePaths.has(fileName)) {
-                const filePathToDelete = path.join(templatePath, fileName);
+                const filePathToDelete = path.join(unKnownFilePaths, fileName);
                 try {
                     await fs.unlink(filePathToDelete);
                     console.log(`Deleted file not in database: ${fileName}`);

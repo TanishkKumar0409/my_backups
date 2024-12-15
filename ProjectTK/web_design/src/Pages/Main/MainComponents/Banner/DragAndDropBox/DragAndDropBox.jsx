@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useFormik } from "formik";
-import BannerValidationSchema from "../../../Helper/ValidationSchemas/ValidationSchema";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { API } from "../../../Services/API/API";
+import API from "../../../../../Services/API/API.js";
+import BannerValidationSchema from "../../../../../Helper/ValidationSchemas/ValidationSchema.js"
 
 export default function DragAndDropBox() {
   const [files, setFiles] = useState([]);
@@ -35,12 +35,11 @@ export default function DragAndDropBox() {
       formData.append("email", values.email);
       formData.append("message", values.message || "No message provided");
 
-      const response = await API.post("/upload", formData);
+      const response = await API.post("/share/tani", formData);
 
       console.log("Form submitted successfully:", response);
       toast.success("Data submitted successfully!");
 
-      formik.resetForm();
       setFiles([]);
     } catch (error) {
       console.error({ error: error.message });

@@ -55,7 +55,6 @@ router.put("/user/update/:username", uploadProfile.single("profile"), UpdateByUs
 router.put("/user/block/:username", blockUser);
 router.put("/user/promote/:username", createAdmin);
 
-//? Sharing Routes
 router.post("/share/:username", UploadFileShare.array("files", 10), ShareFiles);
 router.get("/share/download/:sharingId", DownloadFiles);
 router.get("/share/history", getSharedHistory);
