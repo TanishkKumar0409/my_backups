@@ -21,7 +21,7 @@ export default function Footer() {
                     <Link to={"/"}><img
                         src="https://img.pikbest.com/png-images/20241027/eagle-shield-emblem-logo_11012401.png!bw700"
                         alt="Logo"
-                        className="img-fluid"
+                        className="img-fluid fa-bounce"
                         style={{ width: '200px' }}
                     /></Link>
 

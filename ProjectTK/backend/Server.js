@@ -18,6 +18,9 @@ const app = express()
 
 app.use(cors())
 
+app.use(express.static("public"));
+app.use("/Uploads", express.static("Uploads"));
+
 app.use(bodyparser.json())
 
 app.use("/api/", router)

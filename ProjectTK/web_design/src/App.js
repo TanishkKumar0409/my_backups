@@ -2,22 +2,32 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
 import "./App.css";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
 import Navbar from "./Components/Navbar/Navbar";
 import Main from "./Pages/Main/Main";
+import Forms from "./Pages/Forms/Forms";
 
 function App() {
   return (
+    <BrowserRouter>
+      <AppWithNavbar />
+    </BrowserRouter>
+  );
+}
+
+function AppWithNavbar() {
+  const location = useLocation();
+
+  return (
     <>
-      <BrowserRouter>
-        <ToastContainer position="top-center" />
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Main />} />
-        </Routes>
-      </BrowserRouter>
+      <ToastContainer position="top-center" />
+      {location.pathname !== "/form" && <Navbar />}
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/form" element={<Forms />} />
+      </Routes>
     </>
   );
 }
