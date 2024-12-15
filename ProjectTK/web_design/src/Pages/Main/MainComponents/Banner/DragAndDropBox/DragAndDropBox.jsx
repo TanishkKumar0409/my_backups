@@ -3,7 +3,7 @@ import { useDropzone } from "react-dropzone";
 import { useFormik } from "formik";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import API from "../../../../../Services/API/API.js";
+import {API} from "../../../../../Services/API/API.js";
 import BannerValidationSchema from "../../../../../Helper/ValidationSchemas/ValidationSchema.js"
 
 export default function DragAndDropBox() {

@@ -1,12 +1,29 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
 import { LoginValidationSchema } from '../../../Helper/FormValidationSchemas/FormValidationSchemas';
+import { noFileAPI } from "../../../Services/API/API";
 
 export default function Login(props) {
+    const redirector = useNavigate()
     const initialValues = { email: '', password: '' }
 
-    const handleSubmit = (values) => { console.log('Form submitted with values:', values); }
+    const handleSubmit = async (values) => {
+        try {
+            const response = await noFileAPI.post("/user/login", values);
+
+            toast.success(response.data.message)
+
+            localStorage.setItem("login", response.data.loginToken)
+
+            localStorage.setItem("admin", response.data.adminToken)
+
+            redirector("/")
+        } catch (error) {
+            toast.error(error.response.data.error)
+        }
+    }
 
     const formik = useFormik({
         initialValues: initialValues,

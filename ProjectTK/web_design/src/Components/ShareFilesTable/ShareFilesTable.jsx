@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import API from '../../Services/API/API';
+import { API } from '../../Services/API/API';
 
 export default function ShareFilesTable() {
     const [data, setData] = useState([]);

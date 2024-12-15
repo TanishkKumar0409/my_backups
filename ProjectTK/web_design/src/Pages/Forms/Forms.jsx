@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Login from './Login/Login';
 
 export default function Forms() {
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
 
     const toggleForm = () => {
         setIsLogin(!isLogin);

@@ -1,13 +1,14 @@
 import React, { useState, useRef } from 'react';
 import { useFormik } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RegisterValidationSchema } from '../../../Helper/FormValidationSchemas/FormValidationSchemas';
-import API from "../../../Services/API/API";
+import { API } from "../../../Services/API/API";
 import { toast } from "react-toastify";
 
 export default function Register(props) {
     const [profileImage, setProfileImage] = useState(null);
     const fileInputRef = useRef(null);
+    const redirector = useNavigate()
 
     const initialValues = { username: '', name: '', email: '', contact: '', password: '', profile: null };
 
@@ -23,13 +24,12 @@ export default function Register(props) {
                 formData.append('profile', values.profile);
             }
 
-            const response = await API.post("/user/register", formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
+            const response = await API.post("/user/register", formData);
 
             toast.success(response.data.message);
+            localStorage.setItem("login", response.data.loginToken)
+
+            redirector("/")
         } catch (error) {
             toast.error(error.response.data.error);
         }
