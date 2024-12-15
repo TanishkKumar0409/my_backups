@@ -249,12 +249,7 @@
 
 .AnimatedIcons i {
   font-size: 5rem;
-  background: linear-gradient(var(--error-red),
-      var(--primary-soft-gray),
-      var(--primary-dark-blue));
-  filter: drop-shadow(0 0 3px var(--background-dark)) drop-shadow(0 0 6px var(--background-dark));
-  background-clip: text;
-  color: transparent;
+  color: rgba(255, 255, 255, 0.5);
   animation: animatedIconsMove 80s ease-in-out infinite;
 }
 

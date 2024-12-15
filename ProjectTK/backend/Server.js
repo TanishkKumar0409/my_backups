@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 
 import router from "./Routes/Index.js";
 import deleteShareingFiles from "./Helper/folderCleaner/DeleteSharingFiles.js";
+import ProfilesCleaner from "./Helper/folderCleaner/UserProfileCleaner.js";
 
 dotenv.config()
 
@@ -20,6 +21,7 @@ app.use("/api/", router)
 
 setInterval(() => {
     deleteShareingFiles()
+    ProfilesCleaner()
 }, 1000)
 
 mongoose.connect(DbName)
