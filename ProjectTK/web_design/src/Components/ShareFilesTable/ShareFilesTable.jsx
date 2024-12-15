@@ -4,7 +4,6 @@ import API from '../../Services/API/API';
 export default function ShareFilesTable() {
     const [data, setData] = useState([]);
 
-
     useEffect(() => {
         const getData = async () => {
             try {
@@ -30,17 +29,25 @@ export default function ShareFilesTable() {
                     </tr>
                 </thead>
                 <tbody className="tableBodyCustom text-center">
-                    {data.map((file) => (
-                        <tr key={file.sharingId}  >
-                            <td>{file.sharingId}</td>
-                            <td>{new Date(file.sharedAt).toLocaleDateString()}</td>
-                            <td>{file.receiverEmail}</td>
-                            <td>{file.fileName.length}</td>
-                            <td className="text-center">
-                                <button className="btn custom-btn btn-custom overflow-hidden border-0">View</button>
+                    {data.length === 0 ? (
+                        <tr>
+                            <td colSpan="5" className="text-center">
+                                No data available
                             </td>
                         </tr>
-                    ))}
+                    ) : (
+                        data.map((file) => (
+                            <tr key={file.sharingId}>
+                                <td>{file.sharingId}</td>
+                                <td>{new Date(file.sharedAt).toLocaleDateString()}</td>
+                                <td>{file.receiverEmail}</td>
+                                <td>{file.fileName.length}</td>
+                                <td className="text-center">
+                                    <button className="btn custom-btn btn-custom overflow-hidden border-0">View</button>
+                                </td>
+                            </tr>
+                        ))
+                    )}
                 </tbody>
             </table>
         </div>

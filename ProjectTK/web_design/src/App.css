@@ -68,6 +68,10 @@
   }
 }
 
+.cursorPointer{
+  cursor: pointer;
+}
+
 .table-responsive {
   scrollbar-width: thin;
 }

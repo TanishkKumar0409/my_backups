@@ -1,25 +1,44 @@
 import React, { useState, useRef } from 'react';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
+import { RegisterValidationSchema } from '../../../Helper/FormValidationSchemas/FormValidationSchemas';
+import API from "../../../Services/API/API";
+import { toast } from "react-toastify";
 
 export default function Register(props) {
     const [profileImage, setProfileImage] = useState(null);
     const fileInputRef = useRef(null);
 
-    const validationSchema = Yup.object({
-        username: Yup.string().required('Username is required'),
-        name: Yup.string().required('Full Name is required'),
-        email: Yup.string().email('Invalid email format').required('Email is required'),
-        contact: Yup.string().matches(/^[0-9]{10}$/, 'Contact number must be 10 digits').required('Contact number is required'),
-        password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
-        profile: Yup.mixed().required('Profile picture is required'),
-    });
+    const initialValues = { username: '', name: '', email: '', contact: '', password: '', profile: null };
+
+    const handleSubmit = async (values) => {
+        try {
+            const formData = new FormData();
+            formData.append('username', values.username);
+            formData.append('name', values.name);
+            formData.append('email', values.email);
+            formData.append('contact', values.contact);
+            formData.append('password', values.password);
+            if (values.profile) {
+                formData.append('profile', values.profile);
+            }
+
+            const response = await API.post("/user/register", formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            toast.success(response.data.message);
+        } catch (error) {
+            toast.error(error.response.data.error);
+        }
+    };
 
     const formik = useFormik({
-        initialValues: { username: '', name: '', email: '', contact: '', password: '', profile: null },
-        validationSchema,
-        onSubmit: (values) => { console.log('Form submitted with values:', values); },
+        initialValues: initialValues,
+        validationSchema: RegisterValidationSchema,
+        onSubmit: handleSubmit,
     });
 
     const handleImageChange = (event) => {
@@ -30,7 +49,9 @@ export default function Register(props) {
         }
     };
 
-    const handleImageClick = () => { fileInputRef.current.click(); };
+    const handleImageClick = () => {
+        fileInputRef.current.click();
+    };
 
     return (
         <div className="d-flex justify-content-center align-items-center vh-100">
@@ -51,12 +72,14 @@ export default function Register(props) {
                             <img
                                 src={profileImage || 'http://localhost:5000/Uploads/Users/DefaultProfiles/DefaultProfile.jpg'}
                                 alt="Profile Preview"
-                                className="img-fluid rounded-circle"
+                                className="img-fluid rounded-circle cursorPointer"
                                 style={{ width: '150px', height: '150px', objectFit: 'cover' }}
                             />
                         </div>
-                        <label htmlFor="profile" className="form-label">Profile Picture</label>
-                        {formik.touched.profile && formik.errors.profile && <div className="text-danger">{formik.errors.profile}</div>}
+                        <label htmlFor="profile" className="form-label cursorPointer">Profile Picture</label>
+                        {formik.touched.profile && formik.errors.profile && (
+                            <div className="text-danger">{formik.errors.profile}</div>
+                        )}
                     </div>
 
                     <div className="row mb-3">
@@ -70,9 +93,11 @@ export default function Register(props) {
                                 value={formik.values.username}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-                                autoComplete='username'
+                                autoComplete="username"
                             />
-                            {formik.touched.username && formik.errors.username && <div className="text-danger">{formik.errors.username}</div>}
+                            {formik.touched.username && formik.errors.username && (
+                                <div className="text-danger">{formik.errors.username}</div>
+                            )}
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="name" className="form-label">Full Name</label>
@@ -84,9 +109,11 @@ export default function Register(props) {
                                 value={formik.values.name}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-                                autoComplete='name'
+                                autoComplete="name"
                             />
-                            {formik.touched.name && formik.errors.name && <div className="text-danger">{formik.errors.name}</div>}
+                            {formik.touched.name && formik.errors.name && (
+                                <div className="text-danger">{formik.errors.name}</div>
+                            )}
                         </div>
                     </div>
 
@@ -101,9 +128,11 @@ export default function Register(props) {
                                 value={formik.values.email}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-                                autoComplete='email'
+                                autoComplete="email"
                             />
-                            {formik.touched.email && formik.errors.email && <div className="text-danger">{formik.errors.email}</div>}
+                            {formik.touched.email && formik.errors.email && (
+                                <div className="text-danger">{formik.errors.email}</div>
+                            )}
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="contact" className="form-label">Contact Number</label>
@@ -116,7 +145,9 @@ export default function Register(props) {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />
-                            {formik.touched.contact && formik.errors.contact && <div className="text-danger">{formik.errors.contact}</div>}
+                            {formik.touched.contact && formik.errors.contact && (
+                                <div className="text-danger">{formik.errors.contact}</div>
+                            )}
                         </div>
                     </div>
 
@@ -131,16 +162,22 @@ export default function Register(props) {
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                         />
-                        {formik.touched.password && formik.errors.password && <div className="text-danger">{formik.errors.password}</div>}
+                        {formik.touched.password && formik.errors.password && (
+                            <div className="text-danger">{formik.errors.password}</div>
+                        )}
                     </div>
 
                     <div className="d-grid">
-                        <button type="submit" className="btn btn-custom custom-btn overflow-hidden border-0" disabled={formik.isSubmitting}>
+                        <button
+                            type="submit"
+                            className="btn btn-custom custom-btn overflow-hidden border-0"
+                            disabled={formik.isSubmitting}
+                        >
                             Submit
                         </button>
                     </div>
 
-                    <p className='text-center mt-3'>
+                    <p className="text-center mt-3">
                         Already have an account? <Link onClick={props.isLogin}>Login</Link>
                     </p>
                 </form>
