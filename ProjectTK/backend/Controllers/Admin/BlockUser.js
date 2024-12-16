@@ -4,6 +4,11 @@ const BlockUser = async (req, res) => {
     try {
         const { username } = req.params;
 
+        const isDeleted = await Users.findOne({ username, status: "DELETED" });
+        if (isDeleted) {
+            return res.status(400).json({ error: "Account Does not Exist" })
+        }
+
         const blockedUser = await Users.findOneAndUpdate({ username }, {
             $set: {
                 status: "BLOCKED"
