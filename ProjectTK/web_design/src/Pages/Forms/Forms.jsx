@@ -6,9 +6,7 @@ import Login from './Login/Login';
 export default function Forms() {
     const [isLogin, setIsLogin] = useState(true);
 
-    const toggleForm = () => {
-        setIsLogin(!isLogin);
-    };
+    const toggleForm = () => setIsLogin(!isLogin);;
 
     return (
         <section>

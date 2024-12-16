@@ -16,7 +16,6 @@ export default function Login(props) {
             toast.success(response.data.message)
 
             localStorage.setItem("login", response.data.loginToken)
-
             localStorage.setItem("admin", response.data.adminToken)
 
             redirector("/")
