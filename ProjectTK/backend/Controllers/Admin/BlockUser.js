@@ -1,6 +1,6 @@
 import Users from "../../Modals/Users.js";
 
-const blockUser = async (req, res) => {
+const BlockUser = async (req, res) => {
     try {
         const { username } = req.params;
 
@@ -20,4 +20,4 @@ const blockUser = async (req, res) => {
     }
 }
 
-export default blockUser;
+export default BlockUser;

@@ -1,6 +1,6 @@
 import Users from "../../Modals/Users.js";
 
-const createAdmin = async (req, res) => {
+const CreateAdmin = async (req, res) => {
     try {
         const { username } = req.params;
 
@@ -17,4 +17,4 @@ const createAdmin = async (req, res) => {
     }
 }
 
-export default createAdmin;
+export default CreateAdmin;

@@ -3,7 +3,7 @@ import { useDropzone } from "react-dropzone";
 import { useFormik } from "formik";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {API} from "../../../../../Services/API/API.js";
+import { API } from "../../../../../Services/API/API.js";
 import BannerValidationSchema from "../../../../../Helper/ValidationSchemas/ValidationSchema.js"
 
 export default function DragAndDropBox() {
@@ -59,7 +59,7 @@ export default function DragAndDropBox() {
         <form onSubmit={formik.handleSubmit}>
           <div
             {...getRootProps()}
-            className="dropzone bg-white position-relative align-content-center rounded text-center p-5 border-dashed-1 overflow-hidden"
+            className="dropzone cursorPointer bg-white position-relative align-content-center rounded text-center p-5 border-dashed-1 overflow-hidden"
           >
             <input {...getInputProps()} />
             <p className="text-muted">

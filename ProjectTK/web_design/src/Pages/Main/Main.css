@@ -1,17 +1,11 @@
 .dropzone {
-    background: #f9f9f9;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
 }
 
 .dropzone:hover {
     transform: scale(1.02);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-}
-
-.dropzone p span:hover {
-    text-decoration: underline;
 }
 
 .selected {
@@ -75,7 +69,6 @@
 
 .cardCustomHead i {
     font-size: 7rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 

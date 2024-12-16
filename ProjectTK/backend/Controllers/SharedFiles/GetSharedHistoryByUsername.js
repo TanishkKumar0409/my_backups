@@ -1,6 +1,6 @@
 import History from "../../Modals/History.js";
 
-const getSharedHistoryByUsername = async (req, res) => {
+const GetSharedHistoryByUsername = async (req, res) => {
     try {
         const { username } = req.params;
 
@@ -16,4 +16,4 @@ const getSharedHistoryByUsername = async (req, res) => {
     }
 }
 
-export default getSharedHistoryByUsername;
+export default GetSharedHistoryByUsername;

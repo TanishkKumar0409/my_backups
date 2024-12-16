@@ -1,6 +1,6 @@
 import History from "../../Modals/History.js";
 
-const getSharedHistory = async (req, res) => {
+const GetSharedHistory = async (req, res) => {
     try {
         const allHistory = await History.find().sort({ sharingId: 1 });
 
@@ -14,4 +14,4 @@ const getSharedHistory = async (req, res) => {
     }
 }
 
-export default getSharedHistory;
+export default GetSharedHistory;

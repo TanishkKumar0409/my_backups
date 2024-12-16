@@ -12,31 +12,31 @@ const Login = async (req, res) => {
             return res.status(403).json({ error: "Sorry, You are Blocked." });
         }
 
-        const LoginUser = await Users.findOne({ email })
-        if (!LoginUser) {
+        const loginUser = await Users.findOne({ email })
+        if (!loginUser) {
             return res.status(404).json({ error: "Email Not Found" })
         }
 
-        const isDeleted = LoginUser.status;
+        const isDeleted = loginUser.status;
         if (isDeleted === "DELETED") {
             return res.status(404).json({ error: "Account Does not Exist." })
         }
 
-        const isMatch = await bcryptjs.compare(password, LoginUser.password)
+        const isMatch = await bcryptjs.compare(password, loginUser.password)
         if (!isMatch) {
             return res.status(404).json({ error: "Incorrect Password" })
         }
 
         const loginToken = jwt.sign({ email, password }, PrivateKey)
 
-        const isAdmin = LoginUser.role;
+        const isAdmin = loginUser.role;
 
         if (isAdmin === "ADMIN") {
             const adminToken = jwt.sign({ email, password, isAdmin }, PrivateKey)
             return res.status(200).json({ message: "Login Successfully", loginToken, adminToken })
         }
 
-        if (LoginUser && isMatch && loginToken) {
+        if (loginUser && isMatch && loginToken) {
             return res.status(200).json({ message: "Login Successfully", loginToken })
         }
 

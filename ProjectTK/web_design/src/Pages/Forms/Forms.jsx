@@ -13,8 +13,8 @@ export default function Forms() {
     return (
         <section>
             <div className="container-fluid">
-                <div className="row">
-                    <div className="col-md-6 bgGradient vh-100 d-flex justify-content-center align-items-center text-center">
+                <div className="row vh-100">
+                    <div className="col-md-6 bgGradient py-md-0 py-5 d-flex justify-content-center align-items-center text-center">
                         <Link to="/">
                             <img
                                 src="https://img.pikbest.com/png-images/20241027/eagle-shield-emblem-logo_11012401.png!bw700"

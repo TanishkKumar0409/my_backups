@@ -26,7 +26,7 @@ const registerUser = async (req, res) => {
             return res.status(403).json({ error: "Sorry, You are Blocked." });
         }
 
-        const ReActivating = await Users.findOneAndUpdate(
+        const reActivating = await Users.findOneAndUpdate(
             { $or: [{ email }, { contact }], status: "DELETED" },
             {
                 $set: {
@@ -43,7 +43,7 @@ const registerUser = async (req, res) => {
             { new: true }
         );
 
-        if (ReActivating) {
+        if (reActivating) {
             return res.status(200).json({ message: "Account Reactivated Successfully", ReActivating, loginToken });
         }
 

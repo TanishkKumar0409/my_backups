@@ -1,10 +1,25 @@
 import SharingMailer from "../../Helper/Mailers/SharingMailer.js";
 import History from "../../Modals/History.js";
+import Users from "../../Modals/Users.js";
 
 const ShareFiles = async (req, res) => {
     try {
         let { email, message } = req.body;
         const { username } = req.params;
+
+
+        const isExisting = await Users.findOne({ username })
+        if (!isExisting) {
+            return res.status(404).json({ error: "Please Login" })
+        }
+
+        if (isExisting.status === "BLOCKED") {
+            return res.status(400).json({ error: "Sorry, You are Blocked" })
+        }
+
+        if (isExisting.status === "DELETED") {
+            return res.status(400).json({ error: "Account Does not Exist" })
+        }
 
         if (!message) {
             message = "No Message provided";

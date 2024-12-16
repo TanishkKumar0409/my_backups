@@ -41,7 +41,7 @@ export default function ShareFilesTable() {
                                 <td>{file.sharingId}</td>
                                 <td>{new Date(file.sharedAt).toLocaleDateString()}</td>
                                 <td>{file.receiverEmail}</td>
-                                <td>{file.fileName.length}</td>
+                                <td>{file.fileName.length} Files</td>
                                 <td className="text-center">
                                     <button className="btn custom-btn btn-custom overflow-hidden border-0">View</button>
                                 </td>

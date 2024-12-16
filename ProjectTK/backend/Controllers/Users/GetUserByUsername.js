@@ -1,6 +1,6 @@
 import Users from "../../Modals/Users.js";
 
-const getUserByUsername = async (req, res) => {
+const GetUserByUsername = async (req, res) => {
     try {
         const { username } = req.params;
 
@@ -17,4 +17,4 @@ const getUserByUsername = async (req, res) => {
     }
 }
 
-export default getUserByUsername
+export default GetUserByUsername;

@@ -17,9 +17,9 @@ const UpdateByUser = async (req, res) => {
             updatedPassword = hashedPassword;
         }
 
-        const file = req.file ? req.file.filename :
-            existingUser ? existingUser.profile :
-                "Uploads/Users/DefaultProfiles/DefaultProfiles.jpg";
+        const file = (req.file ? req.file.filename :
+            (existingUser ? existingUser.profile :
+                "Uploads/Users/DefaultProfiles/DefaultProfiles.jpg"));
 
         const updatedUser = await Users.findOneAndUpdate({ username },
             { $set: { profile: file, name, email, contact, password: updatedPassword } },

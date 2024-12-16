@@ -1,6 +1,6 @@
 import Users from "../../Modals/Users.js";
 
-const getUsers = async (req, res) => {
+const GetUsers = async (req, res) => {
     try {
         const allUsers = await Users.find({ role: "USER" },).sort({ userId: 1 })
 
@@ -13,4 +13,4 @@ const getUsers = async (req, res) => {
         return res.status(500).json({ error: error.message })
     }
 }
-export default getUsers
+export default GetUsers;
