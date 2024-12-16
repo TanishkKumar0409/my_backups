@@ -82,6 +82,7 @@ export default function Navbar() {
             </nav>
 
             <Profile />
+
         </header>
     );
 }
