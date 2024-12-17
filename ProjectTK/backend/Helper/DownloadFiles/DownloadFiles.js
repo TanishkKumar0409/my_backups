@@ -15,7 +15,7 @@ const DownloadFiles = async (req, res) => {
         const { senderUsername, fileName: fileNames, filePath: filePaths } = historyRecord;
 
         if (!filePaths || filePaths.length === 0) {
-            return res.status(404).json({ error: "No files to download." });
+            return res.status(404).json({ error: "Download link has been Expired" });
         }
 
         const zipFilename = `shared-files-${senderUsername}.zip`;
