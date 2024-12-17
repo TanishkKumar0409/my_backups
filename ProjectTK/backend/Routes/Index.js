@@ -48,7 +48,7 @@ router.post("/user/register", uploadProfile.single("profile"), RegisterUser);
 router.post("/user/login", Login);
 router.get("/user/all", GetUsers);
 router.get("/user/:username", GetUserByUsername);
-router.put("/user/delete/:username", DeleteUser);
+router.delete("/user/delete/:username", DeleteUser);
 router.put("/user/update/:username", uploadProfile.single("profile"), UpdateByUser);
 
 //? Admin Actions

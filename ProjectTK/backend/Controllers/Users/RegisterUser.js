@@ -26,27 +26,6 @@ const registerUser = async (req, res) => {
             return res.status(403).json({ error: "Sorry, You are Blocked." });
         }
 
-        const reActivating = await Users.findOneAndUpdate(
-            { $or: [{ email }, { contact }], status: "DELETED" },
-            {
-                $set: {
-                    profile: file,
-                    username,
-                    name,
-                    email,
-                    contact,
-                    status,
-                    role,
-                    password: hashedPassword,
-                },
-            },
-            { new: true }
-        );
-
-        if (reActivating) {
-            return res.status(200).json({ message: "Account Reactivated Successfully", ReActivating, loginToken });
-        }
-
         const isExistingUsername = await Users.findOne({ username });
         if (isExistingUsername) {
             return res.status(409).json({ error: "Username Already Exists." });

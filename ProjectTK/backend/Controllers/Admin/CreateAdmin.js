@@ -5,9 +5,7 @@ const CreateAdmin = async (req, res) => {
         const { username } = req.params;
 
         const isNotValid = await Users.findOne({ username })
-        if (isNotValid.status === "DELETED") {
-            return res.status(400).json({ error: "Account Does not Exist" })
-        } else if (isNotValid.status === "BLOCKED") {
+        if (isNotValid.status === "BLOCKED") {
             return res.status(400).json({ error: "User is Blocked" })
         } else if (isNotValid.role === "ADMIN") {
             return res.status(400).json({ error: "ALready Admin" })

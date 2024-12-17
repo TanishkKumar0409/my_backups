@@ -4,10 +4,10 @@ const DeleteUser = async (req, res) => {
     try {
         const { username } = req.params;
 
-        const DeletedUser = await Users.findOneAndUpdate({ username }, { $set: { status: "DELETED" } }, { new: true })
+        const DeletedUser = await Users.findOneAndDelete({ username })
 
         if (DeletedUser) {
-            return res.status(200).json(DeletedUser)
+            return res.status(200).json({ message: "Account Deleted", DeletedUser })
         } else {
             return res.status(404).json("User not Found")
         }
