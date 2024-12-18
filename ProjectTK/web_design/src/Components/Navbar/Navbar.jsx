@@ -56,6 +56,11 @@ export default function Navbar() {
                                 </Link>
                             </li>
                             <li className="nav-item">
+                                <Link className="nav-link fw-bold fs-5" to="/user/history">
+                                    History
+                                </Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link className="nav-link fw-bold fs-5" to="/form">
                                     Form
                                 </Link>

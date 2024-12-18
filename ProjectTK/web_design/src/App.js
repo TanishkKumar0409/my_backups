@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import Navbar from "./Components/Navbar/Navbar";
 import Main from "./Pages/Main/Main";
 import Forms from "./Pages/Forms/Forms";
+import History from "./Pages/History/History";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function AppWithNavbar() {
       {location.pathname !== "/form" && <Navbar />}
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/user/history" element={<History />} />
         <Route path="/form" element={<Forms />} />
       </Routes>
     </>
