@@ -18,6 +18,8 @@ export default function Navbar() {
 
     const isActive = (path) => location.pathname === path ? "active" : "";
 
+    const adminData = JSON.parse(localStorage.getItem("admin"))
+
     return (
         <header className={`responsiveNavbar position-fixed w-100 ${navClass}`} style={{ zIndex: 999 }}>
             <nav className="navbar navbar-expand-lg navbar-dark">
@@ -35,7 +37,7 @@ export default function Navbar() {
                             aria-controls="offcanvasProfile"
                         >
                             <img
-                                src="https://media.istockphoto.com/id/1327592506/vector/default-avatar-photo-placeholder-icon-grey-profile-picture-business-man.jpg?s=612x612&w=0&k=20&c=BpR0FVaEa5F24GIw7K8nMWiiGmbb8qmhfkpXcp1dhQg="
+                                src={`http://localhost:5000/${adminData.profile}`}
                                 className="img-fluid rounded-circle"
                                 width={"30"}
                                 alt="User Avatar"
@@ -58,7 +60,7 @@ export default function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item">
-                                <Link className={`nav-link fw-bold fs-5 ${isActive("/")}`} to="/">
+                                <Link className={`nav-link fw-bold fs-5 ${isActive("/main")}`} to="/main">
                                     Home
                                 </Link>
                             </li>
@@ -82,18 +84,18 @@ export default function Navbar() {
                             aria-controls="offcanvasProfile"
                         >
                             <img
-                                src="https://media.istockphoto.com/id/1327592506/vector/default-avatar-photo-placeholder-icon-grey-profile-picture-business-man.jpg?s=612x612&w=0&k=20&c=BpR0FVaEa5F24GIw7K8nMWiiGmbb8qmhfkpXcp1dhQg="
+                                src={`http://localhost:5000/${adminData.profile}`}
                                 className="img-fluid rounded-circle"
                                 width={"30"}
                                 alt="User Avatar"
                             />
-                            <span className="ms-2">Tanishk Kumar</span>
+                            <span className="ms-2">{adminData.username}</span>
                         </button>
                     </div>
                 </div>
             </nav>
 
-            <Profile />
+            <Profile adminData={adminData} />
         </header>
     );
 }

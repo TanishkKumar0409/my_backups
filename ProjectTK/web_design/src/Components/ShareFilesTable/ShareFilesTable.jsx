@@ -65,7 +65,7 @@ export default function ShareFilesTable() {
         setFilteredData(filtered);
     };
 
-    const displayedData = path === '/'
+    const displayedData = path === '/main'
         ? filteredData.slice(0, 5)
         : filteredData.slice(0, visibleCount);
 
@@ -144,7 +144,6 @@ export default function ShareFilesTable() {
                             <th>Shared Date</th>
                             <th>Shared To</th>
                             <th>File Shared</th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody className="tableBodyCustom text-center">
@@ -161,9 +160,6 @@ export default function ShareFilesTable() {
                                     <td>{new Date(file.sharedAt).toLocaleDateString('en-GB')}</td>
                                     <td>{file.receiverEmail}</td>
                                     <td>{file.fileName.length} Files</td>
-                                    <td className="text-center">
-                                        <button className="btn custom-btn btn-custom overflow-hidden border-0">View</button>
-                                    </td>
                                 </tr>
                             ))
                         )}
@@ -171,11 +167,11 @@ export default function ShareFilesTable() {
                 </table>
             </div>
 
-            {path !== '/' && filteredData.length > visibleCount && (
+            {path !== '/main' && filteredData.length > visibleCount && (
                 <div className="text-center mt-3">
                     <button
                         className="btn custom-btn btn-custom"
-                        onClick={() => setVisibleCount((prev) => prev + 10)} // Increment visible rows by 10
+                        onClick={() => setVisibleCount((prev) => prev + 10)}
                     >
                         Show More
                     </button>

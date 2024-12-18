@@ -52,10 +52,10 @@ const registerUser = async (req, res) => {
             password: hashedPassword,
         });
 
-        const savedUser = await newUser.save();
+        const loginUser = await newUser.save();
 
-        if (savedUser) {
-            return res.status(201).json({ message: "User Registered Successfully", savedUser, loginToken });
+        if (loginUser) {
+            return res.status(201).json({ message: "User Registered Successfully", loginUser, loginToken });
         }
 
     } catch (error) {

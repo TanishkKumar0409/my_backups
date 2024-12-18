@@ -11,29 +11,28 @@ import ProfilesCleaner from "./Helper/folderCleaner/UserProfileCleaner.js";
 dotenv.config()
 
 const PORT = process.env.PORT;
-
 const DbName = process.env.DbName;
 
-const app = express()
+const app = express();
 
-app.use(cors())
+app.use(cors());
 
 app.use(express.static("public"));
 app.use("/Uploads", express.static("Uploads"));
 
-app.use(bodyparser.json())
+app.use(bodyparser.json());
 
-app.use("/api/", router)
+app.use("/api/", router);
 
 setInterval(() => {
-    deleteShareingFiles()
-    ProfilesCleaner()
-}, 1000)
+    deleteShareingFiles();
+    ProfilesCleaner();
+}, 1000);
 
 mongoose.connect(DbName)
     .then(() => console.log(`Database Connected`))
-    .catch((error) => console.log(error.message))
+    .catch((error) => console.log(error.message));
 
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`)
-})
+    console.log(`Server running at http://localhost:${PORT}`);
+});
