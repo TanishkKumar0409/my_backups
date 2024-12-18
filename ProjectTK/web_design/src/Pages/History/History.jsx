@@ -45,7 +45,7 @@ export default function History() {
 
                     <div className="row justify-content-center">
                         <div className="col-md-10 text-center text-light historyBanner">
-                            <h2><i class="fa-solid fa-share-from-square"></i></h2>
+                            <h2><i className="fa-solid fa-share-from-square"></i></h2>
                             <h3>Shared History</h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi voluptas voluptatum delectus dignissimos dolorem velit placeat non ipsa quos dicta, beatae fugiat inventore modi consequuntur asperiores. Beatae porro nam harum.</p>
                         </div>

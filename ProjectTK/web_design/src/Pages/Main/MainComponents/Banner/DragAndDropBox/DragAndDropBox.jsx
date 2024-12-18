@@ -28,9 +28,13 @@ export default function DragAndDropBox() {
     try {
       const formData = new FormData();
 
-      files.forEach((file) => {
-        formData.append("files", file);
-      });
+      if (files.length > 0) {
+        files.forEach((file) => {
+          formData.append("files", file);
+        });
+      } else {
+        toast.error("Please select Files")
+      }
 
       formData.append("email", values.email);
       formData.append("message", values.message || "No message provided");
@@ -38,12 +42,12 @@ export default function DragAndDropBox() {
       const response = await API.post("/share/tani", formData);
 
       console.log("Form submitted successfully:", response);
-      toast.success("Data submitted successfully!");
+      toast.success(response.data.message);
 
       setFiles([]);
     } catch (error) {
-      console.error({ error: error.message });
-      setErrorMessage("Failed to submit data. Please try again later.");
+      setErrorMessage(error.response.data.error);
+      toast.error(error.response.data.error)
     }
   }
 
