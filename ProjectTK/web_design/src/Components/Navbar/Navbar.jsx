@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Profile from "../Profile/Profile";
 
 export default function Navbar() {
-    const [navClass, setNavclass] = useState("")
+    const [navClass, setNavclass] = useState("");
+    const location = useLocation();
+
     useEffect(() => {
-        window.addEventListener("scroll", () => {
-            var pageScroll = window.scrollY
-            setNavclass(pageScroll > 100 ? "navbarCustom" : "")
-        })
-    })
+        const handleScroll = () => {
+            const pageScroll = window.scrollY;
+            setNavclass(pageScroll > 100 ? "navbarCustom" : "");
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    const isActive = (path) => location.pathname === path ? "active" : "";
 
     return (
         <header className={`responsiveNavbar position-fixed w-100 ${navClass}`} style={{ zIndex: 999 }}>
@@ -51,17 +58,17 @@ export default function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item">
-                                <Link className="nav-link active fw-bold fs-5" to="/">
+                                <Link className={`nav-link fw-bold fs-5 ${isActive("/")}`} to="/">
                                     Home
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link fw-bold fs-5" to="/user/history">
+                                <Link className={`nav-link fw-bold fs-5 ${isActive("/user/history")}`} to="/user/history">
                                     History
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link fw-bold fs-5" to="/form">
+                                <Link className={`nav-link fw-bold fs-5 ${isActive("/form")}`} to="/form">
                                     Form
                                 </Link>
                             </li>
@@ -87,7 +94,6 @@ export default function Navbar() {
             </nav>
 
             <Profile />
-
         </header>
     );
 }

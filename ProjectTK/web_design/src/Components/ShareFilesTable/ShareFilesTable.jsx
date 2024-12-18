@@ -4,7 +4,11 @@ import { useLocation } from 'react-router-dom';
 
 export default function ShareFilesTable() {
     const [data, setData] = useState([]);
-    const [showAll, setShowAll] = useState(false); // State to toggle "Show More"
+    const [filteredData, setFilteredData] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filterType, setFilterType] = useState('');
+    const [filterValue, setFilterValue] = useState('');
+    const [visibleCount, setVisibleCount] = useState(10);
     const location = useLocation();
     const path = location.pathname;
 
@@ -13,6 +17,7 @@ export default function ShareFilesTable() {
             try {
                 const fetchData = await API.get('/share/history');
                 setData(fetchData.data);
+                setFilteredData(fetchData.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -20,58 +25,162 @@ export default function ShareFilesTable() {
         getData();
     }, []);
 
-    // Determine the entries to display based on the path and showAll state
-    const displayedData = path === '/' 
-        ? data.slice(0, 5) 
-        : showAll 
-        ? data 
-        : data.slice(0, 10);
+    const handleSearch = (event) => {
+        const query = event.target.value.toLowerCase();
+        setSearchQuery(query);
+
+        const filtered = data.filter((file) =>
+            file.receiverEmail.toLowerCase().includes(query) ||
+            file.sharingId.toString().includes(query)
+        );
+        setFilteredData(filtered);
+    };
+
+    const handleFilterChange = (event) => {
+        setFilterType(event.target.value);
+        setFilterValue('');
+    };
+
+    const handleFilterValueChange = (event) => {
+        const value = event.target.value;
+        setFilterValue(value);
+
+        let filtered = data;
+        if (filterType === 'year') {
+            filtered = data.filter((file) => {
+                const sharedYear = new Date(file.sharedAt).getFullYear();
+                return sharedYear === parseInt(value, 10);
+            });
+        } else if (filterType === 'month') {
+            filtered = data.filter((file) => {
+                const sharedMonth = new Date(file.sharedAt).getMonth() + 1;
+                return sharedMonth === parseInt(value, 10);
+            });
+        } else if (filterType === 'day') {
+            filtered = data.filter((file) => {
+                const sharedDay = new Date(file.sharedAt).getDate();
+                return sharedDay === parseInt(value, 10);
+            });
+        }
+        setFilteredData(filtered);
+    };
+
+    const displayedData = path === '/'
+        ? filteredData.slice(0, 5)
+        : filteredData.slice(0, visibleCount);
 
     return (
-        <div className="table-responsive">
-            <table className="table table-striped w-100 h-100 text-nowrap align-middle rounded overflow-hidden">
-                <thead className="tableHeadCustom">
-                    <tr className="text-center">
-                        <th>Id</th>
-                        <th>Shared Date</th>
-                        <th>Shared To</th>
-                        <th>File Shared</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody className="tableBodyCustom text-center">
-                    {displayedData.length === 0 ? (
-                        <tr>
-                            <td colSpan="5" className="text-center">
-                                No data available
-                            </td>
+        <>
+            <div className="mb-1">
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search by Receiver Email or ID"
+                    value={searchQuery}
+                    onChange={handleSearch}
+                />
+            </div>
+
+            <div className="mb-3 d-flex gap-2">
+                <select
+                    className="form-select"
+                    value={filterType}
+                    onChange={handleFilterChange}
+                >
+                    <option value="">Filter by</option>
+                    <option value="year">Year</option>
+                    <option value="month">Month</option>
+                    <option value="day">Day</option>
+                </select>
+                {filterType && (
+                    <select
+                        className="form-select"
+                        value={filterValue}
+                        onChange={handleFilterValueChange}
+                    >
+                        <option value="">Select {filterType}</option>
+                        {filterType === 'year' && (
+                            <>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                            </>
+                        )}
+                        {filterType === 'month' && (
+                            <>
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </>
+                        )}
+                        {filterType === 'day' && (
+                            <>
+                                {Array.from({ length: 31 }, (_, index) => (
+                                    <option key={index + 1} value={index + 1}>
+                                        {index + 1}
+                                    </option>
+                                ))}
+                            </>
+                        )}
+                    </select>
+                )}
+            </div>
+
+            <div className="table-responsive">
+                <table className="table table-striped w-100 h-100 text-nowrap align-middle rounded overflow-hidden">
+                    <thead className="tableHeadCustom">
+                        <tr className="text-center">
+                            <th>Id</th>
+                            <th>Shared Date</th>
+                            <th>Shared To</th>
+                            <th>File Shared</th>
+                            <th>Actions</th>
                         </tr>
-                    ) : (
-                        displayedData.map((file) => (
-                            <tr key={file.sharingId}>
-                                <td>{file.sharingId}</td>
-                                <td>{new Date(file.sharedAt).toLocaleDateString()}</td>
-                                <td>{file.receiverEmail}</td>
-                                <td>{file.fileName.length} Files</td>
-                                <td className="text-center">
-                                    <button className="btn custom-btn btn-custom overflow-hidden border-0">View</button>
+                    </thead>
+                    <tbody className="tableBodyCustom text-center">
+                        {displayedData.length === 0 ? (
+                            <tr>
+                                <td colSpan="5" className="text-center">
+                                    No data available
                                 </td>
                             </tr>
-                        ))
-                    )}
-                </tbody>
-            </table>
-            {/* Show More button for non-root paths */}
-            {path !== '/' && data.length > 10 && !showAll && (
+                        ) : (
+                            displayedData.map((file) => (
+                                <tr key={file.sharingId}>
+                                    <td>{file.sharingId}</td>
+                                    <td>{new Date(file.sharedAt).toLocaleDateString('en-GB')}</td>
+                                    <td>{file.receiverEmail}</td>
+                                    <td>{file.fileName.length} Files</td>
+                                    <td className="text-center">
+                                        <button className="btn custom-btn btn-custom overflow-hidden border-0">View</button>
+                                    </td>
+                                </tr>
+                            ))
+                        )}
+                    </tbody>
+                </table>
+            </div>
+
+            {path !== '/' && filteredData.length > visibleCount && (
                 <div className="text-center mt-3">
-                    <button 
+                    <button
                         className="btn custom-btn btn-custom"
-                        onClick={() => setShowAll(true)}
+                        onClick={() => setVisibleCount((prev) => prev + 10)} // Increment visible rows by 10
                     >
                         Show More
                     </button>
                 </div>
             )}
-        </div>
+        </>
     );
 }
