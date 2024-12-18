@@ -28,18 +28,14 @@ export default function DragAndDropBox() {
     try {
       const formData = new FormData();
 
-      if (files.length > 0) {
-        files.forEach((file) => {
-          formData.append("files", file);
-        });
-      } else {
-        toast.error("Please select Files")
-      }
+      files.forEach((file) => {
+        formData.append("files", file);
+      });
 
       formData.append("email", values.email);
       formData.append("message", values.message || "No message provided");
 
-      const response = await API.post("/share/tani", formData);
+      const response = await API.post("/share/tanishk", formData);
 
       console.log("Form submitted successfully:", response);
       toast.success(response.data.message);

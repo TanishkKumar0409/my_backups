@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { API } from '../../Services/API/API';
+import { useLocation } from 'react-router-dom';
 
 export default function ShareFilesTable() {
     const [data, setData] = useState([]);
+    const [showAll, setShowAll] = useState(false); // State to toggle "Show More"
+    const location = useLocation();
+    const path = location.pathname;
 
     useEffect(() => {
         const getData = async () => {
@@ -15,6 +19,13 @@ export default function ShareFilesTable() {
         };
         getData();
     }, []);
+
+    // Determine the entries to display based on the path and showAll state
+    const displayedData = path === '/' 
+        ? data.slice(0, 5) 
+        : showAll 
+        ? data 
+        : data.slice(0, 10);
 
     return (
         <div className="table-responsive">
@@ -29,14 +40,14 @@ export default function ShareFilesTable() {
                     </tr>
                 </thead>
                 <tbody className="tableBodyCustom text-center">
-                    {data.length === 0 ? (
+                    {displayedData.length === 0 ? (
                         <tr>
                             <td colSpan="5" className="text-center">
                                 No data available
                             </td>
                         </tr>
                     ) : (
-                        data.map((file) => (
+                        displayedData.map((file) => (
                             <tr key={file.sharingId}>
                                 <td>{file.sharingId}</td>
                                 <td>{new Date(file.sharedAt).toLocaleDateString()}</td>
@@ -50,6 +61,17 @@ export default function ShareFilesTable() {
                     )}
                 </tbody>
             </table>
+            {/* Show More button for non-root paths */}
+            {path !== '/' && data.length > 10 && !showAll && (
+                <div className="text-center mt-3">
+                    <button 
+                        className="btn custom-btn btn-custom"
+                        onClick={() => setShowAll(true)}
+                    >
+                        Show More
+                    </button>
+                </div>
+            )}
         </div>
     );
 }
