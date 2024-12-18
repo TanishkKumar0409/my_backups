@@ -49,9 +49,6 @@ export default function Banner() {
               Upload and share your files effortlessly. Simply drag and drop
               your files here to start sharing them securely with others.
             </p>
-            <button className="btn btn-custom custom-btn overflow-hidden border-0 mt-4">
-              Let's Start With Login
-            </button>
           </div>
           <div className="col-md-6 d-flex justify-content-center align-items-center">
             <DragAndDropBox />

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function LoginNavbar() {
+    const location = useLocation()
+    const navCondition=location.pathname === "/form" ? "d-none" : "";
     const [navClass, setNavclass] = useState("")
     useEffect(() => {
         window.addEventListener("scroll", () => {
@@ -11,7 +13,7 @@ export default function LoginNavbar() {
     })
 
     return (
-        <header className={`responsiveNavbar position-fixed w-100 ${navClass}`} style={{ zIndex: 999 }}>
+        <header className={`responsiveNavbar position-fixed w-100 ${navClass} ${navCondition}`} style={{ zIndex: 999 }}>
             <nav className="navbar navbar-expand-lg navbar-dark">
                 <div className="container-fluid">
                     <Link className="navbar-brand fs-4 fw-bold" to="/">

@@ -64,18 +64,18 @@ export default function UpdateProfileForm(props) {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <h3 className="text-center mb-4">Profile</h3>
 
-      <div className="text-center mb-4">
+      <div className="text-center mb-2 mt-4">
         <img
           src={profileImage}
           alt="Profile"
-          className="rounded-circle mb-3"
+          className="rounded-circle"
           width="100px"
           height="100px"
           style={{ cursor: 'pointer' }}
           onClick={() => document.getElementById('image-upload').click()}
         />
+
         <input
           type="file"
           id="image-upload"
@@ -85,7 +85,7 @@ export default function UpdateProfileForm(props) {
         />
       </div>
 
-      <div className="mb-3">
+      <div className="mb-2">
         <label htmlFor="name" className="form-label">Name</label>
         <input
           type="text"
@@ -102,7 +102,7 @@ export default function UpdateProfileForm(props) {
         ) : null}
       </div>
 
-      <div className="mb-3">
+      <div className="mb-2">
         <label htmlFor="formemail" className="form-label">Email</label>
         <input
           type="email"
@@ -119,7 +119,7 @@ export default function UpdateProfileForm(props) {
         ) : null}
       </div>
 
-      <div className="mb-3">
+      <div className="mb-2">
         <label htmlFor="contact" className="form-label">Contact</label>
         <input
           type="text"
@@ -136,7 +136,7 @@ export default function UpdateProfileForm(props) {
         ) : null}
       </div>
 
-      <div className="mb-3">
+      <div className="mb-2">
         <label htmlFor="password" className="form-label">Password</label>
         <input
           type="password"

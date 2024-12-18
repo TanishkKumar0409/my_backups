@@ -28,13 +28,13 @@ export default function Footer() {
                     <nav className="d-flex justify-content-center align-items-center mb-3">
                         <ul className="list-unstyled d-flex fw-bold">
                             <li className="mx-3">
-                                <Link to="/" className="text-dark text-decoration-none">Home</Link>
+                                <Link to="/main" className="text-dark text-decoration-none">Home</Link>
                             </li>
                             <li className="mx-3">
-                                <Link to="/about" className="text-dark text-decoration-none">About</Link>
+                                <Link to="/user/history" className="text-dark text-decoration-none">History</Link>
                             </li>
                             <li className="mx-3">
-                                <Link to="/services" className="text-dark text-decoration-none">Services</Link>
+                                <Link to="/user/storage" className="text-dark text-decoration-none">Storage</Link>
                             </li>
                             <li className="mx-3">
                                 <Link to="/contact" className="text-dark text-decoration-none">Contact</Link>

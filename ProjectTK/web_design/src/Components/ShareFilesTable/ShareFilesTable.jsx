@@ -167,14 +167,26 @@ export default function ShareFilesTable() {
                 </table>
             </div>
 
-            {path !== '/main' && filteredData.length > visibleCount && (
+            {path !== '/main' && (
                 <div className="text-center mt-3">
-                    <button
-                        className="btn custom-btn btn-custom"
-                        onClick={() => setVisibleCount((prev) => prev + 10)}
-                    >
-                        Show More
-                    </button>
+                    <div className="btn-group">
+                        {visibleCount < filteredData.length && (
+                            <button
+                                className="btn custom-btn btn-custom"
+                                onClick={() => setVisibleCount((prev) => prev + 10)}
+                            >
+                                Show More
+                            </button>
+                        )}
+                        {visibleCount > 10 && (
+                            <button
+                                className="btn custom-btn btn-custom"
+                                onClick={() => setVisibleCount((prev) => Math.max(prev - 10, 10))}
+                            >
+                                Show Less
+                            </button>
+                        )}
+                    </div>
                 </div>
             )}
         </>

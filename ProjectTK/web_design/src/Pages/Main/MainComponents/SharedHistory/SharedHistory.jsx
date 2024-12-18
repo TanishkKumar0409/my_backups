@@ -1,8 +1,8 @@
 import React from 'react'
 import ShareFilesTable from '../../../../Components/ShareFilesTable/ShareFilesTable';
+import { Link } from 'react-router-dom';
 
 export default function SharedHistory() {
-  
     return (
         <section className='bg-light'>
             <div className="container py-5">
@@ -14,7 +14,10 @@ export default function SharedHistory() {
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea eveniet tempora, eius cumque necessitatibus nihil.
                     </p>
                     <div className="col">
-                      <ShareFilesTable />
+                        <ShareFilesTable />
+                        <div className='text-center'>
+                            <Link to={"/user/history"} className='btn btn-custom custom-btn'>Show All</Link>
+                        </div>
                     </div>
                 </div>
             </div>

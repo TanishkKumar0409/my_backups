@@ -10,7 +10,7 @@ export default function Profile(props) {
 
   const handleLogout = () => {
     localStorage.clear();
-    redirector("/");
+    window.location.reload()
   };
 
   return (
@@ -41,16 +41,29 @@ export default function Profile(props) {
             <div className="text-center">
               <img
                 src={`http://localhost:5000/${adminData.profile}`}
-                className="rounded-circle mb-3"
-                width={"100px"}
-                height={"100px"}
+                className="rounded-circle mb-3 shadow"
+                width="150px"
+                height="150px"
                 alt="User Avatar"
               />
               <h5 className="fs-1">{adminData.username}</h5>
-              <p className="fs-2">{adminData.name}</p>
-              <p className="fs-3">{adminData.email}</p>
-              <p className="fs-4">{adminData.contact}</p>
+
+              <div className="d-flex justify-content-between mb-2">
+                <p className="fs-2 text-muted">Name:</p>
+                <p className="fs-2">{adminData.name}</p>
+              </div>
+
+              <div className="d-flex justify-content-between mb-2">
+                <p className="fs-3 text-muted">Email:</p>
+                <p className="fs-3 truncated-profile">{adminData.email}</p>
+              </div>
+
+              <div className="d-flex justify-content-between mb-2">
+                <p className="fs-4 text-muted">Contact:</p>
+                <p className="fs-4">{adminData.contact}</p>
+              </div>
             </div>
+
           )}
           <hr />
           <div className="btn-group w-100 mb-4">
@@ -62,17 +75,24 @@ export default function Profile(props) {
                 >
                   Update Profile
                 </button>
-                <button onClick={handleLogout} className="btn btn-custom custom-btn w-50">
+                <button
+                  onClick={handleLogout}
+                  className="btn btn-custom custom-btn w-50"
+                >
                   Logout
                 </button>
               </>
             ) : (
-              <button onClick={() => setIsUpdating(false)} className="btn btn-custom custom-btn w-50">
+              <button
+                onClick={() => setIsUpdating(false)}
+                className="btn btn-custom custom-btn w-50"
+              >
                 Back to Profile
               </button>
             )}
           </div>
         </div>
+
         {!isUpdating && (
           <button
             type="button"
