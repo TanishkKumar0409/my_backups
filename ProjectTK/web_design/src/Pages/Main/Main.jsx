@@ -4,8 +4,6 @@ import SharedHistory from './MainComponents/SharedHistory/SharedHistory'
 import Footer from "../../Components/Footer/Footer"
 import Banner from './MainComponents/Banner/Banner'
 
-import "./Main.css"
-
 export default function Main() {
   return (
     <>
