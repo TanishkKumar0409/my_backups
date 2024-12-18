@@ -32,7 +32,9 @@ export default function UpdateProfileForm(props) {
       formData.append("name", values.name);
       formData.append("email", values.email);
       formData.append("contact", values.contact);
-      formData.append("password", values.password);
+      if (values.password) {
+        formData.append("password", values.password);
+      }
 
       const fileInput = document.querySelector('#image-upload');
       if (fileInput?.files[0]) {
@@ -142,7 +144,7 @@ export default function UpdateProfileForm(props) {
           id="password"
           name="password"
           placeholder="Enter your password"
-          value={formik.values.password}
+          value={formik.values.password || `*******`}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
@@ -151,7 +153,7 @@ export default function UpdateProfileForm(props) {
         ) : null}
       </div>
 
-      <button type="submit" className="btn btn-primary w-100">
+      <button type="submit" className="btn btn-custom custom-btn w-100">
         Save Changes
       </button>
     </form>

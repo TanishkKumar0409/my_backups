@@ -38,8 +38,9 @@ export default function Navbar() {
                         >
                             <img
                                 src={`http://localhost:5000/${adminData.profile}`}
-                                className="img-fluid rounded-circle"
-                                width={"30"}
+                                className="rounded-circle"
+                                width={"25px"}
+                                height={"25px"}
                                 alt="User Avatar"
                             />
                         </button>
@@ -69,11 +70,6 @@ export default function Navbar() {
                                     History
                                 </Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className={`nav-link fw-bold fs-5 ${isActive("/form")}`} to="/form">
-                                    Form
-                                </Link>
-                            </li>
                         </ul>
 
                         <button
@@ -85,8 +81,9 @@ export default function Navbar() {
                         >
                             <img
                                 src={`http://localhost:5000/${adminData.profile}`}
-                                className="img-fluid rounded-circle"
-                                width={"30"}
+                                className="rounded-circle"
+                                width={"20px"}
+                                height={"20px"}
                                 alt="User Avatar"
                             />
                             <span className="ms-2">{adminData.username}</span>

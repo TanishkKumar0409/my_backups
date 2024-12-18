@@ -31,6 +31,7 @@ export default function Profile(props) {
             className="btn-close text-reset"
             data-bs-dismiss="offcanvas"
             aria-label="Close"
+            onClick={() => setIsUpdating(false)}
           ></button>
         </div>
         <div className="offcanvas-body">
@@ -57,16 +58,16 @@ export default function Profile(props) {
               <>
                 <button
                   onClick={() => setIsUpdating(true)}
-                  className="btn btn-primary w-50"
+                  className="btn btn-custom custom-btn w-50"
                 >
                   Update Profile
                 </button>
-                <button onClick={handleLogout} className="btn btn-danger w-50">
+                <button onClick={handleLogout} className="btn btn-custom custom-btn w-50">
                   Logout
                 </button>
               </>
             ) : (
-              <button onClick={() => setIsUpdating(false)} className="btn btn-secondary w-50">
+              <button onClick={() => setIsUpdating(false)} className="btn btn-custom custom-btn w-50">
                 Back to Profile
               </button>
             )}
@@ -75,7 +76,7 @@ export default function Profile(props) {
         {!isUpdating && (
           <button
             type="button"
-            className="btn btn-danger btn-sm position-absolute bottom-0 end-0 m-3"
+            className="btn btn-custom custom-btn btn-sm position-absolute bottom-0 end-0 m-3"
             onClick={() => alert('Delete account functionality goes here')}
           >
             <i className="fa fa-trash me-2"></i>Delete Account
