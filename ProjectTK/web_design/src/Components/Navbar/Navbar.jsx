@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Profile from "../Profile/Profile";
+import { noFileAPI } from "../../Services/API/API";
 
 export default function Navbar() {
     const [navClass, setNavclass] = useState("");
@@ -18,7 +19,16 @@ export default function Navbar() {
 
     const isActive = (path) => location.pathname === path ? "active" : "";
 
-    const adminData = JSON.parse(localStorage.getItem("admin"))
+    const admin = JSON.parse(localStorage.getItem("admin"))
+
+    const [adminData, setAdminData] = useState([])
+    useEffect(() => {
+        const getData = async () => {
+            const response = await noFileAPI.get(`user/${admin}`)
+            setAdminData(response.data)
+        }
+        getData()
+    }, [admin])
 
     return (
         <header className={`responsiveNavbar position-fixed w-100 ${navClass}`} style={{ zIndex: 999 }}>

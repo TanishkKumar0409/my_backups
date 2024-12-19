@@ -1,23 +1,16 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import UpdateProfileForm from './UpdateProfileForm/UpdateProfileForm';
 import DeleteAccount from './DeleteAccount/DeleteAccount';
 
 export default function Profile(props) {
   const adminData = props.adminData;
-  const redirector = useNavigate();
 
   const [isUpdating, setIsUpdating] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [password, setPassword] = useState('');
 
   const handleLogout = () => {
     localStorage.clear();
     window.location.reload();
-  };
-
-  const handleDeleteAccount = () => {
-    alert('Account deletion in progress...');
   };
 
   return (
@@ -33,8 +26,8 @@ export default function Profile(props) {
             {isDeleting
               ? 'Delete Account'
               : isUpdating
-              ? 'Update Profile'
-              : 'Profile'}
+                ? 'Update Profile'
+                : 'Profile'}
           </h5>
 
           <button
@@ -50,7 +43,7 @@ export default function Profile(props) {
         </div>
         <div className="offcanvas-body">
           {isDeleting ? (
-         <DeleteAccount onCancel={() => setIsDeleting(false)} />
+            <DeleteAccount onCancel={() => setIsDeleting(false)} adminData={adminData} />
           ) : isUpdating ? (
             <UpdateProfileForm adminData={adminData} />
           ) : (

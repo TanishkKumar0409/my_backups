@@ -28,7 +28,7 @@ export default function Register(props) {
             toast.success(response.data.message);
             console.log(response)
             localStorage.setItem("loginToken", response.data.loginToken)
-            localStorage.setItem("admin", JSON.stringify(response.data.loginUser))
+            localStorage.setItem("admin", JSON.stringify(response.data.loginUser.username))
             window.location.reload()
         } catch (error) {
             toast.error(error.response.data.error);

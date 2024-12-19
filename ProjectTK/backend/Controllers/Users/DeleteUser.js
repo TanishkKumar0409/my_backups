@@ -4,7 +4,6 @@ const DeleteUser = async (req, res) => {
     try {
         const { username } = req.params;
         const { deletionOtp } = req.body;
-        console.log(deletionOtp)
 
         if (!deletionOtp) {
             return res.status(400).json({ message: "OTP is required" });

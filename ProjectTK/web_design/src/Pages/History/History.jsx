@@ -4,7 +4,6 @@ import Footer from '../../Components/Footer/Footer';
 
 export default function History() {
     const [iconStyles, setIconStyles] = useState([]);
-
     const generateRandomStyles = () => {
         const styles = Array.from({ length: 9 }, (_, index) => ({
             "--end-left": `${Math.floor(Math.random() * 100) - index * 10}%`,
