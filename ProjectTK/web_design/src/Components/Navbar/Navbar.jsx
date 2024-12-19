@@ -76,7 +76,7 @@ export default function Navbar() {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={`nav-link fw-bold fs-5 ${isActive("/user/history")}`} to="/user/history">
+                                <Link className={`nav-link fw-bold fs-5 ${isActive("/main/history")}`} to="/main/history">
                                     History
                                 </Link>
                             </li>

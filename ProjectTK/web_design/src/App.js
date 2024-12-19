@@ -23,7 +23,7 @@ function App() {
       {loginToken ? <Navbar /> : <LoginNavbar />}
       <Routes>
         <Route path="/main" element={<ProtectedRoutes><Main /></ProtectedRoutes>} />
-        <Route path="/user/history" element={<ProtectedRoutes><History /></ProtectedRoutes>} />
+        <Route path="/main/history" element={<ProtectedRoutes><History /></ProtectedRoutes>} />
         <Route path="/" element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
         <Route path="/form" element={<ProtectedRoutes><Forms /></ProtectedRoutes>} />
         <Route path="*" element={<Navigate to={"/"} replace />} />

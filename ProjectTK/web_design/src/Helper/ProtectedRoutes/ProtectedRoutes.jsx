@@ -7,7 +7,7 @@ export default function ProtectedRoutes({ children }) {
     const path = location.pathname;
 
     const nonLogin = ["/", "/form"]
-    const includeLogin = ['/main', "/user/history"]
+    const includeLogin = ['/main', "/main/history"]
 
     if (loginToken && nonLogin.includes(path)) {
         return <Navigate to={"/main"} replace />

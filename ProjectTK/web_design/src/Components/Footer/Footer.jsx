@@ -31,13 +31,13 @@ export default function Footer() {
                                 <Link to="/main" className="text-dark text-decoration-none">Home</Link>
                             </li>
                             <li className="mx-3">
-                                <Link to="/user/history" className="text-dark text-decoration-none">History</Link>
+                                <Link to="/main/history" className="text-dark text-decoration-none">History</Link>
                             </li>
                             <li className="mx-3">
-                                <Link to="/user/storage" className="text-dark text-decoration-none">Storage</Link>
+                                <Link to="/main/storage" className="text-dark text-decoration-none">Storage</Link>
                             </li>
                             <li className="mx-3">
-                                <Link to="/contact" className="text-dark text-decoration-none">Contact</Link>
+                                <Link to="/main/contact" className="text-dark text-decoration-none">Contact</Link>
                             </li>
                         </ul>
                     </nav>
