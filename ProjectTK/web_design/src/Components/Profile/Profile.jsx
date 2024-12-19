@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UpdateProfileForm from './UpdateProfileForm/UpdateProfileForm';
+import DeleteAccount from './DeleteAccount/DeleteAccount';
 
 export default function Profile(props) {
   const adminData = props.adminData;
   const redirector = useNavigate();
 
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [password, setPassword] = useState('');
 
   const handleLogout = () => {
     localStorage.clear();
-    window.location.reload()
+    window.location.reload();
+  };
+
+  const handleDeleteAccount = () => {
+    alert('Account deletion in progress...');
   };
 
   return (
@@ -23,7 +30,11 @@ export default function Profile(props) {
       >
         <div className="offcanvas-header">
           <h5 className="offcanvas-title" id="offcanvasProfileLabel">
-            {isUpdating ? 'Update Profile' : 'Profile'}
+            {isDeleting
+              ? 'Delete Account'
+              : isUpdating
+              ? 'Update Profile'
+              : 'Profile'}
           </h5>
 
           <button
@@ -31,11 +42,16 @@ export default function Profile(props) {
             className="btn-close text-reset"
             data-bs-dismiss="offcanvas"
             aria-label="Close"
-            onClick={() => setIsUpdating(false)}
+            onClick={() => {
+              setIsUpdating(false);
+              setIsDeleting(false);
+            }}
           ></button>
         </div>
         <div className="offcanvas-body">
-          {isUpdating ? (
+          {isDeleting ? (
+         <DeleteAccount onCancel={() => setIsDeleting(false)} />
+          ) : isUpdating ? (
             <UpdateProfileForm adminData={adminData} />
           ) : (
             <div className="text-center">
@@ -63,41 +79,42 @@ export default function Profile(props) {
                 <p className="fs-4">{adminData.contact}</p>
               </div>
             </div>
-
           )}
           <hr />
-          <div className="btn-group w-100 mb-4">
-            {!isUpdating ? (
-              <>
+          {!isDeleting && (
+            <div className="btn-group w-100 mb-4">
+              {!isUpdating ? (
+                <>
+                  <button
+                    onClick={() => setIsUpdating(true)}
+                    className="btn btn-custom custom-btn w-50"
+                  >
+                    Update Profile
+                  </button>
+                  <button
+                    onClick={handleLogout}
+                    className="btn btn-custom custom-btn w-50"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
                 <button
-                  onClick={() => setIsUpdating(true)}
+                  onClick={() => setIsUpdating(false)}
                   className="btn btn-custom custom-btn w-50"
                 >
-                  Update Profile
+                  Back to Profile
                 </button>
-                <button
-                  onClick={handleLogout}
-                  className="btn btn-custom custom-btn w-50"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <button
-                onClick={() => setIsUpdating(false)}
-                className="btn btn-custom custom-btn w-50"
-              >
-                Back to Profile
-              </button>
-            )}
-          </div>
+              )}
+            </div>
+          )}
         </div>
 
-        {!isUpdating && (
+        {!isUpdating && !isDeleting && (
           <button
             type="button"
             className="btn btn-custom custom-btn btn-sm position-absolute bottom-0 end-0 m-3"
-            onClick={() => alert('Delete account functionality goes here')}
+            onClick={() => setIsDeleting(true)}
           >
             <i className="fa fa-trash me-2"></i>Delete Account
           </button>

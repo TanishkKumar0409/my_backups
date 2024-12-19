@@ -78,6 +78,7 @@ export default function ShareFilesTable() {
                     placeholder="Search by Receiver Email or ID"
                     value={searchQuery}
                     onChange={handleSearch}
+                    id='searchEmail'
                 />
             </div>
 
@@ -85,6 +86,7 @@ export default function ShareFilesTable() {
                 <select
                     className="form-select"
                     value={filterType}
+                    id='DateSearch'
                     onChange={handleFilterChange}
                 >
                     <option value="">Filter by</option>

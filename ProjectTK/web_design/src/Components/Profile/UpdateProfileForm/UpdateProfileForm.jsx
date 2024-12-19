@@ -96,6 +96,7 @@ export default function UpdateProfileForm(props) {
           value={formik.values.name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          autoComplete='name'
         />
         {formik.touched.name && formik.errors.name ? (
           <div className="text-danger">{formik.errors.name}</div>
@@ -113,6 +114,7 @@ export default function UpdateProfileForm(props) {
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          autoComplete='email'
         />
         {formik.touched.email && formik.errors.email ? (
           <div className="text-danger">{formik.errors.email}</div>

@@ -32,6 +32,12 @@ const UsersSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    deletionOtp: {
+        type: Number,
+    },
+    otpExpiry: {
+        type: Date,
     }
 }, { timestamps: true })
 

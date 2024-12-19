@@ -16,6 +16,7 @@ import GetSharedHistory from "../Controllers/SharedFiles/GetSharedHistory.js";
 import GetSharedHistoryBySharingId from "../Controllers/SharedFiles/GetSharedHistoryBySharingId.js";
 import GetSharedHistoryByUsername from "../Controllers/SharedFiles/GetSharedHistoryByUsername.js";
 import DownloadFiles from "../Helper/DownloadFiles/DownloadFiles.js";
+import DeletionOtp from "../Controllers/Users/DeletionOpt.js";
 
 const router = express.Router()
 
@@ -50,6 +51,7 @@ router.get("/user/all", GetUsers);
 router.get("/user/:username", GetUserByUsername);
 router.delete("/user/delete/:username", DeleteUser);
 router.put("/user/update/:username", uploadProfile.single("profile"), UpdateByUser);
+router.post("/user/delete/otp", DeletionOtp)
 
 //? Admin Actions
 router.put("/user/block/:username", BlockUser);
