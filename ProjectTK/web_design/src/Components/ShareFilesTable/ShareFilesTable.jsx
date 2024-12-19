@@ -11,11 +11,12 @@ export default function ShareFilesTable() {
     const [visibleCount, setVisibleCount] = useState(10);
     const location = useLocation();
     const path = location.pathname;
+    const user = JSON.parse(localStorage.getItem("admin"))
 
     useEffect(() => {
         const getData = async () => {
             try {
-                const fetchData = await API.get('/share/history');
+                const fetchData = await API.get(`/share/history/user/${user}`);
                 setData(fetchData.data);
                 setFilteredData(fetchData.data);
             } catch (error) {
@@ -23,7 +24,7 @@ export default function ShareFilesTable() {
             }
         };
         getData();
-    }, []);
+    }, [user]);
 
     const handleSearch = (event) => {
         const query = event.target.value.toLowerCase();
@@ -156,9 +157,9 @@ export default function ShareFilesTable() {
                                 </td>
                             </tr>
                         ) : (
-                            displayedData.map((file) => (
-                                <tr key={file.sharingId}>
-                                    <td>{file.sharingId}</td>
+                            displayedData.map((file, index) => (
+                                <tr key={index}>
+                                    <td>{index + 1}</td>
                                     <td>{new Date(file.sharedAt).toLocaleDateString('en-GB')}</td>
                                     <td>{file.receiverEmail}</td>
                                     <td>{file.fileName.length} Files</td>

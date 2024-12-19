@@ -9,12 +9,12 @@ const SharingMailer = async ({ email, downloadLink }) => {
         const __filename = fileURLToPath(import.meta.url);
         const __dirname = path.dirname(__filename);
 
-        var transport = nodemailer.createTransport({
-            host: "sandbox.smtp.mailtrap.io",
+        const transport = nodemailer.createTransport({
+            host: "smtp-relay.brevo.com",
             port: 2525,
             auth: {
-                user: "5832f6caafc9bd",
-                pass: "1ec06c5bff684d"
+                user: "8224fa001@smtp-brevo.com",
+                pass: "yYcAgGKSVm19Nw34"
             }
         });
 

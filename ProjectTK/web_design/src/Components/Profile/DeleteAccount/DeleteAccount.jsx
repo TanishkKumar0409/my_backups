@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import { noFileAPI } from "../../../Services/API/API.js";
 import { toast } from "react-toastify";
 
 export default function DeleteAccount({ onCancel, adminData }) {
     const [otpSent, setOtpSent] = useState(false);
+    const [timeRemaining, setTimeRemaining] = useState(0);
 
     const sendOtp = async () => {
         try {
@@ -15,12 +16,13 @@ export default function DeleteAccount({ onCancel, adminData }) {
             if (response.status === 200) {
                 toast("OTP sent successfully");
                 setOtpSent(true);
+                setTimeRemaining(180);
             } else {
                 toast("Failed to send OTP: " + response.data.message);
             }
         } catch (error) {
             console.error("OTP Error:", error);
-            toast("Failed to send OTP. Please try again.");
+            toast(error.response.data.error);
         }
     };
 
@@ -38,7 +40,7 @@ export default function DeleteAccount({ onCancel, adminData }) {
             }
         } catch (error) {
             console.error(error);
-            toast("Failed to delete account. Please try again.");
+            toast(error.response.data.error);
         }
     };
 
@@ -52,6 +54,22 @@ export default function DeleteAccount({ onCancel, adminData }) {
             }
         },
     });
+
+    useEffect(() => {
+        if (timeRemaining > 0) {
+            const timer = setTimeout(() => setTimeRemaining(timeRemaining - 1), 1000);
+            return () => clearTimeout(timer);
+        } else if (timeRemaining === 0 && otpSent) {
+            toast("OTP expired. Returning to profile.");
+            onCancel();
+        }
+    }, [timeRemaining, otpSent, onCancel]);
+
+    const formatTime = (time) => {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+        return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+    };
 
     return (
         <div className="text-center">
@@ -80,15 +98,20 @@ export default function DeleteAccount({ onCancel, adminData }) {
                 />
 
                 {otpSent && (
-                    <input
-                        type="text"
-                        name="otp"
-                        className="form-control mb-4"
-                        placeholder="Enter OTP"
-                        value={formik.values.otp}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                    />
+                    <>
+                        <input
+                            type="text"
+                            name="otp"
+                            className="form-control mb-4"
+                            placeholder="Enter OTP"
+                            value={formik.values.otp}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                        />
+                        <p className="text-danger mb-4">
+                            Time remaining: {formatTime(timeRemaining)}
+                        </p>
+                    </>
                 )}
 
                 <button type="submit" className="btn btn-custom custom-btn w-100 mb-3">
