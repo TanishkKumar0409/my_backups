@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useFormik } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { RegisterValidationSchema } from '../../../Helper/FormValidationSchemas/FormValidationSchemas';
 import { API } from "../../../Services/API/API";
 import { toast } from "react-toastify";
@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 export default function Register(props) {
     const [profileImage, setProfileImage] = useState(null);
     const fileInputRef = useRef(null);
-    const redirector = useNavigate()
 
     const initialValues = { username: '', name: '', email: '', contact: '', password: '', profile: null };
 
@@ -27,9 +26,10 @@ export default function Register(props) {
             const response = await API.post("/user/register", formData);
 
             toast.success(response.data.message);
-            localStorage.setItem("login", response.data.loginToken)
-
-            redirector("/")
+            console.log(response)
+            localStorage.setItem("loginToken", response.data.loginToken)
+            localStorage.setItem("admin", JSON.stringify(response.data.loginUser))
+            window.location.reload()
         } catch (error) {
             toast.error(error.response.data.error);
         }

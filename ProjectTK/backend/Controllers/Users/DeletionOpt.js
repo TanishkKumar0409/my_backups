@@ -20,11 +20,11 @@ const DeletionOtp = async (req, res) => {
         const otp = Math.floor(1000 + Math.random() * 9000);
 
         const transport = nodemailer.createTransport({
-            host: "sandbox.smtp.mailtrap.io",
+            host: "smtp-relay.brevo.com",
             port: 2525,
             auth: {
-                user: "5832f6caafc9bd",
-                pass: "1ec06c5bff684d"
+                user: "8224fa001@smtp-brevo.com",
+                pass: "yYcAgGKSVm19Nw34"
             }
         });
 
@@ -45,7 +45,7 @@ const DeletionOtp = async (req, res) => {
                 {
                     $set: {
                         deletionOtp: otp,
-                        otpExpiry: new Date(Date.now() + 60000),
+                        otpExpiry: new Date(Date.now() + 600000),
                     }
                 },
                 { new: true }

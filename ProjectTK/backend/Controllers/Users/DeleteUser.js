@@ -3,15 +3,19 @@ import Users from "../../Modals/Users.js";
 const DeleteUser = async (req, res) => {
     try {
         const { username } = req.params;
-        const { deleteOtp } = req.body;
+        const { deletionOtp } = req.body;
+        console.log(deletionOtp)
 
-        if (!deleteOtp) {
+        if (!deletionOtp) {
             return res.status(400).json({ message: "OTP is required" });
         }
 
-        const isValidOtp = await validateOtp(username, deleteOtp);
-        if (!isValidOtp) {
-            return res.status(400).json({ message: "Invalid OTP" });
+        const isUser = await Users.findOne({ username });
+        if (!isUser) {
+            return res.status(404).json("User not Found")
+        }
+        if (isUser.deletionOtp !== parseInt(deletionOtp)) {
+            return res.status(400).json("invalid Otp")
         }
 
         const DeletedUser = await Users.findOneAndDelete({ username });
@@ -22,6 +26,7 @@ const DeleteUser = async (req, res) => {
             return res.status(404).json({ message: "User not found" });
         }
     } catch (error) {
+        console.log(error)
         return res.status(500).json({ error: error.message });
     }
 };

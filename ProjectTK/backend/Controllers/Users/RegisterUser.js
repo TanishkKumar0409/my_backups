@@ -7,7 +7,7 @@ const registerUser = async (req, res) => {
         const PrivateKey = process.env.PrivateKey;
         const { username, name, email, contact, password } = req.body;
 
-        const file = req.file ? req.file.filename : "Uploads/Users/DefaultProfiles/DefaultProfiles.jpg";
+        const file = req.file ? req.file.filename : "Uploads/Users/DefaultProfiles/DefaultProfile.jpg";
 
         const role = "USER";
         const status = "ACTIVE";

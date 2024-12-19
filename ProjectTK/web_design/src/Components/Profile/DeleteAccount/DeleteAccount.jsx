@@ -1,55 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
-import { LoginValidationSchema } from "../../../Helper/FormValidationSchemas/FormValidationSchemas.js";
+import { noFileAPI } from "../../../Services/API/API.js";
+import { toast } from "react-toastify";
 
 export default function DeleteAccount({ onCancel }) {
     const [otpSent, setOtpSent] = useState(false);
-    const [timer, setTimer] = useState(0);
-    const [otp, setOtp] = useState("");
-    const [otpError, setOtpError] = useState("");
 
-    useEffect(() => {
-        let countdown;
-        if (otpSent && timer > 0) {
-            countdown = setInterval(() => {
-                setTimer((prev) => prev - 1);
-            }, 1000);
-        } else if (otpSent && timer === 0) {
-            onCancel();
+    const sendOtp = async () => {
+        try {
+            const response = await noFileAPI.post("/user/delete/otp", {
+                email: formik.values.email,
+                password: formik.values.password,
+            });
+            if (response.status === 200) {
+                toast("OTP sent successfully");
+                setOtpSent(true);
+            } else {
+                toast("Failed to send OTP: " + response.data.message);
+            }
+        } catch (error) {
+            console.error("OTP Error:", error);
+            toast("Failed to send OTP. Please try again.");
         }
-        return () => clearInterval(countdown);
-    }, [otpSent, timer, onCancel]);
-
-    const handleSendOtp = () => {
-        setOtpSent(true);
-        setTimer(60);
     };
 
-    const handleOtpChange = (e) => {
-        setOtp(e.target.value);
-        setOtpError("");
-    };
-
-    const handleOtpValidation = () => {
-        if (!otp) {
-            setOtpError("OTP is required");
-            return false;
+    const deleteAccount = async () => {
+        try {
+            const response = await noFileAPI.delete(`/user/delete/prince11`, {
+                data: { deletionOtp: formik.values.otp },
+            });
+            if (response.status === 200) {
+                toast("Account deleted successfully");
+                localStorage.clear();
+                window.location.reload();
+            } else {
+                toast("Failed to delete account");
+            }
+        } catch (error) {
+            console.error(error);
+            toast("Failed to delete account. Please try again.");
         }
-        return true;
     };
-
-    const initialValues = { email: "", password: "", }
 
     const formik = useFormik({
-        initialValues: initialValues,
-        validationSchema: LoginValidationSchema,
-        onSubmit: (values) => {
+        initialValues: { email: "", password: "", otp: "" },
+        onSubmit: () => {
             if (!otpSent) {
-                handleSendOtp();
+                sendOtp();
             } else {
-                if (handleOtpValidation()) {
-                    console.log("Form values:", { ...values, otp });
-                }
+                deleteAccount();
             }
         },
     });
@@ -57,62 +56,46 @@ export default function DeleteAccount({ onCancel }) {
     return (
         <div className="text-center">
             <p className="text-muted fs-5 mb-4">
-                To confirm account deletion, please enter your password and OTP.
+                To confirm account deletion, please enter your email and password.
             </p>
             <form onSubmit={formik.handleSubmit}>
                 <input
                     type="email"
                     name="email"
-                    className={`form-control mb-4 ${formik.touched.email && formik.errors.email ? "is-invalid" : ""}`}
+                    className="form-control mb-4"
                     placeholder="Enter your Email"
                     value={formik.values.email}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                 />
-                {formik.touched.email && formik.errors.email && (
-                    <div className="invalid-feedback">{formik.errors.email}</div>
-                )}
 
                 <input
                     type="password"
                     name="password"
-                    className={`form-control mb-4 ${formik.touched.password && formik.errors.password ? "is-invalid" : ""}`}
+                    className="form-control mb-4"
                     placeholder="Enter your password"
                     value={formik.values.password}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                 />
-                {formik.touched.password && formik.errors.password && (
-                    <div className="invalid-feedback">{formik.errors.password}</div>
-                )}
-
-                {!otpSent && (
-                    <button type="submit" className="btn btn-custom custom-btn w-100 mb-3">
-                        Send OTP
-                    </button>
-                )}
 
                 {otpSent && (
-                    <>
-                        <div>
-                            <input
-                                type="text"
-                                name="otp"
-                                className={`form-control mb-3 ${otpError ? "is-invalid" : ""}`}
-                                placeholder="Enter OTP"
-                                value={otp}
-                                onChange={handleOtpChange}
-                                onBlur={handleOtpValidation}
-                            />
-                            {otpError && <div className="invalid-feedback">{otpError}</div>}
-                            <p className="text-muted mb-4">Enter the OTP within {timer} seconds.</p>
-                        </div>
-                        <button type="submit" className="btn btn-custom custom-btn w-100 mb-3">
-                            Confirm Delete
-                        </button>
-                    </>
+                    <input
+                        type="text"
+                        name="otp"
+                        className="form-control mb-4"
+                        placeholder="Enter OTP"
+                        value={formik.values.otp}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                    />
                 )}
+
+                <button type="submit" className="btn btn-custom custom-btn w-100 mb-3">
+                    {otpSent ? "Delete Account" : "Send OTP"}
+                </button>
             </form>
+
             <button onClick={onCancel} className="btn btn-custom custom-btn w-100">
                 Back To Profile
             </button>

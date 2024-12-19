@@ -10,10 +10,8 @@ export default function ProtectedRoutes({ children }) {
     const includeLogin = ['/main', "/user/history"]
 
     if (loginToken && nonLogin.includes(path)) {
-        console.log(path, "B")
         return <Navigate to={"/main"} replace />
     } if (!loginToken && includeLogin.includes(path)) {
-        console.log(path, "A")
         return <Navigate to={"/"} replace />
     }
     return children;

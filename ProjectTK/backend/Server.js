@@ -7,6 +7,7 @@ import cors from "cors";
 import router from "./Routes/Index.js";
 import deleteShareingFiles from "./Helper/folderCleaner/DeleteSharingFiles.js";
 import ProfilesCleaner from "./Helper/folderCleaner/UserProfileCleaner.js";
+import CancelDelete from "./Helper/DbCleaner/CancelDelete.js";
 
 dotenv.config()
 
@@ -27,6 +28,7 @@ app.use("/api/", router);
 setInterval(() => {
     deleteShareingFiles();
     ProfilesCleaner();
+    CancelDelete()
 }, 1000);
 
 mongoose.connect(DbName)
