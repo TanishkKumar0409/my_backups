@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { API } from "../../../../../Services/API/API.js";
 import BannerValidationSchema from "../../../../../Helper/ValidationSchemas/ValidationSchema.js"
 
-export default function DragAndDropBox() {
+export default function DragAndDropBox(props) {
   const [files, setFiles] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -39,6 +39,7 @@ export default function DragAndDropBox() {
 
       console.log("Form submitted successfully:", response);
       toast.success(response.data.message);
+      props.onSend()
 
       setFiles([]);
     } catch (error) {

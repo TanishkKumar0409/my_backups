@@ -6,12 +6,17 @@ export default function ShareFilesTable() {
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
-    const [filterType, setFilterType] = useState('');
-    const [filterValue, setFilterValue] = useState('');
+    const [yearFilter, setYearFilter] = useState('');
+    const [monthFilter, setMonthFilter] = useState('');
+    const [dayFilter, setDayFilter] = useState('');
     const [visibleCount, setVisibleCount] = useState(10);
     const location = useLocation();
     const path = location.pathname;
-    const user = JSON.parse(localStorage.getItem("user"))
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const currentYear = new Date().getFullYear();
+    const years = Array.from({ length: currentYear - 2024 + 1 }, (_, i) => 2024 + i);
+    const months = Array.from({ length: 12 }, (_, i) => new Date(0, i).toLocaleString('en', { month: 'long' }));
 
     useEffect(() => {
         const getData = async () => {
@@ -29,46 +34,53 @@ export default function ShareFilesTable() {
     const handleSearch = (event) => {
         const query = event.target.value.toLowerCase();
         setSearchQuery(query);
-
-        const filtered = data.filter((file) =>
-            file.receiverEmail.toLowerCase().includes(query) ||
-            file.sharingId.toString().includes(query)
-        );
-        setFilteredData(filtered);
     };
 
-    const handleFilterChange = (event) => {
-        setFilterType(event.target.value);
-        setFilterValue('');
+    const handleYearChange = (event) => {
+        setYearFilter(event.target.value);
     };
 
-    const handleFilterValueChange = (event) => {
-        const value = event.target.value;
-        setFilterValue(value);
+    const handleMonthChange = (event) => {
+        setMonthFilter(event.target.value);
+    };
 
+    const handleDayChange = (event) => {
+        setDayFilter(event.target.value);
+    };
+
+    const filterData = () => {
         let filtered = data;
-        if (filterType === 'year') {
-            filtered = data.filter((file) => {
-                const sharedYear = new Date(file.sharedAt).getFullYear();
-                return sharedYear === parseInt(value, 10);
-            });
-        } else if (filterType === 'month') {
-            filtered = data.filter((file) => {
-                const sharedMonth = new Date(file.sharedAt).getMonth() + 1;
-                return sharedMonth === parseInt(value, 10);
-            });
-        } else if (filterType === 'day') {
-            filtered = data.filter((file) => {
-                const sharedDay = new Date(file.sharedAt).getDate();
-                return sharedDay === parseInt(value, 10);
-            });
+
+        // Apply search filter
+        if (searchQuery) {
+            filtered = filtered.filter(
+                (file) =>
+                    file.receiverEmail.toLowerCase().includes(searchQuery) ||
+                    file.sharingId.toString().includes(searchQuery)
+            );
         }
-        setFilteredData(filtered);
+
+        // Apply year filter
+        if (yearFilter) {
+            filtered = filtered.filter((file) => new Date(file.sharedAt).getFullYear() === parseInt(yearFilter, 10));
+        }
+
+        // Apply month filter
+        if (monthFilter) {
+            filtered = filtered.filter((file) => new Date(file.sharedAt).getMonth() + 1 === parseInt(monthFilter, 10));
+        }
+
+        // Apply day filter
+        if (dayFilter) {
+            filtered = filtered.filter((file) => new Date(file.sharedAt).getDate() === parseInt(dayFilter, 10));
+        }
+
+        return filtered;
     };
 
     const displayedData = path === '/main'
-        ? filteredData.slice(0, 5)
-        : filteredData.slice(0, visibleCount);
+        ? filterData().slice(0, 5)
+        : filterData().slice(0, visibleCount);
 
     return (
         <>
@@ -86,57 +98,45 @@ export default function ShareFilesTable() {
             <div className="mb-3 d-flex gap-2">
                 <select
                     className="form-select"
-                    value={filterType}
-                    id='DateSearch'
-                    onChange={handleFilterChange}
+                    value={yearFilter}
+                    id='YearSearch'
+                    onChange={handleYearChange}
                 >
-                    <option value="">Filter by</option>
-                    <option value="year">Year</option>
-                    <option value="month">Month</option>
-                    <option value="day">Day</option>
+                    <option value="">Select Year</option>
+                    {years.map((year) => (
+                        <option key={year} value={year}>
+                            {year}
+                        </option>
+                    ))}
                 </select>
-                {filterType && (
-                    <select
-                        className="form-select"
-                        value={filterValue}
-                        onChange={handleFilterValueChange}
-                    >
-                        <option value="">Select {filterType}</option>
-                        {filterType === 'year' && (
-                            <>
-                                <option value="2024">2024</option>
-                                <option value="2023">2023</option>
-                                <option value="2022">2022</option>
-                                <option value="2021">2021</option>
-                            </>
-                        )}
-                        {filterType === 'month' && (
-                            <>
-                                <option value="1">January</option>
-                                <option value="2">February</option>
-                                <option value="3">March</option>
-                                <option value="4">April</option>
-                                <option value="5">May</option>
-                                <option value="6">June</option>
-                                <option value="7">July</option>
-                                <option value="8">August</option>
-                                <option value="9">September</option>
-                                <option value="10">October</option>
-                                <option value="11">November</option>
-                                <option value="12">December</option>
-                            </>
-                        )}
-                        {filterType === 'day' && (
-                            <>
-                                {Array.from({ length: 31 }, (_, index) => (
-                                    <option key={index + 1} value={index + 1}>
-                                        {index + 1}
-                                    </option>
-                                ))}
-                            </>
-                        )}
-                    </select>
-                )}
+
+                <select
+                    className="form-select"
+                    value={monthFilter}
+                    id='MonthSearch'
+                    onChange={handleMonthChange}
+                >
+                    <option value="">Select Month</option>
+                    {months.map((month, index) => (
+                        <option key={index + 1} value={index + 1}>
+                            {month}
+                        </option>
+                    ))}
+                </select>
+
+                <select
+                    className="form-select"
+                    value={dayFilter}
+                    id='DaySearch'
+                    onChange={handleDayChange}
+                >
+                    <option value="">Select Day</option>
+                    {Array.from({ length: 31 }, (_, index) => (
+                        <option key={index + 1} value={index + 1}>
+                            {index + 1}
+                        </option>
+                    ))}
+                </select>
             </div>
 
             <div className="table-responsive">

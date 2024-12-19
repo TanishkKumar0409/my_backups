@@ -1,10 +1,10 @@
 import History from "../../Modals/History.js";
 
-const GetSharedHistoryBySharingId = async (req, res) => {
+const GetSharedHistoryByDownloadLink = async (req, res) => {
     try {
-        const { sharingId } = req.params;
+        const { username } = req.params;
 
-        const IdHistory = await History.findOne({ sharingId });
+        const IdHistory = await History.findOne({ username, downloadLink: { $exists: true, $ne: null } });
 
         if (IdHistory) {
             return res.status(200).json(IdHistory)
@@ -16,4 +16,4 @@ const GetSharedHistoryBySharingId = async (req, res) => {
     }
 }
 
-export default GetSharedHistoryBySharingId
+export default GetSharedHistoryByDownloadLink

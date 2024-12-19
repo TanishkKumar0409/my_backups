@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function LoginNavbar() {
     const location = useLocation()
-    const navCondition=location.pathname === "/form" ? "d-none" : "";
+    const navCondition = location.pathname === "/form" ? "d-none" : "";
     const [navClass, setNavclass] = useState("")
     useEffect(() => {
         window.addEventListener("scroll", () => {
