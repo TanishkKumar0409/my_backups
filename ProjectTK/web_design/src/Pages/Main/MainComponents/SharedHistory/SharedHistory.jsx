@@ -15,7 +15,7 @@ export default function SharedHistory() {
                     </p>
                     <div className="col">
                         <ShareFilesTable />
-                        <div className='text-center'>
+                        <div className='text-center mt-3'>
                             <Link to={"/main/history"} className='btn btn-custom custom-btn'>Show All</Link>
                         </div>
                     </div>

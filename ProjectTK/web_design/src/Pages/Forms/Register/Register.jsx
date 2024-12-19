@@ -54,7 +54,7 @@ export default function Register(props) {
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-center vh-100">
+        <div className="d-flex justify-content-center align-items-center mt-5 mt-md-0">
             <div className="w-100 p-md-5 rounded-3">
                 <h3 className="text-center mb-4">Register in Project TK</h3>
                 <form onSubmit={formik.handleSubmit} className="form-style">
