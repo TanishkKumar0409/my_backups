@@ -19,16 +19,16 @@ export default function Navbar() {
 
     const isActive = (path) => location.pathname === path ? "active" : "";
 
-    const admin = JSON.parse(localStorage.getItem("admin"))
+    const user = JSON.parse(localStorage.getItem("user"))
 
-    const [adminData, setAdminData] = useState([])
+    const [userData, setUserData] = useState([])
     useEffect(() => {
         const getData = async () => {
-            const response = await noFileAPI.get(`user/${admin}`)
-            setAdminData(response.data)
+            const response = await noFileAPI.get(`user/${user}`)
+            setUserData(response.data)
         }
         getData()
-    }, [admin])
+    }, [user])
 
     return (
         <header className={`responsiveNavbar position-fixed w-100 ${navClass}`} style={{ zIndex: 999 }}>
@@ -47,7 +47,7 @@ export default function Navbar() {
                             aria-controls="offcanvasProfile"
                         >
                             <img
-                                src={`http://localhost:5000/${adminData.profile}`}
+                                src={`http://localhost:5000/${userData.profile}`}
                                 className="rounded-circle"
                                 width={"25px"}
                                 height={"25px"}
@@ -90,19 +90,19 @@ export default function Navbar() {
                             aria-controls="offcanvasProfile"
                         >
                             <img
-                                src={`http://localhost:5000/${adminData.profile}`}
+                                src={`http://localhost:5000/${userData.profile}`}
                                 className="rounded-circle"
                                 width={"20px"}
                                 height={"20px"}
                                 alt="User Avatar"
                             />
-                            <span className="ms-2">{adminData.username}</span>
+                            <span className="ms-2">{userData.username}</span>
                         </button>
                     </div>
                 </div>
             </nav>
 
-            <Profile adminData={adminData} />
+            <Profile userData={userData} />
         </header>
     );
 }

@@ -12,7 +12,6 @@ export default function ProtectedRoutes({ children }) {
     if (loginToken && nonLogin.includes(path)) {
         return <Navigate to={"/main"} replace />
     } if (!loginToken && includeLogin.includes(path)) {
-        console.log(path, "A")
         return <Navigate to={"/"} replace />
     }
     return children;

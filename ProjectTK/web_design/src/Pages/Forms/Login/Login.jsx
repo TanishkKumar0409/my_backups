@@ -14,7 +14,7 @@ export default function Login(props) {
             const response = await noFileAPI.post("/user/login", values);
 
             toast.success(response.data.message)
-            localStorage.setItem("admin", JSON.stringify(response.data.loginUser.username))
+            localStorage.setItem("user", JSON.stringify(response.data.loginUser.username))
 
             localStorage.setItem("loginToken", response.data.loginToken)
             if (response.data.adminToken) {

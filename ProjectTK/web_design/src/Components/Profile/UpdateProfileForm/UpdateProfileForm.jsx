@@ -5,8 +5,8 @@ import { API } from "../../../Services/API/API";
 import { toast } from 'react-toastify';
 
 export default function UpdateProfileForm(props) {
-  const { adminData } = props;
-  const [profileImage, setProfileImage] = useState(`http://localhost:5000/${adminData.profile}`);
+  const userData = props.userData;
+  const [profileImage, setProfileImage] = useState(`http://localhost:5000/${userData.profile}`);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -20,9 +20,9 @@ export default function UpdateProfileForm(props) {
   };
 
   const initialValues = {
-    name: adminData?.name || '',
-    email: adminData?.email || '',
-    contact: adminData?.contact || '',
+    name: userData?.name || '',
+    email: userData?.email || '',
+    contact: userData?.contact || '',
     password: '',
   };
 
@@ -41,7 +41,7 @@ export default function UpdateProfileForm(props) {
         formData.append('profile', fileInput.files[0]);
       }
 
-      const response = await API.put(`/user/update/${adminData.username}`, formData, {
+      const response = await API.put(`/user/update/${userData.username}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

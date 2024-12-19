@@ -3,7 +3,7 @@ import UpdateProfileForm from './UpdateProfileForm/UpdateProfileForm';
 import DeleteAccount from './DeleteAccount/DeleteAccount';
 
 export default function Profile(props) {
-  const adminData = props.adminData;
+  const userData = props.userData;
 
   const [isUpdating, setIsUpdating] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -43,33 +43,33 @@ export default function Profile(props) {
         </div>
         <div className="offcanvas-body">
           {isDeleting ? (
-            <DeleteAccount onCancel={() => setIsDeleting(false)} adminData={adminData} />
+            <DeleteAccount onCancel={() => setIsDeleting(false)} userData={userData} />
           ) : isUpdating ? (
-            <UpdateProfileForm adminData={adminData} />
+            <UpdateProfileForm userData={userData} />
           ) : (
             <div className="text-center">
               <img
-                src={`http://localhost:5000/${adminData.profile}`}
+                src={`http://localhost:5000/${userData.profile}`}
                 className="rounded-circle mb-3 shadow"
                 width="150px"
                 height="150px"
                 alt="User Avatar"
               />
-              <h5 className="fs-1">{adminData.username}</h5>
+              <h5 className="fs-1">{userData.username}</h5>
 
               <div className="d-flex justify-content-between mb-2">
                 <p className="fs-2 text-muted">Name:</p>
-                <p className="fs-2">{adminData.name}</p>
+                <p className="fs-2">{userData.name}</p>
               </div>
 
               <div className="d-flex justify-content-between mb-2">
                 <p className="fs-3 text-muted">Email:</p>
-                <p className="fs-3 truncated-profile">{adminData.email}</p>
+                <p className="fs-3 truncated-profile">{userData.email}</p>
               </div>
 
               <div className="d-flex justify-content-between mb-2">
                 <p className="fs-4 text-muted">Contact:</p>
-                <p className="fs-4">{adminData.contact}</p>
+                <p className="fs-4">{userData.contact}</p>
               </div>
             </div>
           )}

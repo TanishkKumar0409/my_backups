@@ -11,7 +11,7 @@ export default function ShareFilesTable() {
     const [visibleCount, setVisibleCount] = useState(10);
     const location = useLocation();
     const path = location.pathname;
-    const user = JSON.parse(localStorage.getItem("admin"))
+    const user = JSON.parse(localStorage.getItem("user"))
 
     useEffect(() => {
         const getData = async () => {

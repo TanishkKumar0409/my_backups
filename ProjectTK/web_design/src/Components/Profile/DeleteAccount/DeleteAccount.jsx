@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import { noFileAPI } from "../../../Services/API/API.js";
 import { toast } from "react-toastify";
 
-export default function DeleteAccount({ onCancel, adminData }) {
+export default function DeleteAccount({ onCancel, userData }) {
     const [otpSent, setOtpSent] = useState(false);
     const [timeRemaining, setTimeRemaining] = useState(0);
 
@@ -28,7 +28,7 @@ export default function DeleteAccount({ onCancel, adminData }) {
 
     const deleteAccount = async () => {
         try {
-            const response = await noFileAPI.delete(`/user/delete/${adminData.username}`, {
+            const response = await noFileAPI.delete(`/user/delete/${userData.username}`, {
                 data: { deletionOtp: formik.values.otp },
             });
             if (response.status === 200) {
@@ -45,7 +45,7 @@ export default function DeleteAccount({ onCancel, adminData }) {
     };
 
     const formik = useFormik({
-        initialValues: { email: adminData.email, password: "", otp: "" },
+        initialValues: { email: userData.email, password: "", otp: "" },
         onSubmit: () => {
             if (!otpSent) {
                 sendOtp();
