@@ -2,15 +2,14 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-// Child Schema for Nested Structure
 const childSchema = new Schema({
     root: {
         type: String,
-        required: true // Name of the folder or file
+        required: true
     },
     type: {
         type: String,
-        enum: ['file', 'folder'], // It can either be a file or a folder
+        enum: ['file', 'folder'],
         required: true
     },
     children: [new Schema({
@@ -23,37 +22,35 @@ const childSchema = new Schema({
             enum: ['file', 'folder'],
             required: true
         },
-        children: [Schema.Types.Mixed] // Allows deeper nesting if needed
-    }, { _id: false })] // Prevent Mongoose from creating _id for nested objects
+        children: [Schema.Types.Mixed]
+    }, { _id: false })]
 });
 
-// Main Schema for File Explorer
 const fileExplorerSchema = new Schema({
     username: {
         type: String,
-        required: true // User's unique identifier
+        required: true
     },
     root: {
         type: String,
-        required: true // Root directory of the user's file system
+        required: true
     },
     type: {
         type: String,
-        default: 'folder' // Root directory is always a folder
+        default: 'folder'
     },
     usedSize: {
         type: Number,
-        required: true, // Track used storage size in bytes
+        required: true,
         default: 0
     },
     allotedSize: {
         type: Number,
-        default: 1024 * 1024 * 1024, // Default allotted size: 1 GB
+        default: 1024 * 1024 * 1024,
     },
-    children: [childSchema] // Array of nested files/folders
+    children: [childSchema]
 });
 
-// Create the Storage model
 const Storage = mongoose.model('Storage', fileExplorerSchema);
 
 export default Storage;
