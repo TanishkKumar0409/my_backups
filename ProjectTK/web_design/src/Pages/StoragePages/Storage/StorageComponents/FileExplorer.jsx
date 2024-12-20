@@ -40,9 +40,8 @@ export default function FileExplorer() {
     const handleFileUpload = async (event) => {
         const file = event.target.files[0];
         if (file) {
-            // Construct the full folder path by joining the 'root' of folderStack (excluding the first item)
             const fullFolderPath = [
-                ...folderStack.slice(1).map(folder => folder.root), // Skip the first folder (index 0)
+                ...folderStack.slice(1).map(folder => folder.root),
                 currentFolder.root
             ].join("/");
 
@@ -127,19 +126,20 @@ export default function FileExplorer() {
                             <span>Create Folder</span>
                         </div>
                     </div>
-
-                    <div className="col-6 col-md-3 d-flex flex-column align-items-center">
-                        <div
-                            className="box-container cursor-pointer border rounded-3 p-3 text-center"
-                            onClick={() => document.getElementById("fileInput").click()}
-                        >
-                            <div className="icon-container">
-                                <i className="fa fa-cloud-upload-alt text-success"></i>
+                    {folderStack.length > 0 && (
+                        <div className="col-6 col-md-3 d-flex flex-column align-items-center">
+                            <div
+                                className="box-container cursor-pointer border rounded-3 p-3 text-center"
+                                onClick={() => document.getElementById("fileInput").click()}
+                            >
+                                <div className="icon-container">
+                                    <i className="fa fa-cloud-upload-alt text-success"></i>
+                                </div>
+                                <span>Upload File</span>
                             </div>
-                            <span>Upload File</span>
+                            <input type="file" onChange={handleFileUpload} style={{ display: "none" }} id="fileInput" />
                         </div>
-                        <input type="file" onChange={handleFileUpload} style={{ display: "none" }} id="fileInput" />
-                    </div>
+                    )}
                 </div>
 
                 <div className="row">
