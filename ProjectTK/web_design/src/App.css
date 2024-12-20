@@ -98,6 +98,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .truncated-profile {
   max-width: 250px;
   white-space: nowrap;
@@ -375,12 +376,13 @@
   font-size: 1.5rem;
   filter: drop-shadow(0 0.2rem 0.2rem gray);
 }
-@media  (max-width:768px) {
-  .historyBanner h3{
+
+@media (max-width:768px) {
+  .historyBanner h3 {
     font-size: 3rem;
   }
-  .historyBanner p{
+
+  .historyBanner p {
     font-size: 1.2rem;
   }
 }
-

@@ -80,6 +80,11 @@ export default function Navbar() {
                                     History
                                 </Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className={`nav-link fw-bold fs-5 ${isActive("/main/storage")}`} to="/main/storage">
+                                    Storage
+                                </Link>
+                            </li>
                         </ul>
 
                         <button

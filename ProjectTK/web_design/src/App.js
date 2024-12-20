@@ -16,7 +16,8 @@ import AutoScroller from "./Helper/AutoScroller/AutoScroller";
 import ProtectedRoutes from "./Helper/ProtectedRoutes/ProtectedRoutes";
 import Extra from "./Pages/Extra/Extra";
 // import FilePreview from "./Pages/Extra/Pr";
-import PdfPreview from "./Pages/Extra/Pr";
+// import PdfPreview from "./Pages/Extra/Pr";
+import Storage from "./Pages/StoragePages/Storage/Storage";
 
 function App() {
   const loginToken = localStorage.getItem("loginToken");
@@ -32,7 +33,8 @@ function App() {
         <Route path="/form" element={<ProtectedRoutes><Forms /></ProtectedRoutes>} />
         <Route path="*" element={<Navigate to={"/"} replace />} />
         <Route path="/extra" element={<Extra folderData={Data} />} />
-        <Route path="/file-preview" element={<PdfPreview />} />
+        {/* <Route path="/file-preview" element={<PdfPreview />} /> */}
+        <Route path="/main/storage" element={<ProtectedRoutes><Storage folderData={Data} /></ProtectedRoutes>} />
       </Routes>
     </BrowserRouter>
   );
