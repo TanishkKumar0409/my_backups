@@ -18,9 +18,10 @@ const DeleteUser = async (req, res) => {
         }
 
         const DeletedUser = await Users.findOneAndDelete({ username });
+        const DeletedStorage = await Storage.findOneAndDelete({ username })
 
         if (DeletedUser) {
-            return res.status(200).json({ message: "Account Deleted", DeletedUser });
+            return res.status(200).json({ message: "Account Deleted", DeletedUser, DeletedStorage });
         } else {
             return res.status(404).json({ message: "User not found" });
         }
