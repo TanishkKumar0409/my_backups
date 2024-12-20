@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CreateFolderModal from "./CreateFolderModal";
-import { noFileAPI } from "../../../../Services/API/API";
+import { API, noFileAPI } from "../../../../Services/API/API";
 
 export default function FileExplorer() {
     const [currentFolder, setCurrentFolder] = useState(null);
@@ -9,7 +9,7 @@ export default function FileExplorer() {
     const [newFolderName, setNewFolderName] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
-    const username = JSON.parse(localStorage.getItem("user"))
+    const username = JSON.parse(localStorage.getItem("user"));
 
     useEffect(() => {
         const fetchFolderData = async () => {
@@ -37,19 +37,42 @@ export default function FileExplorer() {
     const handleFileClick = (file) => {
         navigate("/file-preview", { state: { file } });
     };
-
     const handleFileUpload = async (event) => {
         const file = event.target.files[0];
         if (file) {
-            const newFile = {
-                root: file.name,
-                type: "file",
-                size: file.size,
-            };
-            setCurrentFolder((prev) => ({
-                ...prev,
-                children: [...prev.children, newFile],
-            }));
+            // Construct the full folder path by joining the 'root' of folderStack (excluding the first item)
+            const fullFolderPath = [
+                ...folderStack.slice(1).map(folder => folder.root), // Skip the first folder (index 0)
+                currentFolder.root
+            ].join("/");
+
+            console.log("Full Folder Path:", fullFolderPath);
+
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("username", username);
+            formData.append("currentFolder", fullFolderPath);
+
+            try {
+                const response = await noFileAPI.post("/store/upload", formData, {
+                    headers: { "Content-Type": "multipart/form-data" },
+                });
+
+                if (response.status === 201) {
+                    const newFile = {
+                        root: file.name,
+                        type: "file",
+                        size: file.size,
+                    };
+
+                    setCurrentFolder((prev) => ({
+                        ...prev,
+                        children: [...prev.children, newFile],
+                    }));
+                }
+            } catch (error) {
+                console.error("Error uploading file:", error);
+            }
         }
     };
 
@@ -135,7 +158,7 @@ export default function FileExplorer() {
                                 >
                                     <i className={`fa ${child.type === "folder" ? "fa-folder text-warning" : "fa-file text-danger"}`}></i>
                                 </div>
-                                <span className="folder-name mt-2">{child.root}</span>
+                                <span className="folder-name mt-2">{child.type === "folder" ? child.root : child.fileName}</span>
                             </div>
                         ))
                     ) : (

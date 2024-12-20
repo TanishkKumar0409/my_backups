@@ -7,6 +7,10 @@ const childSchema = new Schema({
         type: String,
         required: true
     },
+    fileName: { // New field for storing original file name
+        type: String,
+        required: function() { return this.type === 'file'; } // Only required if it's a file
+    },
     type: {
         type: String,
         enum: ['file', 'folder'],
@@ -16,6 +20,10 @@ const childSchema = new Schema({
         root: {
             type: String,
             required: true
+        },
+        fileName: { // New field for storing original file name
+            type: String,
+            required: function() { return this.type === 'file'; } // Only required if it's a file
         },
         type: {
             type: String,
@@ -46,7 +54,7 @@ const fileExplorerSchema = new Schema({
     },
     allotedSize: {
         type: Number,
-        default: 1024 * 1024 * 1024,
+        default: 1024 * 1024 * 1024, // Default 1GB
     },
     children: [childSchema]
 });
