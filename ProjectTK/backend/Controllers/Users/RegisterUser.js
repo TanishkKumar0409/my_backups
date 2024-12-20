@@ -60,7 +60,7 @@ const registerUser = async (req, res) => {
                 username: username,
                 root: username,
                 usedSize: 0,
-                children: null
+                children: []
             })
 
             const alloteStorage = await StorageInfo.save()
