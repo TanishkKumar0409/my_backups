@@ -13,7 +13,7 @@ export default function Storage() {
             setFolderData(response.data)
         }
         getData()
-    }, [])
+    }, [username])
 
 
     const BannerData = {

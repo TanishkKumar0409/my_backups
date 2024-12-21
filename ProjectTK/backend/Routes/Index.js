@@ -21,6 +21,7 @@ import GetDataByDownloadLink from "../Controllers/SharedFiles/GetDataByDownloadL
 
 import CreateFolder from "../Controllers/Storage/CreateFolder.js";
 import GetFolder from "../Controllers/Storage/GetFolders.js";
+import FileUpload from "../Controllers/Storage/FileUpload.js";
 
 const router = express.Router()
 
@@ -70,5 +71,19 @@ router.get("/share/history/downloader/:username", GetDataByDownloadLink);
 
 router.post("/storage/folder/create", CreateFolder)
 router.get("/storage/folder/:username", GetFolder)
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './')
+    },
+    filename: function (req, file, cb) {
+        cb(null, "Uploads/Explorer/" + Date.now() + ".jpg")
+    }
+});
+
+const uploadFile = multer({ storage: storage });
+
+router.post("/storage/file/upload/:username", uploadFile.array("file"), FileUpload)
 
 export default router;

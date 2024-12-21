@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import CreateFolderModal from "./CreateFolderModal";
 import { noFileAPI } from "../../../../Services/API/API";
 
@@ -47,6 +46,7 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                 setFolderData((prevData) => [...prevData, newFolder]);
                 setNewFolderName("");
                 setIsModalOpen(false);
+                window.location.reload()
             } catch (error) {
                 console.error("Error creating folder:", error.response?.data || error.message);
                 alert("Error creating folder. Please try again.");

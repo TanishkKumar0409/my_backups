@@ -21,7 +21,7 @@ const CreateFolder = async (req, res) => {
         let parentFolder = null;
 
         if (parentId) {
-            parentFolder = await Storage.findOne({ folderId: parentId });
+            parentFolder = await Storage.findOne({ folderId: parentId, username });
             if (!parentFolder) {
                 return res.status(404).json({ error: "Parent folder not found" });
             }

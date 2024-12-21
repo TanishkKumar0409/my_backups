@@ -25,7 +25,13 @@ const folderSchema = new Schema({
     },
     children: [
         { type: Number }
-    ]
+    ],
+    filePath: {
+        type: String,
+    },
+    fileSize: {
+        type: Number,
+    }
 })
 
 const Storage = mongoose.model("storage", folderSchema)
