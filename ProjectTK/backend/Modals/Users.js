@@ -29,6 +29,14 @@ const UsersSchema = mongoose.Schema({
         type: String,
         requried: true
     },
+    usedStorage: {
+        type: Number,
+        default: 0
+    },
+    totalStorage: {
+        type: Number,
+        default: 1024 * 1024 * 1024
+    },
     password: {
         type: String,
         required: true

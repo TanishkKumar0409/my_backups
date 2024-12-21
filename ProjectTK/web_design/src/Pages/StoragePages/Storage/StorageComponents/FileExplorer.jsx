@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import CreateFolderModal from "./CreateFolderModal";
+import { noFileAPI } from "../../../../Services/API/API";
 
-export default function FileExplorer({ edata,setFolderData }) {
+export default function FileExplorer({ edata, setFolderData, username }) {
     const [currentFolderId, setCurrentFolderId] = useState(1);
     const [folderStack, setFolderStack] = useState([]);
     const [newFolderName, setNewFolderName] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedItemId, setSelectedItemId] = useState(null);
+
 
     const currentFolder = edata.find(item => item.folderId === currentFolderId);
     const currentChildren = currentFolder?.children.map(id => edata.find(item => item.folderId === id)) || [];
@@ -31,22 +33,20 @@ export default function FileExplorer({ edata,setFolderData }) {
     const handleCreateFolder = async () => {
         if (newFolderName.trim()) {
             const newFolderData = {
-                username: "ankit",  // You can replace this with the actual logged-in username
+                username: username,
                 root: newFolderName,
                 parentId: currentFolderId,
             };
 
             try {
-                const response = await axios.post(
-                    "http://localhost:5000/api/storage/folder/create",
+                const response = await noFileAPI.post(
+                    "/storage/folder/create",
                     newFolderData
                 );
-                console.log(response.data); // You can handle success response here
-                // Assuming the response contains the created folder, you can update your `edata` state.
                 const newFolder = response.data.savedFolder;
-                setFolderData((prevData) => [...prevData, newFolder]); // Add the new folder to your state
-                setNewFolderName(""); // Clear input
-                setIsModalOpen(false); // Close modal
+                setFolderData((prevData) => [...prevData, newFolder]);
+                setNewFolderName("");
+                setIsModalOpen(false);
             } catch (error) {
                 console.error("Error creating folder:", error.response?.data || error.message);
                 alert("Error creating folder. Please try again.");
@@ -106,20 +106,20 @@ export default function FileExplorer({ edata,setFolderData }) {
                             className="box-container cursor-pointer border rounded-3 p-3 text-center"
                             onClick={() => setIsModalOpen(true)}
                         >
-                            <i className="fa fa-folder-plus text-primary"></i>
-                            <span>Create Folder</span>
+                            <i className="fa fa-folder-plus text-primary me-md-2"></i>
+                            <span className="d-none d-md-inline-block">Create Folder</span>
                         </div>
                     </div>
                     <div className="col-4 d-flex flex-column align-items-center">
                         <label className="box-container cursor-pointer border rounded-3 p-3 text-center">
-                            <i className="fa fa-upload text-success"></i>
+                            <i className="fa fa-upload text-success me-md-2"></i>
                             <input
                                 type="file"
                                 multiple
                                 onChange={handleFileUpload}
                                 style={{ display: "none" }}
                             />
-                            <span>Upload File</span>
+                            <span className="d-none d-md-inline-block">Upload File</span>
                         </label>
                     </div>
                     <div className="col-4 d-flex flex-column align-items-center">
@@ -127,8 +127,8 @@ export default function FileExplorer({ edata,setFolderData }) {
                             className="box-container cursor-pointer border rounded-3 p-3 text-center"
                             onClick={handleDeleteItem}
                         >
-                            <i className="fa fa-trash text-danger"></i>
-                            <span>Delete</span>
+                            <i className="fa fa-trash text-danger me-md-2"></i>
+                            <span className="d-none d-md-inline-block">Delete</span>
                         </div>
                     </div>
                 </div>

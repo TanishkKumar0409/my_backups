@@ -5,11 +5,11 @@ import Footer from '../../../Components/Footer/Footer'
 import { noFileAPI } from '../../../Services/API/API'
 
 export default function Storage() {
-
+    const username = JSON.parse(localStorage.getItem("user"))
     const [folderData, setFolderData] = useState([]);
     useEffect(() => {
         const getData = async () => {
-            const response = await noFileAPI.get("storage/folder/ankit")
+            const response = await noFileAPI.get(`storage/folder/${username}`)
             setFolderData(response.data)
         }
         getData()
@@ -25,7 +25,7 @@ export default function Storage() {
     return (
         <>
             <InnerPagesBanner BannerData={BannerData} />
-            <FileExplorer edata={folderData} setFolderData={setFolderData} />
+            <FileExplorer edata={folderData} setFolderData={setFolderData} username={username} />
             <Footer />
         </>
     )
