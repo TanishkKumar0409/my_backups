@@ -1,12 +1,13 @@
 import Storage from "../../Modals/Storage.js";
 import Users from "../../Modals/Users.js";
+
 const FileUpload = async (req, res) => {
     try {
         const { parentId } = req.body;
         const { username } = req.params;
 
-        if (!parentId || !req.files || req.files.length === 0) {
-            return res.status(400).json({ error: "Required fields missing or no files uploaded" });
+        if (!parentId || !req.file) {
+            return res.status(400).json({ error: "Required fields missing or no file uploaded" });
         }
 
         const isUser = await Users.findOne({ username });
@@ -27,44 +28,35 @@ const FileUpload = async (req, res) => {
             }
         }
 
-        const savedFiles = [];
+        const lastFolder = await Storage.findOne({ username }).sort({ folderId: -1 });
+        const fileId = lastFolder ? lastFolder.folderId + 1 : 1;
 
-        // Iterate over each uploaded file and save as a separate document
-        for (let file of req.files) {
-            const lastFolder = await Storage.findOne({ username }).sort({ folderId: -1 });
-            const fileId = lastFolder ? lastFolder.folderId + 1 : 1;
-
-            const newFile = new Storage({
-                folderId: fileId,
-                username,
-                root: file.originalname,
-                type: "file",
-                parentId: folder.folderId,
-                children: [],
-                filePath: file.path,
-                fileSize: file.size,
-            });
-
-            const savedFile = await newFile.save();
-            if (savedFile) {
-                savedFiles.push(savedFile);
-
-                // Update parent folder's children array
-                await Storage.findOneAndUpdate(
-                    { folderId: parentFolder.folderId, username },
-                    { $push: { children: savedFile.folderId } },
-                    { new: true }
-                );
-            } else {
-                return res.status(500).json({ error: "File upload failed for one or more files" });
-            }
-        }
-
-        res.status(201).json({
-            message: "Files uploaded successfully",
-            savedFiles,
+        const newFile = new Storage({
+            folderId: fileId,
+            username,
+            root: req.file.originalname,
+            type: "file",
+            parentId: folder.folderId,
+            children: [],
+            filePath: req.file.path,
+            fileSize: req.file.size,
         });
 
+        const savedFile = await newFile.save();
+        if (savedFile) {
+            await Storage.findOneAndUpdate(
+                { folderId: parentFolder.folderId, username },
+                { $push: { children: savedFile.folderId } },
+                { new: true }
+            );
+
+            res.status(201).json({
+                message: "File uploaded successfully",
+                savedFile,
+            });
+        } else {
+            return res.status(500).json({ error: "File upload failed" });
+        }
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }

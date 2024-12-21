@@ -1,4 +1,5 @@
 import Users from "../../Modals/Users.js";
+import Storage from "../../Modals/Storage.js"
 
 const DeleteUser = async (req, res) => {
     try {
@@ -18,7 +19,7 @@ const DeleteUser = async (req, res) => {
         }
 
         const DeletedUser = await Users.findOneAndDelete({ username });
-        const DeletedStorage = await Storage.findOneAndDelete({ username })
+        const DeletedStorage = await Storage.deleteMany({ username })
 
         if (DeletedUser) {
             return res.status(200).json({ message: "Account Deleted", DeletedUser, DeletedStorage });

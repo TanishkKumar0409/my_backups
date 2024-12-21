@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CreateFolderModal from "./CreateFolderModal";
-import { noFileAPI } from "../../../../Services/API/API";
+import { API, noFileAPI } from "../../../../Services/API/API";
 
 export default function FileExplorer({ edata, setFolderData, username }) {
     const [currentFolderId, setCurrentFolderId] = useState(1);
@@ -8,7 +8,6 @@ export default function FileExplorer({ edata, setFolderData, username }) {
     const [newFolderName, setNewFolderName] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedItemId, setSelectedItemId] = useState(null);
-
 
     const currentFolder = edata.find(item => item.folderId === currentFolderId);
     const currentChildren = currentFolder?.children.map(id => edata.find(item => item.folderId === id)) || [];
@@ -46,7 +45,7 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                 setFolderData((prevData) => [...prevData, newFolder]);
                 setNewFolderName("");
                 setIsModalOpen(false);
-                window.location.reload()
+                window.location.reload();
             } catch (error) {
                 console.error("Error creating folder:", error.response?.data || error.message);
                 alert("Error creating folder. Please try again.");
@@ -54,23 +53,36 @@ export default function FileExplorer({ edata, setFolderData, username }) {
         }
     };
 
-    const handleFileUpload = (event) => {
-        const files = Array.from(event.target.files);
-        const uploadedFiles = files.map((file, index) => {
-            const newFileId = edata.length + index + 1;
-            const newFile = {
-                id: newFileId,
-                root: file.name,
-                type: "file",
-                parentId: currentFolderId,
-                children: [],
-            };
+    const handleFileUpload = async (event) => {
+        const file = event.target.files[0];
 
-            edata.push(newFile);
-            return newFileId;
-        });
+        if (file && currentFolder) {
+            const formData = new FormData();
+            formData.append("parentId", currentFolderId);
+            formData.append("file", file);
 
-        currentFolder.children.push(...uploadedFiles);
+            try {
+                const response = await API.post(
+                    `/storage/file/upload/${username}`,
+                    formData,
+                    { headers: { "Content-Type": "multipart/form-data" } }
+                );
+
+                const uploadedFile = response.data;
+
+                edata.push(uploadedFile);
+                currentFolder.children.push(uploadedFile.id);
+
+                setFolderData([...edata]);
+                setSelectedItemId(uploadedFile.id);
+            } catch (error) {
+                console.error("Error uploading file:", error);
+                alert("Error uploading file. Please try again.");
+            }
+        } else {
+            alert("No valid folder selected or no file selected.");
+        }
+
         event.target.value = "";
     };
 
@@ -115,7 +127,6 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                             <i className="fa fa-upload text-success me-md-2"></i>
                             <input
                                 type="file"
-                                multiple
                                 onChange={handleFileUpload}
                                 style={{ display: "none" }}
                             />
@@ -135,10 +146,10 @@ export default function FileExplorer({ edata, setFolderData, username }) {
 
                 <div className="row">
                     {currentChildren.length > 0 ? (
-                        currentChildren.map((child) => (
+                        currentChildren.map((child, index) => (
                             <div
-                                className={`col-6 col-md-3 d-flex flex-column align-items-center mb-4 `}
-                                key={child.folderId}
+                                className={`col-6 col-md-3 d-flex flex-column align-items-center mb-4`}
+                                key={index}
                                 onClick={() => setSelectedItemId(child.folderId)}
                             >
                                 <div
