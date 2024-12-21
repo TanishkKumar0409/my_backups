@@ -1,6 +1,7 @@
 import Users from "../../Modals/Users.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
+import Storage from "../../Modals/Storage.js";
 
 const registerUser = async (req, res) => {
     try {
@@ -55,7 +56,16 @@ const registerUser = async (req, res) => {
         const loginUser = await newUser.save();
 
         if (loginUser) {
-            return res.status(201).json({ message: "User Registered Successfully", loginUser, loginToken });
+            const createFolder = Storage({
+                folderId: 1,
+                username,
+                root: "File Explorer",
+                type: "folder",
+                parentId: null,
+                children: []
+            })
+            const savedFolder = await createFolder.save();
+            return res.status(201).json({ message: "User Registered Successfully", loginUser, loginToken ,savedFolder});
         }
 
     } catch (error) {

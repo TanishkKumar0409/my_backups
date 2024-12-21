@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import InnerPagesBanner from '../../../Components/InnerPagesBanner/InnerPagesBanner'
 import FileExplorer from './StorageComponents/FileExplorer'
 import Footer from '../../../Components/Footer/Footer'
+import { noFileAPI } from '../../../Services/API/API'
 
-export default function Storage({folderData}) {
-   
+export default function Storage() {
+
+    const [folderData, setFolderData] = useState([]);
+    useEffect(() => {
+        const getData = async () => {
+            const response = await noFileAPI.get("storage/folder/ankit")
+            setFolderData(response.data)
+        }
+        getData()
+    }, [])
+
 
     const BannerData = {
         icon: "hard-drive",
@@ -15,7 +25,7 @@ export default function Storage({folderData}) {
     return (
         <>
             <InnerPagesBanner BannerData={BannerData} />
-            <FileExplorer edata={folderData} />
+            <FileExplorer edata={folderData} setFolderData={setFolderData} />
             <Footer />
         </>
     )

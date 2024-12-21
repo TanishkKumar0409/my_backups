@@ -18,7 +18,9 @@ import GetSharedHistoryByUsername from "../Controllers/SharedFiles/GetSharedHist
 import DownloadFiles from "../Helper/DownloadFiles/DownloadFiles.js";
 import DeletionOtp from "../Controllers/Users/DeletionOpt.js";
 import GetDataByDownloadLink from "../Controllers/SharedFiles/GetDataByDownloadLink.js";
+
 import CreateFolder from "../Controllers/Storage/CreateFolder.js";
+import GetFolder from "../Controllers/Storage/GetFolders.js";
 
 const router = express.Router()
 
@@ -66,6 +68,7 @@ router.get("/share/history/user/:username", GetSharedHistoryByUsername);
 router.get("/share/history/id/:sharingId", GetSharedHistoryBySharingId);
 router.get("/share/history/downloader/:username", GetDataByDownloadLink);
 
-router.post("/create",CreateFolder)
+router.post("/storage/folder/create", CreateFolder)
+router.get("/storage/folder/:username", GetFolder)
 
 export default router;

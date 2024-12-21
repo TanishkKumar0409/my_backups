@@ -1,21 +1,22 @@
 import React, { useState } from "react";
+import axios from "axios";
 import CreateFolderModal from "./CreateFolderModal";
 
-export default function FileExplorer({ edata }) {
+export default function FileExplorer({ edata,setFolderData }) {
     const [currentFolderId, setCurrentFolderId] = useState(1);
     const [folderStack, setFolderStack] = useState([]);
     const [newFolderName, setNewFolderName] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedItemId, setSelectedItemId] = useState(null);
 
-    const currentFolder = edata.find(item => item.id === currentFolderId);
-    const currentChildren = currentFolder?.children.map(id => edata.find(item => item.id === id)) || [];
+    const currentFolder = edata.find(item => item.folderId === currentFolderId);
+    const currentChildren = currentFolder?.children.map(id => edata.find(item => item.folderId === id)) || [];
 
     const handleFolderClick = (folder) => {
-        setSelectedItemId(folder.id);
+        setSelectedItemId(folder.folderId);
         if (folder.type === "folder") {
             setFolderStack([...folderStack, currentFolderId]);
-            setCurrentFolderId(folder.id);
+            setCurrentFolderId(folder.folderId);
         } else {
             alert(`You clicked on file: ${folder.name}`);
         }
@@ -27,22 +28,29 @@ export default function FileExplorer({ edata }) {
         setFolderStack([...folderStack]);
     };
 
-    const handleCreateFolder = () => {
+    const handleCreateFolder = async () => {
         if (newFolderName.trim()) {
-            const newFolderId = edata.length + 1;
-            const newFolder = {
-                id: newFolderId,
+            const newFolderData = {
+                username: "ankit",  // You can replace this with the actual logged-in username
                 root: newFolderName,
-                type: "folder",
                 parentId: currentFolderId,
-                children: [],
             };
 
-            currentFolder.children.push(newFolderId);
-            edata.push(newFolder);
-
-            setNewFolderName("");
-            setIsModalOpen(false);
+            try {
+                const response = await axios.post(
+                    "http://localhost:5000/api/storage/folder/create",
+                    newFolderData
+                );
+                console.log(response.data); // You can handle success response here
+                // Assuming the response contains the created folder, you can update your `edata` state.
+                const newFolder = response.data.savedFolder;
+                setFolderData((prevData) => [...prevData, newFolder]); // Add the new folder to your state
+                setNewFolderName(""); // Clear input
+                setIsModalOpen(false); // Close modal
+            } catch (error) {
+                console.error("Error creating folder:", error.response?.data || error.message);
+                alert("Error creating folder. Please try again.");
+            }
         }
     };
 
@@ -63,7 +71,7 @@ export default function FileExplorer({ edata }) {
         });
 
         currentFolder.children.push(...uploadedFiles);
-        event.target.value = ""; // Clear input for consecutive uploads
+        event.target.value = "";
     };
 
     const handleDeleteItem = () => {
@@ -71,7 +79,7 @@ export default function FileExplorer({ edata }) {
             const selectedIndex = currentFolder.children.indexOf(selectedItemId);
             if (selectedIndex !== -1) {
                 currentFolder.children.splice(selectedIndex, 1);
-                edata = edata.filter(item => item.id !== selectedItemId);
+                edata = edata.filter(item => item.folderId !== selectedItemId);
                 setSelectedItemId(null);
             }
         } else {
@@ -130,11 +138,11 @@ export default function FileExplorer({ edata }) {
                         currentChildren.map((child) => (
                             <div
                                 className={`col-6 col-md-3 d-flex flex-column align-items-center mb-4 `}
-                                key={child.id}
-                                onClick={() => setSelectedItemId(child.id)}
+                                key={child.folderId}
+                                onClick={() => setSelectedItemId(child.folderId)}
                             >
                                 <div
-                                    className={`icon-container bg-${selectedItemId === child.id ? "light shadow-sm" : "white"} border rounded-3 d-flex justify-content-center align-items-center`}
+                                    className={`icon-container bg-${selectedItemId === child.folderId ? "light shadow-sm" : "white"} border rounded-3 d-flex justify-content-center align-items-center`}
                                     onDoubleClick={() => handleFolderClick(child)}
                                     style={{
                                         width: "100px",
@@ -146,8 +154,7 @@ export default function FileExplorer({ edata }) {
                                         className={`fa ${child.type === "folder"
                                             ? "fa-folder text-warning"
                                             : "fa-file text-danger"
-                                            }`}
-                                    ></i>
+                                            }`}></i>
                                 </div>
                                 <span className="folder-name mt-2">{child.root}</span>
                             </div>

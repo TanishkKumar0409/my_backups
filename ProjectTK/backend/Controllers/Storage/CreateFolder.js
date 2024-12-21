@@ -27,7 +27,7 @@ const CreateFolder = async (req, res) => {
             }
         }
 
-        const lastFolder = await Storage.findOne().sort({ folderId: -1 });
+        const lastFolder = await Storage.findOne({ username }).sort({ folderId: -1 });
         const folderId = lastFolder ? lastFolder.folderId + 1 : 1;
 
         const newFolder = new Storage({
@@ -44,7 +44,7 @@ const CreateFolder = async (req, res) => {
         if (savedFolder) {
             if (parentFolder) {
                 const setChildren = await Storage.findOneAndUpdate(
-                    { folderId: parentFolder.folderId },
+                    { folderId: parentFolder.folderId, username },
                     { $push: { children: savedFolder.folderId } },
                     { new: true }
                 );
