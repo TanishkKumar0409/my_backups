@@ -1,10 +1,16 @@
 import Storage from "../../Modals/Storage.js";
+import Users from "../../Modals/Users.js";
 const CreateFolder = async (req, res) => {
     try {
         const { username, root, parentId } = req.body;
 
         if (!username || !root) {
             return res.status(400).json({ error: "Required fields missing" });
+        }
+
+        const isUser = await Users.findOne({ username })
+        if (!isUser) {
+            return res.status(404).json("Please Register first")
         }
 
         const RepeatedFolder = await Storage.findOne({ username, root, parentId })
