@@ -18,9 +18,6 @@ import GetSharedHistoryByUsername from "../Controllers/SharedFiles/GetSharedHist
 import DownloadFiles from "../Helper/DownloadFiles/DownloadFiles.js";
 import DeletionOtp from "../Controllers/Users/DeletionOpt.js";
 import GetDataByDownloadLink from "../Controllers/SharedFiles/GetDataByDownloadLink.js";
-import createFolder from "../Controllers/Storage/CreateFolder.js";
-import GetFolderData from "../Controllers/Storage/GetFolderData.js";
-import uploadFile from "../Controllers/Storage/UploadFileController.js";
 
 const router = express.Router()
 
@@ -46,18 +43,6 @@ const FileShare = multer.diskStorage({
     }
 })
 
-const FileStorage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "Uploads/Explorer/"); // Folder for uploaded files
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + "-" + file.originalname); // Timestamped file name
-    },
-});
-
-const uploadstore = multer({ storage: FileStorage });
-
-
 const UploadFileShare = multer({ storage: FileShare })
 
 //? Users Routes
@@ -79,10 +64,5 @@ router.get("/share/history", GetSharedHistory);
 router.get("/share/history/user/:username", GetSharedHistoryByUsername);
 router.get("/share/history/id/:sharingId", GetSharedHistoryBySharingId);
 router.get("/share/history/downloader/:username", GetDataByDownloadLink);
-
-router.post("/store/create/folder", createFolder);
-router.get("/store/folders/:username", GetFolderData)
-
-router.post("/store/upload", uploadstore.array("file", 10), uploadFile);
 
 export default router;

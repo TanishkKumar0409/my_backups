@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import InnerPagesBanner from '../../../Components/InnerPagesBanner/InnerPagesBanner'
 import FileExplorer from './StorageComponents/FileExplorer'
 import Footer from '../../../Components/Footer/Footer'
-import { noFileAPI } from '../../../Services/API/API'
 
 export default function Storage({folderData}) {
    
@@ -16,7 +15,7 @@ export default function Storage({folderData}) {
     return (
         <>
             <InnerPagesBanner BannerData={BannerData} />
-            <FileExplorer />
+            <FileExplorer edata={folderData} />
             <Footer />
         </>
     )

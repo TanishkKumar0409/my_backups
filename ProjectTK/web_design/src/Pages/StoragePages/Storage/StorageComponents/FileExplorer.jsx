@@ -1,106 +1,81 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import CreateFolderModal from "./CreateFolderModal";
-import { API, noFileAPI } from "../../../../Services/API/API";
 
-export default function FileExplorer() {
-    const [currentFolder, setCurrentFolder] = useState(null);
+export default function FileExplorer({ edata }) {
+    const [currentFolderId, setCurrentFolderId] = useState(1);
     const [folderStack, setFolderStack] = useState([]);
     const [newFolderName, setNewFolderName] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const navigate = useNavigate();
-    const username = JSON.parse(localStorage.getItem("user"));
+    const [selectedItemId, setSelectedItemId] = useState(null);
 
-    useEffect(() => {
-        const fetchFolderData = async () => {
-            try {
-                const response = await noFileAPI.get(`/store/folders/${username}`);
-                setCurrentFolder(response.data);
-            } catch (error) {
-                console.error("Error fetching folder data:", error);
-            }
-        };
-        fetchFolderData();
-    }, [username]);
+    const currentFolder = edata[currentFolderId];
+    const currentChildren = currentFolder?.children.map((id) => edata[id]) || [];
 
     const handleFolderClick = (folder) => {
-        setFolderStack([...folderStack, currentFolder]);
-        setCurrentFolder(folder);
-    };
-
-    const handleBack = () => {
-        const previousFolder = folderStack.pop();
-        setCurrentFolder(previousFolder);
-        setFolderStack([...folderStack]);
-    };
-
-    const handleFileClick = (file) => {
-        navigate("/file-preview", { state: { file } });
-    };
-    const handleFileUpload = async (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const fullFolderPath = [
-                ...folderStack.slice(1).map(folder => folder.root),
-                currentFolder.root
-            ].join("/");
-
-            console.log("Full Folder Path:", fullFolderPath);
-
-            const formData = new FormData();
-            formData.append("file", file);
-            formData.append("username", username);
-            formData.append("currentFolder", fullFolderPath);
-
-            try {
-                const response = await noFileAPI.post("/store/upload", formData, {
-                    headers: { "Content-Type": "multipart/form-data" },
-                });
-
-                if (response.status === 201) {
-                    const newFile = {
-                        root: file.name,
-                        type: "file",
-                        size: file.size,
-                    };
-
-                    setCurrentFolder((prev) => ({
-                        ...prev,
-                        children: [...prev.children, newFile],
-                    }));
-                }
-            } catch (error) {
-                console.error("Error uploading file:", error);
-            }
+        setSelectedItemId(folder.id);
+        if (folder.type === "folder") {
+            setFolderStack([...folderStack, currentFolderId]);
+            setCurrentFolderId(folder.id);
+        } else {
+            alert(`You clicked on file: ${folder.name}`);
         }
     };
 
-    const handleCreateFolder = async () => {
-        if (newFolderName.trim()) {
-            try {
-                const rootFolder = currentFolder?.root || "root";
-                const response = await noFileAPI.post("/store/create/folder", {
-                    username,
-                    folderName: newFolderName,
-                    rootFolder,
-                });
+    const handleBack = () => {
+        const previousFolderId = folderStack.pop();
+        setCurrentFolderId(previousFolderId);
+        setFolderStack([...folderStack]);
+    };
 
-                if (response.status === 201) {
-                    const newFolder = {
-                        root: newFolderName,
-                        type: "folder",
-                        children: [],
-                    };
-                    setCurrentFolder((prev) => ({
-                        ...prev,
-                        children: [...prev.children, newFolder],
-                    }));
-                    setNewFolderName("");
-                    setIsModalOpen(false);
-                }
-            } catch (error) {
-                console.error("Error creating folder:", error);
+    const handleCreateFolder = () => {
+        if (newFolderName.trim()) {
+            const newFolderId = Object.keys(edata).length + 1;
+            const newFolder = {
+                id: newFolderId,
+                name: newFolderName,
+                type: "folder",
+                parentId: currentFolderId,
+                children: [],
+            };
+
+            edata[currentFolderId].children.push(newFolderId);
+            edata[newFolderId] = newFolder;
+
+            setNewFolderName("");
+            setIsModalOpen(false);
+        }
+    };
+
+    const handleFileUpload = (event) => {
+        const files = Array.from(event.target.files);
+        const uploadedFiles = files.map((file, index) => {
+            const newFileId = Object.keys(edata).length + index + 1;
+            const newFile = {
+                id: newFileId,
+                name: file.name,
+                type: "file",
+                parentId: currentFolderId,
+                children: [],
+            };
+
+            edata[newFileId] = newFile;
+            return newFileId;
+        });
+
+        edata[currentFolderId].children.push(...uploadedFiles);
+        event.target.value = ""; // Clear input for consecutive uploads
+    };
+
+    const handleDeleteItem = () => {
+        if (selectedItemId) {
+            const selectedIndex = edata[currentFolderId].children.indexOf(selectedItemId);
+            if (selectedIndex !== -1) {
+                edata[currentFolderId].children.splice(selectedIndex, 1);
+                delete edata[selectedItemId];
+                setSelectedItemId(null);
             }
+        } else {
+            alert("No item selected to delete.");
         }
     };
 
@@ -109,56 +84,72 @@ export default function FileExplorer() {
             <div className="container">
                 <h2 className="text-center mb-4 text-uppercase fw-bold">File Explorer</h2>
                 {folderStack.length > 0 && (
-                    <button onClick={handleBack} className="btn btn-light shadow-sm mb-4 rounded-circle">
+                    <button
+                        onClick={handleBack}
+                        className="btn btn-light shadow-sm mb-4 rounded-circle"
+                    >
                         <i className="fa fa-arrow-left"></i>
                     </button>
                 )}
 
                 <div className="row mb-4">
-                    <div className="col-6 col-md-3 d-flex flex-column align-items-center">
+                    <div className="col-4 d-flex flex-column align-items-center">
                         <div
                             className="box-container cursor-pointer border rounded-3 p-3 text-center"
                             onClick={() => setIsModalOpen(true)}
                         >
-                            <div className="icon-container">
-                                <i className="fa fa-folder-plus text-primary"></i>
-                            </div>
+                            <i className="fa fa-folder-plus text-primary"></i>
                             <span>Create Folder</span>
                         </div>
                     </div>
-                    {folderStack.length > 0 && (
-                        <div className="col-6 col-md-3 d-flex flex-column align-items-center">
-                            <div
-                                className="box-container cursor-pointer border rounded-3 p-3 text-center"
-                                onClick={() => document.getElementById("fileInput").click()}
-                            >
-                                <div className="icon-container">
-                                    <i className="fa fa-cloud-upload-alt text-success"></i>
-                                </div>
-                                <span>Upload File</span>
-                            </div>
-                            <input type="file" onChange={handleFileUpload} style={{ display: "none" }} id="fileInput" />
+                    <div className="col-4 d-flex flex-column align-items-center">
+                        <label className="box-container cursor-pointer border rounded-3 p-3 text-center">
+                            <i className="fa fa-upload text-success"></i>
+                            <input
+                                type="file"
+                                multiple
+                                onChange={handleFileUpload}
+                                style={{ display: "none" }}
+                            />
+                            <span>Upload File</span>
+                        </label>
+                    </div>
+                    <div className="col-4 d-flex flex-column align-items-center">
+                        <div
+                            className="box-container cursor-pointer border rounded-3 p-3 text-center"
+                            onClick={handleDeleteItem}
+                        >
+                            <i className="fa fa-trash text-danger"></i>
+                            <span>Delete</span>
                         </div>
-                    )}
+                    </div>
                 </div>
 
                 <div className="row">
-                    {currentFolder?.children?.length > 0 ? (
-                        currentFolder.children.map((child, index) => (
+                    {currentChildren.length > 0 ? (
+                        currentChildren.map((child) => (
                             <div
-                                className="col-6 col-md-3 d-flex flex-column align-items-center mb-4"
-                                key={index}
+                                className={`col-6 col-md-3 d-flex flex-column align-items-center mb-4 `}
+                                key={child.id}
+                                onClick={() => setSelectedItemId(child.id)}
                             >
                                 <div
-                                    className="icon-container bg-white border rounded-3 d-flex justify-content-center align-items-center"
-                                    onClick={() =>
-                                        child.type === "folder" ? handleFolderClick(child) : handleFileClick(child)
-                                    }
-                                    style={{ width: "100px", height: "100px" }}
+                                    className={`icon-container bg-${selectedItemId === child.id ? "light shadow-sm" : "white"} border rounded-3 d-flex justify-content-center align-items-center`}
+                                    onDoubleClick={() => handleFolderClick(child)}
+                                    style={{
+                                        width: "100px",
+                                        height: "100px",
+                                        cursor: "pointer",
+                                    }}
                                 >
-                                    <i className={`fa ${child.type === "folder" ? "fa-folder text-warning" : "fa-file text-danger"}`}></i>
+                                    <i
+                                        className={`fa ${child.type === "folder"
+                                                ? "fa-folder text-warning"
+                                                : "fa-file text-danger"
+                                            }`}
+                                    ></i>
                                 </div>
-                                <span className="folder-name mt-2">{child.type === "folder" ? child.root : child.fileName}</span>
+                                <span className="folder-name mt-2">{child.name}</span>
                             </div>
                         ))
                     ) : (
