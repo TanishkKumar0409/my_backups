@@ -59,13 +59,13 @@ const registerUser = async (req, res) => {
             const createFolder = Storage({
                 folderId: 1,
                 username,
-                root: "File Explorer",
+                root: username,
                 type: "folder",
                 parentId: null,
                 children: []
             })
             const savedFolder = await createFolder.save();
-            return res.status(201).json({ message: "User Registered Successfully", loginUser, loginToken ,savedFolder});
+            return res.status(201).json({ message: "User Registered Successfully", loginUser, loginToken, savedFolder });
         }
 
     } catch (error) {
