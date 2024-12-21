@@ -8,8 +8,8 @@ export default function FileExplorer({ edata }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedItemId, setSelectedItemId] = useState(null);
 
-    const currentFolder = edata[currentFolderId];
-    const currentChildren = currentFolder?.children.map((id) => edata[id]) || [];
+    const currentFolder = edata.find(item => item.id === currentFolderId);
+    const currentChildren = currentFolder?.children.map(id => edata.find(item => item.id === id)) || [];
 
     const handleFolderClick = (folder) => {
         setSelectedItemId(folder.id);
@@ -29,17 +29,17 @@ export default function FileExplorer({ edata }) {
 
     const handleCreateFolder = () => {
         if (newFolderName.trim()) {
-            const newFolderId = Object.keys(edata).length + 1;
+            const newFolderId = edata.length + 1;
             const newFolder = {
                 id: newFolderId,
-                name: newFolderName,
+                root: newFolderName,
                 type: "folder",
                 parentId: currentFolderId,
                 children: [],
             };
 
-            edata[currentFolderId].children.push(newFolderId);
-            edata[newFolderId] = newFolder;
+            currentFolder.children.push(newFolderId);
+            edata.push(newFolder);
 
             setNewFolderName("");
             setIsModalOpen(false);
@@ -49,29 +49,29 @@ export default function FileExplorer({ edata }) {
     const handleFileUpload = (event) => {
         const files = Array.from(event.target.files);
         const uploadedFiles = files.map((file, index) => {
-            const newFileId = Object.keys(edata).length + index + 1;
+            const newFileId = edata.length + index + 1;
             const newFile = {
                 id: newFileId,
-                name: file.name,
+                root: file.name,
                 type: "file",
                 parentId: currentFolderId,
                 children: [],
             };
 
-            edata[newFileId] = newFile;
+            edata.push(newFile);
             return newFileId;
         });
 
-        edata[currentFolderId].children.push(...uploadedFiles);
+        currentFolder.children.push(...uploadedFiles);
         event.target.value = ""; // Clear input for consecutive uploads
     };
 
     const handleDeleteItem = () => {
         if (selectedItemId) {
-            const selectedIndex = edata[currentFolderId].children.indexOf(selectedItemId);
+            const selectedIndex = currentFolder.children.indexOf(selectedItemId);
             if (selectedIndex !== -1) {
-                edata[currentFolderId].children.splice(selectedIndex, 1);
-                delete edata[selectedItemId];
+                currentFolder.children.splice(selectedIndex, 1);
+                edata = edata.filter(item => item.id !== selectedItemId);
                 setSelectedItemId(null);
             }
         } else {
@@ -144,12 +144,12 @@ export default function FileExplorer({ edata }) {
                                 >
                                     <i
                                         className={`fa ${child.type === "folder"
-                                                ? "fa-folder text-warning"
-                                                : "fa-file text-danger"
+                                            ? "fa-folder text-warning"
+                                            : "fa-file text-danger"
                                             }`}
                                     ></i>
                                 </div>
-                                <span className="folder-name mt-2">{child.name}</span>
+                                <span className="folder-name mt-2">{child.root}</span>
                             </div>
                         ))
                     ) : (
