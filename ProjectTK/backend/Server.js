@@ -5,9 +5,11 @@ import mongoose from "mongoose";
 import cors from "cors";
 
 import router from "./Routes/Index.js";
+
 import deleteShareingFiles from "./Helper/folderCleaner/DeleteSharingFiles.js";
 import ProfilesCleaner from "./Helper/folderCleaner/UserProfileCleaner.js";
 import CancelDelete from "./Helper/DbCleaner/CancelDelete.js";
+import StorageCleaner from "./Helper/folderCleaner/DeleteExplorerFiles.js";
 
 dotenv.config()
 
@@ -29,6 +31,7 @@ setInterval(() => {
     deleteShareingFiles();
     ProfilesCleaner();
     CancelDelete()
+    StorageCleaner()
 }, 1000);
 
 mongoose.connect(DbName)

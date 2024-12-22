@@ -86,13 +86,36 @@ export default function FileExplorer({ edata, setFolderData, username }) {
         event.target.value = "";
     };
 
-    const handleDeleteItem = () => {
+    const handleDeleteItem = async () => {
         if (selectedItemId) {
-            const selectedIndex = currentFolder.children.indexOf(selectedItemId);
-            if (selectedIndex !== -1) {
-                currentFolder.children.splice(selectedIndex, 1);
-                edata = edata.filter(item => item.folderId !== selectedItemId);
-                setSelectedItemId(null);
+            try {
+                // Send delete request to the API
+                const deleteObj = {
+                    username: username,
+                    folderId: selectedItemId,
+                };
+
+                const response = await noFileAPI.delete("/storage/folder/delete", {
+                    data: deleteObj, // Include the payload in the 'data' field
+                });
+
+                if (response.status === 200) {
+                    // Remove the deleted item from the current folder's children
+                    const selectedIndex = currentFolder.children.indexOf(selectedItemId);
+                    if (selectedIndex !== -1) {
+                        currentFolder.children.splice(selectedIndex, 1);
+                        edata = edata.filter((item) => item.folderId !== selectedItemId);
+                        setFolderData([...edata]);
+                        setSelectedItemId(null);
+                    }
+
+                    alert("Folder or file deleted successfully.");
+                } else {
+                    alert("Failed to delete folder or file. Please try again.");
+                }
+            } catch (error) {
+                console.error("Error deleting folder or file:", error);
+                alert("Error deleting folder or file. Please try again.");
             }
         } else {
             alert("No item selected to delete.");

@@ -3,6 +3,7 @@ import Storage from "../../Modals/Storage.js";
 const DeleteFolder = async (req, res) => {
     try {
         const { username, folderId } = req.body;
+        console.log(username,folderId)
 
         if (!username || !folderId) {
             return res.status(400).json({ error: "All Fields Required" });
@@ -31,16 +32,15 @@ const DeleteFolder = async (req, res) => {
         if (deletedFolder) {
             const deleteParentId = deletedFolder.parentId;
             if (deleteParentId) {
-                const updateParent = await Storage.findOneAndUpdate({ username, folderId: deleteParentId }, {
+                await Storage.findOneAndUpdate({ username, folderId: deleteParentId }, {
                     $pull: {
                         children: folderId
                     }
                 }, { new: true })
-                console.log(updateParent.children, folderId)
             }
         }
 
-        return res.status(200).json({ message: "Folder and its children deleted successfully" });
+        return res.status(200).json({ message: "Foler/File Delete Successfully" });
     } catch (error) {
         console.error(error.message);
         return res.status(500).json({ error: error.message });
