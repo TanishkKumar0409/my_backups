@@ -47,7 +47,7 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                 setIsModalOpen(false);
                 window.location.reload();
             } catch (error) {
-                console.error("Error creating folder:", error.response?.data || error.message);
+                console.error("Error creating folder:", error || error);
                 alert("Error creating folder. Please try again.");
             }
         }

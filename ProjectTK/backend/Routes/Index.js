@@ -22,6 +22,7 @@ import GetDataByDownloadLink from "../Controllers/SharedFiles/GetDataByDownloadL
 import CreateFolder from "../Controllers/Storage/CreateFolder.js";
 import GetFolder from "../Controllers/Storage/GetFolders.js";
 import FileUpload from "../Controllers/Storage/FileUpload.js";
+import DeleteFolder from "../Controllers/Storage/DeleteFolder.js";
 
 const router = express.Router()
 
@@ -84,6 +85,7 @@ const storage = multer.diskStorage({
 
 const uploadFile = multer({ storage: storage });
 
-router.post("/storage/file/upload/:username", uploadFile.single("file"), FileUpload)
+router.post("/storage/file/upload/:username", uploadFile.single("file"), FileUpload);
+router.delete("/storage/folder/delete", DeleteFolder);
 
 export default router;

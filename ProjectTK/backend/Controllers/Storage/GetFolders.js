@@ -1,8 +1,18 @@
 import Storage from "../../Modals/Storage.js";
+import Users from "../../Modals/Users.js";
 
 const GetFolder = async (req, res) => {
     try {
         const { username } = req.params;
+
+        const isUser = await Users.findOne({ username })
+        if (!isUser) {
+            return res.status(404).json({ error: "Please Register first" })
+        }
+
+        if (isUser.status === "BLOCKED") {
+            return res.status(400).json({ error: "Sorry, You are Blocked" })
+        }
 
         const folders = await Storage.find({ username });
 
