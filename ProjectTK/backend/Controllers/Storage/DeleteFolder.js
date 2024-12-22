@@ -1,4 +1,5 @@
 import Storage from "../../Modals/Storage.js";
+import Users from "../../Modals/Users.js";
 
 const DeleteFolder = async (req, res) => {
     try {
@@ -6,6 +7,15 @@ const DeleteFolder = async (req, res) => {
 
         if (!username || !folderId) {
             return res.status(400).json({ error: "All Fields Required" });
+        }
+
+        const isUser = await Users.findOne({ username });
+        if (!isUser) {
+            return res.status(404).json("Please Register first");
+        }
+
+        if (isUser.status === "BLOCKED") {
+            return res.status(400).json({ error: "Sorry, You are Blocked" })
         }
 
         if (folderId === 1) {
@@ -16,6 +26,9 @@ const DeleteFolder = async (req, res) => {
         if (!isFolder) {
             return res.status(400).json({ error: "This folder does not exist" });
         }
+
+        const currentUsedSize = isUser.usedStorage;
+        const usedSize = isFolder ? currentUsedSize - isFolder.fileSize : "0";
 
         const deleteChildren = async (parentFolderId) => {
             const children = await Storage.find({ username, parentId: parentFolderId });
@@ -35,6 +48,10 @@ const DeleteFolder = async (req, res) => {
                     $pull: {
                         children: folderId
                     }
+                }, { new: true })
+
+                await Users.findOneAndUpdate({ username }, {
+                    $set: { usedStorage: usedSize }
                 }, { new: true })
             }
         }

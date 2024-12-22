@@ -24,6 +24,19 @@ const FileUpload = async (req, res) => {
             return res.status(404).json({ error: "Folder not found" });
         }
 
+        const currentUsedSize = isUser.usedStorage;
+        const totalSize = isUser.totalStorage;
+        const remainingSize = totalSize - currentUsedSize;
+        const usedSize = req.file ? req.file.size + currentUsedSize : "0";
+
+        if (currentUsedSize >= totalSize) {
+            return res.status(400).json({ error: "Storage Full" })
+        }
+
+        if (req.file.size > remainingSize) {
+            return res.status(400).json({ error: "Do not have Enough Space" })
+        }
+
         let parentFolder = null;
         if (parentId) {
             parentFolder = await Storage.findOne({ folderId: parentId, username });
@@ -53,6 +66,8 @@ const FileUpload = async (req, res) => {
                 { $push: { children: savedFile.folderId } },
                 { new: true }
             );
+
+            await Users.findOneAndUpdate({ username }, { $set: { usedStorage: usedSize } }, { new: true })
 
             res.status(201).json({
                 message: "File uploaded successfully",
