@@ -27,9 +27,6 @@ const DeleteFolder = async (req, res) => {
             return res.status(400).json({ error: "This folder does not exist" });
         }
 
-        const currentUsedSize = isUser.usedStorage;
-        const usedSize = isFolder ? currentUsedSize - isFolder.fileSize : "0";
-
         const deleteChildren = async (parentFolderId) => {
             const children = await Storage.find({ username, parentId: parentFolderId });
             for (const child of children) {
@@ -50,9 +47,16 @@ const DeleteFolder = async (req, res) => {
                     }
                 }, { new: true })
 
-                await Users.findOneAndUpdate({ username }, {
-                    $set: { usedStorage: usedSize }
-                }, { new: true })
+                if (deletedFolder.type === "file") {
+                    const currentUsedSize = isUser.usedStorage || 0;
+                    const updatedUsedSize = currentUsedSize - deletedFolder.fileSize;
+
+                    await Users.findOneAndUpdate(
+                        { username },
+                        { $set: { usedStorage: updatedUsedSize } },
+                        { new: true }
+                    );
+                }
             }
         }
 

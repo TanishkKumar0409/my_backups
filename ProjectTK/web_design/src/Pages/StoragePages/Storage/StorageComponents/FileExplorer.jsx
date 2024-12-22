@@ -136,8 +136,8 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                     </button>
                 )}
 
-                <div className="row mb-4">
-                    <div className="col-4 d-flex flex-column align-items-center">
+                <div className="row mb-4 justify-content-center">
+                    <div className="col-3 d-flex flex-column align-items-center">
                         <div
                             className="box-container cursor-pointer border rounded-3 p-3 text-center"
                             onClick={() => setIsModalOpen(true)}
@@ -146,7 +146,7 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                             <span className="d-none d-md-inline-block">Create Folder</span>
                         </div>
                     </div>
-                    <div className="col-4 d-flex flex-column align-items-center">
+                    <div className="col-3 d-flex flex-column align-items-center">
                         <label className="box-container cursor-pointer border rounded-3 p-3 text-center">
                             <i className="fa fa-upload text-success me-md-2"></i>
                             <input
@@ -157,16 +157,28 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                             <span className="d-none d-md-inline-block">Upload File</span>
                         </label>
                     </div>
-                    <div className="col-4 d-flex flex-column align-items-center">
+                    <div className="col-3 d-flex flex-column align-items-center">
                         <div
-                            className="box-container cursor-pointer border rounded-3 p-3 text-center"
+                            className={`box-container cursor-pointer border rounded-3 p-3 text-center ${selectedItemId ? "" : "d-none"}`}
                             onClick={handleDeleteItem}
                         >
                             <i className="fa fa-trash text-danger me-md-2"></i>
                             <span className="d-none d-md-inline-block">Delete</span>
                         </div>
                     </div>
+                    <div className="col-3 d-flex flex-column align-items-center">
+                        {selectedItemId && edata.find(item => item.folderId === selectedItemId)?.type === "file" && (
+                            <div
+                                className="box-container cursor-pointer border rounded-3 p-3 text-center"
+                            >
+                                <i className="fa fa-download text-info me-md-2"></i>
+                                <span className="d-none d-md-inline-block">Download</span>
+                            </div>
+                        )}
+                    </div>
                 </div>
+
+
 
                 <div className="row">
                     {currentChildren.length > 0 ? (
@@ -176,6 +188,7 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                                 key={index}
                                 onClick={() => setSelectedItemId(child.folderId)}
                             >
+
                                 <div
                                     className={`icon-container bg-${selectedItemId === child.folderId ? "light shadow-sm" : "white"} border rounded-3 d-flex justify-content-center align-items-center`}
                                     onDoubleClick={() => handleFolderClick(child)}
