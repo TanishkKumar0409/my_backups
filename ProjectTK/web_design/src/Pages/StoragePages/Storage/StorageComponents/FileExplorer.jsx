@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CreateFolderModal from "./CreateFolderModal";
 import { API, noFileAPI } from "../../../../Services/API/API";
+import { toast } from "react-toastify";
 
 export default function FileExplorer({ edata, setFolderData, username }) {
     const [currentFolderId, setCurrentFolderId] = useState(1);
@@ -13,12 +14,14 @@ export default function FileExplorer({ edata, setFolderData, username }) {
     const currentChildren = currentFolder?.children.map(id => edata.find(item => item.folderId === id)) || [];
 
     const handleFolderClick = (folder) => {
+
         setSelectedItemId(folder.folderId);
+
         if (folder.type === "folder") {
             setFolderStack([...folderStack, currentFolderId]);
             setCurrentFolderId(folder.folderId);
         } else {
-            alert(`You clicked on file: ${folder.name}`);
+            toast(`You clicked on file: ${folder.name}`);
         }
     };
 
@@ -41,14 +44,18 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                     "/storage/folder/create",
                     newFolderData
                 );
+
                 const newFolder = response.data.savedFolder;
+
                 setFolderData((prevData) => [...prevData, newFolder]);
                 setNewFolderName("");
                 setIsModalOpen(false);
+
+                toast.success(response.data.message)
+
                 window.location.reload();
             } catch (error) {
-                console.error("Error creating folder:", error || error);
-                alert("Error creating folder. Please try again.");
+                toast.error(error.response.data.error)
             }
         }
     };
@@ -62,11 +69,7 @@ export default function FileExplorer({ edata, setFolderData, username }) {
             formData.append("file", file);
 
             try {
-                const response = await API.post(
-                    `/storage/file/upload/${username}`,
-                    formData,
-                    { headers: { "Content-Type": "multipart/form-data" } }
-                );
+                const response = await API.post(`/storage/file/upload/${username}`, formData);
 
                 const uploadedFile = response.data;
 
@@ -75,12 +78,13 @@ export default function FileExplorer({ edata, setFolderData, username }) {
 
                 setFolderData([...edata]);
                 setSelectedItemId(uploadedFile.id);
+
+                toast.success(response.data.message)
             } catch (error) {
-                console.error("Error uploading file:", error);
-                alert("Error uploading file. Please try again.");
+                toast.error(error.response.data.error)
             }
         } else {
-            alert("No valid folder selected or no file selected.");
+            toast("No valid folder selected or no file selected.");
         }
 
         event.target.value = "";
@@ -102,21 +106,20 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                     const selectedIndex = currentFolder.children.indexOf(selectedItemId);
                     if (selectedIndex !== -1) {
                         currentFolder.children.splice(selectedIndex, 1);
+
                         edata = edata.filter((item) => item.folderId !== selectedItemId);
+
                         setFolderData([...edata]);
                         setSelectedItemId(null);
                     }
 
-                    alert("Folder or file deleted successfully.");
-                } else {
-                    alert("Failed to delete folder or file. Please try again.");
+                    toast.success(response.data.message);
                 }
             } catch (error) {
-                console.error("Error deleting folder or file:", error);
-                alert("Error deleting folder or file. Please try again.");
+                toast.error(error.response.data.error)
             }
         } else {
-            alert("No item selected to delete.");
+            toast("No item selected to delete.");
         }
     };
 

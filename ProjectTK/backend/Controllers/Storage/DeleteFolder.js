@@ -3,7 +3,6 @@ import Storage from "../../Modals/Storage.js";
 const DeleteFolder = async (req, res) => {
     try {
         const { username, folderId } = req.body;
-        console.log(username,folderId)
 
         if (!username || !folderId) {
             return res.status(400).json({ error: "All Fields Required" });
