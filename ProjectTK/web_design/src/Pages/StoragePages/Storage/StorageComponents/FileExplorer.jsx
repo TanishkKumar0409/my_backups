@@ -89,18 +89,16 @@ export default function FileExplorer({ edata, setFolderData, username }) {
     const handleDeleteItem = async () => {
         if (selectedItemId) {
             try {
-                // Send delete request to the API
                 const deleteObj = {
                     username: username,
                     folderId: selectedItemId,
                 };
 
                 const response = await noFileAPI.delete("/storage/folder/delete", {
-                    data: deleteObj, // Include the payload in the 'data' field
+                    data: deleteObj,
                 });
 
                 if (response.status === 200) {
-                    // Remove the deleted item from the current folder's children
                     const selectedIndex = currentFolder.children.indexOf(selectedItemId);
                     if (selectedIndex !== -1) {
                         currentFolder.children.splice(selectedIndex, 1);
