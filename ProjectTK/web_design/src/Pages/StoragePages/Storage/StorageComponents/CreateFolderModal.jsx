@@ -1,24 +1,39 @@
 import React from 'react';
+import { toast } from 'react-toastify';
+import { noFileAPI } from '../../../../Services/API/API';
 
-export default function CreateFolderModal({ isModalOpen, setIsModalOpen, newFolderName, setNewFolderName, handleCreateFolder }) {
-    if (!isModalOpen) return null; // Return null if modal is closed
+export default function CreateFolderModal({ isModalOpen, setIsModalOpen, newFolderName, setNewFolderName, currentFolderId, username, setFolderData }) {
+    if (!isModalOpen) return null;
+
+    const handleCreateFolder = async () => {
+        if (!newFolderName.trim()) return;
+        try {
+            const response = await noFileAPI.post("/storage/folder/create", {
+                username, root: newFolderName, parentId: currentFolderId
+            });
+            setFolderData(prevData => [...prevData, response.data.savedFolder]);
+            setNewFolderName("");
+            setIsModalOpen(false);
+            toast.success(response.data.message);
+        } catch (error) {
+            toast.error(error.response.data.error);
+        }
+    };
+
+    const modalStyle = {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        backdropFilter: 'blur(5px)',
+        zIndex: 1040,
+    }
 
     return (
         <>
-            {/* Dark overlay with blur */}
-            <div
-                className="modal-backdrop fade show"
-                style={{
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                    backdropFilter: 'blur(5px)',
-                    zIndex: 1040,
-                }}
-            />
+            <div className="modal-backdrop fade show" style={modalStyle} />
             <div className="modal fade show d-block" style={{ zIndex: 1050 }} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
