@@ -123,6 +123,14 @@ export default function FileExplorer({ edata, setFolderData, username }) {
         }
     };
 
+    const handleDownload = async (fileId) => {
+        try {
+            window.location.href = `http://localhost:5000/api/storage/file/download?username=${username}&folderId=${fileId}`
+        } catch (error) {
+            toast.error(error.response.data.error)
+        }
+    }
+
     return (
         <section className="bg-light py-5">
             <div className="container">
@@ -139,7 +147,7 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                 <div className="row mb-4 justify-content-center">
                     <div className="col-3 d-flex flex-column align-items-center">
                         <div
-                            className="box-container cursor-pointer border rounded-3 p-3 text-center"
+                            className="box-container cursorPointer border rounded-3 p-3 text-center"
                             onClick={() => setIsModalOpen(true)}
                         >
                             <i className="fa fa-folder-plus text-primary me-md-2"></i>
@@ -147,7 +155,7 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                         </div>
                     </div>
                     <div className="col-3 d-flex flex-column align-items-center">
-                        <label className="box-container cursor-pointer border rounded-3 p-3 text-center">
+                        <label className="box-container cursorPointer border rounded-3 p-3 text-center">
                             <i className="fa fa-upload text-success me-md-2"></i>
                             <input
                                 type="file"
@@ -159,7 +167,7 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                     </div>
                     <div className="col-3 d-flex flex-column align-items-center">
                         <div
-                            className={`box-container cursor-pointer border rounded-3 p-3 text-center ${selectedItemId ? "" : "d-none"}`}
+                            className={`box-container cursorPointer border rounded-3 p-3 text-center ${selectedItemId ? "" : "d-none"}`}
                             onClick={handleDeleteItem}
                         >
                             <i className="fa fa-trash text-danger me-md-2"></i>
@@ -169,7 +177,8 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                     <div className="col-3 d-flex flex-column align-items-center">
                         {selectedItemId && edata.find(item => item.folderId === selectedItemId)?.type === "file" && (
                             <div
-                                className="box-container cursor-pointer border rounded-3 p-3 text-center"
+                                className="box-container cursorPointer border rounded-3 p-3 text-center"
+                                onClick={() => handleDownload(selectedItemId)}
                             >
                                 <i className="fa fa-download text-info me-md-2"></i>
                                 <span className="d-none d-md-inline-block">Download</span>
