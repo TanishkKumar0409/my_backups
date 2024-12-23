@@ -76,16 +76,46 @@ export default function FileExplorer({ username }) {
         window.location.href = `http://localhost:5000/api/storage/file/download?username=${username}&folderId=${fileId}`;
     };
 
+    const getFileIcon = (fileName) => {
+        if (!fileName) return 'fa-file text-info';
+        const extension = fileName.split('.').pop().toLowerCase();
+        switch (extension) {
+            case 'jpg':
+            case 'jpeg':
+            case 'png':
+            case 'gif':
+                return 'fa-image text-success';
+            case 'pdf':
+                return 'fa-file-pdf text-danger';
+            case 'doc':
+            case 'docx':
+                return 'fa-file-word text-primary';
+            case 'xls':
+            case 'xlsx':
+                return 'fa-file-excel text-success';
+            case 'ppt':
+            case 'pptx':
+                return 'fa-file-powerpoint text-warning';
+            case 'txt':
+                return 'fa-file-alt text-muted';
+            case 'zip':
+            case 'rar':
+                return 'fa-file-archive text-secondary';
+            default:
+                return 'fa-file text-info';
+        }
+    };
+
+
+
     return (
         <section className="bg-light py-5">
             <div className="container">
                 <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": `'${username} Storage'` }}>{username} Storage</h2>
 
-                {folderStack.length > 0 && (
-                    <button onClick={handleBack} className="btn btn-light shadow-sm mb-4 rounded-circle">
-                        <i className="fa fa-arrow-left"></i>
-                    </button>
-                )}
+                <button onClick={handleBack} className="btn btn-light shadow-sm mb-4 rounded-circle" disabled={folderStack.length === 0}>
+                    <i className="fa fa-arrow-left"></i>
+                </button>
 
                 <div className="row mb-4 justify-content-center">
                     <div className="col-3 d-flex flex-column align-items-center">
@@ -134,7 +164,8 @@ export default function FileExplorer({ username }) {
                                     onClick={() => setSelectedItemId(child.folderId)}
                                     style={{ width: "100px", height: "100px", opacity: selectedItemId === child.folderId ? 1 : 0.7, }}
                                 >
-                                    <i className={`fa ${child.type === "folder" ? "fa-folder text-warning" : "fa-file text-danger"}`}></i>
+                                    <i className={`fa ${child.type === "folder" ? "fa-folder text-warning" : getFileIcon(child?.root)}`}></i>
+
                                 </div>
                                 <span className="folder-name mt-2">{child.root}</span>
                             </div>

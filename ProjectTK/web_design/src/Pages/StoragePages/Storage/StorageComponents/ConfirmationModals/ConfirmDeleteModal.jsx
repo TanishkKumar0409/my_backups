@@ -8,7 +8,6 @@ export default function ConfirmDeleteModal({
     selectedItemId,
     setSelectedItemId,
     currentFolder,
-    edata,
     setFolderData,
     username,
 }) {
