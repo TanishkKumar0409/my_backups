@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CreateFolderModal from "./ConfirmationModals/CreateFolderModal";
-import ConfirmDeleteModal from "./ConfirmDeleteModal";
+import ConfirmDeleteModal from "./ConfirmationModals/ConfirmDeleteModal";
 import { noFileAPI } from "../../../../Services/API/API";
 import { API } from "../../../../Services/API/API";
 import { toast } from "react-toastify";
@@ -14,14 +14,13 @@ export default function FileExplorer({ username }) {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [selectedItemId, setSelectedItemId] = useState(null);
 
-    // Fetch folder data when component mounts
     useEffect(() => {
         const getData = async () => {
             const response = await noFileAPI.get(`storage/folder/${username}`);
             setFolderData(response.data);
         };
         getData();
-    }, [username]);  // Re-fetch data whenever the username changes or the page reloads
+    }, [username]);
 
 
     const currentFolder = folderData.find((item) => item.folderId === currentFolderId);
@@ -80,7 +79,7 @@ export default function FileExplorer({ username }) {
     return (
         <section className="bg-light py-5">
             <div className="container">
-                <h2 className="text-center mb-4 text-uppercase fw-bold">File Explorer</h2>
+                <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": `'${username} Storage'` }}>{username} Storage</h2>
 
                 {folderStack.length > 0 && (
                     <button onClick={handleBack} className="btn btn-light shadow-sm mb-4 rounded-circle">

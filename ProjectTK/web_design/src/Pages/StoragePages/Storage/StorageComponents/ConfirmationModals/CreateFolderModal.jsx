@@ -50,7 +50,7 @@ export default function CreateFolderModal({ isModalOpen, setIsModalOpen, newFold
                     <div className="modal-content border-0">
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">Create New Folder</h5>
-                            <button type="button" className="btn-close" onClick={() => setIsModalOpen(false)} aria-label="Close"></button>
+                            <button type="button" className="btn-close" onClick={() => { setIsModalOpen(false); toast.info("Folder Not Created") }} aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             <div className="input-group">

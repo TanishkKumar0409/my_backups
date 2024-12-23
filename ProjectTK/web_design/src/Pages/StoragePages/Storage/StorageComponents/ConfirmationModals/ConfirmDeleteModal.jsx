@@ -1,6 +1,6 @@
 import React from "react";
 import { toast } from "react-toastify";
-import { noFileAPI } from "../../../../Services/API/API";
+import { noFileAPI } from "../../../../../Services/API/API";
 
 export default function ConfirmDeleteModal({
     isDeleteModalOpen,
@@ -82,21 +82,21 @@ export default function ConfirmDeleteModal({
                         </div>
                         <div className="modal-body">
                             <p>
-                                Are you sure you want to delete this item? This
+                                Are you sure you want to delete these file/folder? This
                                 action cannot be undone.
                             </p>
                         </div>
                         <div className="modal-footer">
                             <button
                                 type="button"
-                                className="btn btn-secondary"
-                                onClick={() => setIsDeleteModalOpen(false)}
+                                className="btn btn-custom custom-btn"
+                                onClick={() => { setIsDeleteModalOpen(false); toast.info("Cancel Delete") }}
                             >
                                 Cancel
                             </button>
                             <button
                                 type="button"
-                                className="btn btn-danger"
+                                className="btn btn-custom custom-btn"
                                 onClick={handleDeleteItem}
                             >
                                 Confirm
