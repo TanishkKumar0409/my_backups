@@ -18,7 +18,7 @@ const DownloadStoredFile = async (req, res) => {
 
         const absolutePath = path.resolve(file.filePath);
 
-        if (!fs.existsSync(absolutePath)) {
+        if (!fs.exists(absolutePath, (error) => { if (error) { console.log(error.message) } })) {
             return res.status(404).json({ error: "File does not exist on the server" });
         }
 
