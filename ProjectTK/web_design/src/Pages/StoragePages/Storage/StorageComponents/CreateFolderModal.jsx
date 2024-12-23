@@ -34,7 +34,7 @@ export default function CreateFolderModal({ isModalOpen, setIsModalOpen, newFold
     return (
         <>
             <div className="modal-backdrop fade show" style={modalStyle} />
-            <div className="modal fade show d-block" style={{ zIndex: 1050 }} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade show d-block" style={{ zIndex: 1050 }} >
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         <div className="modal-header">

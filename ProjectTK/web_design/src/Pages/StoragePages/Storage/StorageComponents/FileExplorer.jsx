@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CreateFolderModal from "./CreateFolderModal";
-import { API, noFileAPI } from "../../../../Services/API/API";
+import ConfirmDeleteModal from "./ConfirmDeleteModal";
+import { API } from "../../../../Services/API/API";
 import { toast } from "react-toastify";
 
 export default function FileExplorer({ edata, setFolderData, username }) {
@@ -8,10 +9,14 @@ export default function FileExplorer({ edata, setFolderData, username }) {
     const [folderStack, setFolderStack] = useState([]);
     const [newFolderName, setNewFolderName] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [selectedItemId, setSelectedItemId] = useState(null);
 
-    const currentFolder = edata.find(item => item.folderId === currentFolderId);
-    const currentChildren = currentFolder?.children.map(id => edata.find(item => item.folderId === id)) || [];
+    const currentFolder = edata.find((item) => item.folderId === currentFolderId);
+    const currentChildren =
+        currentFolder?.children.map((id) =>
+            edata.find((item) => item.folderId === id)
+        ) || [];
 
     const handleFolderClick = (folder) => {
         setSelectedItemId(folder.folderId);
@@ -19,7 +24,7 @@ export default function FileExplorer({ edata, setFolderData, username }) {
             setFolderStack([...folderStack, currentFolderId]);
             setCurrentFolderId(folder.folderId);
         } else {
-            toast(`You clicked on file: ${folder.name}`);
+            toast(`You clicked on file: ${folder.root}`);
         }
     };
 
@@ -46,29 +51,10 @@ export default function FileExplorer({ edata, setFolderData, username }) {
             setSelectedItemId(uploadedFile.id);
             toast.success(response.data.message);
         } catch (error) {
-            toast.error(error.response.data.error);
+            toast.error(error.response?.data?.error || "Error uploading file.");
         }
 
         event.target.value = "";
-    };
-
-    const handleDeleteItem = async () => {
-        if (!selectedItemId) return toast("No item selected to delete.");
-        try {
-            const response = await noFileAPI.delete("/storage/folder/delete", {
-                data: { username, folderId: selectedItemId }
-            });
-            const selectedIndex = currentFolder.children.indexOf(selectedItemId);
-            if (selectedIndex !== -1) {
-                currentFolder.children.splice(selectedIndex, 1);
-                edata = edata.filter(item => item.folderId !== selectedItemId);
-                setFolderData([...edata]);
-                setSelectedItemId(null);
-                toast.success(response.data.message);
-            }
-        } catch (error) {
-            toast.error(error.response.data.error);
-        }
     };
 
     const handleDownload = (fileId) => {
@@ -88,11 +74,12 @@ export default function FileExplorer({ edata, setFolderData, username }) {
 
                 <div className="row mb-4 justify-content-center">
                     <div className="col-3 d-flex flex-column align-items-center">
-                        <div className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center" onClick={() => setIsModalOpen(true)}>
+                        <div className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center" onClick={() => setIsModalOpen(true)} >
                             <i className="fa fa-folder-plus text-primary me-md-2"></i>
                             <span className="d-none d-md-inline-block">Create Folder</span>
                         </div>
                     </div>
+
                     <div className="col-3 d-flex flex-column align-items-center">
                         <label className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center">
                             <i className="fa fa-upload text-success me-md-2"></i>
@@ -100,21 +87,25 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                             <span className="d-none d-md-inline-block">Upload File</span>
                         </label>
                     </div>
+
                     <div className="col-3 d-flex flex-column align-items-center">
                         {selectedItemId && (
-                            <div className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center" onClick={handleDeleteItem}>
+                            <div className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center" onClick={() => setIsDeleteModalOpen(true)} >
                                 <i className="fa fa-trash text-danger me-md-2"></i>
                                 <span className="d-none d-md-inline-block">Delete</span>
                             </div>
                         )}
                     </div>
+
                     <div className="col-3 d-flex flex-column align-items-center">
-                        {selectedItemId && edata.find(item => item.folderId === selectedItemId)?.type === "file" && (
-                            <div className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center" onClick={() => handleDownload(selectedItemId)}>
-                                <i className="fa fa-download text-info me-md-2"></i>
-                                <span className="d-none d-md-inline-block">Download</span>
-                            </div>
-                        )}
+                        {selectedItemId &&
+                            edata.find((item) => item.folderId === selectedItemId)?.type ===
+                            "file" && (
+                                <div className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center" onClick={() => handleDownload(selectedItemId)}>
+                                    <i className="fa fa-download text-info me-md-2"></i>
+                                    <span className="d-none d-md-inline-block">Download</span>
+                                </div>
+                            )}
                     </div>
                 </div>
 
@@ -126,9 +117,7 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                                     className={`icon-container cursorPointer ${selectedItemId === child.folderId ? "bg-light shadow" : "bg-white shadow-sm"} rounded-3 d-flex justify-content-center align-items-center`}
                                     onDoubleClick={() => handleFolderClick(child)}
                                     onClick={() => setSelectedItemId(child.folderId)}
-                                    style={{
-                                        width: "100px", height: "100px", opacity: selectedItemId === child.folderId ? 1 : 0.7
-                                    }}
+                                    style={{ width: "100px", height: "100px", opacity: selectedItemId === child.folderId ? 1 : 0.7, }}
                                 >
                                     <i className={`fa ${child.type === "folder" ? "fa-folder text-warning" : "fa-file text-danger"}`}></i>
                                 </div>
@@ -148,6 +137,17 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                     currentFolderId={currentFolderId}
                     username={username}
                     setFolderData={setFolderData}
+                />
+
+                <ConfirmDeleteModal
+                    isDeleteModalOpen={isDeleteModalOpen}
+                    setIsDeleteModalOpen={setIsDeleteModalOpen}
+                    selectedItemId={selectedItemId}
+                    setSelectedItemId={setSelectedItemId}
+                    currentFolder={currentFolder}
+                    edata={edata}
+                    setFolderData={setFolderData}
+                    username={username}
                 />
             </div>
         </section>

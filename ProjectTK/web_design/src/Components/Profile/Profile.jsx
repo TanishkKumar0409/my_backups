@@ -101,17 +101,18 @@ export default function Profile(props) {
               )}
             </div>
           )}
+          {!isUpdating && !isDeleting && (
+            <div className="col text-end mt-5">
+              <button type="button"
+                className="btn btn-custom custom-btn btn-sm"
+                onClick={() => setIsDeleting(true)}
+              >
+                <i className="fa fa-trash me-2"></i>Delete Account
+              </button></div>
+          )}
         </div>
 
-        {!isUpdating && !isDeleting && (
-          <button
-            type="button"
-            className="btn btn-custom custom-btn btn-sm position-absolute bottom-0 end-0 m-3"
-            onClick={() => setIsDeleting(true)}
-          >
-            <i className="fa fa-trash me-2"></i>Delete Account
-          </button>
-        )}
+
       </div>
     </>
   );
