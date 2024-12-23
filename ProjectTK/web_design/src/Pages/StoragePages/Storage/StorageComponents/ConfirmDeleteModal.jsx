@@ -23,15 +23,17 @@ export default function ConfirmDeleteModal({
             });
 
             const selectedIndex = currentFolder.children.indexOf(selectedItemId);
-            if (selectedIndex !== -1) {
+            console.log(selectedIndex)
+            if (selectedIndex !== 0) {
                 currentFolder.children.splice(selectedIndex, 1);
                 edata = edata.filter((item) => item.folderId !== selectedItemId);
                 setFolderData([...edata]);
                 setSelectedItemId(null);
                 toast.success(response.data.message);
             }
+            console.log(selectedItemId)
         } catch (error) {
-            toast.error(error.response?.data?.error || "Error deleting item.");
+            toast.error(error.response?.data?.error);
         }
 
         setIsDeleteModalOpen(false);

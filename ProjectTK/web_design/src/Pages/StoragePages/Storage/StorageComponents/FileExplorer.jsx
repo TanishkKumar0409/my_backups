@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CreateFolderModal from "./ConfirmationModals/CreateFolderModal";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
+import { noFileAPI } from "../../../../Services/API/API";
 import { API } from "../../../../Services/API/API";
 import { toast } from "react-toastify";
 
-export default function FileExplorer({ edata, setFolderData, username }) {
+export default function FileExplorer({ username }) {
+    const [folderData, setFolderData] = useState([]);
     const [currentFolderId, setCurrentFolderId] = useState(1);
     const [folderStack, setFolderStack] = useState([]);
     const [newFolderName, setNewFolderName] = useState("");
@@ -12,14 +14,24 @@ export default function FileExplorer({ edata, setFolderData, username }) {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [selectedItemId, setSelectedItemId] = useState(null);
 
-    const currentFolder = edata.find((item) => item.folderId === currentFolderId);
+    // Fetch folder data when component mounts
+    useEffect(() => {
+        const getData = async () => {
+            const response = await noFileAPI.get(`storage/folder/${username}`);
+            setFolderData(response.data);
+        };
+        getData();
+    }, [username]);  // Re-fetch data whenever the username changes or the page reloads
+
+
+    const currentFolder = folderData.find((item) => item.folderId === currentFolderId);
     const currentChildren =
         currentFolder?.children.map((id) =>
-            edata.find((item) => item.folderId === id)
+            folderData.find((item) => item.folderId === id)
         ) || [];
 
     const handleFolderClick = (folder) => {
-        setSelectedItemId(folder.folderId);
+        setSelectedItemId(null);
         if (folder.type === "folder") {
             setFolderStack([...folderStack, currentFolderId]);
             setCurrentFolderId(folder.folderId);
@@ -45,9 +57,9 @@ export default function FileExplorer({ edata, setFolderData, username }) {
         try {
             const response = await API.post(`/storage/file/upload/${username}`, formData);
             const uploadedFile = response.data;
-            edata.push(uploadedFile);
+            folderData.push(uploadedFile);
             currentFolder.children.push(uploadedFile.id);
-            setFolderData([...edata]);
+            setFolderData([...folderData]);
             setSelectedItemId(uploadedFile.id);
             toast.success(response.data.message);
         } catch (error) {
@@ -99,7 +111,7 @@ export default function FileExplorer({ edata, setFolderData, username }) {
 
                     <div className="col-3 d-flex flex-column align-items-center">
                         {selectedItemId &&
-                            edata.find((item) => item.folderId === selectedItemId)?.type ===
+                            folderData.find((item) => item.folderId === selectedItemId)?.type ===
                             "file" && (
                                 <div className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center" onClick={() => handleDownload(selectedItemId)}>
                                     <i className="fa fa-download text-info me-md-2"></i>
@@ -144,7 +156,7 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                     selectedItemId={selectedItemId}
                     setSelectedItemId={setSelectedItemId}
                     currentFolder={currentFolder}
-                    edata={edata}
+                    folderData={folderData}
                     setFolderData={setFolderData}
                     username={username}
                 />

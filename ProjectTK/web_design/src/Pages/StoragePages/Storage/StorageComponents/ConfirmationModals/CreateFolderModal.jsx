@@ -19,29 +19,12 @@ export default function CreateFolderModal({ isModalOpen, setIsModalOpen, newFold
                 parentId: currentFolderId,
             });
 
-            const newFolder = response.data.savedFolder;
-
-            setFolderData((prevData) => {
-                const updatedData = [...prevData];
-
-                const parentFolder = updatedData.find(
-                    (folder) => folder.folderId === currentFolderId
-                );
-
-                if (parentFolder) {
-                    parentFolder.children.push(newFolder.folderId);
-                } else {
-                    toast.error("Parent folder not found.");
-                    return prevData;
-                }
-
-                updatedData.push(newFolder);
-
-                return updatedData;
-            });
-
             setNewFolderName("");
             setIsModalOpen(false);
+
+            const updatedData = await noFileAPI.get(`storage/folder/${username}`);
+            setFolderData(updatedData.data);
+
             toast.success(response.data.message);
         } catch (error) {
             toast.error(error.response?.data?.error || "Error creating folder.");
