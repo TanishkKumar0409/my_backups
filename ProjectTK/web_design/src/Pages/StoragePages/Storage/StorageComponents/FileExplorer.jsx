@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CreateFolderModal from "./CreateFolderModal";
+import CreateFolderModal from "./ConfirmationModals/CreateFolderModal";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
 import { API } from "../../../../Services/API/API";
 import { toast } from "react-toastify";
@@ -135,7 +135,6 @@ export default function FileExplorer({ edata, setFolderData, username }) {
                     newFolderName={newFolderName}
                     setNewFolderName={setNewFolderName}
                     currentFolderId={currentFolderId}
-                    username={username}
                     setFolderData={setFolderData}
                 />
 

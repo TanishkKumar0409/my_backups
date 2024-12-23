@@ -18,14 +18,14 @@ const DownloadStoredFile = async (req, res) => {
 
         const absolutePath = path.resolve(file.filePath);
 
-        if (!fs.exists(absolutePath, (error) => { if (error) { console.log(error.message) } })) {
+        if (!fs.existsSync(absolutePath)) {
             return res.status(404).json({ error: "File does not exist on the server" });
         }
 
-        res.download(absolutePath, file.root, (err) => {
-            if (err) {
-                console.error("Error during file download:", err);
-                return res.status(500).json({ error: "Error downloading the file" });
+        res.download(absolutePath, file.root, (error) => {
+            if (error) {
+                console.error("Error during file download:", error.message);
+                return res.status(500).json({ error: error.message });
             }
         });
     } catch (error) {
