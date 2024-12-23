@@ -15,7 +15,10 @@ export default function ConfirmDeleteModal({
     if (!isDeleteModalOpen) return null;
 
     const handleDeleteItem = async () => {
-        if (!selectedItemId) return toast("No item selected to delete.");
+        if (!selectedItemId) {
+            toast("No item selected to delete.");
+            return;
+        }
 
         try {
             const response = await noFileAPI.delete("/storage/folder/delete", {
@@ -23,17 +26,24 @@ export default function ConfirmDeleteModal({
             });
 
             const selectedIndex = currentFolder.children.indexOf(selectedItemId);
-            console.log(selectedIndex)
-            if (selectedIndex !== 0) {
-                currentFolder.children.splice(selectedIndex, 1);
-                edata = edata.filter((item) => item.folderId !== selectedItemId);
-                setFolderData([...edata]);
+
+            if (selectedIndex !== -1) {
+                const updatedChildren = currentFolder.children.filter(
+                    (childId) => childId !== selectedItemId
+                );
+
+                const updatedData = await noFileAPI.get(`storage/folder/${username}`);
+                setFolderData(updatedData.data);
+                currentFolder.children = updatedChildren;
+
                 setSelectedItemId(null);
+
                 toast.success(response.data.message);
+            } else {
+                toast.error("Item not found in the folder.");
             }
-            console.log(selectedItemId)
         } catch (error) {
-            toast.error(error.response?.data?.error);
+            toast.error(error);
         }
 
         setIsDeleteModalOpen(false);

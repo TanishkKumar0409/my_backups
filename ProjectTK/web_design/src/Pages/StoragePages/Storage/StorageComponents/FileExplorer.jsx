@@ -61,6 +61,10 @@ export default function FileExplorer({ username }) {
             currentFolder.children.push(uploadedFile.id);
             setFolderData([...folderData]);
             setSelectedItemId(uploadedFile.id);
+
+            const updatedData = await noFileAPI.get(`storage/folder/${username}`);
+            setFolderData(updatedData.data);
+
             toast.success(response.data.message);
         } catch (error) {
             toast.error(error.response?.data?.error || "Error uploading file.");
