@@ -6,13 +6,16 @@ export default function StorageAnalysis() {
 
     const [data, setData] = useState([]);
     const [gradientColors, setGradientColors] = useState({ start: "#e91e63", end: "#673ab7" });
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const getData = async () => {
             try {
                 const response = await noFileAPI.get(`/user/${username}`);
                 setData(response.data);
+                setError(null);
             } catch (error) {
+                setError("Failed to fetch data. Please try again.");
                 console.error("Error fetching data:", error);
             }
         };
@@ -34,20 +37,41 @@ export default function StorageAnalysis() {
         percentage = 101;
     }
 
-    const value = 628 - (628 * (percentage / 100));
+    let perValue = 0;
+    if (percentage <= 100) {
+        perValue = percentage
+    } else if (percentage > 100) {
+        perValue = 100
+    }
+
+    const value = 628 - (628 * (perValue / 100));
+
+
+    const getGradientColors = (percentage) => {
+        if (percentage > 100) {
+            return { start: "#d3d3d3", end: "#a9a9a9" };
+        } else if (percentage <= 20) {
+            return { start: "#00bcd4", end: "#2196f3" };
+        } else if (percentage <= 40) {
+            return { start: "#4caf50", end: "#8bc34a" };
+        } else if (percentage <= 60) {
+            return { start: "#ffc107", end: "#ff9800" };
+        } else if (percentage <= 80) {
+            return { start: "#ff5722", end: "#f44336" };
+        }
+        return { start: "#e91e63", end: "#673ab7" };
+    };
+
+    const displaySize = (sizeInBytes) => {
+        if (sizeInBytes >= 1024 * 1024 * 1024) {
+            return `${(sizeInBytes / 1024 / 1024 / 1024).toFixed(2)} GB`;
+        } else {
+            return `${(sizeInBytes / 1024 / 1024).toFixed(2)} MB`;
+        }
+    };
 
     useEffect(() => {
-        if (percentage > 100) {
-            setGradientColors({ start: "#d3d3d3", end: "#a9a9a9" });
-        } else if (percentage <= 20) {
-            setGradientColors({ start: "#00bcd4", end: "#2196f3" });
-        } else if (percentage <= 40) {
-            setGradientColors({ start: "#4caf50", end: "#8bc34a" });
-        } else if (percentage <= 60) {
-            setGradientColors({ start: "#ffc107", end: "#ff9800" });
-        } else if (percentage <= 80) {
-            setGradientColors({ start: "#ff5722", end: "#f44336" });
-        }
+        setGradientColors(getGradientColors(percentage));
     }, [percentage]);
 
     return (
@@ -56,18 +80,20 @@ export default function StorageAnalysis() {
                 <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": `'${username} Storage'` }}>
                     {username} Storage
                 </h2>
+                {error && <div className="alert alert-danger">{error}</div>}
                 <div className="row py-3">
                     <div className="col-md-6 textJustify">
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni nisi deserunt exercitationem quos. Officiis quaerat minus earum quisquam deserunt necessitatibus nesciunt facere dolores. Non architecto ad suscipit, rerum nisi nesciunt harum maxime animi dolorem quos fuga deserunt impedit! Hic architecto incidunt fugiat nam laborum repudiandae perspiciatis nulla dicta beatae numquam animi cupiditate nesciunt, necessitatibus quo ipsum. Necessitatibus neque ullam voluptatem dicta quisquam, vitae assumenda quo. Eius aperiam nihil, aspernatur quidem nam labore veritatis, ad cumque non ipsam ducimus sit! Cum et veniam libero ipsum nisi rem. Necessitatibus, nesciunt, similique consequuntur commodi mollitia nihil fugit molestiae et obcaecati fugiat ducimus facere.
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil assumenda esse ex commodi incidunt doloribus dolor nesciunt laudantium suscipit impedit vel dignissimos architecto, reiciendis saepe repellendus, magnam at quas facere blanditiis eos earum aperiam voluptates nisi inventore! Nam ipsa esse iure aperiam earum temporibus expedita quis blanditiis provident. Cupiditate sapiente voluptatibus laborum magnam doloremque earum laudantium voluptatum ullam, beatae asperiores et sequi totam repudiandae nesciunt facilis officiis quis recusandae inventore? Labore, voluptatibus molestiae totam voluptatum dicta maiores facilis doloremque provident laboriosam accusantium eos id fugit quis saepe, rerum at voluptates suscipit corporis vitae laudantium atque sint ex sapiente. Illum, facilis.
                         </p>
                     </div>
                     <div className="col-md-6 d-flex justify-content-center">
                         <div className="skill position-relative">
                             <div className="outer rounded-circle">
                                 <div className="inner rounded-circle d-flex justify-content-center align-items-center">
-                                    <div id="number" className='fw-bold'>
-                                        {percentage > 100 ? "0" : percentage}%
+                                    <div id="number" className='text-center align-content-center h-100'>
+                                        <h4>{percentage > 100 ? "0" : percentage}%</h4>
+                                        <p>{displaySize(usedSize)}/{displaySize(totalSize)}</p>
                                     </div>
                                 </div>
                             </div>
@@ -78,14 +104,7 @@ export default function StorageAnalysis() {
                                         <stop offset="100%" stopColor={gradientColors.end} />
                                     </linearGradient>
                                 </defs>
-                                <circle
-                                    id="circle"
-                                    cx="100"
-                                    cy="100"
-                                    r="90"
-                                    strokeLinecap="round"
-                                    style={{ "--array": value }}
-                                />
+                                <circle id="circle" cx="100" cy="100" r="90" style={{ "--array": value }} />
                             </svg>
                         </div>
                     </div>
