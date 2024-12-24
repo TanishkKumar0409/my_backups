@@ -386,21 +386,23 @@
     font-size: 1.2rem;
   }
 }
+
 .skill {
-  width: 200px; /* Updated */
-  height: 200px; /* Updated */
+  width: 200px;
+  height: 200px;
+
 }
 
 .outer {
-  height: 200px; /* Updated */
-  width: 200px; /* Updated */
+  height: 200px;
+  width: 200px;
   padding: 20px;
   box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15), -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
 }
 
 .inner {
-  height: 160px; /* Updated */
-  width: 160px; /* Updated */
+  height: 160px;
+  width: 160px;
   box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.20), inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
     -0.5px -0.5px 0px rgba(255, 255, 255, 1),
     0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
@@ -411,9 +413,8 @@ circle {
   fill: none;
   stroke: url(#GradientColor);
   stroke-width: 20px;
-  stroke-dasharray: 628; /* Updated circumference for r=90 */
-  stroke-dashoffset: 628; /* Updated */
-  transition: stroke-dashoffset 1s ease, stroke 1s ease; 
+  stroke-dasharray: 628;
+  stroke-dashoffset: 628;
   animation: animate 2s linear forwards;
 }
 
