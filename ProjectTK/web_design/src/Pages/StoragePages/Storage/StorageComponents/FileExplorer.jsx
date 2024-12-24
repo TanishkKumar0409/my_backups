@@ -111,7 +111,7 @@ export default function FileExplorer({ username }) {
     return (
         <section className="bg-light py-5">
             <div className="container">
-                <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": `'${username} Storage'` }}>{username} Storage</h2>
+                <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": `'${username} Files'` }}>{username} Files</h2>
 
                 <button onClick={handleBack} className="btn btn-light shadow-sm mb-4 rounded-circle" disabled={folderStack.length === 0}>
                     <i className="fa fa-arrow-left"></i>

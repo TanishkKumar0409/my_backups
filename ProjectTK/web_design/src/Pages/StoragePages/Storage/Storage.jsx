@@ -2,10 +2,11 @@ import React from 'react';
 import InnerPagesBanner from '../../../Components/InnerPagesBanner/InnerPagesBanner';
 import FileExplorer from './StorageComponents/FileExplorer';
 import Footer from '../../../Components/Footer/Footer';
+import StroageAnalysis from './StorageComponents/StroageAnalysis';
 
 export default function Storage() {
     const username = JSON.parse(localStorage.getItem("user"));
-    
+
     const BannerData = {
         icon: "hard-drive",
         heading: "Storage",
@@ -15,6 +16,7 @@ export default function Storage() {
     return (
         <>
             <InnerPagesBanner BannerData={BannerData} />
+            <StroageAnalysis />
             <FileExplorer username={username} />
             <Footer />
         </>
