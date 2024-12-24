@@ -15,7 +15,7 @@ export default function StorageAnalysis() {
 
         setInterval(() => {
             getData();
-        }, 10)
+        }, 120000)
     }, [username]);
 
     const usedSize = data.usedStorage || 0;
@@ -43,12 +43,18 @@ export default function StorageAnalysis() {
         <>
             <section className='bg-white py-5'>
                 <div className="container">
-                    <div className="row">
+                    <div className="row py-5">
                         <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": `'${username} Storage'` }}>
                             {username} Storage
                         </h2>
 
-                        <div className="col d-flex justify-content-center">
+                        <div className="col-md-6 textJustify">
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni nisi deserunt exercitationem quos. Officiis quaerat minus earum quisquam deserunt necessitatibus nesciunt facere dolores. Non architecto ad suscipit, rerum nisi nesciunt harum maxime animi dolorem quos fuga deserunt impedit! Hic architecto incidunt fugiat nam laborum repudiandae perspiciatis nulla dicta beatae numquam animi cupiditate nesciunt, necessitatibus quo ipsum. Necessitatibus neque ullam voluptatem dicta quisquam, vitae assumenda quo. Eius aperiam nihil, aspernatur quidem nam labore veritatis, ad cumque non ipsam ducimus sit! Cum et veniam libero ipsum nisi rem. Necessitatibus, nesciunt, similique consequuntur commodi mollitia nihil fugit molestiae et obcaecati fugiat ducimus facere.
+                            </p>
+                        </div>
+
+                        <div className="col-md-6 d-flex justify-content-center">
                             <div className="skill position-relative">
                                 <div className="outer rounded-circle">
                                     <div className="inner rounded-circle d-flex justify-content-center align-items-center">
