@@ -413,6 +413,7 @@ circle {
   stroke-width: 20px;
   stroke-dasharray: 628; /* Updated circumference for r=90 */
   stroke-dashoffset: 628; /* Updated */
+  transition: stroke-dashoffset 1s ease, stroke 1s ease; 
   animation: animate 2s linear forwards;
 }
 
