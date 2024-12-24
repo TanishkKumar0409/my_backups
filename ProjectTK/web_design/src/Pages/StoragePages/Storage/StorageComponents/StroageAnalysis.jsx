@@ -9,14 +9,23 @@ export default function StorageAnalysis() {
 
     useEffect(() => {
         const getData = async () => {
-            const response = await noFileAPI.get(`/user/${username}`);
-            setData(response.data);
+            try {
+                const response = await noFileAPI.get(`/user/${username}`);
+                setData(response.data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
         };
 
-        setInterval(() => {
+        const intervalId = setInterval(() => {
             getData();
-        }, 120000)
+        }, 5000);
+
+        getData();
+
+        return () => clearInterval(intervalId);
     }, [username]);
+
 
     const usedSize = data.usedStorage || 0;
     const totalSize = data.totalStorage || 1;
@@ -43,10 +52,11 @@ export default function StorageAnalysis() {
         <>
             <section className='bg-white py-5'>
                 <div className="container">
-                    <div className="row py-5">
-                        <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": `'${username} Storage'` }}>
-                            {username} Storage
-                        </h2>
+                    <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": `'${username} Storage'` }}>
+                        {username} Storage
+                    </h2>
+                    <div className="row py-3">
+
 
                         <div className="col-md-6 textJustify">
                             <p>
