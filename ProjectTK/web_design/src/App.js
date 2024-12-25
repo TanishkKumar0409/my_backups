@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
 import "./App.css";
+import { pdfjs } from 'react-pdf';
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -19,6 +20,10 @@ import FileView from "./Pages/FileView/FileView";
 
 function App() {
   const loginToken = localStorage.getItem("loginToken");
+  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+    'pdfjs-dist/build/pdf.worker.min.mjs',
+    import.meta.url,
+  ).toString();
   return (
     <BrowserRouter>
       <ToastContainer position="top-center" />
