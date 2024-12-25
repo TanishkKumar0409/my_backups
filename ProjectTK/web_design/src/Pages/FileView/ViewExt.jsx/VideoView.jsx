@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import ReactPlayer from "react-player";
 
-export default function VideoView() {
+export default function VideoView({ data }) {
     const [isPlaying, setIsPlaying] = useState(false);
     const [volume, setVolume] = useState(0.5);
     const [previousVolume, setPreviousVolume] = useState(0.5);
@@ -13,7 +13,7 @@ export default function VideoView() {
     const [volumeIcon, setVolumeIcon] = useState("low");
     const playerRef = useRef(null);
 
-    const video = "http://localhost:5000/Uploads/Dune.Prophecy.S01E06.1080p.WEB-DL.Hindi.2.0-English.5.1.ESub.x264-HDHub4u.Tv.mkv";
+    const video = `http://localhost:5000/${data.filePath}`;
 
     const toggleIsPlaying = () => {
         setIsPlaying(!isPlaying);
@@ -115,7 +115,7 @@ export default function VideoView() {
 
     return (
         <>
-            <h2 className="py-3 text-light">Video Name</h2>
+            <h2 className="py-3 text-light">{data.root}</h2>
             <div className="video-container position-relative" id="ReactVideoPlayer" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} >
                 <ReactPlayer
                     ref={playerRef}

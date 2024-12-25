@@ -25,6 +25,7 @@ import GetFolder from "../Controllers/Storage/GetFolders.js";
 import FileUpload from "../Controllers/Storage/FileUpload.js";
 import DeleteFolder from "../Controllers/Storage/DeleteFolder.js";
 import DownloadStoredFile from "../Controllers/Storage/DownloadStoredFile.js";
+import GetParticularFile from "../Controllers/Storage/GetPartiCularFile.js";
 
 const router = express.Router()
 
@@ -91,6 +92,7 @@ const uploadFile = multer({ storage: storage });
 router.post("/storage/file/upload/:username", uploadFile.single("file"), FileUpload);
 router.delete("/storage/folder/delete", DeleteFolder);
 router.get("/storage/file/download", DownloadStoredFile);
+router.get("/storage/file/single", GetParticularFile)
 
 
 export default router;

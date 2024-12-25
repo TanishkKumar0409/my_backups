@@ -4,6 +4,7 @@ import ConfirmDeleteModal from "./ConfirmationModals/ConfirmDeleteModal";
 import { noFileAPI } from "../../../../Services/API/API";
 import { API } from "../../../../Services/API/API";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function FileExplorer({ username }) {
     const [folderData, setFolderData] = useState([]);
@@ -13,6 +14,7 @@ export default function FileExplorer({ username }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [selectedItemId, setSelectedItemId] = useState(null);
+    const redirector = useNavigate()
 
     useEffect(() => {
         const getData = async () => {
@@ -35,7 +37,7 @@ export default function FileExplorer({ username }) {
             setFolderStack([...folderStack, currentFolderId]);
             setCurrentFolderId(folder.folderId);
         } else {
-            toast(`You clicked on file: ${folder.root}`);
+            redirector(`/main/file/view/${selectedItemId}`)
         }
     };
 
@@ -101,6 +103,8 @@ export default function FileExplorer({ username }) {
             case 'zip':
             case 'rar':
                 return 'fa-file-archive text-secondary';
+            case "mkv":
+                return "fa-file-video"
             default:
                 return 'fa-file text-info';
         }

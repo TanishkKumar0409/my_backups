@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-export default function ImageView() {
+export default function ImageView({ data }) {
     return (
         <>
-            <img src={`http://localhost:5000/Uploads/Explorer/1735101900914.jpg`} className='rounded-5 mb-3' alt="" />
-            <h2 className='text-white fw-bold'>Image Name</h2>
+            <img src={`http://localhost:5000/${data.filePath}`} className='rounded-5 mb-3' alt="" />
+            <h2 className='text-white fw-bold'>{data.root}</h2>
         </>
     )
 }
