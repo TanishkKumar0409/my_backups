@@ -116,15 +116,7 @@ export default function VideoView() {
     return (
         <>
             <h2 className="py-3 text-light">Video Name</h2>
-            <div
-                className="video-container position-relative"
-                style={{
-                    cursor: isPlaying ? "pointer" : "default",
-                }}
-                id="ReactVideoPlayer"
-                onMouseEnter={() => setHover(true)}
-                onMouseLeave={() => setHover(false)}
-            >
+            <div className="video-container position-relative" id="ReactVideoPlayer" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} >
                 <ReactPlayer
                     ref={playerRef}
                     url={video}
@@ -138,51 +130,21 @@ export default function VideoView() {
                 />
                 {!isPlaying && (
                     <button
-                        className="btn text-light fs-1 position-absolute rounded-circle text-center align-content-center top-50 start-50 translate-middle"
-                        style={{
-                            zIndex: 2,
-                            background: "rgba(0,0,0,0.7)",
-                            width: "70px",
-                            height: "70px"
-                        }}
-                        onClick={toggleIsPlaying}
-                        aria-label="Play"
-                    >
-                        <i className="fa fa-play position-relative"></i>
+                        className="btn text-light mainPlayBtn fs-1 position-absolute rounded-circle text-center align-content-center top-50 start-50 translate-middle" onClick={toggleIsPlaying}>
+                        <i className="fa fa-play position-relative fa-fade"></i>
                     </button>
                 )}
 
                 <div
-                    className={`controls text-light py-2 px-2 d-flex align-items-center justify-content-between position-absolute w-100`}
-                    style={{
-                        bottom: "5px",
-                        opacity: hover || !isPlaying ? 1 : 0,
-                        transition: "opacity 0.3s ease-in-out",
-                        background: "rgba(0,0,0,0.5)",
-                        backdropFilter: "blur(10px)",
-                        borderTop: "2px solid rgba(0,0,0,0.9)"
-                    }}
-                >
+                    className={`controls text-light py-2 px-2 d-flex align-items-center justify-content-between position-absolute w-100`} style={{ opacity: hover || !isPlaying ? 1 : 0, }}>
                     <button
-                        className="btn btn-info btn-sm"
-                        onClick={toggleIsPlaying}
-                        aria-label={isPlaying ? "Pause" : "Play"}
-                    >
+                        className="btn btn-info btn-sm" onClick={toggleIsPlaying}>
                         {isPlaying ? <i className="fa fa-pause"></i> : <i className="fa fa-play"></i>}
                     </button>
 
                     <div className="d-flex align-items-center flex-grow-1 mx-md-3 mx-1">
                         <span>{formatTime(currentTime)}</span>
-                        <input
-                            type="range"
-                            min="0"
-                            max="1"
-                            step="0.01"
-                            value={played}
-                            onChange={handleSeekChange}
-                            className="mx-md-3 mx-1 flex-grow-1 videoDurater"
-                            aria-label="Seek"
-                        />
+                        <input type="range" min="0" max="1" step="0.01" value={played} onChange={handleSeekChange} className="mx-md-3 mx-1 flex-grow-1 videoDurater" />
                         <span>{formatTime(duration)}</span>
                     </div>
 
@@ -200,41 +162,13 @@ export default function VideoView() {
                         </button>
 
                         {volumeHover && (
-                            <div className="position-absolute p-2 d-flex flex-row-reverse shadow align-items-center justify-content-center" style={{
-                                top: "-440%",
-                                left: "50%",
-                                transform: "translateX(-50%) rotate(-90deg)",
-                                zIndex: 10,
-                                borderRadius: "8px",
-                                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-                                background: "rgba(0,0,0,0.8)",
-                                backdropFilter: "blur(10px)",
-                            }}>
-                                <input
-                                    id="volume-slider"
-                                    type="range"
-                                    min="0"
-                                    max="1"
-                                    step="0.01"
-                                    value={volume}
-                                    onChange={handleVolumeChange}
-                                    style={{
-                                        width: "150px",
-                                        height: "5px",
-                                        borderRadius: "5px",
-                                        boxShadow: "none",
-                                    }}
-                                    aria-label="Volume Control"
-                                />
+                            <div className="volume-slider-box position-absolute p-2 d-flex flex-row-reverse shadow align-items-center justify-content-center" >
+                                <input id="volume-slider" type="range" min="0" max="1" step="0.01" value={volume} onChange={handleVolumeChange} />
                                 <p className="text-light text-center mt-3" style={{ transform: "rotate(90deg)" }}>{(volume * 100).toFixed(0)}%</p>
                             </div>
                         )}
                     </div>
-                    <button
-                        className="btn btn-info me-md-2 btn-sm"
-                        onClick={toggleFullScreen}
-                        aria-label="Toggle Fullscreen"
-                    >
+                    <button className="btn btn-info me-md-2 btn-sm" onClick={toggleFullScreen}>
                         <i className={`fa fa-${fullIcon}`}></i>
                     </button>
                 </div>
