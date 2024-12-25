@@ -1,6 +1,7 @@
 import express from "express";
 import RegisterUser from "../Controllers/Users/RegisterUser.js";
-import multer from "multer"
+import multer from "multer";
+import path from "path"
 
 import GetUsers from "../Controllers/Users/GetUsers.js";
 import GetUserByUsername from "../Controllers/Users/GetUserByUsername.js";
@@ -77,10 +78,11 @@ router.get("/storage/folder/:username", GetFolder)
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './')
+        cb(null, './Uploads/Explorer');
     },
     filename: function (req, file, cb) {
-        cb(null, "Uploads/Explorer/" + Date.now() + ".jpg")
+        const originalExtension = path.extname(file.originalname);
+        cb(null, Date.now() + originalExtension);
     }
 });
 

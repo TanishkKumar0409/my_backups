@@ -36,7 +36,7 @@ setInterval(() => {
 
 mongoose.connect(DbName)
     .then(() => console.log(`Database Connected`))
-    .catch((error) => console.log(error.message));
+    .catch((error) => console.log("a",error));
 
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
