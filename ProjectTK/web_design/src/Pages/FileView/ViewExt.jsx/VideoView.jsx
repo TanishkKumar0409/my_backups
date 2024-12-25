@@ -80,7 +80,7 @@ export default function VideoView({ data }) {
         return () => {
             window.removeEventListener("keydown", handleKeyDown);
         };
-    }, [isPlaying, volume, currentTime, duration]);
+    }, [isPlaying, volume, currentTime, duration,toggleIsPlaying]);
 
     const handleVolumeChange = (e) => {
         const newVolume = parseFloat(e.target.value);
