@@ -13,11 +13,74 @@ export default function VideoView({ data }) {
     const [volumeIcon, setVolumeIcon] = useState("low");
     const playerRef = useRef(null);
 
+    const [lastMove, setLastMove] = useState(Date.now())
+
     const video = `http://localhost:5000/${data.filePath}`;
 
     const toggleIsPlaying = () => {
         setIsPlaying(!isPlaying);
     };
+
+    const handleLastMove = () => {
+        setLastMove(Date.now());
+        setHover(true)
+    }
+
+    useEffect(() => {
+        const checkHoverState = () => {
+            if (Date.now() - lastMove >= 5000) {
+                setHover(false);
+            }
+        };
+
+        const player = document.getElementById("ReactVideoPlayer")
+
+        player.addEventListener("mousemove", handleLastMove);
+        player.addEventListener("mouseleave", () => setHover(false))
+
+        const hoverCheckInterval = setInterval(checkHoverState, 1000);
+
+        return () => {
+            window.removeEventListener("mousemove", handleLastMove);
+            clearInterval(hoverCheckInterval);
+        };
+    }, [lastMove]);
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === " " || e.code === "Space") {
+                e.preventDefault();
+                toggleIsPlaying();
+            } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                if (volume < 1) {
+                    setVolume((prevVolume) => Math.min(prevVolume + 0.05, 1));
+                }
+            } else if (e.key === "ArrowDown") {
+                e.preventDefault();
+                if (volume > 0) {
+                    setVolume((prevVolume) => Math.max(prevVolume - 0.05, 0));
+                }
+            } else if (e.key === "ArrowRight") {
+                e.preventDefault();
+                setCurrentTime((prevTime) => Math.min(prevTime + 10, duration));
+                playerRef.current.seekTo(currentTime + 10);
+            } else if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                setCurrentTime((prevTime) => Math.max(prevTime - 10, 0));
+                playerRef.current.seekTo(currentTime - 5);
+            } else if (e.ctrlKey && e.key === "Enter") {
+                e.preventDefault();
+                toggleFullScreen();
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [isPlaying, volume, currentTime, duration]);
 
     const handleVolumeChange = (e) => {
         const newVolume = parseFloat(e.target.value);
@@ -63,9 +126,8 @@ export default function VideoView({ data }) {
         setCurrentTime(state.playedSeconds);
 
         const slider = document.querySelector('.videoDurater');
-        const percentage = state.played * 100;  // Get the percentage of the video played
+        const percentage = state.played * 100;
 
-        // Dynamically set the slider background based on the progress
         slider.style.background = `linear-gradient(to right, var(--warning-yellow) ${percentage}%, var(--error-red) ${percentage}%, var(--primary-soft-gray) ${percentage}%)`;
     };
 
@@ -116,7 +178,7 @@ export default function VideoView({ data }) {
     return (
         <>
             <h2 className="py-3 text-light">{data.root}</h2>
-            <div className="video-container position-relative" id="ReactVideoPlayer" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} >
+            <div className="video-container position-relative" id="ReactVideoPlayer">
                 <ReactPlayer
                     ref={playerRef}
                     url={video}
