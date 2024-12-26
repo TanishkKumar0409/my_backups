@@ -9,6 +9,7 @@ import BannerValidationSchema from "../../../../../Helper/ValidationSchemas/Vali
 export default function DragAndDropBox(props) {
   const [files, setFiles] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const username = JSON.parse(localStorage.getItem("user"))
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
@@ -35,7 +36,7 @@ export default function DragAndDropBox(props) {
       formData.append("email", values.email);
       formData.append("message", values.message || "No message provided");
 
-      const response = await API.post("/share/tanishk", formData);
+      const response = await API.post(`/share/${username}`, formData);
 
       console.log("Form submitted successfully:", response);
       toast.success(response.data.message);

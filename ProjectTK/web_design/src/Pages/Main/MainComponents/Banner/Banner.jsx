@@ -2,12 +2,9 @@ import React, { useEffect, useState } from "react";
 import DragAndDropBox from "./DragAndDropBox/DragAndDropBox";
 import DownloadLink from "./DownloadLink/DownloadLink";
 
-import { API } from "../../../../Services/API/API";
-import { toast } from "react-toastify";
-
 export default function Banner() {
   const [iconStyles, setIconStyles] = useState([]);
-  const [isSend, setIsSend] = useState(false)
+  const [isSend, setIsSend] = useState(false);
 
   const generateRandomStyles = () => {
     const styles = Array.from({ length: 9 }, (_, index) => ({
@@ -39,20 +36,7 @@ export default function Banner() {
     "edit",
   ];
 
-  const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await API.get("/share/history/downloader/tanishk");
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching download links:", error);
-        toast.error("Failed to fetch download links.");
-      }
-    };
-    getData();
-  }, []);
 
   return (
     <section
@@ -72,7 +56,7 @@ export default function Banner() {
           </div>
           <div className="col-md-6 d-flex justify-content-center align-items-center">
 
-            {isSend ? <DownloadLink data={data} /> : <DragAndDropBox onSend={() => setIsSend(true)} />}
+            {isSend ? <DownloadLink /> : <DragAndDropBox onSend={() => setIsSend(true)} />}
 
           </div>
         </div>

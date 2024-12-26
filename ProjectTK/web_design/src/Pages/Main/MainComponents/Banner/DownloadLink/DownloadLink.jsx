@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { API } from "../../../../../Services/API/API";
 
-export default function DownloadLink(props) {
-    const data = props.data;
+export default function DownloadLink() {
+    const [data, setData] = useState([]);
+    const username = JSON.parse(localStorage.getItem("user"))
+
+
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const response = await API.get(`/share/history/downloader/${username}`);
+                setData(response.data);
+            } catch (error) {
+                console.error("Error fetching download links:", error);
+                toast.error("Failed to fetch download links.");
+            }
+        };
+        getData();
+    }, []);
 
     const handleCopy = (link) => {
         navigator.clipboard.writeText(link);
