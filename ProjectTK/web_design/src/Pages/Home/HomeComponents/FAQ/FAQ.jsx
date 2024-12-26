@@ -28,8 +28,14 @@ export default function FAQ() {
         <>
             <section className="bg-white py-5">
                 <div className="container">
+                    <div className="row justify-content-center py-3">
+                        <div className="col-md-8">
+                            <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": "'FAQs'" }}>FAQs</h2>
+                            <p className='text-center'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint laudantium voluptas accusamus libero eum quo placeat suscipit praesentium cum dicta?</p>
+                        </div>
+                    </div>
                     <div id="faqCarousel" className="carousel slide" data-bs-ride="carousel">
-                        <div className="carousel-inner bg-light rounded-5">
+                        <div className="carousel-inner bg-light rounded-5 shadow">
                             {selectedFAQs.map((faq, index) => (
                                 <div
                                     key={index}

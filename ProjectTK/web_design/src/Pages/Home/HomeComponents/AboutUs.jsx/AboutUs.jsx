@@ -3,7 +3,7 @@ import React from 'react'
 export default function AboutUs() {
     return (
         <>
-            <section className="bg-white py-5">
+            <section className="bg-light py-5">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6 text-center">
