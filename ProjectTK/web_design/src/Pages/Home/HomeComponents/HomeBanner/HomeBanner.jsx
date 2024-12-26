@@ -69,7 +69,6 @@ export default function HomeBanner() {
                     </div>
                 </div>
             </section>
-            );
         </>
     )
 }

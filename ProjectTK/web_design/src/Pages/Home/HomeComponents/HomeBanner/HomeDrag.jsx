@@ -134,7 +134,7 @@ export default function HomeDrag() {
                 className={`modal fade ${showModal ? "show d-block" : ""}`}
                 tabIndex="-1"
                 role="dialog"
-                style={{ background: "rgba(0, 0, 0, 0.5)" }}
+                style={{ background: "rgba(0, 0, 0, 0.5)", backdropFilter: "blur(5px)" }}
             >
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
