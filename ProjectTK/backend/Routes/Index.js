@@ -17,7 +17,7 @@ import GetSharedHistory from "../Controllers/SharedFiles/GetSharedHistory.js";
 import GetSharedHistoryBySharingId from "../Controllers/SharedFiles/GetSharedHistoryBySharingId.js";
 import GetSharedHistoryByUsername from "../Controllers/SharedFiles/GetSharedHistoryByUsername.js";
 import DownloadFiles from "../Helper/DownloadFiles/DownloadFiles.js";
-import DeletionOtp from "../Controllers/Users/DeletionOpt.js";
+import DeletionOtp from "../Controllers/Users/DeletionOtp.js";
 import GetDataByDownloadLink from "../Controllers/SharedFiles/GetDataByDownloadLink.js";
 
 import CreateFolder from "../Controllers/Storage/CreateFolder.js";

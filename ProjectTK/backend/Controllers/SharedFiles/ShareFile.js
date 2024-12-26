@@ -17,10 +17,6 @@ const ShareFiles = async (req, res) => {
             return res.status(400).json({ error: "Sorry, You are Blocked" })
         }
 
-        if (isExisting.status === "DELETED") {
-            return res.status(400).json({ error: "Account Does not Exist" })
-        }
-
         if (!message) {
             message = "No Message provided";
         }
