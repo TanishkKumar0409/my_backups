@@ -12,6 +12,8 @@ export default function LoginNavbar() {
         })
     })
 
+    const isActive = (path) => location.pathname === path ? "active" : "";
+
     return (
         <header className={`responsiveNavbar position-fixed w-100 ${navClass} ${navCondition}`} style={{ zIndex: 999 }}>
             <nav className="navbar navbar-expand-lg navbar-dark">
@@ -20,7 +22,22 @@ export default function LoginNavbar() {
                         Project TK
                     </Link>
 
-                    <Link to="/form" className="btn btn-outline-dark">Login</Link>
+                    <div className="collapse navbar-collapse" id="navbarNav">
+                        <ul className="navbar-nav ms-auto">
+                            <li className="nav-item">
+                                <Link className={`nav-link fw-bold fs-5 ${isActive("/")}`} to="/">
+                                    Home
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className={`nav-link fw-bold fs-5 ${isActive("/contact")}`} to="/contact">
+                                    Contact
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <Link to="/form" className="btn btn-custom custom-btn ms-2">Login</Link>
                 </div>
             </nav>
 

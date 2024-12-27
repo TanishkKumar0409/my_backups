@@ -51,6 +51,7 @@ export default function HomeBanner() {
                                 Upload and share your files effortlessly. Simply drag and drop
                                 your files here to start sharing them securely with others.
                             </p>
+                            <button className="btn btn-custom custom-btn mt-4 fs-4 fw-semibold">Let Start with Login</button>
                         </div>
                         <div className="col-md-6 d-flex justify-content-center align-items-center">
                             <HomeDrag />

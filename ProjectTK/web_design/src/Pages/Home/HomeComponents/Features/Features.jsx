@@ -53,10 +53,10 @@ export default function Features() {
                                 <div className="featureCardContent p-4 text-center text-white">
                                     <div className="featureCardIcon mb-3">
                                         <i
-                                            className={`fa ${feature.iconClass} p-3 fs-2 rounded-circle shadow`}
+                                            className={`fa ${feature.iconClass} p-3 fs-2 rounded-4 shadow`}
                                             style={{
-                                                background: "rgba(0, 255, 255, 0.2)",
-                                                color: "white",
+                                                background: "rgba(255, 255, 255, 0.7)",
+                                                color:  getColor(index) ,
                                             }}
                                         ></i>
                                     </div>
