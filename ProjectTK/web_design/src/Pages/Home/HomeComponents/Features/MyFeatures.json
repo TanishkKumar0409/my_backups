@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Secure File Upload",
+        "description": "Easily upload your files with end-to-end encryption to ensure data safety.",
+        "iconClass": "fa fa-cloud-upload"
+    },
+    {
+        "title": "Large Storage Capacity",
+        "description": "Store large files and access them from anywhere, anytime.",
+        "iconClass": "fa fa-database"
+    },
+    {
+        "title": "File Sharing",
+        "description": "Share files securely with specific users or through public links.",
+        "iconClass": "fa fa-share-alt"
+    },
+    {
+        "title": "Version Control",
+        "description": "Track file changes and access previous versions as needed.",
+        "iconClass": "fa fa-history"
+    },
+    {
+        "title": "Real-Time Collaboration",
+        "description": "Work together on documents with teammates in real-time.",
+        "iconClass": "fa fa-users"
+    }
+]
