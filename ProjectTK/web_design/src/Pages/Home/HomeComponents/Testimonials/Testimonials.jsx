@@ -21,16 +21,21 @@ export default function Testimonials() {
         },
     };
 
+    const getValue = () => {
+        const createRandom = Math.floor(Math.random() * 999999)
+        return createRandom;
+    }
+
     return (
         <>
             <section className="bg-light py-5">
                 <div className="container testimonials">
                     <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": "'Testimonials'" }}>Testimonials</h2>
                     <OwlCarousel className="owl-theme" {...owlOptions}>
-                        {MyTestimonials.map((testimonial) => (
-                            <div className="item" key={testimonial.id}>
+                        {MyTestimonials.map((testimonial, index) => (
+                            <div className="item" key={index}>
                                 <div className="testimonialCard d-flex flex-column bg-white shadow-sm">
-                                    <div className="testimonialCardHead py-3 text-white p-3 textJustify">
+                                    <div className="testimonialCardHead py-3 text-white p-3 textJustify" style={{ filter: `hue-rotate(${getValue()}deg)` }}>
                                         <p>{testimonial.text}</p>
                                     </div>
                                     <div className="testimonialCardBody d-flex">

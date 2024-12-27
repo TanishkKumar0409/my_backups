@@ -26,11 +26,11 @@ export default function Features() {
             case 0:
                 return "#a78bfa";
             case 4:
-                return "#10b981"; 
+                return "#10b981";
             case 3:
-                return "#fbbf24"; 
+                return "#fbbf24";
             case 2:
-                return "#ef4444"; 
+                return "#ef4444";
             default:
                 return "#06b6d4";
         }
