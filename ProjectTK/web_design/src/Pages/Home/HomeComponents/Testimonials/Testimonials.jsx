@@ -3,57 +3,9 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 
+import MyTestimonials from "./MyTestimonials.json"
+
 export default function Testimonials() {
-    const testimonials = [
-        {
-            id: 1,
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora nesciunt fuga iure molestias architecto quae, sint consectetur pariatur amet ipsum quod numquam inventore aut, doloremque at, earum neque nostrum laboriosam. Tempora, cupiditate nam eum expedita delectus repellendus sunt animi nulla dolore magni aperiam placeat cum quod nostrum voluptates beatae! Illo asperiores voluptatum laudantium aspernatur quas aperiam dolore doloremque repudiandae sapiente.",
-            name: "John Doe",
-            role: "Web Developer",
-            image: "https://randomuser.me/api/portraits/men/1.jpg",
-            stars: 3
-        },
-        {
-            id: 2,
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora nesciunt fuga iure molestias architecto quae, sint consectetur pariatur amet ipsum quod numquam inventore aut, doloremque at, earum neque nostrum laboriosam. Tempora, cupiditate nam eum expedita delectus repellendus sunt animi nulla dolore magni aperiam placeat cum quod nostrum voluptates beatae! Illo asperiores voluptatum laudantium aspernatur quas aperiam dolore doloremque repudiandae sapiente.",
-            name: "Jane Smith",
-            role: "UI/UX Designer",
-            image: "https://randomuser.me/api/portraits/women/2.jpg",
-            stars: 5
-        },
-        {
-            id: 3,
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora nesciunt fuga iure molestias architecto quae, sint consectetur pariatur amet ipsum quod numquam inventore aut, doloremque at, earum neque nostrum laboriosam. Tempora, cupiditate nam eum expedita delectus repellendus sunt animi nulla dolore magni aperiam placeat cum quod nostrum voluptates beatae! Illo asperiores voluptatum laudantium aspernatur quas aperiam dolore doloremque repudiandae sapiente.",
-            name: "Michael Brown",
-            role: "Product Manager",
-            image: "https://randomuser.me/api/portraits/men/3.jpg",
-            stars: 4
-        },
-        {
-            id: 4,
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora nesciunt fuga iure molestias architecto quae, sint consectetur pariatur amet ipsum quod numquam inventore aut, doloremque at, earum neque nostrum laboriosam. Tempora, cupiditate nam eum expedita delectus repellendus sunt animi nulla dolore magni aperiam placeat cum quod nostrum voluptates beatae! Illo asperiores voluptatum laudantium aspernatur quas aperiam dolore doloremque repudiandae sapiente.",
-            name: "Emily Clark",
-            role: "Software Engineer",
-            image: "https://randomuser.me/api/portraits/women/4.jpg",
-            stars: 5
-        },
-        {
-            id: 5,
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora nesciunt fuga iure molestias architecto quae, sint consectetur pariatur amet ipsum quod numquam inventore aut, doloremque at, earum neque nostrum laboriosam. Tempora, cupiditate nam eum expedita delectus repellendus sunt animi nulla dolore magni aperiam placeat cum quod nostrum voluptates beatae! Illo asperiores voluptatum laudantium aspernatur quas aperiam dolore doloremque repudiandae sapiente.",
-            name: "David Green",
-            role: "Data Scientist",
-            image: "https://randomuser.me/api/portraits/men/5.jpg",
-            stars: 4
-        },
-        {
-            id: 6,
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora nesciunt fuga iure molestias architecto quae, sint consectetur pariatur amet ipsum quod numquam inventore aut, doloremque at, earum neque nostrum laboriosam. Tempora, cupiditate nam eum expedita delectus repellendus sunt animi nulla dolore magni aperiam placeat cum quod nostrum voluptates beatae! Illo asperiores voluptatum laudantium aspernatur quas aperiam dolore doloremque repudiandae sapiente.",
-            name: "Sarah Lee",
-            role: "Marketing Manager",
-            image: "https://randomuser.me/api/portraits/women/6.jpg",
-            stars: 5
-        }
-    ];
 
     const owlOptions = {
         loop: true,
@@ -75,7 +27,7 @@ export default function Testimonials() {
                 <div className="container testimonials">
                     <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": "'Testimonials'" }}>Testimonials</h2>
                     <OwlCarousel className="owl-theme" {...owlOptions}>
-                        {testimonials.map((testimonial) => (
+                        {MyTestimonials.map((testimonial) => (
                             <div className="item" key={testimonial.id}>
                                 <div className="testimonialCard d-flex flex-column bg-white shadow-sm">
                                     <div className="testimonialCardHead py-3 text-white p-3 textJustify">

@@ -19,6 +19,7 @@ export default function Features() {
         },
     };
 
+    // Array of features as objects
     const features = [
         {
             title: "Secure File Upload",
