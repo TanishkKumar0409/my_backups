@@ -72,7 +72,8 @@ export default function Testimonials() {
     return (
         <>
             <section className="bg-light py-5">
-                <div className="container">
+                <div className="container testimonials">
+                    <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": "'Testimonials'" }}>Testimonials</h2>
                     <OwlCarousel className="owl-theme" {...owlOptions}>
                         {testimonials.map((testimonial) => (
                             <div className="item" key={testimonial.id}>
