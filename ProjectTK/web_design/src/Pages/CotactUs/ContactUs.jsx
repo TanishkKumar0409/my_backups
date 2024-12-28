@@ -3,6 +3,7 @@ import InnerPagesBanner from '../../Components/InnerPagesBanner/InnerPagesBanner
 import Footer from '../../Components/Footer/Footer';
 
 import ContactCards from './ContactComponents/ContactCards';
+import ContactForm from './ContactComponents/ContactForm';
 
 export default function ContactUs() {
     const BannerData = {
@@ -17,6 +18,7 @@ export default function ContactUs() {
         <>
             <InnerPagesBanner BannerData={BannerData} />
             <ContactCards />
+            <ContactForm />
             <Footer />
         </>
     );
