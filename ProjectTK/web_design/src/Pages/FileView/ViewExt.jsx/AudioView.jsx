@@ -37,6 +37,10 @@ export default function AudioView({ data }) {
     if (audioRef.current) {
       audioRef.current.volume = newVolume;
     }
+
+    const slider = e.target;
+    const percentage = (newVolume / 1) * 100;
+    slider.style.background = `linear-gradient(to right, var(--accent-purple) ${percentage}%, var(--accent-cyan) ${percentage}%)`;
   };
 
   const handleTrackChange = (e) => {
@@ -52,6 +56,7 @@ export default function AudioView({ data }) {
     if (audioRef.current) {
       audioRef.current.loop = !isRepeating;
     }
+
   };
 
   const updateTime = () => {
@@ -60,6 +65,10 @@ export default function AudioView({ data }) {
       setCurrentTime(audioElement.currentTime);
       setDuration(audioElement.duration);
     }
+    const slider = document.querySelector('.videoDurater');
+    let percentage = (currentTime / duration) * 100;
+
+    slider.style.background = `linear-gradient(to right, var(--warning-yellow) ${percentage || 20}%, var(--error-red) ${percentage || 60}%, var(--primary-soft-gray) ${percentage || 100}%)`;
   };
 
   useEffect(() => {
@@ -79,11 +88,17 @@ export default function AudioView({ data }) {
       if (audioRef.current) {
         audioRef.current.volume = 0;
       }
+      const slider = document.getElementById("volume-slider");
+      slider.style.background = `linear-gradient(to right, var(--accent-purple) 0%, var(--accent-cyan) 0%)`;
     } else {
       setVolume(lastVolume);
+      const newVolume = lastVolume || 0.5;
       if (audioRef.current) {
         audioRef.current.volume = lastVolume;
       }
+      const slider = document.getElementById("volume-slider");
+      const percentage = (newVolume / 1) * 100;
+      slider.style.background = `linear-gradient(to right, var(--accent-purple) ${percentage}%, var(--accent-cyan) ${percentage}%)`;
     }
   };
 
@@ -158,13 +173,13 @@ export default function AudioView({ data }) {
 
   return (
     <>
-      <section className="audio-view bg-light text-dark p-5 rounded">
-        <div className="container shadow-sm p-3 rounded ">
+      <section className="audio-view bg-white text-dark p-2 rounded shadow">
+        <div className="container bg-light p-3 rounded ">
           <div className="row mb-4 justify-content-center">
             <div className="col-auto text-center">
               <img
                 src="https://i.pinimg.com/originals/42/c8/4f/42c84f4f71bf4b1c51ecef5336aac55d.gif"
-                className="img-fluid rounded shadow mb-2 p-2"
+                className="img-fluid rounded shadow-sm mb-2 p-2"
                 style={{ width: "350px", objectFit: "cover", aspectRatio: "3/3" }}
                 alt="Default Profile"
               />
@@ -183,7 +198,7 @@ export default function AudioView({ data }) {
                 <div className="audio-track d-flex flex-column align-items-center flex-grow-1 mx-3">
                   <input
                     type="range"
-                    className="form-range w-100 track-slider"
+                    className="w-100 track-slider videoDurater"
                     min="0"
                     max={duration || 100}
                     value={currentTime}
@@ -217,6 +232,7 @@ export default function AudioView({ data }) {
                           max="100"
                           value={volume * 100}
                           onChange={handleVolumeChange}
+                          id="volume-slider"
                         />
                         <p
                           className="text-center mt-3"

@@ -455,6 +455,7 @@ circle {
   outline: none;
 }
 
+
 .videoDurater::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
