@@ -103,12 +103,18 @@ export default function FileExplorer({ username }) {
             case 'zip':
             case 'rar':
                 return 'fa-file-archive text-secondary';
-            case "mkv":
-                return "fa-file-video"
+            case 'mkv':
+                return 'fa-file-video';
+            case 'mp3':
+            case 'wav':
+            case 'ogg':
+            case 'flac':
+                return 'fa-file-audio text-info';
             default:
                 return 'fa-file text-info';
         }
     };
+
 
 
 
@@ -168,8 +174,7 @@ export default function FileExplorer({ username }) {
                                     onClick={() => setSelectedItemId(child.folderId)}
                                     style={{ width: "100px", height: "100px", opacity: selectedItemId === child.folderId ? 1 : 0.7, }}
                                 >
-                                    <i className={`fa ${child.type === "folder" ? "fa-folder text-warning" : getFileIcon(child?.root)}`}></i>
-
+                                    <i className={`fa display-1 fw-bold ${child.type === "folder" ? "fa-folder text-warning" : getFileIcon(child?.root)}`}></i>
                                 </div>
                                 <span className="folder-name mt-2">{child.root}</span>
                             </div>

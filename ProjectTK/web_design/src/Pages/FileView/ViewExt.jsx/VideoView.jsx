@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import ReactPlayer from "react-player";
 
 export default function VideoView({ data }) {
@@ -17,9 +17,9 @@ export default function VideoView({ data }) {
 
     const video = `http://localhost:5000/${data.filePath}`;
 
-    const toggleIsPlaying = () => {
-        setIsPlaying(!isPlaying);
-    };
+    const toggleIsPlaying = useCallback(() => {
+        setIsPlaying((prev) => !prev);
+    }, []);
 
     const handleLastMove = () => {
         setLastMove(Date.now());
@@ -80,7 +80,7 @@ export default function VideoView({ data }) {
         return () => {
             window.removeEventListener("keydown", handleKeyDown);
         };
-    }, [isPlaying, volume, currentTime, duration,toggleIsPlaying]);
+    }, [isPlaying, volume, currentTime, duration, toggleIsPlaying]);
 
     const handleVolumeChange = (e) => {
         const newVolume = parseFloat(e.target.value);
@@ -188,7 +188,7 @@ export default function VideoView({ data }) {
                     onDuration={handleDuration}
                     onPlay={handlePlay}
                     onPause={handlePause}
-                    className="react-player w-100 h-100"
+                    className="react-player w-100 h-100 bg-dark"
                 />
                 {!isPlaying && (
                     <button

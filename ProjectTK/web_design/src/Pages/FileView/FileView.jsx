@@ -6,6 +6,7 @@ import PdfView from './ViewExt.jsx/PdfView';
 import Footer from '../../Components/Footer/Footer';
 import { noFileAPI } from '../../Services/API/API';
 import DocView from './ViewExt.jsx/DocView';
+import AudioView from './ViewExt.jsx/AudioView';
 
 export default function FileView() {
     const username = JSON.parse(localStorage.getItem("user"));
@@ -34,12 +35,14 @@ export default function FileView() {
         const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
         const videoExtensions = ['mp4', 'mov', 'avi', 'webm', 'mkv'];
         const pdfExtensions = ['pdf'];
+        const audioExtensions = ['mp3', 'wav', 'ogg', 'flac', 'aac'];
         const docExtension = ["doc", "docx"];
 
         if (imageExtensions.includes(extension)) return 'image';
         if (videoExtensions.includes(extension)) return 'video';
         if (pdfExtensions.includes(extension)) return 'pdf';
         if (docExtension.includes(extension)) return "doc";
+        if (audioExtensions.includes(extension)) return 'audio';
         return 'unknown';
     };
 
@@ -69,6 +72,7 @@ export default function FileView() {
                             {fileType === 'video' && <VideoView data={data} />}
                             {fileType === 'pdf' && <PdfView data={data} />}
                             {fileType === "doc" && <DocView data={data} />}
+                            {fileType === "audio" && <AudioView data={data} />}
                             {fileType === 'unknown' && <p>Unsupported file type</p>}
                         </div>
                     </div>
