@@ -19,6 +19,7 @@ import FileView from "./Pages/FileView/FileView";
 
 function App() {
   const loginToken = localStorage.getItem("loginToken");
+
   pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',
     import.meta.url,

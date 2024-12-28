@@ -36,7 +36,7 @@ export default function FileView() {
         const videoExtensions = ['mp4', 'mov', 'avi', 'webm', 'mkv'];
         const pdfExtensions = ['pdf'];
         const audioExtensions = ['mp3', 'wav', 'ogg', 'flac', 'aac'];
-        const docExtension = ["doc", "docx"];
+        const docExtension = ["doc", "docx", "xlsx","pptx"];
 
         if (imageExtensions.includes(extension)) return 'image';
         if (videoExtensions.includes(extension)) return 'video';
