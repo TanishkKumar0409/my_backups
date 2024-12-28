@@ -224,7 +224,7 @@ export default function VideoView({ data }) {
                         </button>
 
                         {volumeHover && (
-                            <div className="volume-slider-box position-absolute p-2 d-flex flex-row-reverse shadow align-items-center justify-content-center" >
+                            <div className="volume-slider-box position-absolute p-2 d-flex flex-row-reverse shadow align-items-center justify-content-center" style={{background:"rgba(0, 0, 0, 0.8)"}} >
                                 <input id="volume-slider" type="range" min="0" max="1" step="0.01" value={volume} onChange={handleVolumeChange} />
                                 <p className="text-light text-center mt-3" style={{ transform: "rotate(90deg)" }}>{(volume * 100).toFixed(0)}%</p>
                             </div>
