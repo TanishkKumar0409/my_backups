@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from "react";
 
 export default function AudioView({ data }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -17,10 +17,11 @@ export default function AudioView({ data }) {
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
-  const togglePlay = () => {
+  // Memoize the togglePlay function
+  const togglePlay = useCallback(() => {
     const audioElement = audioRef.current;
     if (audioElement) {
       if (isPlaying) {
@@ -28,9 +29,8 @@ export default function AudioView({ data }) {
       } else {
         audioElement.play();
       }
-      setIsPlaying(!isPlaying);
     }
-  };
+  }, [isPlaying]); // `isPlaying` is the dependency
 
   const handleVolumeChange = (e) => {
     const newVolume = e.target.value / 100;
@@ -88,6 +88,73 @@ export default function AudioView({ data }) {
     }
   };
 
+  // Event listener for play and pause to sync state with audio element
+  useEffect(() => {
+    const audioElement = audioRef.current;
+
+    const handlePlay = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
+
+    if (audioElement) {
+      audioElement.addEventListener("play", handlePlay);
+      audioElement.addEventListener("pause", handlePause);
+    }
+
+    return () => {
+      if (audioElement) {
+        audioElement.removeEventListener("play", handlePlay);
+        audioElement.removeEventListener("pause", handlePause);
+      }
+    };
+  }, []);
+
+  // Keyboard controls
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      e.preventDefault();
+
+      switch (e.key) {
+        case " ":
+        case "Space":
+          togglePlay();
+          break;
+
+        case "ArrowUp":
+          if (volume < 1) {
+            setVolume((prevVolume) => Math.min(prevVolume + 0.05, 1));
+            if (audioRef.current) audioRef.current.volume = Math.min(volume + 0.05, 1);
+          }
+          break;
+
+        case "ArrowDown":
+          if (volume > 0) {
+            setVolume((prevVolume) => Math.max(prevVolume - 0.05, 0));
+            if (audioRef.current) audioRef.current.volume = Math.max(volume - 0.05, 0);
+          }
+          break;
+
+        case "ArrowRight":
+          setCurrentTime((prevTime) => Math.min(prevTime + 10, duration));
+          if (audioRef.current) audioRef.current.currentTime = Math.min(currentTime + 10, duration);
+          break;
+
+        case "ArrowLeft":
+          setCurrentTime((prevTime) => Math.max(prevTime - 10, 0));
+          if (audioRef.current) audioRef.current.currentTime = Math.max(currentTime - 10, 0);
+          break;
+
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [volume, duration, currentTime, isPlaying, togglePlay]);
+
   return (
     <>
       <section className="audio-view bg-light text-dark py-5 rounded">
@@ -96,20 +163,20 @@ export default function AudioView({ data }) {
             <div className="col-auto text-center">
               <img
                 src="http://localhost:5000/Uploads/Users/DefaultProfiles/DefaultProfile.jpg"
-                className="img-fluid rounded shadow-lg"
-                style={{ width: '350px', objectFit: 'cover' }}
+                className="img-fluid rounded shadow"
+                style={{ width: "350px", objectFit: "cover" }}
                 alt="Default Profile"
               />
             </div>
           </div>
           <div className="row justify-content-center">
             <div className="col-md-8">
-              <div className="audio-controls d-flex justify-content-between align-items-center p-3 rounded shadow-lg bg-white">
+              <div className="audio-controls d-flex justify-content-between align-items-center p-3 rounded shadow-sm bg-white">
                 <button
                   className="btn btn-primary play-btn shadow"
                   onClick={togglePlay}
                 >
-                  <i className={`fa ${isPlaying ? 'fa-pause' : 'fa-play'}`}></i>
+                  <i className={`fa ${isPlaying ? "fa-pause" : "fa-play"}`}></i>
                 </button>
                 <div className="audio-track d-flex flex-column align-items-center flex-grow-1 mx-3">
                   <input
@@ -131,13 +198,16 @@ export default function AudioView({ data }) {
                     onMouseEnter={() => setVolumeHover(true)}
                     onMouseLeave={() => setVolumeHover(false)}
                   >
-                    <button className="btn btn-primary volume-btn shadow" onClick={toggleMute}>
+                    <button
+                      className="btn btn-primary volume-btn shadow"
+                      onClick={toggleMute}
+                    >
                       <i className={`fa fa-volume-${volumeIcon}`}></i>
                     </button>
                     {volumeHover && (
                       <div
                         className="volume-slider-box position-absolute p-2 d-flex flex-row-reverse shadow align-items-center justify-content-center"
-                        style={{ top: '-330%' }}
+                        style={{ top: "-330%" }}
                       >
                         <input
                           type="range"
@@ -148,7 +218,7 @@ export default function AudioView({ data }) {
                         />
                         <p
                           className="text-center mt-3"
-                          style={{ transform: 'rotate(90deg)' }}
+                          style={{ transform: "rotate(90deg)" }}
                         >
                           {Math.round(volume * 100)}%
                         </p>
@@ -156,7 +226,8 @@ export default function AudioView({ data }) {
                     )}
                   </div>
                   <button
-                    className={`btn btn-primary repeat-btn shadow ms-2 ${isRepeating ? 'active' : ''}`}
+                    className={`btn btn-primary repeat-btn shadow ms-2 ${isRepeating ? "active" : ""
+                      }`}
                     onClick={toggleRepeat}
                   >
                     <i className="fa fa-repeat"></i>
