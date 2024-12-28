@@ -591,3 +591,7 @@ iframe {
     width: 90%;
   }
 }
+
+.min-200{
+  min-height: 200px;
+}

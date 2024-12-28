@@ -16,6 +16,7 @@ import AutoScroller from "./Helper/AutoScroller/AutoScroller";
 import ProtectedRoutes from "./Helper/ProtectedRoutes/ProtectedRoutes";
 import Storage from "./Pages/StoragePages/Storage/Storage";
 import FileView from "./Pages/FileView/FileView";
+import ContactUs from "./Pages/CotactUs/ContactUs";
 
 function App() {
   const loginToken = localStorage.getItem("loginToken");
@@ -38,6 +39,7 @@ function App() {
         <Route path="/main/history" element={<ProtectedRoutes><History /></ProtectedRoutes>} />
         <Route path="/main/file/view/:id" element={<ProtectedRoutes><FileView /></ProtectedRoutes>} />
         <Route path="/main/storage" element={<ProtectedRoutes><Storage /></ProtectedRoutes>} />
+        <Route path="/contact" element={<ContactUs />} />
         <Route path="*" element={<Navigate to={"/"} replace />} />
       </Routes>
     </BrowserRouter>
