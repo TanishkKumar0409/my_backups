@@ -20,7 +20,6 @@ export default function AudioView({ data }) {
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
-  // Memoize the togglePlay function
   const togglePlay = useCallback(() => {
     const audioElement = audioRef.current;
     if (audioElement) {
@@ -30,7 +29,7 @@ export default function AudioView({ data }) {
         audioElement.play();
       }
     }
-  }, [isPlaying]); // `isPlaying` is the dependency
+  }, [isPlaying]);
 
   const handleVolumeChange = (e) => {
     const newVolume = e.target.value / 100;
@@ -88,7 +87,6 @@ export default function AudioView({ data }) {
     }
   };
 
-  // Event listener for play and pause to sync state with audio element
   useEffect(() => {
     const audioElement = audioRef.current;
 
@@ -108,19 +106,19 @@ export default function AudioView({ data }) {
     };
   }, []);
 
-  // Keyboard controls
   useEffect(() => {
     const handleKeyDown = (e) => {
-      e.preventDefault();
 
       switch (e.key) {
         case " ":
         case "Space":
+          e.preventDefault();
           togglePlay();
           break;
 
         case "ArrowUp":
           if (volume < 1) {
+            e.preventDefault();
             setVolume((prevVolume) => Math.min(prevVolume + 0.05, 1));
             if (audioRef.current) audioRef.current.volume = Math.min(volume + 0.05, 1);
           }
@@ -128,17 +126,20 @@ export default function AudioView({ data }) {
 
         case "ArrowDown":
           if (volume > 0) {
+            e.preventDefault();
             setVolume((prevVolume) => Math.max(prevVolume - 0.05, 0));
             if (audioRef.current) audioRef.current.volume = Math.max(volume - 0.05, 0);
           }
           break;
 
         case "ArrowRight":
+          e.preventDefault();
           setCurrentTime((prevTime) => Math.min(prevTime + 10, duration));
           if (audioRef.current) audioRef.current.currentTime = Math.min(currentTime + 10, duration);
           break;
 
         case "ArrowLeft":
+          e.preventDefault();
           setCurrentTime((prevTime) => Math.max(prevTime - 10, 0));
           if (audioRef.current) audioRef.current.currentTime = Math.max(currentTime - 10, 0);
           break;
@@ -157,16 +158,17 @@ export default function AudioView({ data }) {
 
   return (
     <>
-      <section className="audio-view bg-light text-dark py-5 rounded">
-        <div className="container">
+      <section className="audio-view bg-light text-dark p-5 rounded">
+        <div className="container shadow-sm p-3 rounded ">
           <div className="row mb-4 justify-content-center">
             <div className="col-auto text-center">
               <img
-                src="http://localhost:5000/Uploads/Users/DefaultProfiles/DefaultProfile.jpg"
-                className="img-fluid rounded shadow"
-                style={{ width: "350px", objectFit: "cover" }}
+                src="https://i.pinimg.com/originals/42/c8/4f/42c84f4f71bf4b1c51ecef5336aac55d.gif"
+                className="img-fluid rounded shadow mb-2 p-2"
+                style={{ width: "350px", objectFit: "cover", aspectRatio: "3/3" }}
                 alt="Default Profile"
               />
+              <h2>{data.root}</h2>
             </div>
           </div>
           <div className="row justify-content-center">
@@ -206,8 +208,8 @@ export default function AudioView({ data }) {
                     </button>
                     {volumeHover && (
                       <div
-                        className="volume-slider-box position-absolute p-2 d-flex flex-row-reverse shadow align-items-center justify-content-center"
-                        style={{ top: "-330%" }}
+                        className="volume-slider-box position-absolute p-2 d-flex flex-row-reverse shadow-sm align-items-center justify-content-center"
+                        style={{ top: "-340%" }}
                       >
                         <input
                           type="range"
