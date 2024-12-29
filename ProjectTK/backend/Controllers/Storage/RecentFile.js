@@ -20,6 +20,11 @@ const RecentFile = async (req, res) => {
 
         const isRecent = await Recent.findOne({ username });
 
+        const isExisting = await Recent.findOne({ username, "recentFiles.filePath": filePath })
+        if (isExisting) {
+            return res.status(400).json({ error: "Same File" })
+        }
+
         if (!isRecent) {
             const createNewRecent = Recent({
                 username,
