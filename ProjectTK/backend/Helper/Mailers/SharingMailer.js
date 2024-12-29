@@ -3,7 +3,6 @@ import ejs from "ejs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-
 const SharingMailer = async ({ email, downloadLink }) => {
     try {
         const __filename = fileURLToPath(import.meta.url);
@@ -27,13 +26,13 @@ const SharingMailer = async ({ email, downloadLink }) => {
             subject: "Shared Files Email",
             text: "You Got Email With File Download Link",
             html: htmlContent,
-        }
+        };
 
         const info = await transport.sendMail(MailSchema);
-        console.log(info.response)
+        console.log(info.response);
     } catch (error) {
         console.error("Error sending verification email: ", error.message);
     }
 }
 
-export default SharingMailer
+export default SharingMailer;

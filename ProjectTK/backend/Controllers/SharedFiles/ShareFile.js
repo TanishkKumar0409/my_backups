@@ -7,21 +7,20 @@ const ShareFiles = async (req, res) => {
         let { email, message } = req.body;
         const { username } = req.params;
 
-
-        const isExisting = await Users.findOne({ username })
+        const isExisting = await Users.findOne({ username });
         if (!isExisting) {
-            return res.status(404).json({ error: "Please Login" })
+            return res.status(404).json({ error: "Please Login" });
         }
 
         if (isExisting.status === "BLOCKED") {
-            return res.status(400).json({ error: "Sorry, You are Blocked" })
+            return res.status(400).json({ error: "Sorry, You are Blocked" });
         }
 
         if (!message) {
             message = "No Message provided";
         }
 
-        const lastSharedFile = await History.findOne().sort({ sharingId: -1 })
+        const lastSharedFile = await History.findOne().sort({ sharingId: -1 });
         const sharingId = lastSharedFile ? lastSharedFile.sharingId + 1 : 1;
 
         if (!req.files || req.files.length === 0) {
@@ -57,7 +56,7 @@ const ShareFiles = async (req, res) => {
         }
 
     } catch (error) {
-        return res.status(500).json({ error: error.message })
+        return res.status(500).json({ error: error.message });
     }
 }
 

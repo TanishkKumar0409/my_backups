@@ -20,7 +20,7 @@ export default function DownloadLink() {
             }
         };
         getData();
-    }, []);
+    }, [username]);
 
     const handleCopy = (link) => {
         navigator.clipboard.writeText(link);

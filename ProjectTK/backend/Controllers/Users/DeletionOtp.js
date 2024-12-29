@@ -13,7 +13,7 @@ const DeletionOtp = async (req, res) => {
         }
 
         if (existingUser.status === "BLOCKED") {
-            return res.status(400).json({ error: "Sorry, You are Blocked" })
+            return res.status(400).json({ error: "Sorry, You are Blocked" });
         }
 
         const isMatch = await bcryptjs.compare(password, existingUser.password);
@@ -41,7 +41,7 @@ const DeletionOtp = async (req, res) => {
         };
 
         const info = await transport.sendMail(MailSchema);
-        console.log(info.response)
+        console.log(info.response);
 
         if (info.accepted.length > 0) {
             const updatedUser = await Users.findOneAndUpdate(
@@ -65,7 +65,7 @@ const DeletionOtp = async (req, res) => {
         }
     } catch (error) {
         console.error("Error in DeletionOtp:", error);
-        return res.status(500).json({ error: "Something went wrong" });
+        return res.status(500).json({ error: error.message });
     }
 };
 

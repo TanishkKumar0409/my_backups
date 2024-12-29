@@ -30,14 +30,22 @@ app.use("/api/", router);
 setInterval(() => {
     deleteShareingFiles();
     ProfilesCleaner();
-    CancelDelete()
-    StorageCleaner()
+    CancelDelete();
+    StorageCleaner();
 }, 1000);
 
 mongoose.connect(DbName)
     .then(() => console.log(`Database Connected`))
-    .catch((error) => console.log("a",error));
+    .catch((error) => console.log("a", error));
 
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
-});
+const handleStart = () => {
+    try {
+        app.listen(PORT, () => {
+            console.log(`Server running at http://localhost:${PORT}`);
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+handleStart();

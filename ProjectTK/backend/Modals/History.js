@@ -42,7 +42,7 @@ const HistorySchema = mongoose.Schema({
         type: Date,
         default: Date.now()
     }
-}, { timestamps: true })
+}, { timestamps: true });
 
 const History = mongoose.model("FileHistory", HistorySchema);
 

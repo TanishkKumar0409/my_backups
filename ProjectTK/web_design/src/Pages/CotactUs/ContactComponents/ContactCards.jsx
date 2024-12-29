@@ -40,7 +40,7 @@ export default function ContactCards() {
             <div className="container">
                 <div className="row">
 
-                    <div className="col-md-4">
+                    <div className="col-md-4 p-1">
                         <div className="featureCard position-relative rounded overflow-hidden border" style={{ "--cardColor": getColor(Card1) }}>
                             <img
                                 src={img}
@@ -50,7 +50,7 @@ export default function ContactCards() {
                             <div className="featureCardContent p-4 text-center text-white">
                                 <div className="featureCardIcon mb-3">
                                     <i
-                                        className="fa fa-user p-3 fs-2 rounded-4 shadow"
+                                        className="fa fa-envelope p-3 fs-2 rounded-4 shadow"
                                         style={{
                                             background: "rgba(255, 255, 255, 0.7)",
                                             color: getColor(Card1),
@@ -58,12 +58,12 @@ export default function ContactCards() {
                                     ></i>
                                 </div>
                                 <h3 className="featureCardTitle mb-2">Email:</h3>
-                                <h4 className="featureCardText">Tansihkk60@gmail.com</h4>
+                                <a href="mailto:tanishkk60@gmail.com" className="featureCardText text-light text-decoration-none fs-4 fw-semibold">tanishkk60@gmail.com</a>
                             </div>
                         </div>
                     </div>
 
-                    <div className="col-md-4">
+                    <div className="col-md-4 p-1">
                         <div className="featureCard position-relative rounded overflow-hidden border" style={{ "--cardColor": getColor(Card2) }}>
                             <img
                                 src={img}
@@ -81,12 +81,13 @@ export default function ContactCards() {
                                     ></i>
                                 </div>
                                 <h3 className="featureCardTitle mb-2">Contact:</h3>
-                                <h4 className="featureCardText">+1 (234) 567-890</h4>
+                                <a href="tel:+919557623131" className="featureCardText text-light text-decoration-none fs-4 fw-semibold">+91 9557623131</a>
+
                             </div>
                         </div>
                     </div>
 
-                    <div className="col-md-4">
+                    <div className="col-md-4 p-1">
                         <div className="featureCard position-relative rounded overflow-hidden" style={{ "--cardColor": getColor(Card3) }}>
                             <img
                                 src={img}
@@ -95,27 +96,35 @@ export default function ContactCards() {
                             />
                             <div className="featureCardContent p-4 text-center text-white">
                                 <div className="featureCardIcon mb-3">
-                                    <i
-                                        className="fa fa-youtube me-2 p-3 fs-2 rounded-4 shadow"
-                                        style={{
-                                            background: "rgba(255, 255, 255, 0.7)",
-                                            color: getColor(Card3),
-                                        }}
-                                    ></i>
-                                    <i
-                                        className="fa fa-instagram me-2 p-3 fs-2 rounded-4 shadow"
-                                        style={{
-                                            background: "rgba(255, 255, 255, 0.7)",
-                                            color: getColor(Card3),
-                                        }}
-                                    ></i>
-                                    <i
-                                        className="fa fa-twitter p-3 fs-2 rounded-4 shadow"
-                                        style={{
-                                            background: "rgba(255, 255, 255, 0.7)",
-                                            color: getColor(Card3),
-                                        }}
-                                    ></i>
+                                    <a href="http://youtube.com" target='_blank' rel='noreferrer'>
+                                        <i
+                                            className="fa fa-youtube me-2 p-3 fs-2 rounded-4 shadow"
+                                            style={{
+                                                background: "rgba(255, 255, 255, 0.7)",
+                                                color: getColor(Card3),
+                                            }}
+                                        ></i>
+                                    </a>
+                                    <a href="http://instagram.com" target='_blank' rel='noreferrer'>
+                                        <i
+                                            className="fa fa-instagram me-2 p-3 fs-2 rounded-4 shadow"
+                                            style={{
+                                                background: "rgba(255, 255, 255, 0.7)",
+                                                color: getColor(Card3),
+                                            }}
+                                        ></i>
+                                    </a>
+
+                                    <a href="http://twitter.com" target='_blank' rel='noreferrer'>
+                                        <i
+                                            className="fa fa-twitter p-3 fs-2 rounded-4 shadow"
+                                            style={{
+                                                background: "rgba(255, 255, 255, 0.7)",
+                                                color: getColor(Card3),
+                                            }}
+                                        ></i>
+                                    </a>
+
                                 </div>
                                 <h3 className="featureCardTitle mb-2">Follow Us:</h3>
                                 <h4 className="featureCardText">Connect with us on social media!</h4>

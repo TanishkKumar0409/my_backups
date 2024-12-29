@@ -8,18 +8,18 @@ const CreateFolder = async (req, res) => {
             return res.status(400).json({ error: "Required fields missing" });
         }
 
-        const isUser = await Users.findOne({ username })
+        const isUser = await Users.findOne({ username });
         if (!isUser) {
-            return res.status(404).json({ error: "Please Register first" })
+            return res.status(404).json({ error: "Please Register first" });
         }
 
         if (isUser.status === "BLOCKED") {
-            return res.status(400).json({ error: "Sorry, You are Blocked" })
+            return res.status(400).json({ error: "Sorry, You are Blocked" });
         }
 
-        const RepeatedFolder = await Storage.findOne({ username, root, parentId })
+        const RepeatedFolder = await Storage.findOne({ username, root, parentId });
         if (RepeatedFolder) {
-            return res.status(400).json({ error: "This Folder is Already exist" })
+            return res.status(400).json({ error: "This Folder is Already exist" });
         }
 
         let parentFolder = null;
@@ -54,11 +54,8 @@ const CreateFolder = async (req, res) => {
                 );
                 res.status(201).json({ message: "Folder created successfully", savedFolder, setChildren });
             }
-
         }
-
     } catch (error) {
-        console.log(error)
         return res.status(500).json({ error: error.message });
     }
 };

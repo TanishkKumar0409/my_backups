@@ -26,8 +26,8 @@ const deleteSharingFiles = async (req, res) => {
                 try {
                     await fs.unlink(filePathToDelete);
                     console.log(`Deleted file not in database: ${fileName}`);
-                } catch (err) {
-                    console.error(`Error deleting file: ${fileName}`, err);
+                } catch (error) {
+                    console.error(`Error deleting file: ${fileName}`, error);
                 }
             }
         }
@@ -42,11 +42,11 @@ const deleteSharingFiles = async (req, res) => {
                             const filePath = record.filePath[i];
                             await fs.access(filePath);
                             await fs.unlink(filePath);
-                        } catch (err) {
-                            if (err.code === "ENOENT") {
+                        } catch (error) {
+                            if (error.code === "ENOENT") {
                                 console.log(`File does not exist: ${record.filePath[i]}`);
                             } else {
-                                console.error(`Error deleting file: ${record.filePath[i]}`, err);
+                                console.error(`Error deleting file: ${record.filePath[i]}`, error);
                             }
                         }
                     }
@@ -70,8 +70,8 @@ const deleteSharingFiles = async (req, res) => {
                 }
             }
         }
-    } catch (err) {
-        console.error("Error accessing templatePath or reading files:", err);
+    } catch (error) {
+        console.error("Error accessing templatePath or reading files:", error);
     }
 };
 

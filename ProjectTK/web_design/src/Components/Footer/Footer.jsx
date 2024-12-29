@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom"
 
 export default function Footer() {
+    const loginToken = localStorage.getItem("loginToken")
     return (
         <footer className="py-4">
             <div className="container">
@@ -16,7 +17,6 @@ export default function Footer() {
                     </div>
                 </div>
 
-
                 <div className="text-center mb-3">
                     <Link to={"/"}><img
                         src="https://img.pikbest.com/png-images/20241027/eagle-shield-emblem-logo_11012401.png!bw700"
@@ -26,20 +26,30 @@ export default function Footer() {
                     /></Link>
 
                     <nav className="d-flex justify-content-center align-items-center mb-3">
-                        <ul className="list-unstyled d-flex fw-bold">
-                            <li className="mx-3">
-                                <Link to="/main" className="text-dark text-decoration-none">Home</Link>
-                            </li>
-                            <li className="mx-3">
-                                <Link to="/main/history" className="text-dark text-decoration-none">History</Link>
-                            </li>
-                            <li className="mx-3">
-                                <Link to="/main/storage" className="text-dark text-decoration-none">Storage</Link>
-                            </li>
-                            <li className="mx-3">
-                                <Link to="/main/contact" className="text-dark text-decoration-none">Contact</Link>
-                            </li>
-                        </ul>
+                        {loginToken ?
+                            <ul className="list-unstyled d-flex fw-bold">
+                                <li className="mx-3">
+                                    <Link to="/main" className="text-dark text-decoration-none">Home</Link>
+                                </li>
+                                <li className="mx-3">
+                                    <Link to="/main/history" className="text-dark text-decoration-none">History</Link>
+                                </li>
+                                <li className="mx-3">
+                                    <Link to="/main/storage" className="text-dark text-decoration-none">Storage</Link>
+                                </li>
+                                <li className="mx-3">
+                                    <Link to="/contact" className="text-dark text-decoration-none">Contact</Link>
+                                </li>
+                            </ul>
+                            :
+                            <ul className="list-unstyled d-flex fw-bold">
+                                <li className="mx-3">
+                                    <Link to="/" className="text-dark text-decoration-none">Home</Link>
+                                </li>
+                                <li className="mx-3">
+                                    <Link to="/contact" className="text-dark text-decoration-none">Contact</Link>
+                                </li>
+                            </ul>}
                     </nav>
 
                     <div className="mb-3">

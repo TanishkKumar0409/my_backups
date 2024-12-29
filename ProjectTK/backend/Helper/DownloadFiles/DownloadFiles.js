@@ -32,22 +32,23 @@ const DownloadFiles = async (req, res) => {
         await archive.finalize();
 
         output.on("close", () => {
-            res.download(zipPath, zipFilename, (err) => {
-                if (err) {
-                    console.error("Error downloading the ZIP file:", err);
+            res.download(zipPath, zipFilename, (error) => {
+                if (error) {
+                    console.error("Error downloading the ZIP file:", error);
                 }
 
-                fs.unlink(zipPath, (err) => {
-                    if (err) {
-                        console.error("Error deleting the ZIP file:", err);
+                fs.unlink(zipPath, (error) => {
+                    if (error) {
+                        console.error("Error deleting the ZIP file:", error);
+                    } else {
+                        console.log("Zip Deleted")
                     }
                 });
             });
         });
 
-        output.on("error", (err) => {
-            console.error("Error creating ZIP file:", err);
-            res.status(500).json({ error: "Error creating ZIP file." });
+        output.on("error", (error) => {
+            res.status(500).json({ error: error.message });
         });
     } catch (error) {
         return res.status(500).json({ error: error.message });

@@ -12,14 +12,14 @@ const DeleteUser = async (req, res) => {
 
         const isUser = await Users.findOne({ username });
         if (!isUser) {
-            return res.status(404).json("User not Found")
+            return res.status(404).json("User not Found");
         }
         if (isUser.deletionOtp !== parseInt(deletionOtp)) {
-            return res.status(400).json("invalid Otp")
+            return res.status(400).json("invalid Otp");
         }
 
         const DeletedUser = await Users.findOneAndDelete({ username });
-        const DeletedStorage = await Storage.deleteMany({ username })
+        const DeletedStorage = await Storage.deleteMany({ username });
 
         if (DeletedUser) {
             return res.status(200).json({ message: "Account Deleted", DeletedUser, DeletedStorage });

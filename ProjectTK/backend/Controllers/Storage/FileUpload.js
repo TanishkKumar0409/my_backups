@@ -16,7 +16,7 @@ const FileUpload = async (req, res) => {
         }
 
         if (isUser.status === "BLOCKED") {
-            return res.status(400).json({ error: "Sorry, You are Blocked" })
+            return res.status(400).json({ error: "Sorry, You are Blocked" });
         }
 
         const folder = await Storage.findOne({ folderId: parentId, username, type: "folder" });
@@ -30,11 +30,11 @@ const FileUpload = async (req, res) => {
         const usedSize = req.file ? req.file.size + currentUsedSize : "0";
 
         if (currentUsedSize >= totalSize) {
-            return res.status(400).json({ error: "Storage Full" })
+            return res.status(400).json({ error: "Storage Full" });
         }
 
         if (req.file.size > remainingSize) {
-            return res.status(400).json({ error: "Do not have Enough Space" })
+            return res.status(400).json({ error: "Do not have Enough Space" });
         }
 
         let parentFolder = null;
@@ -67,7 +67,7 @@ const FileUpload = async (req, res) => {
                 { new: true }
             );
 
-            await Users.findOneAndUpdate({ username }, { $set: { usedStorage: usedSize } }, { new: true })
+            await Users.findOneAndUpdate({ username }, { $set: { usedStorage: usedSize } }, { new: true });
 
             res.status(201).json({
                 message: "File uploaded successfully",

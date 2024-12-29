@@ -47,8 +47,8 @@ const UsersSchema = mongoose.Schema({
     otpExpiry: {
         type: Date,
     }
-}, { timestamps: true })
+}, { timestamps: true });
 
-const Users = mongoose.model("Users", UsersSchema)
+const Users = mongoose.model("Users", UsersSchema);
 
 export default Users;

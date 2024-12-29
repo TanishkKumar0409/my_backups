@@ -194,6 +194,10 @@
   color: var(--success-green);
 }
 
+.form-box{
+  z-index: 1;
+}
+
 .form-box:after {
   content: "";
   position: absolute;
@@ -204,6 +208,7 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
+ z-index: -1; 
 }
 
 .form-box::before {
@@ -215,6 +220,7 @@
   right: -10%;
   width: 200px;
   height: 200px;
+  z-index: 0;
   border-radius: 50%;
 }
 
@@ -590,8 +596,4 @@ iframe {
   .file-content {
     width: 90%;
   }
-}
-
-.min-200{
-  min-height: 200px;
 }

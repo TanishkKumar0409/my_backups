@@ -13,7 +13,7 @@ const CancelDelete = async (req, res) => {
             );
             if (canceledOtp) {
                 updatedUsers.push(canceledOtp.email);
-                console.log(`${canceledOtp.name} Otp has Been Expired`)
+                console.log(`${canceledOtp.name} Otp has Been Expired`);
             }
         }
     }

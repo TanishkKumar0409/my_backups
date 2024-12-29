@@ -5,10 +5,10 @@ const GetDataByDownloadLink = async (req, res) => {
         const { username } = req.params;
         const data = await History.find({ senderUsername: username, downloadLink: { $exists: true, $ne: null } });
 
-        return res.status(200).json(data)
+        return res.status(200).json(data);
 
     } catch (error) {
-        return res.status(500).json({ error: error.message })
+        return res.status(500).json({ error: error.message });
     }
 }
 

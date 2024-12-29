@@ -85,6 +85,11 @@ export default function Navbar() {
                                     Storage
                                 </Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className={`nav-link fw-bold fs-5 ${isActive("/contact")}`} to="/contact">
+                                    Contact
+                                </Link>
+                            </li>
                         </ul>
 
                         <button

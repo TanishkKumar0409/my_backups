@@ -19,7 +19,7 @@ const registerUser = async (req, res) => {
         const loginToken = jwt.sign({ username, email, contact }, PrivateKey);
 
         if (!username || !name || !email || !contact || !password) {
-            return res.status().json({ error: "All Fields are Required" })
+            return res.status().json({ error: "All Fields are Required" });
         }
 
         const blockedUser = await Users.findOne({ $or: [{ email }, { contact }], status: "BLOCKED" });
@@ -63,7 +63,7 @@ const registerUser = async (req, res) => {
                 type: "folder",
                 parentId: null,
                 children: []
-            })
+            });
             const savedFolder = await createFolder.save();
             return res.status(201).json({ message: "User Registered Successfully", loginUser, loginToken, savedFolder });
         }

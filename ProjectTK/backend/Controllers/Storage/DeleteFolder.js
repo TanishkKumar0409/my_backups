@@ -15,7 +15,7 @@ const DeleteFolder = async (req, res) => {
         }
 
         if (isUser.status === "BLOCKED") {
-            return res.status(400).json({ error: "Sorry, You are Blocked" })
+            return res.status(400).json({ error: "Sorry, You are Blocked" });
         }
 
         if (folderId === 1) {
@@ -45,7 +45,7 @@ const DeleteFolder = async (req, res) => {
                     $pull: {
                         children: folderId
                     }
-                }, { new: true })
+                }, { new: true });
 
                 if (deletedFolder.type === "file") {
                     const currentUsedSize = isUser.usedStorage || 0;

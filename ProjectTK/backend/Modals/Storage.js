@@ -32,7 +32,7 @@ const folderSchema = new Schema({
     fileSize: {
         type: Number,
     }
-})
+});
 
-const Storage = mongoose.model("storage", folderSchema)
+const Storage = mongoose.model("storage", folderSchema);
 export default Storage;
