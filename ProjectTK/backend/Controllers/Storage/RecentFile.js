@@ -3,9 +3,9 @@ import Users from "../../Modals/Users.js";
 
 const RecentFile = async (req, res) => {
     try {
-        const { username, filePath } = req.body;
+        const { username, folderId } = req.body;
 
-        if (!username || !filePath) {
+        if (!username || !folderId) {
             return res.status(400).json({ error: "Required fields missing" });
         }
 
@@ -20,9 +20,13 @@ const RecentFile = async (req, res) => {
 
         const isRecent = await Recent.findOne({ username });
 
-        const isExisting = await Recent.findOne({ username, "recentFiles.filePath": filePath })
+
+        const recentLength = isRecent?.recentFiles.length;
+        console.log(recentLength)
+
+        const isExisting = await Recent.findOne({ username, "recentFiles.folderId": folderId });
         if (isExisting) {
-            return res.status(400).json({ error: "Same File" })
+            return res.status(400).json({ error: "Same File" });
         }
 
         if (!isRecent) {
@@ -30,17 +34,16 @@ const RecentFile = async (req, res) => {
                 username,
                 recentFiles: [
                     {
-                        filePath,
+                        folderId,
                         usedDate: Date.now()
                     }
                 ]
             });
-            const savedRecent = await createNewRecent.save()
+            const savedRecent = await createNewRecent.save();
 
-            return res.status(201).json({ message: "Created User Recent", savedRecent })
+            return res.status(201).json({ message: "Created User Recent", savedRecent });
         }
 
-        const recentLength = isRecent?.recentFiles.length;
 
         if (isRecent) {
             if (recentLength >= 5) {
@@ -50,37 +53,38 @@ const RecentFile = async (req, res) => {
 
                 await Recent.findOneAndUpdate({ username }, {
                     $pull: { recentFiles: { _id: oldestFile._id } },
-                })
+                });
+
                 await Recent.findOneAndUpdate({ username }, {
                     $push: {
                         recentFiles: {
-                            filePath,
+                            folderId,
                             usedDate: Date.now()
                         }
                     }
-                }, { new: true })
+                }, { new: true });
 
-                return res.status(200).json({ message: "File Add To Recent" })
+                return res.status(200).json({ message: "File Add To Recent" });
             }
             else {
                 const addRecentFile = await Recent.findOneAndUpdate({ username }, {
                     $push: {
                         recentFiles: {
-                            filePath,
+                            folderId,
                             usedDate: Date.now()
                         }
                     }
-                }, { new: true })
-                return res.status(200).json({ message: "File Add To Recent", addRecentFile })
+                }, { new: true });
+
+                return res.status(200).json({ message: "File Add To Recent", addRecentFile });
             }
         }
 
-        return res.json(isRecent)
-
+        return res.json(isRecent);
 
     } catch (error) {
-        return res.status(500).json({ error: error.message })
+        return res.status(500).json({ error: error.message });
     }
-}
+};
 
 export default RecentFile;

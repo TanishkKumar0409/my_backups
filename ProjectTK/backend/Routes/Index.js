@@ -29,6 +29,7 @@ import DeleteFolder from "../Controllers/Storage/DeleteFolder.js";
 import DownloadStoredFile from "../Controllers/Storage/DownloadStoredFile.js";
 import GetParticularFile from "../Controllers/Storage/GetPartiCularFile.js";
 import RecentFile from "../Controllers/Storage/RecentFile.js";
+import GetRecents from "../Controllers/Storage/GetRecents.js";
 
 const router = express.Router()
 
@@ -102,6 +103,7 @@ router.delete("/storage/folder/delete", DeleteFolder);
 router.get("/storage/file/download", DownloadStoredFile);
 router.get("/storage/file/single", GetParticularFile);
 router.post("/storage/recent", RecentFile)
+router.get("/storage/recent/:username", GetRecents)
 
 
 export default router;

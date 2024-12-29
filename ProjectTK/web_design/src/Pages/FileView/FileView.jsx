@@ -26,30 +26,6 @@ export default function FileView() {
         getData();
     }, [id, username]);
 
-    useEffect(() => {
-        const Recent = async () => {
-            if (data) {
-                const recentData = {
-                    username: data.username,
-                    filePath: data.filePath
-                }
-                if (recentData) {
-                    try {
-                        const settingRecent = await noFileAPI.post("/storage/recent", recentData);
-                        console.log(settingRecent.data.message);
-                    } catch (error) {
-                        if (error.response.data.error !== "Same File") {
-                            console.log(error.response.data.error)
-                        }
-                    }
-                }
-            }
-        }
-        Recent()
-    }, [data])
-
-
-
     const fileName = data?.root;
 
     const getFileType = (file) => {

@@ -31,13 +31,27 @@ export default function FileExplorer({ username }) {
             folderData.find((item) => item.folderId === id)
         ) || [];
 
-    const handleFolderClick = (folder) => {
+    const handleFolderClick = async (folder) => {
         setSelectedItemId(null);
         if (folder.type === "folder") {
             setFolderStack([...folderStack, currentFolderId]);
             setCurrentFolderId(folder.folderId);
         } else {
-            redirector(`/main/file/view/${selectedItemId}`)
+            const recentData = {
+                username,
+                folderId: selectedItemId
+            }
+            if (recentData) {
+                try {
+                    const recentResponse = await noFileAPI.post("/storage/recent", recentData)
+                    console.log(recentResponse.data.message)
+
+                } catch (error) {
+                    console.log(error.response.data.error)
+                }
+
+                redirector(`/main/file/view/${selectedItemId}`)
+            }
         }
     };
 

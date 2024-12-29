@@ -7,8 +7,8 @@ const RecentSchema = mongoose.Schema({
     },
     recentFiles: [
         {
-            filePath: {
-                type: String,
+            folderId: {
+                type: Number,
                 required: true
             },
             usedDate: {
