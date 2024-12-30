@@ -7,7 +7,7 @@ export default function History() {
     const BannerData = {
         icon: "share-from-square",
         heading: "Shared History",
-        para: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, aperiam reprehenderit odit saepe error esse quaerat sint. Quisquam, tempore aliquid."
+        para: "Explore your complete file-sharing history, track shared files, and view recipient details with ease."
     };
 
     return (

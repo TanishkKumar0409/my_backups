@@ -194,7 +194,7 @@
   color: var(--success-green);
 }
 
-.form-box{
+.form-box {
   z-index: 1;
 }
 
@@ -208,7 +208,7 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
- z-index: -1; 
+  z-index: -1;
 }
 
 .form-box::before {
@@ -596,4 +596,13 @@ iframe {
   .file-content {
     width: 90%;
   }
+}
+
+.socialIcons {
+  transition: 1s ease-in-out;
+  transform: scale(1);
+}
+
+.socialIcons:hover {
+  transform: scale(1.2)translateY(-5px);
 }

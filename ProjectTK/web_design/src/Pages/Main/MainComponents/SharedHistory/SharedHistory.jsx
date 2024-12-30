@@ -10,9 +10,10 @@ export default function SharedHistory() {
                     <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": "'Shared History'" }}>
                         Shared History
                     </h2>
-                    <p className="px-5 text-center text-muted">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea eveniet tempora, eius cumque necessitatibus nihil.
+                    <p className="px-5 text-center">
+                        View the history of shared files, keeping track of all documents shared with others for easy reference and management.
                     </p>
+
                     <div className="col">
                         <ShareFilesTable />
                         <div className='text-center mt-3'>

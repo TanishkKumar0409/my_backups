@@ -9,10 +9,8 @@ export default function ContactUs() {
     const BannerData = {
         icon: "blender-phone",
         heading: "Contact Us",
-        para: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, aperiam reprehenderit odit saepe error esse quaerat sint. Quisquam, tempore aliquid."
+        para: "Have questions or need assistance? Reach out to us and we’ll be happy to help. Our support team is available to assist you with any inquiries or issues you may have."
     };
-
-
 
     return (
         <>

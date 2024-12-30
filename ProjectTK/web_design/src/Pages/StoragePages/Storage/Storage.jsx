@@ -10,8 +10,8 @@ export default function Storage() {
     const BannerData = {
         icon: "hard-drive",
         heading: "Storage",
-        para: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, aperiam reprehenderit odit saepe error esse quaerat sint. Quisquam, tempore aliquid."
-    };
+        para: "Manage and monitor your storage space effortlessly. Keep track of your files, optimize storage usage, and ensure smooth access to your important documents and data."
+    };    
 
     return (
         <>

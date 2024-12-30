@@ -98,7 +98,7 @@ export default function ContactCards() {
                                 <div className="featureCardIcon mb-3">
                                     <a href="http://youtube.com" target='_blank' rel='noreferrer'>
                                         <i
-                                            className="fa fa-youtube me-2 p-3 fs-2 rounded-4 shadow"
+                                            className="fa socialIcons fa-youtube me-2 p-3 fs-2 rounded-4 shadow"
                                             style={{
                                                 background: "rgba(255, 255, 255, 0.7)",
                                                 color: getColor(Card3),
@@ -107,7 +107,7 @@ export default function ContactCards() {
                                     </a>
                                     <a href="http://instagram.com" target='_blank' rel='noreferrer'>
                                         <i
-                                            className="fa fa-instagram me-2 p-3 fs-2 rounded-4 shadow"
+                                            className="fa socialIcons fa-instagram me-2 p-3 fs-2 rounded-4 shadow"
                                             style={{
                                                 background: "rgba(255, 255, 255, 0.7)",
                                                 color: getColor(Card3),
@@ -117,7 +117,7 @@ export default function ContactCards() {
 
                                     <a href="http://twitter.com" target='_blank' rel='noreferrer'>
                                         <i
-                                            className="fa fa-twitter p-3 fs-2 rounded-4 shadow"
+                                            className="fa socialIcons fa-twitter p-3 fs-2 rounded-4 shadow"
                                             style={{
                                                 background: "rgba(255, 255, 255, 0.7)",
                                                 color: getColor(Card3),

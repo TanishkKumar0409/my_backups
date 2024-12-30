@@ -90,7 +90,9 @@ export default function RecentFiles() {
           <div className="container py-5 mt-5 bg-white">
             <div className="row">
               <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": "'Recent Files'" }}>Recent Files</h2>
-              <p className="px-5 text-center">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea eveniet tempora, eius cumque necessitatibus nihil.</p>
+              <p className="px-5 text-center">
+                Stay updated with the latest documents and resources in the Recent Files section, making it easy to access and manage your most relevant files.
+              </p>
               <div className="col">
                 <OwlCarousel className="owl-theme" {...owlOptions}>
                   {fileData.map((item, index) => (
