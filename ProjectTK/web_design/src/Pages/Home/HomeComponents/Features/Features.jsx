@@ -44,7 +44,7 @@ export default function Features() {
                 <OwlCarousel className="owl-theme" {...owlOptions}>
                     {MyFeatures.map((feature, index) => (
                         <div className="item" key={index}>
-                            <div className="featureCard position-relative rounded overflow-hidden border" style={{ "--cardColor": getColor(index) }}>
+                            <div className="featureCard position-relative rounded overflow-hidden border align-content-center" style={{ minHeight: "300px", "--cardColor": getColor(index) }}>
                                 <img
                                     src={img}
                                     className="position-absolute top-0 start-0 w-100 h-100 featureImg"
@@ -54,10 +54,7 @@ export default function Features() {
                                     <div className="featureCardIcon mb-3">
                                         <i
                                             className={`fa ${feature.iconClass} p-3 fs-2 rounded-4 shadow`}
-                                            style={{
-                                                background: "rgba(255, 255, 255, 0.7)",
-                                                color:  getColor(index) ,
-                                            }}
+                                            style={{ background: "rgba(255, 255, 255, 0.7)", color: getColor(index), }}
                                         ></i>
                                     </div>
                                     <h3 className="featureCardTitle mb-2">{feature.title}</h3>
