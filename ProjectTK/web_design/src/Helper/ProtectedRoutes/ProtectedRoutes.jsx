@@ -6,13 +6,13 @@ export default function ProtectedRoutes({ children }) {
     const location = useLocation();
     const path = location.pathname;
 
-    const nonLogin = ["/", "/form"]
-    const includeLogin = ['/main', "/main/history","/main/storage"]
+    const nonLogin = ["/", "/form"];
+    const includeLogin = ['/main', "/main/history", "/main/storage"];
 
     if (loginToken && nonLogin.includes(path)) {
-        return <Navigate to={"/main"} replace />
+        return <Navigate to={"/main"} replace />;
     } if (!loginToken && includeLogin.includes(path)) {
-        return <Navigate to={"/"} replace />
+        return <Navigate to={"/"} replace />;
     }
     return children;
 }

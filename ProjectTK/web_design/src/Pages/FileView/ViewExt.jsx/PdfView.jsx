@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Document, Page } from "react-pdf";
 
 export default function PdfView({ data }) {
-    const [numPages, setNumPage] = useState()
+    const [numPages, setNumPage] = useState();
 
     function onDocumentLoadSuccess({ numPages }) {
-        setNumPage(numPages)
+        setNumPage(numPages);
     }
 
     return (

@@ -32,7 +32,7 @@ export default function RecentFiles() {
         const response = await noFileAPI.get(`/storage/recent/${username}`);
         setData(response.data.recentFiles);
       } catch (error) {
-        console.log(error);
+        console.log(error.response.data.error);
       }
     };
     getData();
@@ -45,7 +45,7 @@ export default function RecentFiles() {
           const files = await Promise.all(
             data.map(async (element) => {
               const response = await noFileAPI.get(`/storage/file/single?username=${username}&folderId=${element.folderId}`);
-              return response.data; // Assuming response.data contains the file object
+              return response.data;
             })
           );
           setFileData(files);

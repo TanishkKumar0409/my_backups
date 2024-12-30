@@ -13,6 +13,7 @@ export default function DeleteAccount({ onCancel, userData }) {
                 email: formik.values.email,
                 password: formik.values.password,
             });
+
             if (response.status === 200) {
                 toast("OTP sent successfully");
                 setOtpSent(true);

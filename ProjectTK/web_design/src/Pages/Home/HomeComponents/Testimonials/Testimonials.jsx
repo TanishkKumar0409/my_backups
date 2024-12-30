@@ -22,7 +22,7 @@ export default function Testimonials() {
     };
 
     const getValue = () => {
-        const createRandom = Math.floor(Math.random() * 999999)
+        const createRandom = Math.floor(Math.random() * 999999);
         return createRandom;
     }
 

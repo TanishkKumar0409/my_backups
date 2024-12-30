@@ -22,7 +22,6 @@ const RecentFile = async (req, res) => {
 
 
         const recentLength = isRecent?.recentFiles.length;
-        console.log(recentLength)
 
         const isExisting = await Recent.findOne({ username, "recentFiles.folderId": folderId });
         if (isExisting) {

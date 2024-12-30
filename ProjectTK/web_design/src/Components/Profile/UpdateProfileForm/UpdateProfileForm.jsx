@@ -35,17 +35,12 @@ export default function UpdateProfileForm(props) {
       if (values.password) {
         formData.append("password", values.password);
       }
-
       const fileInput = document.querySelector('#image-upload');
       if (fileInput?.files[0]) {
         formData.append('profile', fileInput.files[0]);
       }
 
-      const response = await API.put(`/user/update/${userData.username}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const response = await API.put(`/user/update/${userData.username}`, formData);
 
       toast.success(response.data.message);
       localStorage.setItem("admin", JSON.stringify(response.data.updatedUser));

@@ -15,11 +15,11 @@ const DownloadFiles = async (req, res) => {
         const { senderUsername, fileName: fileNames, filePath: filePaths } = historyRecord;
 
         if (!filePaths || filePaths.length === 0) {
-            return res.status(404).json({ error: "Download link has been Expired" });
+            return res.status(404).json({ error: "Download link has expired" });
         }
 
         const zipFilename = `shared-files-${senderUsername}.zip`;
-        const zipPath = path.join("./Uploads/shareFiles", zipFilename);
+        const zipPath = path.resolve("./Uploads/shareFiles", zipFilename);
         const archive = archiver("zip", { zlib: { level: 9 } });
 
         const output = fs.createWriteStream(zipPath);
@@ -32,25 +32,39 @@ const DownloadFiles = async (req, res) => {
         await archive.finalize();
 
         output.on("close", () => {
-            res.download(zipPath, zipFilename, (error) => {
-                if (error) {
-                    console.error("Error downloading the ZIP file:", error);
+            console.log(`ZIP file created: ${zipPath} (${archive.pointer()} bytes)`);
+
+            fs.access(zipPath, fs.constants.F_OK, (err) => {
+                if (err) {
+                    console.error("ZIP file does not exist:", err);
+                    return res.status(500).json({ error: "ZIP file creation failed." });
                 }
 
-                fs.unlink(zipPath, (error) => {
+                res.download(zipPath, zipFilename, (error) => {
                     if (error) {
-                        console.error("Error deleting the ZIP file:", error);
-                    } else {
-                        console.log("Zip Deleted")
+                        console.error("Error downloading the ZIP file:", error);
+                        return res.status(500).json({ error: "Error downloading the file." });
                     }
+
+                    console.log("File downloaded successfully");
+
+                    fs.unlink(zipPath, (error) => {
+                        if (error) {
+                            console.error("Error deleting the ZIP file:", error);
+                        } else {
+                            console.log("ZIP file deleted successfully");
+                        }
+                    });
                 });
             });
         });
 
         output.on("error", (error) => {
-            res.status(500).json({ error: error.message });
+            console.error("Stream error:", error);
+            res.status(500).json({ error: "Error creating the ZIP file." });
         });
     } catch (error) {
+        console.error("Error:", error);
         return res.status(500).json({ error: error.message });
     }
 };

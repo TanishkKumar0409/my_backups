@@ -6,7 +6,7 @@ import { noFileAPI } from '../../../Services/API/API';
 import { useNavigate } from 'react-router-dom';
 
 export default function ContactForm() {
-    const redirector = useNavigate()
+    const redirector = useNavigate();
 
     const initialValues = {
         name: '',
@@ -14,16 +14,15 @@ export default function ContactForm() {
         contact: '',
         subject: '',
         message: '',
-    }
+    };
 
     const handleSubmit = async (values) => {
         try {
-            const response = await noFileAPI.post("/user/contact", values)
-            toast.success(response.data.message)
-            redirector("/")
+            const response = await noFileAPI.post("/user/contact", values);
+            toast.success(response.data.message);
+            redirector("/");
         } catch (error) {
-            console.log(error)
-            toast.error(error.response.data.message)
+            toast.error(error.response.data.message);
         }
     }
 

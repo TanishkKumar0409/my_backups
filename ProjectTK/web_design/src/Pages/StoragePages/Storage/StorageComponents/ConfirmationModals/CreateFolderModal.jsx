@@ -4,7 +4,7 @@ import { noFileAPI } from '../../../../../Services/API/API';
 
 export default function CreateFolderModal({ isModalOpen, setIsModalOpen, newFolderName, setNewFolderName, currentFolderId, setFolderData }) {
     if (!isModalOpen) return null;
-    const username = JSON.parse(localStorage.getItem("user"))
+    const username = JSON.parse(localStorage.getItem("user"));
 
     const handleCreateFolder = async () => {
         if (!newFolderName.trim()) {

@@ -23,11 +23,7 @@ export default function Profile(props) {
       >
         <div className="offcanvas-header">
           <h5 className="offcanvas-title" id="offcanvasProfileLabel">
-            {isDeleting
-              ? 'Delete Account'
-              : isUpdating
-                ? 'Update Profile'
-                : 'Profile'}
+            {isDeleting ? 'Delete Account' : (isUpdating ? 'Update Profile' : 'Profile')}
           </h5>
 
           <button

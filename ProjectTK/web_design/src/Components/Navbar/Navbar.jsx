@@ -19,16 +19,16 @@ export default function Navbar() {
 
     const isActive = (path) => location.pathname === path ? "active" : "";
 
-    const user = JSON.parse(localStorage.getItem("user"))
+    const username = JSON.parse(localStorage.getItem("user"));
 
-    const [userData, setUserData] = useState([])
+    const [userData, setUserData] = useState([]);
     useEffect(() => {
         const getData = async () => {
-            const response = await noFileAPI.get(`user/${user}`)
-            setUserData(response.data)
+            const response = await noFileAPI.get(`user/${username}`);
+            setUserData(response.data);
         }
-        getData()
-    }, [user])
+        getData();
+    }, [username])
 
     return (
         <header className={`responsiveNavbar position-fixed w-100 ${navClass}`} style={{ zIndex: 999 }}>

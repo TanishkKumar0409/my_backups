@@ -14,7 +14,7 @@ export default function FileExplorer({ username }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [selectedItemId, setSelectedItemId] = useState(null);
-    const redirector = useNavigate()
+    const redirector = useNavigate();
 
     useEffect(() => {
         const getData = async () => {
@@ -40,17 +40,17 @@ export default function FileExplorer({ username }) {
             const recentData = {
                 username,
                 folderId: selectedItemId
-            }
+            };
+
             if (recentData) {
                 try {
-                    const recentResponse = await noFileAPI.post("/storage/recent", recentData)
-                    console.log(recentResponse.data.message)
-
+                    const recentResponse = await noFileAPI.post("/storage/recent", recentData);
+                    console.log(recentResponse.data.message);
                 } catch (error) {
-                    console.log(error.response.data.error)
+                    console.log(error.response.data.error);
                 }
 
-                redirector(`/main/file/view/${selectedItemId}`)
+                redirector(`/main/file/view/${selectedItemId}`);
             }
         }
     };
@@ -129,9 +129,6 @@ export default function FileExplorer({ username }) {
         }
     };
 
-
-
-
     return (
         <section className="bg-light py-5">
             <div className="container">
@@ -190,7 +187,7 @@ export default function FileExplorer({ username }) {
                                 >
                                     <i className={`fa display-1 fw-bold ${child.type === "folder" ? "fa-folder text-warning" : getFileIcon(child?.root)}`}></i>
                                 </div>
-                                <span className="folder-name mt-2">{child.root}</span>
+                                <span className="folder-name mt-2 truncated-file-name" >{child.root}</span>
                             </div>
                         ))
                     ) : (

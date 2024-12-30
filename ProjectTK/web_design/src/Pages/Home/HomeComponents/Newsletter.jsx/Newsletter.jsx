@@ -13,16 +13,17 @@ export default function Newsletter() {
       toast.error("Email is required");
       return;
     }
+
     const newsData = {
       email: newsEmail,
       message: "From Newsletter"
-    }
+    };
+
     try {
-      const response = await noFileAPI.post("/user/contact", newsData)
-      toast.success(response.data.message)
+      const response = await noFileAPI.post("/user/contact", newsData);
+      toast.success(response.data.message);
     } catch (error) {
-      console.log(error)
-      toast.error(error.response.data.error)
+      toast.error(error.response.data.error);
     }
   }
 

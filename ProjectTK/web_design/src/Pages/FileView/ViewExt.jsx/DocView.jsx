@@ -18,13 +18,11 @@ export default function DocView({ data }) {
 
         reader.onload = () => {
           if (fileExtension === 'docx') {
-            mammoth.convertToHtml({ arrayBuffer: reader.result })
-              .then((result) => {
-                setHtmlContent(result.value);
-              })
-              .catch((err) => {
-                setError('Error parsing Word document.');
-              });
+            mammoth.convertToHtml({ arrayBuffer: reader.result }).then((result) => {
+              setHtmlContent(result.value);
+            }).catch((err) => {
+              setError('Error parsing Word document:', err);
+            });
           } else if (fileExtension === 'xlsx') {
             const workbook = XLSX.read(reader.result, { type: 'array' });
             const worksheet = workbook.Sheets[workbook.SheetNames[0]];
@@ -49,12 +47,12 @@ export default function DocView({ data }) {
 
   return (
     <section className="bg-white p-3 rounded">
-      <div className="doc-view-container shadow-sm rounded bg-light p-3" style={{maxHeight:"500px"}}>
-      {error && <div className="error-message">{error}</div>}
-      <div className="file-content">
-        <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+      <div className="doc-view-container shadow-sm rounded bg-light p-3" style={{ maxHeight: "500px" }}>
+        {error && <div className="error-message">{error}</div>}
+        <div className="file-content">
+          <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+        </div>
       </div>
-    </div>
     </section>
   );
 }

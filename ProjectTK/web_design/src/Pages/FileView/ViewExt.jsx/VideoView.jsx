@@ -11,9 +11,9 @@ export default function VideoView({ data }) {
     const [hover, setHover] = useState(false);
     const [volumeHover, setVolumeHover] = useState(false);
     const [volumeIcon, setVolumeIcon] = useState("low");
-    const playerRef = useRef(null);
+    const [lastMove, setLastMove] = useState(Date.now());
 
-    const [lastMove, setLastMove] = useState(Date.now())
+    const playerRef = useRef(null);
 
     const video = `http://localhost:5000/${data.filePath}`;
 
@@ -23,7 +23,7 @@ export default function VideoView({ data }) {
 
     const handleLastMove = () => {
         setLastMove(Date.now());
-        setHover(true)
+        setHover(true);
     }
 
     useEffect(() => {
@@ -33,10 +33,10 @@ export default function VideoView({ data }) {
             }
         };
 
-        const player = document.getElementById("ReactVideoPlayer")
+        const player = document.getElementById("ReactVideoPlayer");
 
         player.addEventListener("mousemove", handleLastMove);
-        player.addEventListener("mouseleave", () => setHover(false))
+        player.addEventListener("mouseleave", () => setHover(false));
 
         const hoverCheckInterval = setInterval(checkHoverState, 1000);
 
@@ -108,8 +108,6 @@ export default function VideoView({ data }) {
             slider.style.background = `linear-gradient(to right, var(--accent-purple) 0%, var(--accent-cyan) 0%)`;
         }
     };
-
-
 
     useEffect(() => {
         if (volume === 0) {
@@ -198,7 +196,7 @@ export default function VideoView({ data }) {
                 )}
 
                 <div
-                    className={`controls text-light py-2 px-2 d-flex align-items-center justify-content-between position-absolute w-100`} style={{ opacity: hover || !isPlaying ? 1 : 0, }}>
+                    className={`controls text-light py-2 px-2 d-flex align-items-center justify-content-between position-absolute w-100`} style={{ opacity: hover || !isPlaying ? 1 : 0 }}>
                     <button
                         className="btn btn-info btn-sm" onClick={toggleIsPlaying}>
                         {isPlaying ? <i className="fa fa-pause"></i> : <i className="fa fa-play"></i>}
@@ -224,7 +222,7 @@ export default function VideoView({ data }) {
                         </button>
 
                         {volumeHover && (
-                            <div className="volume-slider-box position-absolute p-2 d-flex flex-row-reverse shadow align-items-center justify-content-center" style={{background:"rgba(0, 0, 0, 0.8)"}} >
+                            <div className="volume-slider-box position-absolute p-2 d-flex flex-row-reverse shadow align-items-center justify-content-center" style={{ background: "rgba(0, 0, 0, 0.8)" }} >
                                 <input id="volume-slider" type="range" min="0" max="1" step="0.01" value={volume} onChange={handleVolumeChange} />
                                 <p className="text-light text-center mt-3" style={{ transform: "rotate(90deg)" }}>{(volume * 100).toFixed(0)}%</p>
                             </div>

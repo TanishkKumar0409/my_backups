@@ -36,8 +36,6 @@ export default function Banner() {
     "edit",
   ];
 
-
-
   return (
     <section
       className="bgGradient py-5 overflow-hidden position-relative align-content-center"

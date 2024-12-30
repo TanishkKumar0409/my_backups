@@ -9,7 +9,7 @@ import BannerValidationSchema from "../../../../../Helper/ValidationSchemas/Vali
 export default function DragAndDropBox(props) {
   const [files, setFiles] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-  const username = JSON.parse(localStorage.getItem("user"))
+  const username = JSON.parse(localStorage.getItem("user"));
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
@@ -21,7 +21,7 @@ export default function DragAndDropBox(props) {
   const initialValues = {
     email: "",
     message: "",
-  }
+  };
 
   const handleSubmit = async (values) => {
     setErrorMessage("");

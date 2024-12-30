@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function LoginNavbar() {
-    const location = useLocation()
+    const location = useLocation();
     const navCondition = location.pathname === "/form" ? "d-none" : "";
-    const [navClass, setNavclass] = useState("")
+
+    const [navClass, setNavclass] = useState("");
+
     useEffect(() => {
         window.addEventListener("scroll", () => {
-            var pageScroll = window.scrollY
-            setNavclass(pageScroll > 100 ? "navbarCustom" : "")
-        })
+            var pageScroll = window.scrollY;
+            setNavclass(pageScroll > 100 ? "navbarCustom" : "");
+        });
     })
 
     const isActive = (path) => location.pathname === path ? "active" : "";

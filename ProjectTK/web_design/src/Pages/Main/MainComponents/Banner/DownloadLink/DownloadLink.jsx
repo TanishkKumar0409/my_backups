@@ -6,8 +6,7 @@ import { API } from "../../../../../Services/API/API";
 
 export default function DownloadLink() {
     const [data, setData] = useState([]);
-    const username = JSON.parse(localStorage.getItem("user"))
-
+    const username = JSON.parse(localStorage.getItem("user"));
 
     useEffect(() => {
         const getData = async () => {

@@ -10,9 +10,11 @@ export default function ShareFilesTable() {
     const [monthFilter, setMonthFilter] = useState('');
     const [dayFilter, setDayFilter] = useState('');
     const [visibleCount, setVisibleCount] = useState(10);
+
     const location = useLocation();
     const path = location.pathname;
-    const user = JSON.parse(localStorage.getItem("user"));
+
+    const username = JSON.parse(localStorage.getItem("user"));
 
     const currentYear = new Date().getFullYear();
     const years = Array.from({ length: currentYear - 2024 + 1 }, (_, i) => 2024 + i);
@@ -21,15 +23,16 @@ export default function ShareFilesTable() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const fetchData = await API.get(`/share/history/user/${user}`);
+                const fetchData = await API.get(`/share/history/user/${username}`);
                 setData(fetchData.data);
                 setFilteredData(fetchData.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         };
+
         getData();
-    }, [user]);
+    }, [username]);
 
     const handleSearch = (event) => {
         const query = event.target.value.toLowerCase();
@@ -51,7 +54,6 @@ export default function ShareFilesTable() {
     const filterData = () => {
         let filtered = data;
 
-        // Apply search filter
         if (searchQuery) {
             filtered = filtered.filter(
                 (file) =>
@@ -60,17 +62,14 @@ export default function ShareFilesTable() {
             );
         }
 
-        // Apply year filter
         if (yearFilter) {
             filtered = filtered.filter((file) => new Date(file.sharedAt).getFullYear() === parseInt(yearFilter, 10));
         }
 
-        // Apply month filter
         if (monthFilter) {
             filtered = filtered.filter((file) => new Date(file.sharedAt).getMonth() + 1 === parseInt(monthFilter, 10));
         }
 
-        // Apply day filter
         if (dayFilter) {
             filtered = filtered.filter((file) => new Date(file.sharedAt).getDate() === parseInt(dayFilter, 10));
         }
@@ -78,9 +77,7 @@ export default function ShareFilesTable() {
         return filtered;
     };
 
-    const displayedData = path === '/main'
-        ? filterData().slice(0, 5)
-        : filterData().slice(0, visibleCount);
+    const displayedData = path === '/main' ? filterData().slice(0, 5) : filterData().slice(0, visibleCount);
 
     return (
         <>

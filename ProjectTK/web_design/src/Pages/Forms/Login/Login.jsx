@@ -6,26 +6,26 @@ import { LoginValidationSchema } from '../../../Helper/FormValidationSchemas/For
 import { noFileAPI } from "../../../Services/API/API";
 
 export default function Login(props) {
-    const redirector = useNavigate()
-    const initialValues = { email: '', password: '' }
+    const redirector = useNavigate();
+    const initialValues = { email: '', password: '' };
 
     const handleSubmit = async (values) => {
         try {
             const response = await noFileAPI.post("/user/login", values);
 
-            toast.success(response.data.message)
-            localStorage.setItem("user", JSON.stringify(response.data.loginUser.username))
+            toast.success(response.data.message);
+            localStorage.setItem("user", JSON.stringify(response.data.loginUser.username));
 
-            localStorage.setItem("loginToken", response.data.loginToken)
+            localStorage.setItem("loginToken", response.data.loginToken);
             if (response.data.adminToken) {
-                localStorage.setItem("adminToken", response.data.adminToken)
+                localStorage.setItem("adminToken", response.data.adminToken);
             }
 
-            window.location.reload()
+            window.location.reload();
 
-            redirector("/")
+            redirector("/");
         } catch (error) {
-            toast.error(error.response.data.error)
+            toast.error(error.response.data.error);
         }
     }
 

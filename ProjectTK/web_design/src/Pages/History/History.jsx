@@ -8,7 +8,7 @@ export default function History() {
         icon: "share-from-square",
         heading: "Shared History",
         para: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, aperiam reprehenderit odit saepe error esse quaerat sint. Quisquam, tempore aliquid."
-    }
+    };
 
     return (
         <>
@@ -17,7 +17,6 @@ export default function History() {
                 <div className='container'>
                     <ShareFilesTable />
                 </div>
-
             </section>
             <Footer />
         </>
