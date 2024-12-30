@@ -10,16 +10,16 @@ const CreateFolder = async (req, res) => {
 
         const isUser = await Users.findOne({ username });
         if (!isUser) {
-            return res.status(404).json({ error: "Please Register first" });
+            return res.status(401).json({ error: "Please Register first" });
         }
 
         if (isUser.status === "BLOCKED") {
-            return res.status(400).json({ error: "Sorry, You are Blocked" });
+            return res.status(403).json({ error: "Sorry, You are Blocked" });
         }
 
         const RepeatedFolder = await Storage.findOne({ username, root, parentId });
         if (RepeatedFolder) {
-            return res.status(400).json({ error: "This Folder is Already exist" });
+            return res.status(409).json({ error: "This Folder is Already exist" });
         }
 
         let parentFolder = null;

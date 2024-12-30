@@ -22,7 +22,7 @@ const DeleteUser = async (req, res) => {
         const DeletedStorage = await Storage.deleteMany({ username });
 
         if (DeletedUser) {
-            return res.status(200).json({ message: "Account Deleted", DeletedUser, DeletedStorage });
+            return res.status(204).json({ message: "Account Deleted", DeletedUser, DeletedStorage });
         } else {
             return res.status(404).json({ message: "User not found" });
         }

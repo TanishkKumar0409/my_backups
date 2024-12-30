@@ -6,9 +6,9 @@ const CreateAdmin = async (req, res) => {
 
         const isNotValid = await Users.findOne({ username });
         if (isNotValid.status === "BLOCKED") {
-            return res.status(400).json({ error: "User is Blocked" });
+            return res.status(403).json({ error: "User is Blocked" });
         } else if (isNotValid.role === "ADMIN") {
-            return res.status(400).json({ error: "Already Admin" });
+            return res.status(409).json({ error: "Already Admin" });
         }
 
         const newAdmin = await Users.findOneAndUpdate({ username }, { $set: { role: "ADMIN" } }, { new: true });

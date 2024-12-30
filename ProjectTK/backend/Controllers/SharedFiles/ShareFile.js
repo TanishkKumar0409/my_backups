@@ -9,11 +9,11 @@ const ShareFiles = async (req, res) => {
 
         const isExisting = await Users.findOne({ username });
         if (!isExisting) {
-            return res.status(404).json({ error: "Please Login" });
+            return res.status(401).json({ error: "Please Login" });
         }
 
         if (isExisting.status === "BLOCKED") {
-            return res.status(400).json({ error: "Sorry, You are Blocked" });
+            return res.status(403).json({ error: "Sorry, You are Blocked" });
         }
 
         if (!message) {

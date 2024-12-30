@@ -11,11 +11,11 @@ const RecentFile = async (req, res) => {
 
         const isUser = await Users.findOne({ username });
         if (!isUser) {
-            return res.status(404).json({ error: "Please Register first" });
+            return res.status(401).json({ error: "Please Register first" });
         }
 
         if (isUser.status === "BLOCKED") {
-            return res.status(400).json({ error: "Sorry, You are Blocked" });
+            return res.status(403).json({ error: "Sorry, You are Blocked" });
         }
 
         const isRecent = await Recent.findOne({ username });
@@ -25,7 +25,7 @@ const RecentFile = async (req, res) => {
 
         const isExisting = await Recent.findOne({ username, "recentFiles.folderId": folderId });
         if (isExisting) {
-            return res.status(400).json({ error: "Same File" });
+            return res.status(409).json({ error: "Same File" });
         }
 
         if (!isRecent) {

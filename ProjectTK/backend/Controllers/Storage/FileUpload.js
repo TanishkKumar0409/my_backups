@@ -12,11 +12,11 @@ const FileUpload = async (req, res) => {
 
         const isUser = await Users.findOne({ username });
         if (!isUser) {
-            return res.status(404).json("Please Register first");
+            return res.status(401).json("Please Register first");
         }
 
         if (isUser.status === "BLOCKED") {
-            return res.status(400).json({ error: "Sorry, You are Blocked" });
+            return res.status(403).json({ error: "Sorry, You are Blocked" });
         }
 
         const folder = await Storage.findOne({ folderId: parentId, username, type: "folder" });
