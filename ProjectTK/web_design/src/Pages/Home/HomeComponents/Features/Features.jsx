@@ -40,7 +40,13 @@ export default function Features() {
     return (
         <section className="bg-white py-5">
             <div className="container">
-                <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": "'Features'" }}>Features</h2>
+                <div className="row justify-content-center">
+                    <div className="col-md-8"> <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": "'Our Key Features'" }}>Our Key Features</h2>
+                        <p className="text-center">
+                            Explore the innovative features that set us apart. We offer a range of solutions designed to enhance your experience, with top-quality performance and user-friendly design.
+                        </p>
+                    </div>
+                </div>
                 <OwlCarousel className="owl-theme" {...owlOptions}>
                     {MyFeatures.map((feature, index) => (
                         <div className="item" key={index}>

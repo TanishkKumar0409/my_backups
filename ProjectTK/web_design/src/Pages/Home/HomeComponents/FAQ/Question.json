@@ -1,50 +1,62 @@
 [
     {
-        "question": "What is your return policy?",
-        "answer": "Our return policy allows you to return items within 30 days of purchase for a full refund. Items must be in their original condition."
+        "question": "What types of files can I upload to the system?",
+        "answer": "You can upload a variety of file types, including documents, images, videos, audio files, and compressed files. Specific file types may be restricted depending on your account settings."
     },
     {
-        "question": "How do I track my order?",
-        "answer": "You can track your order using the tracking number provided in the confirmation email. Visit the 'Track Order' page on our website."
+        "question": "How do I share files with others?",
+        "answer": "You can share files by generating a shareable link or by inviting others via email. You can also specify permissions, such as view or edit access."
     },
     {
-        "question": "Do you offer international shipping?",
-        "answer": "Yes, we offer international shipping to select countries. Shipping fees and delivery times vary by location."
+        "question": "Is there a limit to how much I can upload or store?",
+        "answer": "Storage limits depend on your account type. Free accounts have a limited storage capacity, while premium accounts offer higher limits. Check your plan details for specifics."
     },
     {
-        "question": "What payment methods do you accept?",
-        "answer": "We accept credit cards, debit cards, PayPal, and other major payment methods."
+        "question": "Can I access my files from any device?",
+        "answer": "Yes, you can access your files from any device with an internet connection by logging into your account."
     },
     {
-        "question": "Can I cancel my order?",
-        "answer": "Yes, you can cancel your order within 24 hours of placing it, provided it has not yet been shipped."
+        "question": "Is my data secure in the file storage system?",
+        "answer": "Yes, we use encryption protocols to protect your data during upload, storage, and download. Additionally, we implement strong security measures to safeguard your files."
     },
     {
-        "question": "Do you offer gift wrapping?",
-        "answer": "Yes, we offer gift wrapping services at checkout for an additional fee."
+        "question": "How can I organize my files within the system?",
+        "answer": "You can organize your files by creating folders and subfolders. You can also tag files for easy search and categorization."
     },
     {
-        "question": "How can I contact customer service?",
-        "answer": "You can contact our customer service team via the Contact Us page or by calling our hotline."
+        "question": "How do I recover deleted files?",
+        "answer": "Deleted files are typically stored in the trash for a limited period. You can restore files from the trash before they are permanently deleted."
     },
     {
-        "question": "What is your warranty policy?",
-        "answer": "We offer a one-year warranty on all our products. Please retain your receipt for warranty claims."
+        "question": "Can I set permissions for who can access my shared files?",
+        "answer": "Yes, you can control access permissions by setting view-only or edit permissions for individual users or groups."
     },
     {
-        "question": "Can I change my shipping address after placing an order?",
-        "answer": "You can change your shipping address before the order is shipped by contacting customer support."
+        "question": "What happens if my storage quota is exceeded?",
+        "answer": "If you exceed your storage quota, you will need to upgrade your account or delete some files to free up space."
     },
     {
-        "question": "Do you have a loyalty program?",
-        "answer": "Yes, we have a loyalty program where you can earn points on purchases and redeem them for discounts."
+        "question": "How can I upload large files?",
+        "answer": "You can upload large files by using our desktop app or file upload tool, which supports chunked uploads for seamless transfers."
     },
     {
-        "question": "What are your store hours?",
-        "answer": "Our store is open Monday through Friday from 9 AM to 8 PM and Saturday from 10 AM to 6 PM."
+        "question": "Can I synchronize my files across multiple devices?",
+        "answer": "Yes, our system supports file synchronization across multiple devices, ensuring your files are up-to-date everywhere."
     },
     {
-        "question": "Do you have a physical store location?",
-        "answer": "Yes, we have several physical stores. Visit our Locations page to find one near you."
+        "question": "How do I download files that have been shared with me?",
+        "answer": "You can download shared files by clicking the download button on the shared file's link or from the shared folder in your account."
+    },
+    {
+        "question": "Is there an option to encrypt my files for extra security?",
+        "answer": "Yes, we offer the option to encrypt files before upload, ensuring that only authorized users can decrypt and access the content."
+    },
+    {
+        "question": "How long will my files be stored in the system?",
+        "answer": "Files will remain in the system as long as they are within your storage quota and account is active. Deleted files are permanently removed after a specified retention period."
+    },
+    {
+        "question": "Can I share files with users who do not have an account?",
+        "answer": "Yes, you can share files with users who do not have an account by generating a public link to the file or folder."
     }
 ]

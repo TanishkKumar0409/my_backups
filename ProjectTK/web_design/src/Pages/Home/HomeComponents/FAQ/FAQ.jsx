@@ -16,8 +16,12 @@ export default function FAQ() {
                 <div className="container">
                     <div className="row justify-content-center py-3">
                         <div className="col-md-8">
-                            <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": "'FAQs'" }}>FAQs</h2>
-                            <p className='text-center'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint laudantium voluptas accusamus libero eum quo placeat suscipit praesentium cum dicta?</p>
+                            <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": "'FAQs'" }}>
+                                FAQs
+                            </h2>
+                            <p className='text-center'>
+                                Here are some frequently asked questions to help you get started with our file sharing and storage system.
+                            </p>
                         </div>
                     </div>
                     <div id="faqCarousel" className="carousel slide" data-bs-ride="carousel">
