@@ -19,7 +19,7 @@ const registerUser = async (req, res) => {
         const loginToken = jwt.sign({ username, email, contact }, PrivateKey);
 
         if (!username || !name || !email || !contact || !password) {
-            return res.status().json({ error: "All Fields are Required" });
+            return res.status().json({ error: "Required fields missing" });
         }
 
         const blockedUser = await Users.findOne({ $or: [{ email }, { contact }], status: "BLOCKED" });

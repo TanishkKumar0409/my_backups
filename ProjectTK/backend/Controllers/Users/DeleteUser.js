@@ -15,7 +15,7 @@ const DeleteUser = async (req, res) => {
             return res.status(404).json("User not Found");
         }
         if (isUser.deletionOtp !== parseInt(deletionOtp)) {
-            return res.status(400).json("invalid Otp");
+            return res.status(400).json("Invalid Otp");
         }
 
         const DeletedUser = await Users.findOneAndDelete({ username });

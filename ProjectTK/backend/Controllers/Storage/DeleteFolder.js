@@ -6,12 +6,12 @@ const DeleteFolder = async (req, res) => {
         const { username, folderId } = req.body;
 
         if (!username || !folderId) {
-            return res.status(400).json({ error: "All Fields Required" });
+            return res.status(400).json({ error: "Required fields missing" });
         }
 
         const isUser = await Users.findOne({ username });
         if (!isUser) {
-            return res.status(401).json("Please Register first");
+            return res.status(401).json("Please Register");
         }
 
         if (isUser.status === "BLOCKED") {

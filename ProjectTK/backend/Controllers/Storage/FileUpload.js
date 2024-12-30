@@ -7,12 +7,12 @@ const FileUpload = async (req, res) => {
         const { username } = req.params;
 
         if (!parentId || !req.file) {
-            return res.status(400).json({ error: "Required fields missing or no file uploaded" });
+            return res.status(400).json({ error: "Required fields missing" });
         }
 
         const isUser = await Users.findOne({ username });
         if (!isUser) {
-            return res.status(401).json("Please Register first");
+            return res.status(401).json("Please Register");
         }
 
         if (isUser.status === "BLOCKED") {

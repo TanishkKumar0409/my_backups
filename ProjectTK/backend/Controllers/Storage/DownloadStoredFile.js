@@ -7,7 +7,7 @@ const DownloadStoredFile = async (req, res) => {
         const { username, folderId } = req.query;
 
         if (!username || !folderId) {
-            return res.status(400).json({ error: "username and folderId are required" });
+            return res.status(400).json({ error: "Required fields missing" });
         }
 
         const file = await Storage.findOne({ username, folderId });

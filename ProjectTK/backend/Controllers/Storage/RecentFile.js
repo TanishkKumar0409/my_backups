@@ -11,7 +11,7 @@ const RecentFile = async (req, res) => {
 
         const isUser = await Users.findOne({ username });
         if (!isUser) {
-            return res.status(401).json({ error: "Please Register first" });
+            return res.status(401).json({ error: "Please Register" });
         }
 
         if (isUser.status === "BLOCKED") {
