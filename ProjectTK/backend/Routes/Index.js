@@ -31,6 +31,8 @@ import GetParticularFile from "../Controllers/Storage/GetPartiCularFile.js";
 import RecentFile from "../Controllers/Storage/RecentFile.js";
 import GetRecents from "../Controllers/Storage/GetRecents.js";
 import GetAdmin from "../Controllers/Admin/GetAdmins.js";
+import GetContactQuery from "../Controllers/Users/GetContactQuery.js";
+import DeleteContactQuery from "../Controllers/Users/DeleteContactQuery.js";
 
 const router = express.Router()
 
@@ -82,6 +84,8 @@ router.delete("/user/delete/:username", DeleteUser);
 router.put("/user/update/:username", uploadProfile.single("profile"), UpdateByUser);
 router.post("/user/delete/otp", DeletionOtp);
 router.post("/user/contact", UserContactUs);
+router.get("/user/contact/query", GetContactQuery);
+router.delete("/user/contact/query/:id", DeleteContactQuery)
 
 //? Admin Actions
 router.put("/user/block/:username", BlockUser);

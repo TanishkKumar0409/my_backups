@@ -119,18 +119,18 @@ export default function AdminTable() {
                         {displayedData.length > 0 ? (
                             displayedData.map((user, index) => (
                                 <tr key={index}>
-                                    <td>{index + 1}</td>
-                                    <td>{user.username}</td>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.contact}</td>
-                                    <td>{user.status}</td>
+                                    <td className='align-content-center'>{index + 1}</td>
+                                    <td className='align-content-center'>{user.username}</td>
+                                    <td className='align-content-center'>{user.name}</td>
+                                    <td className='align-content-center'>{user.email}</td>
+                                    <td className='align-content-center'>{user.contact}</td>
+                                    <td className='align-content-center'>{user.status}</td>
                                     <td className="text-center">
-                                        <button className="btn btn-custom custom-btn">View</button>
+                                        <button className="btn btn-custom custom-btn btn-sm">View</button>
                                     </td>
                                     <td className="text-center">
                                         <button
-                                            className="btn btn-custom custom-btn"
+                                            className="btn btn-custom custom-btn btn-sm"
                                             onClick={() => handleDemote(user.username)}
                                         >
                                             Demote
@@ -138,7 +138,7 @@ export default function AdminTable() {
                                     </td>
                                     <td className="text-center">
                                         <button
-                                            className="btn btn-custom custom-btn"
+                                            className="btn btn-custom custom-btn btn-sm"
                                             onClick={() => handleBlock(user.username)}
                                             disabled={isDisabled(user)}
                                         >
@@ -149,7 +149,7 @@ export default function AdminTable() {
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="8" className="text-center">
+                                <td colSpan="9" className="text-center fw-bold fs-1">
                                     No Data Available
                                 </td>
                             </tr>

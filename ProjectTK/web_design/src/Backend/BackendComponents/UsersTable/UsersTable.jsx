@@ -5,8 +5,8 @@ import { toast } from 'react-toastify';
 
 export default function UsersTable() {
     const [data, setData] = useState([]);
-    const [search, setSearch] = useState(""); // State for search input
-    const [status, setStatus] = useState(""); // State for status filter
+    const [search, setSearch] = useState("");
+    const [status, setStatus] = useState("");
     const location = useLocation();
 
     useEffect(() => {
@@ -113,18 +113,18 @@ export default function UsersTable() {
                         {displayedData.length > 0 ? (
                             displayedData.map((user, index) => (
                                 <tr key={index}>
-                                    <td>{index + 1}</td>
-                                    <td>{user.username}</td>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.contact}</td>
-                                    <td>{user.status}</td>
+                                    <td className='align-content-center'>{index + 1}</td>
+                                    <td className='align-content-center'>{user.username}</td>
+                                    <td className='align-content-center'>{user.name}</td>
+                                    <td className='align-content-center'>{user.email}</td>
+                                    <td className='align-content-center'>{user.contact}</td>
+                                    <td className='align-content-center'>{user.status}</td>
                                     <td className="text-center">
-                                        <button className="btn btn-custom custom-btn">View</button>
+                                        <button className="btn btn-custom custom-btn btn-sm">View</button>
                                     </td>
                                     <td className="text-center">
                                         <button
-                                            className="btn btn-custom custom-btn"
+                                            className="btn btn-custom custom-btn btn-sm"
                                             onClick={() => handlePromote(user.username)}
                                             disabled={isDisabled(user)}
                                         >
@@ -133,7 +133,7 @@ export default function UsersTable() {
                                     </td>
                                     <td className="text-center">
                                         <button
-                                            className="btn btn-custom custom-btn"
+                                            className="btn btn-custom custom-btn btn-sm"
                                             onClick={() => handleBlock(user.username)}
                                             disabled={isDisabled(user)}
                                         >
