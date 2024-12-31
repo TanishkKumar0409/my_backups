@@ -10,11 +10,13 @@ export default function UpdateProfileForm(props) {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setProfileImage(reader.result);
       };
+
       reader.readAsDataURL(file);
     }
   };
@@ -32,9 +34,11 @@ export default function UpdateProfileForm(props) {
       formData.append("name", values.name);
       formData.append("email", values.email);
       formData.append("contact", values.contact);
+
       if (values.password) {
         formData.append("password", values.password);
       }
+
       const fileInput = document.querySelector('#image-upload');
       if (fileInput?.files[0]) {
         formData.append('profile', fileInput.files[0]);

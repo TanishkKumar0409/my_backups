@@ -2,22 +2,26 @@ import React, { useEffect, useState } from 'react'
 import img from "../../../Image/Wave.jpg";
 
 export default function ContactCards() {
-    const [Card1, setCard1] = useState(() => Math.floor(Math.random() * 5 + 1));
-    const [Card2, setCard2] = useState(() => Math.floor(Math.random() * 5 + 1));
-    const [Card3, setCard3] = useState(() => Math.floor(Math.random() * 5 + 1));
+
+    const numberGentrator = () => Math.floor(Math.random() * 5 + 1)
+
+    const [Card1, setCard1] = useState(numberGentrator);
+    const [Card2, setCard2] = useState(numberGentrator);
+    const [Card3, setCard3] = useState(numberGentrator);
 
     useEffect(() => {
         const handleUnEqual = () => {
             if (Card1 === Card2 || Card1 === Card3) {
-                setCard1(Math.floor(Math.random() * 5 + 1));
+                setCard1(numberGentrator);
             }
             if (Card2 === Card1) {
-                setCard2(Math.floor(Math.random() * 5 + 1));
+                setCard2(numberGentrator);
             }
             if (Card3 === Card1 || Card3 === Card2) {
-                setCard3(Math.floor(Math.random() * 5 + 1));
+                setCard3(numberGentrator);
             }
         };
+
         handleUnEqual();
     }, [Card1, Card2, Card3]);
 

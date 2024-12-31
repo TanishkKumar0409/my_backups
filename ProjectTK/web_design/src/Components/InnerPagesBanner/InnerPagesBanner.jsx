@@ -20,17 +20,7 @@ export default function InnerPagesBanner({ BannerData }) {
         return () => clearInterval(interval);
     }, []);
 
-    const iconsArray = [
-        "file-audio",
-        "file-image",
-        "file-video",
-        "folder-open",
-        "folder-shared",
-        "share-alt",
-        "cloud-download-alt",
-        "link",
-        "edit",
-    ];
+    const iconsArray = ["file-audio", "file-image", "file-video", "folder-open", "folder-shared", "share-alt", "cloud-download-alt", "link", "edit",];
 
     return (
         <><section

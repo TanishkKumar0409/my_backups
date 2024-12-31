@@ -24,7 +24,6 @@ export default function FileExplorer({ username }) {
         getData();
     }, [username]);
 
-
     const currentFolder = folderData.find((item) => item.folderId === currentFolderId);
     const currentChildren =
         currentFolder?.children.map((id) =>
@@ -74,7 +73,6 @@ export default function FileExplorer({ username }) {
             const uploadedFile = response.data;
             folderData.push(uploadedFile);
             currentFolder.children.push(uploadedFile.id);
-            setFolderData([...folderData]);
             setSelectedItemId(uploadedFile.id);
 
             const updatedData = await noFileAPI.get(`storage/folder/${username}`);

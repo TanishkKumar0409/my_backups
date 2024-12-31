@@ -9,10 +9,13 @@ export default function DeleteAccount({ onCancel, userData }) {
 
     const sendOtp = async () => {
         try {
-            const response = await noFileAPI.post("/user/delete/otp", {
+
+            const deleteData = {
                 email: formik.values.email,
                 password: formik.values.password,
-            });
+            }
+
+            const response = await noFileAPI.post("/user/delete/otp", deleteData);
 
             if (response.status === 200) {
                 toast("OTP sent successfully");
