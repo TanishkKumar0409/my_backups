@@ -3,14 +3,14 @@ import { useLocation } from 'react-router-dom';
 import { noFileAPI } from '../../../Services/API/API';
 import { toast } from 'react-toastify';
 
-export default function UsersTable() {
+export default function AdminTable() {
     const [data, setData] = useState([]);
     const location = useLocation();
 
     useEffect(() => {
         const getData = async () => {
             try {
-                const response = await noFileAPI.get("/user/all");
+                const response = await noFileAPI.get("/user/admin/all");
                 setData(response.data);
             } catch (error) {
                 console.log(error);
@@ -19,42 +19,24 @@ export default function UsersTable() {
         getData();
     }, []);
 
-    const handleBlock = async (username) => {
-        const confirmation = window.confirm(`Are you sure you want to block/unblock ${username}?`);
+    const handleDemote = async (username) => {
+        const confirmation = window.confirm(`Are you sure you want to demote ${username}?`);
         if (!confirmation) {
-            toast.info("Action canceled");
+            toast.info("Demotion canceled");
             return;
         }
 
         try {
-            const blockingResponse = await noFileAPI.put(`/user/block/${username}`);
-            const response = await noFileAPI.get("/user/all");
+            const demoteResponse = await noFileAPI.put(`/user/demote/${username}`);
+            const response = await noFileAPI.get("/user/admin/all");
             setData(response.data);
-            toast.success(blockingResponse.data.message);
+            toast.success(demoteResponse.data.message);
         } catch (error) {
             console.log(error);
         }
     };
 
-    const handlePromote = async (username) => {
-        const confirmation = window.confirm(`Are you sure you want to promote ${username}?`);
-        if (!confirmation) {
-            toast.info("Promotion canceled");
-            return;
-        }
 
-        try {
-            const promoteResponse = await noFileAPI.put(`/user/promote/${username}`);
-            const response = await noFileAPI.get("/user/all");
-            setData(response.data);
-            toast.success(promoteResponse.data.message);
-            window.location.reload();
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const isDisabled = (user) => user.status === "BLOCKED";
 
     const displayedData = location.pathname === "/admin/dashboard" ? data.slice(0, 5) : data;
 
@@ -71,8 +53,7 @@ export default function UsersTable() {
                             <th>Contact</th>
                             <th>Status</th>
                             <th>View</th>
-                            <th>Promote</th>
-                            <th>Block/Unblock</th>
+                            <th>Demote</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -91,25 +72,16 @@ export default function UsersTable() {
                                     <td className="text-center">
                                         <button
                                             className="btn btn-custom custom-btn"
-                                            onClick={() => handlePromote(user.username)}
+                                            onClick={() => handleDemote(user.username)}
                                         >
-                                            Promote
-                                        </button>
-                                    </td>
-                                    <td className="text-center">
-                                        <button
-                                            className="btn btn-custom custom-btn"
-                                            onClick={() => handleBlock(user.username)}
-                                            disabled={isDisabled(user)}
-                                        >
-                                            {user.status === "BLOCKED" ? "Unblock" : "Block"}
+                                            Demote
                                         </button>
                                     </td>
                                 </tr>
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="9" className="text-center fw-bold fs-1">
+                                <td colSpan="8" className="text-center">
                                     No Data Available
                                 </td>
                             </tr>

@@ -30,6 +30,7 @@ import DownloadStoredFile from "../Controllers/Storage/DownloadStoredFile.js";
 import GetParticularFile from "../Controllers/Storage/GetPartiCularFile.js";
 import RecentFile from "../Controllers/Storage/RecentFile.js";
 import GetRecents from "../Controllers/Storage/GetRecents.js";
+import GetAdmin from "../Controllers/Admin/GetAdmins.js";
 
 const router = express.Router()
 
@@ -85,7 +86,8 @@ router.post("/user/contact", UserContactUs);
 //? Admin Actions
 router.put("/user/block/:username", BlockUser);
 router.put("/user/promote/:username", CreateAdmin);
-router.put("/user/demote/:username", RemoveAdmin)
+router.put("/user/demote/:username", RemoveAdmin);
+router.get("/user/admin/all", GetAdmin);
 
 //? Sharing Routes
 router.post("/share/:username", UploadFileShare.array("files", 10), ShareFiles);
