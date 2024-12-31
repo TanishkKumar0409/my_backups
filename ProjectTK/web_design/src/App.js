@@ -17,6 +17,7 @@ import ProtectedRoutes from "./Helper/ProtectedRoutes/ProtectedRoutes";
 import Storage from "./Pages/StoragePages/Storage/Storage";
 import FileView from "./Pages/FileView/FileView";
 import ContactUs from "./Pages/CotactUs/ContactUs";
+import Dashboard from "./Backend/BackendPages/Dashboard/Dashboard";
 
 function App() {
   const loginToken = localStorage.getItem("loginToken");
@@ -41,6 +42,8 @@ function App() {
         <Route path="/main/storage" element={<ProtectedRoutes><Storage /></ProtectedRoutes>} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="*" element={<Navigate to={"/"} replace />} />
+
+        <Route path="/admin/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );
