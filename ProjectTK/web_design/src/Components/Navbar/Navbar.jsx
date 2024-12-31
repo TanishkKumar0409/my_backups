@@ -6,7 +6,6 @@ import { noFileAPI } from "../../Services/API/API";
 export default function Navbar() {
     const [navClass, setNavclass] = useState("");
     const location = useLocation();
-    const navCondition = location.pathname === "/admin/dashboard" ? "d-none" : "";
     const adminToken = localStorage.getItem("adminToken");
 
     useEffect(() => {
@@ -33,7 +32,7 @@ export default function Navbar() {
     }, [username])
 
     return (
-        <header className={`responsiveNavbar position-fixed w-100 ${navClass} ${navCondition}`} style={{ zIndex: 999 }}>
+        <header className={`responsiveNavbar position-fixed w-100 ${navClass}`} style={{ zIndex: 999 }}>
             <nav className="navbar navbar-expand-lg navbar-dark">
                 <div className="container-fluid">
                     <Link className="navbar-brand fs-4 fw-bold" to="/">

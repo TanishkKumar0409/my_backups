@@ -11,7 +11,7 @@ const BlockUser = async (req, res) => {
         }, { new: true });
 
         if (blockedUser) {
-            return res.status(204).json({ message: "User is Blocked", blockedUser });
+            return res.status(200).json({ message: "User is Blocked", blockedUser });
         } else {
             return res.status(404).json({ error: "User Not Found" });
         }
