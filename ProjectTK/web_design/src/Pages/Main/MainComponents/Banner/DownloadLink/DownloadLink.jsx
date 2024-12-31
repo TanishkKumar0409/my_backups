@@ -5,17 +5,17 @@ import "react-toastify/dist/ReactToastify.css";
 import { API } from "../../../../../Services/API/API";
 
 export default function DownloadLink() {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null); // Set initial state to null for single object
     const username = JSON.parse(localStorage.getItem("user"));
 
     useEffect(() => {
         const getData = async () => {
             try {
                 const response = await API.get(`/share/history/downloader/${username}`);
-                setData(response.data);
+                setData(response.data); // Response is expected to be a single object
             } catch (error) {
-                console.error("Error fetching download links:", error);
-                toast.error("Failed to fetch download links.");
+                console.error("Error fetching download link:", error);
+                toast.error("Failed to fetch download link.");
             }
         };
         getData();
@@ -26,6 +26,10 @@ export default function DownloadLink() {
         toast.success("Link copied to clipboard!");
     };
 
+    if (!data) {
+        return <div className="text-center py-5">Loading...</div>; // Handle loading state
+    }
+
     return (
         <div className="container-fluid py-5">
             <div className="bg-white text-dark p-md-5 p-3 rounded shadow form-box position-relative overflow-hidden">
@@ -33,37 +37,41 @@ export default function DownloadLink() {
                     Download Link
                 </h3>
 
-                {data.map((file, index) => (
-                    <ul className="list-group" key={index}>
-                        <li className="list-group-item d-flex justify-content-between align-items-center">
-                            <Link className="text-truncate">{file.downloadLink}</Link>
-                            <button
-                                className="btn btn-light"
-                                onClick={() => handleCopy(file.downloadLink)}
-                            >
-                                <i className="fa fa-copy"></i>
-                            </button>
-                        </li>
-                        <li className="list-group-item d-flex justify-content-between align-items-center">
-                            <p className="text-center fs-6">
-                                Send To: <strong>{file.receiverEmail}</strong>
-                            </p>
-                        </li>
-                        <li className="list-group-item d-flex justify-content-between align-items-center">
-                            <p className="text-center fs-6">
-                                Total Files Shared: <strong>{data.length}</strong>
-                            </p>
-                        </li>
-                        <li className="list-group-item d-flex justify-content-between align-items-center">
-                            <p className="text-center fs-6">
-                                Link will expire on{" "}
-                                {new Date(file.downloadLinkExpiry).toLocaleString(undefined, { weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit", })}
-                            </p>
-                        </li>
-
-                    </ul>
-                ))}
-
+                <ul className="list-group">
+                    <li className="list-group-item d-flex justify-content-between align-items-center">
+                        <Link className="text-truncate">{data.downloadLink}</Link>
+                        <button
+                            className="btn btn-light"
+                            onClick={() => handleCopy(data.downloadLink)}
+                        >
+                            <i className="fa fa-copy"></i>
+                        </button>
+                    </li>
+                    <li className="list-group-item d-flex justify-content-between align-items-center">
+                        <p className="text-center fs-6">
+                            Send To: <strong>{data.receiverEmail}</strong>
+                        </p>
+                    </li>
+                    <li className="list-group-item d-flex justify-content-between align-items-center">
+                        <p className="text-center fs-6">
+                            Total Files Shared: <strong>1</strong> {/* Fixed to 1 since it's findOne */}
+                        </p>
+                    </li>
+                    <li className="list-group-item d-flex justify-content-between align-items-center">
+                        <p className="text-center fs-6">
+                            Link will expire on{" "}
+                            {new Date(data.downloadLinkExpiry).toLocaleString(undefined, {
+                                weekday: "long",
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit",
+                                second: "2-digit",
+                            })}
+                        </p>
+                    </li>
+                </ul>
             </div>
         </div>
     );
