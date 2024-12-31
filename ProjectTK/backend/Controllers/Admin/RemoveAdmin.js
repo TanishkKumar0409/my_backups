@@ -5,9 +5,7 @@ const RemoveAdmin = async (req, res) => {
         const { username } = req.params;
 
         const isNotValid = await Users.findOne({ username });
-        if (isNotValid.status === "BLOCKED") {
-            return res.status(403).json({ error: "User is Blocked" });
-        } else if (isNotValid.role === "USER") {
+        if (isNotValid.role === "USER") {
             return res.status(409).json({ error: "Already USER" });
         }
 

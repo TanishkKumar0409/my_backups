@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 
 export default function AdminTable() {
     const [data, setData] = useState([]);
+    const [search, setSearch] = useState("");
+    const [statusFilter, setStatusFilter] = useState("");
     const location = useLocation();
 
     useEffect(() => {
@@ -33,15 +35,71 @@ export default function AdminTable() {
             toast.success(demoteResponse.data.message);
         } catch (error) {
             console.log(error);
+            toast.error(error.response.data.error)
         }
     };
 
+    const handleBlock = async (username) => {
+        const confirmation = window.confirm(`Are you sure you want to block/unblock ${username}?`);
+        if (!confirmation) {
+            toast.info("Action canceled");
+            return;
+        }
 
+        try {
+            const blockingResponse = await noFileAPI.put(`/user/block/${username}`);
+            const response = await noFileAPI.get("/user/admin/all");
+            setData(response.data);
+            toast.success(blockingResponse.data.message);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-    const displayedData = location.pathname === "/admin/dashboard" ? data.slice(0, 5) : data;
+    const isDisabled = (user) => user.status === "BLOCKED";
+
+    const filteredData = data.filter((user) => {
+        const matchesSearch =
+            user.username.toLowerCase().includes(search.toLowerCase()) ||
+            user.name.toLowerCase().includes(search.toLowerCase()) ||
+            user.email.toLowerCase().includes(search.toLowerCase()) ||
+            user.contact.toString().includes(search);
+
+        const matchesStatus = statusFilter ? user.status === statusFilter : true;
+
+        return matchesSearch && matchesStatus;
+    });
+
+    const displayedData = location.pathname === "/admin/dashboard" ? filteredData.slice(0, 5) : filteredData;
+
+    const uniqueStatuses = Array.from(new Set(data.map(user => user.status)));
 
     return (
         <>
+            <div className="row mb-3">
+                <div className="col">
+                    <div className="input-group">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Search by username, name, email, or contact"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+                        <select
+                            className="form-select"
+                            value={statusFilter}
+                            onChange={(e) => setStatusFilter(e.target.value)}
+                        >
+                            <option value="">All Statuses</option>
+                            {uniqueStatuses.map((status, index) => (
+                                <option key={index} value={status}>{status}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <div className="table-responsive">
                 <table className="table table-bordered table-striped">
                     <thead className="text-center">
@@ -54,6 +112,7 @@ export default function AdminTable() {
                             <th>Status</th>
                             <th>View</th>
                             <th>Demote</th>
+                            <th>Block/Unblock</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,6 +134,15 @@ export default function AdminTable() {
                                             onClick={() => handleDemote(user.username)}
                                         >
                                             Demote
+                                        </button>
+                                    </td>
+                                    <td className="text-center">
+                                        <button
+                                            className="btn btn-custom custom-btn"
+                                            onClick={() => handleBlock(user.username)}
+                                            disabled={isDisabled(user)}
+                                        >
+                                            {user.status === "BLOCKED" ? "Unblock" : "Block"}
                                         </button>
                                     </td>
                                 </tr>

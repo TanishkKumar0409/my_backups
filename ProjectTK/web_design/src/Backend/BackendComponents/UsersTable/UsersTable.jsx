@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 
 export default function UsersTable() {
     const [data, setData] = useState([]);
+    const [search, setSearch] = useState(""); // State for search input
+    const [status, setStatus] = useState(""); // State for status filter
     const location = useLocation();
 
     useEffect(() => {
@@ -50,16 +52,48 @@ export default function UsersTable() {
             toast.success(promoteResponse.data.message);
             window.location.reload();
         } catch (error) {
+            toast.error(error.response.data.error)
             console.log(error);
         }
     };
 
     const isDisabled = (user) => user.status === "BLOCKED";
 
-    const displayedData = location.pathname === "/admin/dashboard" ? data.slice(0, 5) : data;
+    const filteredData = data.filter((user) =>
+        (user.username.toLowerCase().includes(search.toLowerCase()) ||
+            user.name.toLowerCase().includes(search.toLowerCase()) ||
+            user.email.toLowerCase().includes(search.toLowerCase()) ||
+            user.contact.toString().includes(search)) &&
+        (status ? user.status === status : true) // Apply status filter if it's set
+    );
+
+    const displayedData = location.pathname === "/admin/dashboard" ? filteredData.slice(0, 5) : filteredData;
 
     return (
         <>
+            <div className="row mb-3">
+                <div className="col">
+                    <div className="input-group">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Search by username, name, email, or contact"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+                        <select
+                            name="status"
+                            className="form-control"
+                            value={status}
+                            onChange={(e) => setStatus(e.target.value)}
+                        >
+                            <option value="">All Status</option>
+                            <option value="ACTIVE">Active</option>
+                            <option value="BLOCKED">Blocked</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div className="table-responsive">
                 <table className="table table-bordered table-striped">
                     <thead className="text-center">
@@ -92,6 +126,7 @@ export default function UsersTable() {
                                         <button
                                             className="btn btn-custom custom-btn"
                                             onClick={() => handlePromote(user.username)}
+                                            disabled={isDisabled(user)}
                                         >
                                             Promote
                                         </button>
