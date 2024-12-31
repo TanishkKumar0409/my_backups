@@ -5,14 +5,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { API } from "../../../../../Services/API/API";
 
 export default function DownloadLink() {
-    const [data, setData] = useState(null); // Set initial state to null for single object
+    const [data, setData] = useState(null);
     const username = JSON.parse(localStorage.getItem("user"));
 
     useEffect(() => {
         const getData = async () => {
             try {
                 const response = await API.get(`/share/history/downloader/${username}`);
-                setData(response.data); // Response is expected to be a single object
+                setData(response.data);
             } catch (error) {
                 console.error("Error fetching download link:", error);
                 toast.error("Failed to fetch download link.");
@@ -27,7 +27,7 @@ export default function DownloadLink() {
     };
 
     if (!data) {
-        return <div className="text-center py-5">Loading...</div>; // Handle loading state
+        return <div className="text-center py-5">Loading...</div>;
     }
 
     return (
@@ -54,7 +54,7 @@ export default function DownloadLink() {
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center">
                         <p className="text-center fs-6">
-                            Total Files Shared: <strong>1</strong> {/* Fixed to 1 since it's findOne */}
+                            Total Files Shared: <strong>1</strong>
                         </p>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center">
