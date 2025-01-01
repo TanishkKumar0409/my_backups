@@ -101,8 +101,8 @@ export default function AdminTable() {
             </div>
 
             <div className="table-responsive">
-                <table className="table table-bordered table-striped">
-                    <thead className="text-center">
+                <table className="table table-striped w-100 h-100 text-nowrap align-middle rounded overflow-hidden">
+                    <thead className="text-center tableHeadCustom">
                         <tr>
                             <th>Id</th>
                             <th>Username</th>
@@ -115,7 +115,7 @@ export default function AdminTable() {
                             <th>Block/Unblock</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='tableBodyCustom'>
                         {displayedData.length > 0 ? (
                             displayedData.map((user, index) => (
                                 <tr key={index}>

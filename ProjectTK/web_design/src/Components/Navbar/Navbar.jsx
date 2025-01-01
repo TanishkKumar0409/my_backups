@@ -119,7 +119,7 @@ export default function Navbar() {
                         </ul>
 
                         <button
-                            className="btn btn-outline-light d-none d-lg-flex align-items-center ms-3"
+                            className="btn btn-custom custom-btn p-2 px-4 shadow-sm d-none d-lg-flex align-items-center ms-1"
                             type="button"
                             data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasProfile"
@@ -128,8 +128,8 @@ export default function Navbar() {
                             <img
                                 src={`http://localhost:5000/${userData.profile}`}
                                 className="rounded-circle"
-                                width={"20px"}
-                                height={"20px"}
+                                width={"30px"}
+                                height={"30px"}
                                 alt="User Avatar"
                             />
                             <span className="ms-2">{userData.username}</span>

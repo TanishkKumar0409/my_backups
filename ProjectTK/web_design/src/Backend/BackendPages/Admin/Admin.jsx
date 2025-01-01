@@ -1,51 +1,64 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import InnerPagesBanner from '../../../Components/InnerPagesBanner/InnerPagesBanner';
 import Footer from '../../../Components/Footer/Footer';
 import AdminTable from '../../BackendComponents/AdminTable/AdminTable';
-import { useNavigate, useParams } from 'react-router-dom';
 import UsersTable from '../../BackendComponents/UsersTable/UsersTable';
 import Query from '../../BackendComponents/Query/Query';
 
 export default function Admin() {
     const { type } = useParams();
-    const redirector = useNavigate();
+    const navigate = useNavigate();
 
-    const BannerData = {
-        icon: type === "info" ? "user-tie" : "user",
-        heading: type === "info" ? "Admin Informations" : type === "user" ? "Users Informations" : "Queries Information",
-        para: type === "info" ? "Information of All The Admins." : type === "user" ? "Information of All The Users." : "Information of All the Queries."
-    };
+    const content = useMemo(() => ({
+        info: {
+            icon: "user-secret",
+            heading: "Admin Informations",
+            para: "Information of All The Admins.",
+            mainHeading: "Admins",
+        },
+        user: {
+            icon: "user-tie",
+            heading: "Users Informations",
+            para: "Information of All The Users.",
+            mainHeading: "Users",
+        },
+        query: {
+            icon: "user-pen",
+            heading: "Queries Information",
+            para: "Information of All the Queries.",
+            mainHeading: "Queries",
+        },
+    }), []);
 
-    const headings = {
-        mainHeading: type === "info" ? "Admins" : type === "user" ? "Users" : "Queries",
-        title: "Stay updated with the latest documents and resources in the Recent Files section, making it easy to access and manage your most relevant files."
-    }
+    const pageData = content[type] || {};
 
     useEffect(() => {
-        const validTypes = ["info", "user", "query"];
-        if (!validTypes.includes(type)) {
-            redirector("/")
-        }
-    }, [])
+        if (!content[type]) navigate("/");
+    }, [type, navigate, content]);
+
+    const TableComponent =
+        type === "info" ? AdminTable :
+            type === "user" ? UsersTable :
+                type === "query" ? Query : null;
 
     return (
         <div>
-            <InnerPagesBanner BannerData={BannerData} />
-            <section className="bg-light py-5">
-                <div className="container">
-                    <div className="row">
-                        <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": `'${headings.mainHeading}'` }}>{headings.mainHeading}</h2>
-                        <p className="px-5 text-center">
-                            Information of All The {headings.title}
-                        </p>
-                        <div className="col">
-                            {type === "info" ?
-                                <AdminTable /> : type === "user" ? <UsersTable /> : <Query />}
+            {pageData.icon && (
+                <>
+                    <InnerPagesBanner BannerData={pageData} />
+                    <section className="bg-light py-5">
+                        <div className="container">
+                            <div className="row">
+                                <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": `'${pageData.mainHeading}` }}>{pageData.mainHeading}</h2>
+                                <p className="px-5 text-center">{pageData.para}</p>
+                                <div className="col">{TableComponent && <TableComponent />}</div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </section>
+                    </section>
+                </>
+            )}
             <Footer />
         </div>
-    )
+    );
 }
