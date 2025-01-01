@@ -104,6 +104,16 @@ export default function Navbar() {
                                             Admins
                                         </Link>
                                     </li>
+                                    <li className="nav-item">
+                                        <Link className={`nav-link fw-bold fs-5 ${isActive("/admin/dashboard/user")}`} to="/admin/dashboard/user">
+                                            Users
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className={`nav-link fw-bold fs-5 ${isActive("/admin/dashboard/query")}`} to="/admin/dashboard/query">
+                                            Queries
+                                        </Link>
+                                    </li>
                                 </>
                                 : ""}
                         </ul>
