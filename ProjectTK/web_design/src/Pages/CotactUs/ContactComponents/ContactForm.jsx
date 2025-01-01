@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { ContactUsSchema } from '../../../Helper/FormValidationSchemas/FormValidationSchemas';
 import { toast } from 'react-toastify';
@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ContactForm() {
     const redirector = useNavigate();
+    const [isHoverd, setIsHovered] = useState("w-50");
 
     const initialValues = {
         name: '',
@@ -38,7 +39,7 @@ export default function ContactForm() {
                 <div className="container">
                     <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": "'Contact Us'" }}>Contact Us</h2>
                     <div className="row justify-content-center">
-                        <div className="col-md-6 bg-white rounded p-3">
+                        <div className="col-md-6 bg-white rounded p-5 shadow form-box overflow-hidden position-relative">
                             <form onSubmit={formik.handleSubmit}>
                                 <div className="row mb-3">
                                     <div className="col-md-6">
@@ -119,7 +120,9 @@ export default function ContactForm() {
                                     )}
                                 </div>
 
-                                <button type="submit" className="btn btn-custom custom-btn w-100">Submit</button>
+                                <div className='text-center'>
+                                    <button type="submit" className={`btn btn-custom custom-btn ${isHoverd}`} onMouseOver={() => setIsHovered("w-100")} onMouseOut={() => setIsHovered("w-50")}>Submit</button>
+                                </div>
                             </form>
                         </div>
                     </div>
