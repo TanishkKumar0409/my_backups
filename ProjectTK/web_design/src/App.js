@@ -44,8 +44,8 @@ function App() {
         <Route path="/contact" element={<ContactUs />} />
         <Route path="*" element={<Navigate to={"/"} replace />} />
 
-        <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/admin/dashboard/:type" element={<Admin />} />
+        <Route path="/admin/dashboard" element={<ProtectedRoutes ><Dashboard /></ProtectedRoutes>} />
+        <Route path="/admin/dashboard/:type" element={<ProtectedRoutes><Admin /></ProtectedRoutes>} />
       </Routes>
     </BrowserRouter>
   );

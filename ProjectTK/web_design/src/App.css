@@ -357,11 +357,6 @@
   transition: 0.2s;
 }
 
-
-.tableBodyCustom:hover tr td {
-  filter: blur(2px);
-}
-
 .tableBodyCustom:hover tr:hover td {
   color: var(--primary-dark-blue);
   background: linear-gradient(var(--accent-cyan), var(--accent-purple));
