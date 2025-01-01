@@ -91,12 +91,20 @@ export default function Navbar() {
                                     Contact
                                 </Link>
                             </li>
+
                             {adminToken ?
-                                <li className="nav-item">
-                                    <Link className={`nav-link fw-bold fs-5 ${isActive("/admin/dashboard")}`} to="/admin/dashboard">
-                                        Dashboard
-                                    </Link>
-                                </li>
+                                <>
+                                    <li className="nav-item">
+                                        <Link className={`nav-link fw-bold fs-5 ${isActive("/admin/dashboard")}`} to="/admin/dashboard">
+                                            Dashboard
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className={`nav-link fw-bold fs-5 ${isActive("/admin/dashboard/info")}`} to="/admin/dashboard/info">
+                                            Admins
+                                        </Link>
+                                    </li>
+                                </>
                                 : ""}
                         </ul>
 

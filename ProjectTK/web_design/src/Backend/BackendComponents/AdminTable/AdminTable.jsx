@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { noFileAPI } from '../../../Services/API/API';
 import { toast } from 'react-toastify';
 
@@ -160,7 +160,7 @@ export default function AdminTable() {
             <div className="row">
                 <div className="col text-center">
                     {data.length > 5 && location.pathname === "/admin/dashboard" && (
-                        <button className="btn btn-custom custom-btn">Show All</button>
+                        <Link to={`/admin/dashboard/info`} className="btn btn-custom custom-btn">Show All</Link>
                     )}
                 </div>
             </div>

@@ -2,7 +2,7 @@ import Users from "../../Modals/Users.js";
 
 const GetAdmin = async (req, res) => {
     try {
-        const allAdmin = await Users.find({ role: "ADMIN" },).sort({ userId: 1 });
+        const allAdmin = await Users.find({ role: "ADMIN" },);
 
         if (allAdmin) {
             return res.status(200).json(allAdmin);
