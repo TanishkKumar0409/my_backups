@@ -6,9 +6,7 @@ export default function AutoScroller() {
     const path = location.pathname;
 
     useEffect(() => {
-        if (path !== "/main/storage") {
-            window.scrollTo(0, 0);
-        }
+        window.scrollTo(0, 0);
     }, [path])
 
     return null

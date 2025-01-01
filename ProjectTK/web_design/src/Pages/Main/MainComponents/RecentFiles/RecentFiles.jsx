@@ -3,6 +3,7 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { noFileAPI } from "../../../../Services/API/API";
+import { Link } from "react-router-dom";
 
 export default function RecentFiles() {
   const owlOptions = {
@@ -99,11 +100,11 @@ export default function RecentFiles() {
                     <div className="item" key={index}>
                       <div className="cardCustom rounded-3 overflow-hidden bg-white">
                         <div className="cardCustomHead h-50 d-flex justify-content-center align-items-center">
-                          <i className={`fa text-light fa-beat-fade ${getFileIcon(item.file?.root || 'default')}`}></i>
+                          <i className={`fa text-light fa-beat-fade ${getFileIcon(item.file.root || 'default')}`}></i>
                         </div>
                         <div className="cardCustomBody h-50 d-flex justify-content-center align-items-center text-center p-4 flex-column">
-                          <h2 className="fs-5 fw-bold text-break text-capitalize">{item.file?.root}</h2>
-                          <button className="btn custom-btn btn-custom border-0 mt-3 overflow-hidden">View</button>
+                          <h2 className="fs-5 fw-bold text-break text-capitalize">{item.file.root}</h2>
+                          <Link to={`/main/file/view/${item.file.folderId}`} className="btn custom-btn btn-custom border-0 overflow-hidden">View</Link>
                         </div>
                       </div>
                     </div>
