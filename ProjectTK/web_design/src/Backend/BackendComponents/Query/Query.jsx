@@ -34,8 +34,8 @@ export default function Query() {
     return (
         <>
             <div className="table-responsive">
-                <table className="table table-bordered table-striped">
-                    <thead className="text-center">
+                <table className="table table-striped w-100 h-100 text-nowrap align-middle rounded overflow-hidden">
+                    <thead className="text-center tableHeadCustom">
                         <tr>
                             <th>Id</th>
                             <th>Name</th>
@@ -46,7 +46,7 @@ export default function Query() {
                             <th>Delete</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='tableBodyCustom'>
                         {displayedData.length === 0 ? (
                             <tr>
                                 <td colSpan="7" className="text-center fw-bold fs-1">No data available</td>
