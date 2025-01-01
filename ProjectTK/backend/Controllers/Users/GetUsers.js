@@ -2,7 +2,7 @@ import Users from "../../Modals/Users.js";
 
 const GetUsers = async (req, res) => {
     try {
-        const allUsers = await Users.find({ role: "USER" },).sort({ userId: 1 });
+        const allUsers = await Users.find({ role: "USER" });
 
         if (allUsers) {
             return res.status(200).json(allUsers);

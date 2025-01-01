@@ -1,8 +1,8 @@
 import express from "express";
-import RegisterUser from "../Controllers/Users/RegisterUser.js";
 import multer from "multer";
 import path from "path"
 
+import RegisterUser from "../Controllers/Users/RegisterUser.js";
 import GetUsers from "../Controllers/Users/GetUsers.js";
 import GetUserByUsername from "../Controllers/Users/GetUserByUsername.js";
 import DeleteUser from "../Controllers/Users/DeleteUser.js";

@@ -28,7 +28,7 @@ const Login = async (req, res) => {
 
         if (isAdmin === "ADMIN") {
             const adminToken = jwt.sign({ email, password, isAdmin }, PrivateKey);
-            return res.status(200).json({ message: "Login Successfully", loginToken, adminToken,loginUser });
+            return res.status(200).json({ message: "Login Successfully", loginToken, adminToken, loginUser });
         }
 
         if (loginUser && isMatch && loginToken) {
