@@ -84,9 +84,11 @@ export default function AdminTable() {
                             className="form-control"
                             placeholder="Search by username, name, email, or contact"
                             value={search}
+                            id="searchAdmin"
                             onChange={(e) => setSearch(e.target.value)}
                         />
                         <select
+                            name='status'
                             className="form-select"
                             value={statusFilter}
                             onChange={(e) => setStatusFilter(e.target.value)}

@@ -79,6 +79,7 @@ export default function UsersTable() {
                             className="form-control"
                             placeholder="Search by username, name, email, or contact"
                             value={search}
+                            id="searchUser"
                             onChange={(e) => setSearch(e.target.value)}
                         />
                         <select
