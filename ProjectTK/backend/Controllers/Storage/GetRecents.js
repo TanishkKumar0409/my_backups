@@ -1,5 +1,4 @@
 import Recent from "../../Modals/RecentFile.js"
-import Users from "../../Modals/Users.js";
 
 const GetRecents = async (req, res) => {
     try {

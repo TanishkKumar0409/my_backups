@@ -127,6 +127,26 @@ export default function FileExplorer({ username }) {
         }
     };
 
+    let touchCounter = 0;
+    let touchTimeout;
+
+    const handleTouchStart = (event, folder) => {
+        console.log(touchCounter);
+
+        touchCounter += 1;
+
+        if (touchCounter === 2) {
+            clearTimeout(touchTimeout);
+            handleFolderClick(folder);
+            touchCounter = 0;
+        } else {
+            touchTimeout = setTimeout(() => {
+                touchCounter = 0;
+            }, 500);
+        }
+    };
+
+
     return (
         <section className="bg-light py-5">
             <div className="container">
@@ -180,10 +200,11 @@ export default function FileExplorer({ username }) {
                                 <div
                                     className={`icon-container cursorPointer ${selectedItemId === child.folderId ? "bg-light shadow" : "bg-white shadow-sm"} rounded-3 d-flex justify-content-center align-items-center`}
                                     onDoubleClick={() => handleFolderClick(child)}
+                                    onTouchStart={(e) => handleTouchStart(e, child)}
                                     onClick={() => setSelectedItemId(child.folderId)}
                                     style={{ width: "100px", height: "100px", opacity: selectedItemId === child.folderId ? 1 : 0.7, }}
                                 >
-                                    <i className={`fa display-1 fw-bold ${child.type === "folder" ? "fa-folder text-warning" : getFileIcon(child?.root)}`}></i>
+                                    <i style={{ fontSize: "5rem" }} className={`fa fw-bold ${child.type === "folder" ? "fa-folder text-warning" : getFileIcon(child?.root)}`}></i>
                                 </div>
                                 <span className="folder-name mt-2 truncated-file-name" >{child.root}</span>
                             </div>

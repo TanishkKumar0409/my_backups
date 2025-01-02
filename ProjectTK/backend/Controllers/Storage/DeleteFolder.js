@@ -1,5 +1,6 @@
 import Storage from "../../Modals/Storage.js";
 import Users from "../../Modals/Users.js";
+import Recent from "../../Modals/RecentFile.js"
 
 const DeleteFolder = async (req, res) => {
     try {
@@ -27,6 +28,8 @@ const DeleteFolder = async (req, res) => {
             return res.status(404).json({ error: "This folder does not exist" });
         }
 
+        const isRecent = await Recent.findOne({ username, "recentFiles.folderId": folderId });
+
         const deleteChildren = async (parentFolderId) => {
             const children = await Storage.find({ username, parentId: parentFolderId });
             for (const child of children) {
@@ -50,6 +53,14 @@ const DeleteFolder = async (req, res) => {
                 if (deletedFolder.type === "file") {
                     const currentUsedSize = isUser.usedStorage || 0;
                     const updatedUsedSize = currentUsedSize - deletedFolder.fileSize;
+
+                    if (isRecent) {
+                        await Recent.findOneAndUpdate({ username }, {
+                            $pull: {
+                                recentFiles: { folderId: folderId }
+                            }
+                        })
+                    }
 
                     await Users.findOneAndUpdate(
                         { username },
