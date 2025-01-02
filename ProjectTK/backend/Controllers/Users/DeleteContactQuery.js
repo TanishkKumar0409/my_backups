@@ -2,9 +2,8 @@ import Contact from "../../Modals/ContactUs.js";
 
 const DeleteContactQuery = async (req, res) => {
     try {
-        const { id } = req.params;  // Correctly destructure the id from req.params
+        const { id } = req.params;
 
-        // Ensure the id is valid
         if (!id) {
             return res.status(400).json({ error: "Query ID is required" });
         }

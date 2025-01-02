@@ -12,10 +12,10 @@ const DeleteUser = async (req, res) => {
 
         const isUser = await Users.findOne({ username });
         if (!isUser) {
-            return res.status(404).json("User not Found");
+            return res.status(404).json({ error: "User not Found" });
         }
         if (isUser.deletionOtp !== parseInt(deletionOtp)) {
-            return res.status(400).json("Invalid Otp");
+            return res.status(400).json({ error: "Invalid Otp" });
         }
 
         const DeletedUser = await Users.findOneAndDelete({ username });
@@ -27,7 +27,6 @@ const DeleteUser = async (req, res) => {
             return res.status(404).json({ message: "User not found" });
         }
     } catch (error) {
-        console.log(error)
         return res.status(500).json({ error: error.message });
     }
 };
