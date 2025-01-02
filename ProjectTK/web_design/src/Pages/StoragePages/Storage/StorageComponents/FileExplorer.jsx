@@ -130,8 +130,7 @@ export default function FileExplorer({ username }) {
     let touchCounter = 0;
     let touchTimeout;
 
-    const handleTouchStart = (event, folder) => {
-        console.log(touchCounter);
+    const handleTouchStart = (e, folder) => {
 
         touchCounter += 1;
 
