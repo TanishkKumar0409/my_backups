@@ -6,7 +6,6 @@ const DeletionOtp = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-
         const existingUser = await Users.findOne({ email });
         if (!existingUser) {
             return res.status(404).json({ error: "User not found" });

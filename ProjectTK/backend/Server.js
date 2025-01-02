@@ -36,7 +36,7 @@ setInterval(() => {
 
 mongoose.connect(DbName)
     .then(() => console.log(`Database Connected`))
-    .catch((error) => console.log("a", error));
+    .catch((error) => console.log(error));
 
 const handleStart = () => {
     try {
