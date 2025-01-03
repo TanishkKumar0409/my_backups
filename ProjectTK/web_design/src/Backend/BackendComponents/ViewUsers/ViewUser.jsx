@@ -37,6 +37,12 @@ export default function ViewUser() {
     };
 
     const handlePromote = async () => {
+        const confirmation = window.confirm(`Are you sure you want to promote ${username}?`);
+        if (!confirmation) {
+            toast.info("Promotion canceled");
+            return;
+        }
+
         try {
             const promoteResponse = await noFileAPI.put(`/user/promote/${data.username}`)
             toast.success(promoteResponse.data.message);
@@ -50,6 +56,12 @@ export default function ViewUser() {
     }
 
     const handleDemote = async () => {
+        const confirmation = window.confirm(`Are you sure you want to promote ${username}?`);
+        if (!confirmation) {
+            toast.info("Promotion canceled");
+            return;
+        }
+
         try {
             const demoteResponse = await noFileAPI.put(`/user/demote/${data.username}`)
             toast.success(demoteResponse.data.message);
@@ -63,6 +75,12 @@ export default function ViewUser() {
     }
 
     const handleBlock = async () => {
+        const confirmation = window.confirm(`Are you sure you want to promote ${username}?`);
+        if (!confirmation) {
+            toast.info("Promotion canceled");
+            return;
+        }
+
         try {
             const blockingResponse = await noFileAPI.put(`/user/block/${data.username}`)
             toast.success(blockingResponse.data.message);
