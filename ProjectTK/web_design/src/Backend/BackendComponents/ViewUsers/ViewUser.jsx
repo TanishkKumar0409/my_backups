@@ -62,6 +62,20 @@ export default function ViewUser() {
         }
     }
 
+    const handleBlock = async () => {
+        try {
+            const blockingResponse = await noFileAPI.put(`/user/block/${data.username}`)
+            toast.success(blockingResponse.data.message);
+            const response = await noFileAPI.get(`/user/${username}`);
+            const userData = response.data;
+            setData(userData);
+            setIsBlocked(userData.status === "BLOCKED");
+        } catch (error) {
+            toast.error(error.response.data.error);
+            console.error(error.response.data.error);
+        }
+    }
+
     return (
         <>
             <section className="py-5 bgGradient">
@@ -120,7 +134,7 @@ export default function ViewUser() {
                                                         <button className="btn btn-custom custom-btn" onClick={handlePromote} disabled={isBlocked}>
                                                             Promote
                                                         </button>}
-                                                    <button className="btn btn-custom custom-btn" disabled={isBlocked}>
+                                                    <button className="btn btn-custom custom-btn" onClick={handleBlock} disabled={isBlocked}>
                                                         {isBlocked ? "Unblock" : " Block"}
                                                     </button>
                                                 </div>
