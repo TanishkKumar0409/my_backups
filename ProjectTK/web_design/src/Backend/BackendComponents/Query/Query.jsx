@@ -55,11 +55,11 @@ export default function Query() {
                             displayedData.map((query, index) => (
                                 <tr key={index}>
                                     <td className='align-content-center'>{index + 1}</td>
-                                    <td className='align-content-center'>{query.name}</td>
-                                    <td className='align-content-center'>{query.email}</td>
-                                    <td className='align-content-center'>{query.contact}</td>
-                                    <td className='align-content-center'>{query.subject}</td>
-                                    <td className='align-content-center textJustify'>{query.message}</td>
+                                    <td className='align-content-center'>{query.name || "Unknown"}</td>
+                                    <td className='align-content-center'>{query.email || "Unknown"}</td>
+                                    <td className='align-content-center'>{query.contact || "Unknown"}</td>
+                                    <td className='align-content-center'>{query.subject || "Unknown"}</td>
+                                    <td className='align-content-center textJustify'>{query.message || "Unknown"}</td>
                                     <td className='align-content-center'>
                                         <button className="btn-custom custom-btn btn text-nowrap btn-sm" onClick={() => handleQueryDelete(query._id)}>
                                             Delete Query
