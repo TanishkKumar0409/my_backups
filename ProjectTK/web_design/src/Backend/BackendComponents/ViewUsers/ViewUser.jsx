@@ -11,13 +11,14 @@ export default function ViewUser() {
 
     const [data, setData] = useState({});
 
+    const APIurl = process.env.REACT_APP_API;
+
     useEffect(() => {
         const getData = async () => {
             try {
                 const response = await noFileAPI.get(`/user/${username}`);
-                const userData = response.data;
-                setData(userData);
-                setIsBlocked(userData.status === "BLOCKED");
+                setData(response.data);
+                setIsBlocked(response.data.status === "BLOCKED");
             } catch (error) {
                 redirector("/");
                 console.error(error.response.data.error);
@@ -101,14 +102,15 @@ export default function ViewUser() {
                     <div className="row">
                         <div className="col-md-6 text-center align-content-center">
                             <img
-                                src={`http://localhost:5000/${data.profile}`}
-                                className="img-fluid rounded shadow"
+                                src={`${APIurl}${data.profile}`}
+                                className="img-fluid rounded shadow w-100"
+                                style={{ aspectRatio: "4/4" }}
                                 alt={data.username || "User Profile"}
                             />
                         </div>
 
                         <div className="col-md-6 align-content-center">
-                            <h3 className="mb-4">{data.username || "User Details"}</h3>
+                            <h3 className="mb-4 fs-1 fw-bold">{data.username || "User Details"}</h3>
                             <div className="table-responsive">
                                 <table className="table table-striped table-bordered">
                                     <tbody>
