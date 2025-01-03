@@ -1,24 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import Footer from "../../../Components/Footer/Footer";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { noFileAPI } from '../../../Services/API/API';
+import { toast } from 'react-toastify';
 
 export default function ViewUser() {
     const { username } = useParams();
+    const [isBlocked, setIsBlocked] = useState(false)
+    const redirector = useNavigate()
 
     const [data, setData] = useState({});
 
     useEffect(() => {
         const getData = async () => {
-            const response = await noFileAPI.get(`/user/${username}`);
-            setData(response.data);
+            try {
+                const response = await noFileAPI.get(`/user/${username}`);
+                const userData = response.data;
+                setData(userData);
+                setIsBlocked(userData.status === "BLOCKED");
+            } catch (error) {
+                redirector("/");
+                console.error(error.response.data.error);
+            }
         };
         getData();
     }, [username]);
 
-    // Utility function to convert bytes to GB or MB
     const formatStorage = (bytes) => {
-        if (!bytes) return "0 MB"; // Default value if undefined or null
+        if (!bytes) return "0 MB";
         const gb = bytes / (1024 * 1024 * 1024);
         if (gb >= 1) {
             return `${gb.toFixed(2)} GB`;
@@ -27,12 +36,24 @@ export default function ViewUser() {
         return `${mb.toFixed(2)} MB`;
     };
 
+    const handlePromote = async () => {
+        try {
+            const promoteResponse = await noFileAPI.put(`/user/promote/${data.username}`)
+            toast.success(promoteResponse.data.message);
+            const response = await noFileAPI.get(`/user/${username}`);
+            const userData = response.data;
+            setData(userData);
+        } catch (error) {
+            toast.error(error.response.data.error)
+            console.log(error.response.data.error)
+        }
+    }
+
     return (
         <>
             <section className="py-5 bgGradient">
                 <div className="container bg-light rounded p-5 mt-5">
                     <div className="row">
-                        {/* Profile Image Section */}
                         <div className="col-md-6 text-center align-content-center">
                             <img
                                 src={`http://localhost:5000/${data.profile}`}
@@ -41,7 +62,6 @@ export default function ViewUser() {
                             />
                         </div>
 
-                        {/* User Details Table */}
                         <div className="col-md-6 align-content-center">
                             <h3 className="mb-4">{data.username || "User Details"}</h3>
                             <div className="table-responsive">
@@ -78,10 +98,16 @@ export default function ViewUser() {
                                         <tr>
                                             <td colSpan={`2`} className='text-center'>
                                                 <div className="btn-group w-100">
-                                                    <button className="btn btn-custom custom-btn">
-                                                        Promote
-                                                    </button>
-                                                    <button className="btn btn-custom custom-btn">
+
+                                                    {data.role === "ADMIN" ?
+                                                        <button className="btn btn-custom custom-btn">
+                                                            Demote
+                                                        </button>
+                                                        :
+                                                        <button className="btn btn-custom custom-btn" onClick={handlePromote}>
+                                                            Promote
+                                                        </button>}
+                                                    <button className="btn btn-custom custom-btn" disabled={isBlocked}>
                                                         Block
                                                     </button>
                                                 </div>

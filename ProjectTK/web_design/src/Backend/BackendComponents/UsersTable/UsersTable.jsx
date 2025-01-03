@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { noFileAPI } from '../../../Services/API/API';
 import { toast } from 'react-toastify';
 
@@ -121,7 +121,7 @@ export default function UsersTable() {
                                     <td className='align-content-center'>{user.contact}</td>
                                     <td className='align-content-center'>{user.status}</td>
                                     <td className="text-center">
-                                        <button className="btn btn-custom custom-btn btn-sm">View</button>
+                                        <Link to={`/admin/dashboard/user/${user.username}`} className="btn btn-custom custom-btn btn-sm">View</Link>
                                     </td>
                                     <td className="text-center">
                                         <button
