@@ -11,7 +11,7 @@ export default function Storage() {
         icon: "hard-drive",
         heading: "Storage",
         para: "Manage and monitor your storage space effortlessly. Keep track of your files, optimize storage usage, and ensure smooth access to your important documents and data."
-    };    
+    };
 
     return (
         <>
