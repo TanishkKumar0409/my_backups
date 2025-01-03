@@ -19,6 +19,7 @@ import FileView from "./Pages/FileView/FileView";
 import ContactUs from "./Pages/CotactUs/ContactUs";
 import Dashboard from "./Backend/BackendPages/Dashboard/Dashboard";
 import Admin from "./Backend/BackendPages/Admin/Admin";
+import ViewUser from "./Backend/BackendComponents/ViewUsers/ViewUser";
 
 function App() {
   const loginToken = localStorage.getItem("loginToken");
@@ -46,6 +47,7 @@ function App() {
 
         <Route path="/admin/dashboard" element={<ProtectedRoutes ><Dashboard /></ProtectedRoutes>} />
         <Route path="/admin/dashboard/:type" element={<ProtectedRoutes><Admin /></ProtectedRoutes>} />
+        <Route path="/admin/dashboard/user/:username" element={<ProtectedRoutes><ViewUser /></ProtectedRoutes>} />
       </Routes>
     </BrowserRouter>
   );

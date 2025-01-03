@@ -9,7 +9,7 @@ export default function ProtectedRoutes({ children }) {
 
     const nonLogin = ["/", "/form"];
     const includeLogin = ['/main', "/main/history", "/main/storage"];
-    const includeAdmin = ["/admin/dashboard", "/admin/dashboard/info", "/admin/dashboard/user", "/admin/dashboard/query"];
+    const includeAdmin = ["/admin/dashboard", "/admin/dashboard/info", "/admin/dashboard/user", "/admin/dashboard/query", "/admin/dashboard/user/:username"];
 
     if (loginToken && nonLogin.includes(path)) {
         return <Navigate to={"/main"} replace />;
