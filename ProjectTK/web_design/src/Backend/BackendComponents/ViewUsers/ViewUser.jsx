@@ -24,7 +24,7 @@ export default function ViewUser() {
             }
         };
         getData();
-    }, [username]);
+    }, [username, redirector]);
 
     const formatStorage = (bytes) => {
         if (!bytes) return "0 MB";
@@ -44,8 +44,21 @@ export default function ViewUser() {
             const userData = response.data;
             setData(userData);
         } catch (error) {
-            toast.error(error.response.data.error)
-            console.log(error.response.data.error)
+            toast.error(error.response.data.error);
+            console.error(error.response.data.error);
+        }
+    }
+
+    const handleDemote = async () => {
+        try {
+            const demoteResponse = await noFileAPI.put(`/user/demote/${data.username}`)
+            toast.success(demoteResponse.data.message);
+            const response = await noFileAPI.get(`/user/${username}`);
+            const userData = response.data;
+            setData(userData);
+        } catch (error) {
+            toast.error(error.response.data.error);
+            console.error(error.response.data.error);
         }
     }
 
@@ -100,15 +113,15 @@ export default function ViewUser() {
                                                 <div className="btn-group w-100">
 
                                                     {data.role === "ADMIN" ?
-                                                        <button className="btn btn-custom custom-btn">
+                                                        <button className="btn btn-custom custom-btn" onClick={handleDemote}>
                                                             Demote
                                                         </button>
                                                         :
-                                                        <button className="btn btn-custom custom-btn" onClick={handlePromote}>
+                                                        <button className="btn btn-custom custom-btn" onClick={handlePromote} disabled={isBlocked}>
                                                             Promote
                                                         </button>}
                                                     <button className="btn btn-custom custom-btn" disabled={isBlocked}>
-                                                        Block
+                                                        {isBlocked ? "Unblock" : " Block"}
                                                     </button>
                                                 </div>
                                             </td>
