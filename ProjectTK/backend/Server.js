@@ -11,7 +11,7 @@ import ProfilesCleaner from "./Helper/folderCleaner/UserProfileCleaner.js";
 import CancelDelete from "./Helper/DbCleaner/CancelDelete.js";
 import StorageCleaner from "./Helper/folderCleaner/DeleteExplorerFiles.js";
 
-dotenv.config()
+dotenv.config();
 
 const PORT = process.env.PORT;
 const DbName = process.env.DbName;
@@ -28,24 +28,25 @@ app.use(bodyparser.json());
 app.use("/api/", router);
 
 setInterval(() => {
-    deleteShareingFiles();
-    ProfilesCleaner();
-    CancelDelete();
-    StorageCleaner();
+  deleteShareingFiles();
+  ProfilesCleaner();
+  CancelDelete();
+  StorageCleaner();
 }, 1000);
 
-mongoose.connect(DbName)
-    .then(() => console.log(`Database Connected`))
-    .catch((error) => console.log(error));
+mongoose
+  .connect(DbName)
+  .then(() => console.log(`Database Connected`))
+  .catch((error) => console.log(error));
 
 const handleStart = () => {
-    try {
-        app.listen(PORT, () => {
-            console.log(`Server running at http://localhost:${PORT}`);
-        });
-    } catch (error) {
-        console.log(error);
-    }
-}
+  try {
+    app.listen(PORT, () => {
+      console.log(`Server running at http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 handleStart();

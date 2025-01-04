@@ -1,53 +1,56 @@
 import mongoose from "mongoose";
 
-const UsersSchema = mongoose.Schema({
+const UsersSchema = mongoose.Schema(
+  {
     profile: {
-        type: String,
-        requried: true
+      type: String,
+      requried: true,
     },
     username: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     name: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     email: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     contact: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     role: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     status: {
-        type: String,
-        requried: true
+      type: String,
+      requried: true,
     },
     usedStorage: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0,
     },
     totalStorage: {
-        type: Number,
-        default: 1024 * 1024 * 1024
+      type: Number,
+      default: 1024 * 1024 * 1024,
     },
     password: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     deletionOtp: {
-        type: Number,
+      type: Number,
     },
     otpExpiry: {
-        type: Date,
-    }
-}, { timestamps: true });
+      type: Date,
+    },
+  },
+  { timestamps: true }
+);
 
 const Users = mongoose.model("Users", UsersSchema);
 

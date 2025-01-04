@@ -1,23 +1,26 @@
 import mongoose from "mongoose";
 
-const contactSchema = mongoose.Schema({
+const contactSchema = mongoose.Schema(
+  {
     name: {
-        type: String
+      type: String,
     },
     email: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     contact: {
-        type: Number
+      type: Number,
     },
     subject: {
-        type: String
+      type: String,
     },
     message: {
-        type: String
-    }
-}, { timestamps: true });
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
 
 const Contact = mongoose.model("contact", contactSchema);
 
