@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import { useFormik } from 'formik';
-import { UpdateProfileSchema } from '../../../Helper/FormValidationSchemas/FormValidationSchemas';
+import React, { useState } from "react";
+import { useFormik } from "formik";
+import { UpdateProfileSchema } from "../../../Helper/FormValidationSchemas/FormValidationSchemas";
 import { API } from "../../../Services/API/API";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 export default function UpdateProfileForm(props) {
   const userData = props.userData;
   const APIurl = process.env.REACT_APP_API;
-  const [profileImage, setProfileImage] = useState(`${APIurl}${userData.profile}`);
+  const [profileImage, setProfileImage] = useState(
+    `${APIurl}${userData.profile}`
+  );
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -23,10 +25,10 @@ export default function UpdateProfileForm(props) {
   };
 
   const initialValues = {
-    name: userData?.name || '',
-    email: userData?.email || '',
-    contact: userData?.contact || '',
-    password: '',
+    name: userData?.name || "",
+    email: userData?.email || "",
+    contact: userData?.contact || "",
+    password: "",
   };
 
   const handleSubmit = async (values) => {
@@ -40,19 +42,23 @@ export default function UpdateProfileForm(props) {
         formData.append("password", values.password);
       }
 
-      const fileInput = document.querySelector('#image-upload');
+      const fileInput = document.querySelector("#image-upload");
       if (fileInput?.files[0]) {
-        formData.append('profile', fileInput.files[0]);
+        formData.append("profile", fileInput.files[0]);
       }
 
-      const response = await API.put(`/user/update/${userData.username}`, formData);
+      const response = await API.put(
+        `/user/update/${userData.username}`,
+        formData
+      );
 
       toast.success(response.data.message);
       localStorage.setItem("admin", JSON.stringify(response.data.updatedUser));
 
-      window.location.reload()
+      window.location.reload();
     } catch (error) {
-      console.error('Error updating user:', error);
+      console.error("Error updating user:", error);
+      toast.error(error.response.data.error);
     }
   };
 
@@ -64,7 +70,6 @@ export default function UpdateProfileForm(props) {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-
       <div className="text-center mb-2 mt-4">
         <img
           src={profileImage}
@@ -72,21 +77,23 @@ export default function UpdateProfileForm(props) {
           className="rounded-circle shadow"
           width="150px"
           height="150px"
-          style={{ cursor: 'pointer' }}
-          onClick={() => document.getElementById('image-upload').click()}
+          style={{ cursor: "pointer" }}
+          onClick={() => document.getElementById("image-upload").click()}
         />
 
         <input
           type="file"
           id="image-upload"
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
           accept="image/*"
           onChange={handleImageChange}
         />
       </div>
 
       <div className="mb-2">
-        <label htmlFor="name" className="form-label">Name</label>
+        <label htmlFor="name" className="form-label">
+          Name
+        </label>
         <input
           type="text"
           className="form-control"
@@ -96,7 +103,7 @@ export default function UpdateProfileForm(props) {
           value={formik.values.name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          autoComplete='name'
+          autoComplete="name"
         />
         {formik.touched.name && formik.errors.name ? (
           <div className="text-danger">{formik.errors.name}</div>
@@ -104,7 +111,9 @@ export default function UpdateProfileForm(props) {
       </div>
 
       <div className="mb-2">
-        <label htmlFor="formemail" className="form-label">Email</label>
+        <label htmlFor="formemail" className="form-label">
+          Email
+        </label>
         <input
           type="email"
           className="form-control"
@@ -114,7 +123,7 @@ export default function UpdateProfileForm(props) {
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          autoComplete='email'
+          autoComplete="email"
         />
         {formik.touched.email && formik.errors.email ? (
           <div className="text-danger">{formik.errors.email}</div>
@@ -122,7 +131,9 @@ export default function UpdateProfileForm(props) {
       </div>
 
       <div className="mb-2">
-        <label htmlFor="contact" className="form-label">Contact</label>
+        <label htmlFor="contact" className="form-label">
+          Contact
+        </label>
         <input
           type="text"
           className="form-control"
@@ -139,7 +150,9 @@ export default function UpdateProfileForm(props) {
       </div>
 
       <div className="mb-2">
-        <label htmlFor="password" className="form-label">Password</label>
+        <label htmlFor="password" className="form-label">
+          Password
+        </label>
         <input
           type="password"
           className="form-control"

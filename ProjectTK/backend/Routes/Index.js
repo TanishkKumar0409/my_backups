@@ -1,6 +1,6 @@
 import express from "express";
 import multer from "multer";
-import path from "path"
+import path from "path";
 
 import RegisterUser from "../Controllers/Users/RegisterUser.js";
 import GetUsers from "../Controllers/Users/GetUsers.js";
@@ -34,43 +34,43 @@ import GetAdmin from "../Controllers/Admin/GetAdmins.js";
 import GetContactQuery from "../Controllers/Users/GetContactQuery.js";
 import DeleteContactQuery from "../Controllers/Users/DeleteContactQuery.js";
 
-const router = express.Router()
+const router = express.Router();
 
 //? User profile Multer
 const UserProfileStorage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './')
-    },
-    filename: function (req, file, cb) {
-        const originalExtension = path.extname(file.originalname);
-        cb(null, "Uploads/Users/" + Date.now() + originalExtension)
-    }
-})
+  destination: function (req, file, cb) {
+    cb(null, "./");
+  },
+  filename: function (req, file, cb) {
+    const originalExtension = path.extname(file.originalname);
+    cb(null, "Uploads/Users/" + Date.now() + originalExtension);
+  },
+});
 
-const uploadProfile = multer({ storage: UserProfileStorage })
+const uploadProfile = multer({ storage: UserProfileStorage });
 
 //? Sharing File Multer
 const FileShare = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './')
-    },
-    filename: function (req, file, cb) {
-        const originalExtension = path.extname(file.originalname);
-        cb(null, "Uploads/shareFiles/" + Date.now() + originalExtension)
-    }
-})
+  destination: function (req, file, cb) {
+    cb(null, "./");
+  },
+  filename: function (req, file, cb) {
+    const originalExtension = path.extname(file.originalname);
+    cb(null, "Uploads/shareFiles/" + Date.now() + originalExtension);
+  },
+});
 
-const UploadFileShare = multer({ storage: FileShare })
+const UploadFileShare = multer({ storage: FileShare });
 
 //? Storage File Multer
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './Uploads/Explorer');
-    },
-    filename: function (req, file, cb) {
-        const originalExtension = path.extname(file.originalname);
-        cb(null, Date.now() + originalExtension);
-    }
+  destination: function (req, file, cb) {
+    cb(null, "./Uploads/Explorer");
+  },
+  filename: function (req, file, cb) {
+    const originalExtension = path.extname(file.originalname);
+    cb(null, Date.now() + originalExtension);
+  },
 });
 
 const uploadFile = multer({ storage: storage });
@@ -81,11 +81,15 @@ router.post("/user/login", Login);
 router.get("/user/all", GetUsers);
 router.get("/user/:username", GetUserByUsername);
 router.delete("/user/delete/:username", DeleteUser);
-router.put("/user/update/:username", uploadProfile.single("profile"), UpdateByUser);
+router.put(
+  "/user/update/:username",
+  uploadProfile.single("profile"),
+  UpdateByUser
+);
 router.post("/user/delete/otp", DeletionOtp);
 router.post("/user/contact", UserContactUs);
 router.get("/user/contact/query", GetContactQuery);
-router.delete("/user/contact/query/:id", DeleteContactQuery)
+router.delete("/user/contact/query/:id", DeleteContactQuery);
 
 //? Admin Actions
 router.put("/user/block/:username", BlockUser);
@@ -104,12 +108,15 @@ router.get("/share/history/downloader/:username", GetDataByDownloadLink);
 //? Storage Routes
 router.post("/storage/folder/create", CreateFolder);
 router.get("/storage/folder/:username", GetFolder);
-router.post("/storage/file/upload/:username", uploadFile.single("file"), FileUpload);
+router.post(
+  "/storage/file/upload/:username",
+  uploadFile.single("file"),
+  FileUpload
+);
 router.delete("/storage/folder/delete", DeleteFolder);
 router.get("/storage/file/download", DownloadStoredFile);
 router.get("/storage/file/single", GetParticularFile);
-router.post("/storage/recent", RecentFile)
-router.get("/storage/recent/:username", GetRecents)
-
+router.post("/storage/recent", RecentFile);
+router.get("/storage/recent/:username", GetRecents);
 
 export default router;

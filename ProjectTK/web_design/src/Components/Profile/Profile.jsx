@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import UpdateProfileForm from './UpdateProfileForm/UpdateProfileForm';
-import DeleteAccount from './DeleteAccount/DeleteAccount';
+import React, { useState } from "react";
+import UpdateProfileForm from "./UpdateProfileForm/UpdateProfileForm";
+import DeleteAccount from "./DeleteAccount/DeleteAccount";
 
 export default function Profile(props) {
   const userData = props.userData;
@@ -25,7 +25,11 @@ export default function Profile(props) {
       >
         <div className="offcanvas-header">
           <h5 className="offcanvas-title" id="offcanvasProfileLabel">
-            {isDeleting ? 'Delete Account' : (isUpdating ? 'Update Profile' : 'Profile')}
+            {isDeleting
+              ? "Delete Account"
+              : isUpdating
+              ? "Update Profile"
+              : "Profile"}
           </h5>
 
           <button
@@ -41,7 +45,10 @@ export default function Profile(props) {
         </div>
         <div className="offcanvas-body">
           {isDeleting ? (
-            <DeleteAccount onCancel={() => setIsDeleting(false)} userData={userData} />
+            <DeleteAccount
+              onCancel={() => setIsDeleting(false)}
+              userData={userData}
+            />
           ) : isUpdating ? (
             <UpdateProfileForm userData={userData} />
           ) : (
@@ -101,16 +108,16 @@ export default function Profile(props) {
           )}
           {!isUpdating && !isDeleting && (
             <div className="col text-end mt-5">
-              <button type="button"
+              <button
+                type="button"
                 className="btn btn-custom custom-btn btn-sm"
                 onClick={() => setIsDeleting(true)}
               >
                 <i className="fa fa-trash me-2"></i>Delete Account
-              </button></div>
+              </button>
+            </div>
           )}
         </div>
-
-
       </div>
     </>
   );
