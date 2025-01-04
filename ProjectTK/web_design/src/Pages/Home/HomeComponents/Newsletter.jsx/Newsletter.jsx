@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
-import { noFileAPI } from '../../../../Services/API/API';
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { noFileAPI } from "../../../../Services/API/API";
 
 export default function Newsletter() {
   const [newsEmail, setNewsEmail] = useState();
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!newsEmail) {
       setErrorMessage("Email is required");
       toast.error("Email is required");
@@ -16,7 +16,7 @@ export default function Newsletter() {
 
     const newsData = {
       email: newsEmail,
-      message: "From Newsletter"
+      message: "From Newsletter",
     };
 
     try {
@@ -25,7 +25,7 @@ export default function Newsletter() {
     } catch (error) {
       toast.error(error.response.data.error);
     }
-  }
+  };
 
   return (
     <>
@@ -34,7 +34,9 @@ export default function Newsletter() {
           <div className="row text-center mb-4">
             <div className="col">
               <h2 className="fw-bold">Subscribe to Our Newsletter</h2>
-              <p className="text-muted">Stay updated with the latest news and special offers!</p>
+              <p className="text-muted">
+                Stay updated with the latest news and special offers!
+              </p>
             </div>
           </div>
           <div className="row justify-content-center">
@@ -46,10 +48,12 @@ export default function Newsletter() {
                     className="form-control border-0 shadow-sm"
                     placeholder="Enter your email address"
                     aria-label="Email"
-                    id='newsletter'
+                    id="newsletter"
                     onChange={(e) => setNewsEmail(e.target.value)}
                   />
-                  <button className="btn btn-custom custom-btn">Subscribe</button>
+                  <button className="btn btn-custom custom-btn">
+                    Subscribe
+                  </button>
                 </div>
                 {errorMessage && (
                   <div className="text-danger mt-3">{errorMessage}</div>

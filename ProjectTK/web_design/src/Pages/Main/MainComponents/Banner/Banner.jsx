@@ -53,9 +53,11 @@ export default function Banner() {
             </p>
           </div>
           <div className="col-md-6 d-flex justify-content-center align-items-center">
-
-            {isSend ? <DownloadLink /> : <DragAndDropBox onSend={() => setIsSend(true)} />}
-
+            {isSend ? (
+              <DownloadLink />
+            ) : (
+              <DragAndDropBox onSend={() => setIsSend(true)} />
+            )}
           </div>
         </div>
 
@@ -63,8 +65,9 @@ export default function Banner() {
           {iconsArray.map((icon, index) => (
             <i
               key={icon}
-              className={`position-absolute fa-solid fa-${icon} ${index % 2 === 0 ? "d-md-block d-none" : ""
-                }`}
+              className={`position-absolute fa-solid fa-${icon} ${
+                index % 2 === 0 ? "d-md-block d-none" : ""
+              }`}
               style={iconStyles[index]}
             ></i>
           ))}

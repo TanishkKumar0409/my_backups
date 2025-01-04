@@ -45,7 +45,9 @@ export default function RecentFiles() {
         if (data.length > 0) {
           const files = await Promise.all(
             data.map(async (element) => {
-              const response = await noFileAPI.get(`/storage/file/single?username=${username}&folderId=${element.folderId}`);
+              const response = await noFileAPI.get(
+                `/storage/file/single?username=${username}&folderId=${element.folderId}`
+              );
               return response.data;
             })
           );
@@ -59,7 +61,7 @@ export default function RecentFiles() {
   }, [data, username]);
 
   const getFileIcon = (fileName) => {
-    const extension = fileName.split('.').pop().toLowerCase();
+    const extension = fileName.split(".").pop().toLowerCase();
 
     const iconMap = {
       pdf: "fa-file-pdf",
@@ -78,7 +80,7 @@ export default function RecentFiles() {
       mp3: "fa-file-audio",
       html: "fa-file-code",
       css: "fa-file-code",
-      js: "fa-file-code"
+      js: "fa-file-code",
     };
 
     return iconMap[extension] || "fa-file-alt";
@@ -90,9 +92,16 @@ export default function RecentFiles() {
         <section>
           <div className="container py-5 mt-5 bg-white">
             <div className="row">
-              <h2 className="text-center mb-4 mainHeading text-uppercase fw-bold" style={{ "--text": "'Recent Files'" }}>Recent Files</h2>
+              <h2
+                className="text-center mb-4 mainHeading text-uppercase fw-bold"
+                style={{ "--text": "'Recent Files'" }}
+              >
+                Recent Files
+              </h2>
               <p className="px-5 text-center">
-                Stay updated with the latest documents and resources in the Recent Files section, making it easy to access and manage your most relevant files.
+                Stay updated with the latest documents and resources in the
+                Recent Files section, making it easy to access and manage your
+                most relevant files.
               </p>
               <div className="col">
                 <OwlCarousel className="owl-theme" {...owlOptions}>
@@ -100,11 +109,22 @@ export default function RecentFiles() {
                     <div className="item" key={index}>
                       <div className="cardCustom rounded-3 overflow-hidden bg-white">
                         <div className="cardCustomHead h-50 d-flex justify-content-center align-items-center">
-                          <i className={`fa text-light fa-beat-fade ${getFileIcon(item.file.root || 'default')}`}></i>
+                          <i
+                            className={`fa text-light fa-beat-fade ${getFileIcon(
+                              item.file.root || "default"
+                            )}`}
+                          ></i>
                         </div>
                         <div className="cardCustomBody h-50 d-flex justify-content-center align-items-center text-center p-4 flex-column">
-                          <h2 className="fs-5 fw-bold text-break text-capitalize">{item.file.root}</h2>
-                          <Link to={`/main/file/view/${item.file.folderId}`} className="btn custom-btn btn-custom border-0 overflow-hidden">View</Link>
+                          <h2 className="fs-5 fw-bold text-break text-capitalize">
+                            {item.file.root}
+                          </h2>
+                          <Link
+                            to={`/main/file/view/${item.file.folderId}`}
+                            className="btn custom-btn btn-custom border-0 overflow-hidden"
+                          >
+                            View
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -114,7 +134,9 @@ export default function RecentFiles() {
             </div>
           </div>
         </section>
-      ) : ""}
+      ) : (
+        ""
+      )}
     </>
   );
 }

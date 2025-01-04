@@ -57,7 +57,6 @@ export default function AudioView({ data }) {
     if (audioRef.current) {
       audioRef.current.loop = !isRepeating;
     }
-
   };
 
   const updateTime = () => {
@@ -66,10 +65,14 @@ export default function AudioView({ data }) {
       setCurrentTime(audioElement.currentTime);
       setDuration(audioElement.duration);
     }
-    const slider = document.querySelector('.videoDurater');
+    const slider = document.querySelector(".videoDurater");
     let percentage = (currentTime / duration) * 100;
 
-    slider.style.background = `linear-gradient(to right, var(--warning-yellow) ${percentage || 20}%, var(--error-red) ${percentage || 60}%, var(--primary-soft-gray) ${percentage || 100}%)`;
+    slider.style.background = `linear-gradient(to right, var(--warning-yellow) ${
+      percentage || 20
+    }%, var(--error-red) ${percentage || 60}%, var(--primary-soft-gray) ${
+      percentage || 100
+    }%)`;
   };
 
   useEffect(() => {
@@ -124,7 +127,6 @@ export default function AudioView({ data }) {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-
       switch (e.key) {
         case " ":
         case "Space":
@@ -136,7 +138,8 @@ export default function AudioView({ data }) {
           if (volume < 1) {
             e.preventDefault();
             setVolume((prevVolume) => Math.min(prevVolume + 0.05, 1));
-            if (audioRef.current) audioRef.current.volume = Math.min(volume + 0.05, 1);
+            if (audioRef.current)
+              audioRef.current.volume = Math.min(volume + 0.05, 1);
           }
           break;
 
@@ -144,20 +147,23 @@ export default function AudioView({ data }) {
           if (volume > 0) {
             e.preventDefault();
             setVolume((prevVolume) => Math.max(prevVolume - 0.05, 0));
-            if (audioRef.current) audioRef.current.volume = Math.max(volume - 0.05, 0);
+            if (audioRef.current)
+              audioRef.current.volume = Math.max(volume - 0.05, 0);
           }
           break;
 
         case "ArrowRight":
           e.preventDefault();
           setCurrentTime((prevTime) => Math.min(prevTime + 10, duration));
-          if (audioRef.current) audioRef.current.currentTime = Math.min(currentTime + 10, duration);
+          if (audioRef.current)
+            audioRef.current.currentTime = Math.min(currentTime + 10, duration);
           break;
 
         case "ArrowLeft":
           e.preventDefault();
           setCurrentTime((prevTime) => Math.max(prevTime - 10, 0));
-          if (audioRef.current) audioRef.current.currentTime = Math.max(currentTime - 10, 0);
+          if (audioRef.current)
+            audioRef.current.currentTime = Math.max(currentTime - 10, 0);
           break;
 
         default:
@@ -181,7 +187,11 @@ export default function AudioView({ data }) {
               <img
                 src="https://i.pinimg.com/originals/42/c8/4f/42c84f4f71bf4b1c51ecef5336aac55d.gif"
                 className="img-fluid rounded shadow-sm mb-2 p-2"
-                style={{ width: "350px", objectFit: "cover", aspectRatio: "3/3" }}
+                style={{
+                  width: "350px",
+                  objectFit: "cover",
+                  aspectRatio: "3/3",
+                }}
                 alt="Default Profile"
               />
               <h2>{data.root}</h2>
@@ -245,8 +255,9 @@ export default function AudioView({ data }) {
                     )}
                   </div>
                   <button
-                    className={`btn btn-primary repeat-btn shadow ms-2 ${isRepeating ? "active" : ""
-                      }`}
+                    className={`btn btn-primary repeat-btn shadow ms-2 ${
+                      isRepeating ? "active" : ""
+                    }`}
                     onClick={toggleRepeat}
                   >
                     <i className="fa fa-repeat"></i>

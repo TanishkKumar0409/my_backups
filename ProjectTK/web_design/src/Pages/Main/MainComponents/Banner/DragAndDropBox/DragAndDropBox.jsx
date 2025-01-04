@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useFormik } from "formik";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { API } from "../../../../../Services/API/API.js";
-import BannerValidationSchema from "../../../../../Helper/ValidationSchemas/ValidationSchema.js"
+import BannerValidationSchema from "../../../../../Helper/ValidationSchemas/ValidationSchema.js";
 
 export default function DragAndDropBox(props) {
   const [files, setFiles] = useState([]);
@@ -40,14 +40,15 @@ export default function DragAndDropBox(props) {
 
       console.log("Form submitted successfully:", response);
       toast.success(response.data.message);
-      props.onSend()
+      props.onSend();
 
       setFiles([]);
     } catch (error) {
       setErrorMessage(error.response.data.error);
-      toast.error(error.response.data.error)
+      toast.error(error.response.data.error);
+      console.error(error);
     }
-  }
+  };
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -94,7 +95,9 @@ export default function DragAndDropBox(props) {
                       type="button"
                       className="btn btn-danger"
                       onClick={() => {
-                        const updatedFiles = files.filter((_, i) => i !== index);
+                        const updatedFiles = files.filter(
+                          (_, i) => i !== index
+                        );
                         setFiles(updatedFiles);
                       }}
                     >
@@ -115,8 +118,11 @@ export default function DragAndDropBox(props) {
                 type="email"
                 id="email"
                 name="email"
-                className={`form-control ${formik.touched.email && formik.errors.email ? "is-invalid" : ""
-                  }`}
+                className={`form-control ${
+                  formik.touched.email && formik.errors.email
+                    ? "is-invalid"
+                    : ""
+                }`}
                 placeholder="Enter Receiver Email"
                 autoComplete="email"
                 value={formik.values.email}
