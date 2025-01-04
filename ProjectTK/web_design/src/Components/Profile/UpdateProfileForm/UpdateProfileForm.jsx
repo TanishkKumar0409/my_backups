@@ -6,7 +6,8 @@ import { toast } from 'react-toastify';
 
 export default function UpdateProfileForm(props) {
   const userData = props.userData;
-  const [profileImage, setProfileImage] = useState(`http://localhost:5000/${userData.profile}`);
+  const APIurl = process.env.REACT_APP_API;
+  const [profileImage, setProfileImage] = useState(`${APIurl}${userData.profile}`);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -68,9 +69,9 @@ export default function UpdateProfileForm(props) {
         <img
           src={profileImage}
           alt="Profile"
-          className="rounded-circle"
-          width="100px"
-          height="100px"
+          className="rounded-circle shadow"
+          width="150px"
+          height="150px"
           style={{ cursor: 'pointer' }}
           onClick={() => document.getElementById('image-upload').click()}
         />

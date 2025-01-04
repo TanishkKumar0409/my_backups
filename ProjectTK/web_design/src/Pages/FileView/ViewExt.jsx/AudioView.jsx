@@ -11,8 +11,9 @@ export default function AudioView({ data }) {
   const [lastVolume, setLastVolume] = useState(volume);
 
   const audioRef = useRef(null);
+  const APIurl = process.env.REACT_APP_API;
 
-  const audio = `http://localhost:5000/${data.filePath}`;
+  const audio = `${APIurl}${data.filePath}`;
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);

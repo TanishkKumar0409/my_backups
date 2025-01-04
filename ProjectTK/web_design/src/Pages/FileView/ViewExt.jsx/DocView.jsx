@@ -6,7 +6,8 @@ export default function DocView({ data }) {
   const [htmlContent, setHtmlContent] = useState('');
   const [error, setError] = useState('');
 
-  const fileUrl = `http://localhost:5000/${data.filePath}`;
+  const APIurl = process.env.REACT_APP_API;
+  const fileUrl = `${APIurl}${data.filePath}`;
   const fileExtension = data.filePath.split('.').pop().toLowerCase();
 
   useEffect(() => {

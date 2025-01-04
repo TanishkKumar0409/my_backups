@@ -15,7 +15,8 @@ export default function VideoView({ data }) {
 
     const playerRef = useRef(null);
 
-    const video = `http://localhost:5000/${data.filePath}`;
+    const APIurl = process.env.REACT_APP_API;
+    const video = `${APIurl}${data.filePath}`;
 
     const toggleIsPlaying = useCallback(() => {
         setIsPlaying((prev) => !prev);

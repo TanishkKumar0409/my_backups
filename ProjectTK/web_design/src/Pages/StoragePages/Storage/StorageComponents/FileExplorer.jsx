@@ -87,7 +87,8 @@ export default function FileExplorer({ username }) {
     };
 
     const handleDownload = (fileId) => {
-        window.location.href = `http://localhost:5000/api/storage/file/download?username=${username}&folderId=${fileId}`;
+        const APIurl = process.env.REACT_APP_API;
+        window.location.href = `${APIurl}api/storage/file/download?username=${username}&folderId=${fileId}`;
     };
 
     const getFileIcon = (fileName) => {

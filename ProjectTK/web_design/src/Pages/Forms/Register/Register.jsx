@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 export default function Register(props) {
     const [profileImage, setProfileImage] = useState(null);
     const fileInputRef = useRef(null);
+    
+    const APIurl = process.env.REACT_APP_API;
 
     const initialValues = { username: '', name: '', email: '', contact: '', password: '', profile: null };
 
@@ -71,7 +73,7 @@ export default function Register(props) {
                         />
                         <div className="profile-preview" onClick={handleImageClick}>
                             <img
-                                src={profileImage || 'http://localhost:5000/Uploads/Users/DefaultProfiles/DefaultProfile.jpg'}
+                                src={profileImage || `${APIurl}Uploads/Users/DefaultProfiles/DefaultProfile.jpg`}
                                 alt="Profile Preview"
                                 className="img-fluid rounded-circle cursorPointer"
                                 style={{ width: '150px', height: '150px', objectFit: 'cover' }}

@@ -13,6 +13,8 @@ export default function Profile(props) {
     window.location.reload();
   };
 
+  const APIurl = process.env.REACT_APP_API;
+
   return (
     <>
       <div
@@ -45,7 +47,7 @@ export default function Profile(props) {
           ) : (
             <div className="text-center">
               <img
-                src={`http://localhost:5000/${userData.profile}`}
+                src={`${APIurl}${userData.profile}`}
                 className="rounded-circle mb-3 shadow"
                 width="150px"
                 height="150px"
