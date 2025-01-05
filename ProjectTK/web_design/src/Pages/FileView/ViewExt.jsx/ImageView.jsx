@@ -7,7 +7,7 @@ export default function ImageView({ data }) {
       <section className="bg-light py-5 rounded">
         <div className="container">
           <img
-            src={`${APIurl}{data.filePath}`}
+            src={`${APIurl}${data.filePath}`}
             className="rounded shadow mb-3 img-fluid"
             alt=""
           />

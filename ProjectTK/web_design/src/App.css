@@ -434,8 +434,8 @@ circle {
   fill: none;
   stroke: url(#GradientColor);
   stroke-width: 20px;
-  stroke-dasharray: 628;
-  stroke-dashoffset: 628;
+  stroke-dasharray: var(--circumference);
+  stroke-dashoffset: var(--circumference);
   animation: animate 2s linear forwards;
 }
 

@@ -228,7 +228,7 @@ export default function FileExplorer({ username }) {
           {currentChildren.length > 0 ? (
             currentChildren.map((child, index) => (
               <div
-                className="col-6 col-md-3 d-flex flex-column align-items-center mb-4"
+                className="col-6 col-md-3 d-flex flex-column align-items-center mb-4 text-"
                 key={index}
               >
                 <div
@@ -255,9 +255,7 @@ export default function FileExplorer({ username }) {
                     }`}
                   ></i>
                 </div>
-                <span className="folder-name mt-2 truncated-file-name">
-                  {child.root}
-                </span>
+                <span className="folder-name mt-2">{child.root}</span>
               </div>
             ))
           ) : (

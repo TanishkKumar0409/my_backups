@@ -60,10 +60,8 @@ export default function ShareFilesTable() {
     let filtered = data;
 
     if (searchQuery) {
-      filtered = filtered.filter(
-        (file) =>
-          file.receiverEmail.toLowerCase().includes(searchQuery) ||
-          file.sharingId.toString().includes(searchQuery)
+      filtered = filtered.filter((file) =>
+        file.receiverEmail.toLowerCase().includes(searchQuery)
       );
     }
 
@@ -101,14 +99,14 @@ export default function ShareFilesTable() {
         <input
           type="text"
           className="form-control"
-          placeholder="Search by Receiver Email or ID"
+          placeholder="Search by Receiver Email"
           value={searchQuery}
           onChange={handleSearch}
           id="searchEmail"
         />
       </div>
 
-      <div className="mb-3 d-flex gap-2">
+      <div className="mb-3 d-flex input-group">
         <select
           className="form-select"
           value={yearFilter}

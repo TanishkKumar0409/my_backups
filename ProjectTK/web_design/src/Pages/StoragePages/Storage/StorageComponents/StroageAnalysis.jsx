@@ -35,19 +35,19 @@ export default function StorageAnalysis() {
   const usedSize = data.usedStorage || 0;
   const totalSize = data.totalStorage || 1;
 
+  const circumference = 2 * Math.PI * 90;
+
   let percentage = parseFloat(((usedSize / totalSize) * 100).toFixed(2));
-  if (percentage === 0) {
-    percentage = 101;
-  }
 
   let perValue = 0;
-  if (percentage <= 100) {
-    perValue = percentage;
-  } else if (percentage > 100) {
+
+  if (percentage > 100 || percentage === 0) {
     perValue = 100;
+  } else if (percentage <= 100) {
+    perValue = percentage;
   }
 
-  const value = 628 - 628 * (perValue / 100);
+  const value = circumference - circumference * (perValue / 100);
 
   const getGradientColors = (percentage) => {
     if (percentage > 100) {
@@ -135,7 +135,7 @@ export default function StorageAnalysis() {
                   cx="100"
                   cy="100"
                   r="90"
-                  style={{ "--array": value }}
+                  style={{ "--array": value, "--circumference": circumference }}
                 />
               </svg>
             </div>

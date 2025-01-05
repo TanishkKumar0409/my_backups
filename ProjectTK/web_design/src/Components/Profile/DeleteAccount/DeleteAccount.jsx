@@ -23,7 +23,7 @@ export default function DeleteAccount({ onCancel, userData }) {
       }
     } catch (error) {
       console.error("OTP Error:", error);
-      toast(error.response.data.error);
+      toast.error(error.response.data.error);
     }
   };
 
@@ -42,7 +42,7 @@ export default function DeleteAccount({ onCancel, userData }) {
       }
     } catch (error) {
       console.error(error);
-      toast(error.response.data.error);
+      toast.error(error.response.data.error);
     }
   };
 
@@ -62,7 +62,7 @@ export default function DeleteAccount({ onCancel, userData }) {
       const timer = setTimeout(() => setTimeRemaining(timeRemaining - 1), 1000);
       return () => clearTimeout(timer);
     } else if (timeRemaining === 0 && otpSent) {
-      toast("OTP expired. Returning to profile.");
+      toast.error("OTP expired. Returning to profile.");
       onCancel();
     }
   }, [timeRemaining, otpSent, onCancel]);
@@ -87,6 +87,7 @@ export default function DeleteAccount({ onCancel, userData }) {
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          autoComplete="email"
         />
 
         <input
