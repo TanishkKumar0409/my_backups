@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "Lucida Sans";
+  src: url("./Assets/Fonts/lucida-sans/LSANS.TTF") format("truetype");
+}
+
+* {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
 :root {
   --primary-dark-blue: #1e3a8a;
   --primary-soft-gray: #ececec;
@@ -60,6 +70,7 @@
   padding: 10px 25px;
   position: relative;
   overflow: hidden;
+  font-weight: 700;
   border: none;
   box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
     7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
@@ -96,6 +107,15 @@
 .btn-custom:hover:after {
   -webkit-transform: scale(2) rotate(180deg);
   transform: scale(2) rotate(180deg);
+}
+
+.custom-btn:disabled {
+  opacity: 1;
+  color: black;
+}
+
+.custom-btn:disabled::after {
+  opacity: 0.5;
 }
 
 .minHeigth300 {
