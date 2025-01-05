@@ -4,6 +4,7 @@ import Footer from "../../../Components/Footer/Footer";
 import UsersTable from "../../BackendComponents/UsersTable/UsersTable";
 import AdminTable from "../../BackendComponents/AdminTable/AdminTable";
 import Query from "../../BackendComponents/Query/Query";
+import SectionsData from "./DashboardData.json";
 
 export default function Dashboard() {
   const BannerData = {
@@ -12,37 +13,16 @@ export default function Dashboard() {
     para: "These Pages are made for Only Admins.",
   };
 
-  const sections = [
-    {
-      id: 1,
-      title: "Admins",
-      description:
-        "Stay updated with the latest documents and resources in the Recent Files section, making it easy to access and manage your most relevant files.",
-      component: <AdminTable />,
-      bgColor: "bg-light",
-    },
-    {
-      id: 2,
-      title: "Users",
-      description:
-        "Stay updated with the latest documents and resources in the Recent Files section, making it easy to access and manage your most relevant files.",
-      component: <UsersTable />,
-      bgColor: "bg-white",
-    },
-    {
-      id: 3,
-      title: "Contact Us Querys",
-      description:
-        "Stay updated with the latest documents and resources in the Recent Files section, making it easy to access and manage your most relevant files.",
-      component: <Query />,
-      bgColor: "bg-light",
-    },
-  ];
+  const componentMapping = {
+    AdminTable: <AdminTable />,
+    UsersTable: <UsersTable />,
+    Query: <Query />,
+  };
 
   return (
     <div>
       <InnerPagesBanner BannerData={BannerData} />
-      {sections.map((section, index) => (
+      {SectionsData.map((section, index) => (
         <section className={`${section.bgColor} py-5`} key={index}>
           <div className="container">
             <div className="row">
@@ -53,7 +33,7 @@ export default function Dashboard() {
                 {section.title}
               </h2>
               <p className="px-5 text-center">{section.description}</p>
-              <div className="col">{section.component}</div>
+              <div className="col">{componentMapping[section.component]}</div>
             </div>
           </div>
         </section>

@@ -5,34 +5,13 @@ import Footer from "../../../Components/Footer/Footer";
 import AdminTable from "../../BackendComponents/AdminTable/AdminTable";
 import UsersTable from "../../BackendComponents/UsersTable/UsersTable";
 import Query from "../../BackendComponents/Query/Query";
+import Data from "./AdminPagesData.json";
 
 export default function Admin() {
   const { type } = useParams();
   const navigate = useNavigate();
 
-  const content = useMemo(
-    () => ({
-      info: {
-        icon: "user-secret",
-        heading: "Admin Informations",
-        para: "Information of All The Admins.",
-        mainHeading: "Admins",
-      },
-      user: {
-        icon: "user-tie",
-        heading: "Users Informations",
-        para: "Information of All The Users.",
-        mainHeading: "Users",
-      },
-      query: {
-        icon: "user-pen",
-        heading: "Queries Information",
-        para: "Information of All the Queries.",
-        mainHeading: "Queries",
-      },
-    }),
-    []
-  );
+  const content = useMemo(() => Data, []);
 
   const pageData = content[type] || {};
 

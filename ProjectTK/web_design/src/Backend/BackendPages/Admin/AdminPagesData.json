@@ -1,0 +1,20 @@
+{
+  "info": {
+    "icon": "user-secret",
+    "heading": "Admin Informations",
+    "para": "Information of All The Admins.",
+    "mainHeading": "Admins"
+  },
+  "user": {
+    "icon": "user-tie",
+    "heading": "Users Informations",
+    "para": "Information of All The Users.",
+    "mainHeading": "Users"
+  },
+  "query": {
+    "icon": "user-pen",
+    "heading": "Queries Information",
+    "para": "Information of All the Queries.",
+    "mainHeading": "Queries"
+  }
+}

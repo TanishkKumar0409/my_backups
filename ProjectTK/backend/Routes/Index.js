@@ -102,7 +102,7 @@ router.post("/share/:username", UploadFileShare.array("files", 10), ShareFiles);
 router.get("/share/download/:sharingId", DownloadFiles);
 router.get("/share/history", GetSharedHistory);
 router.get("/share/history/user/:username", GetSharedHistoryByUsername);
-router.get("/share/history/id/:sharingId", GetSharedHistoryBySharingId);
+// router.get("/share/history/id/:sharingId", GetSharedHistoryBySharingId);
 router.get("/share/history/downloader/:username", GetDataByDownloadLink);
 
 //? Storage Routes
