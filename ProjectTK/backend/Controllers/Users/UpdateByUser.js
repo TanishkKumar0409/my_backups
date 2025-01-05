@@ -9,7 +9,31 @@ const UpdateByUser = async (req, res) => {
 
     const existingUser = await Users.findOne({ username });
 
+    if (existingUser.status === "BLOCKED") {
+      return res.status(403).json({ error: "Sorry, You are Blocked." });
+    }
+
     let updatedPassword = existingUser.password;
+
+    if (email && email !== existingUser.email) {
+      const existingEmail = await Users.findOne({
+        email,
+        username: { $ne: username },
+      });
+      if (existingEmail) {
+        return res.status(409).json({ error: "Email Already Exists." });
+      }
+    }
+
+    if (contact && contact !== existingUser.contact) {
+      const existingContact = await Users.findOne({
+        contact,
+        username: { $ne: username },
+      });
+      if (existingContact) {
+        return res.status(409).json({ error: "Contact Already Exists." });
+      }
+    }
 
     if (password) {
       let salt = bcryptjs.genSaltSync(10);
