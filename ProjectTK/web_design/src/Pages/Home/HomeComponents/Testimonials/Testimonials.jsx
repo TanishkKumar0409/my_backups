@@ -15,8 +15,8 @@ export default function Testimonials() {
     autoplayHoverPause: true,
     responsive: {
       0: { items: 1 },
-      600: { items: 2 },
-      1000: { items: 3 },
+      600: { items: 1 },
+      1000: { items: 2 },
     },
   };
 
@@ -45,8 +45,11 @@ export default function Testimonials() {
               <div className="item" key={index}>
                 <div className="testimonialCard d-flex flex-column bg-white shadow-sm">
                   <div
-                    className="testimonialCardHead py-3 text-white p-3 textJustify"
-                    style={{ filter: `hue-rotate(${getValue()}deg)` }}
+                    className="testimonialCardHead py-3 text-white p-3 textJustify align-content-center"
+                    style={{
+                      minHeight: "350px",
+                      filter: `hue-rotate(${getValue()}deg)`,
+                    }}
                   >
                     <p>{testimonial.text}</p>
                   </div>
@@ -58,12 +61,13 @@ export default function Testimonials() {
                       <img
                         src={testimonial.image}
                         className="img-fluid h-100"
+                        style={{ aspectRatio: "1/1", objectFit: "cover" }}
                         alt={testimonial.name}
                       />
                     </div>
-                    <div className="testimonialCardAbout p-3">
-                      <h2>{testimonial.name}</h2>
-                      <h3 className="text-muted fs-5">{testimonial.role}</h3>
+                    <div className="testimonialCardAbout p-3 align-content-center">
+                      <h2 className="fs-4 text-black">{testimonial.name}</h2>
+                      <h3 className="text-muted fs-6">{testimonial.role}</h3>
                       <div className="stars">
                         {Array.from(
                           { length: testimonial.stars },

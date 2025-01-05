@@ -579,10 +579,11 @@ circle {
 
 .testimonialCardHead {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://media.istockphoto.com/id/1156309035/vector/red-speech-and-thought-bubbles-with-quote-marks.jpg?s=612x612&w=0&k=20&c=tarfzBLFuPL9X92P3Rc5kpgCsqbv1cLEi38HRvPvVcE=");
+    url("https://media.istockphoto.com/id/1156309035/vector/red-speech-and-thought-bubbles-with-quote-marks.jpg?s=612x612&w=0&k=20&c=tarfzBLFuPL9X92P3Rc5kpgCsqbv1cLEi38HRvPvVcE=")
+      no-repeat fixed center center;
+  background-size: cover;
 }
 
-/* DocView.css */
 .doc-view-container {
   display: flex;
   flex-direction: column;

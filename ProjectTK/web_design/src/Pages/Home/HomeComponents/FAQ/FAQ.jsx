@@ -32,7 +32,7 @@ export default function FAQ() {
             className="carousel slide"
             data-bs-ride="carousel"
           >
-            <div className="carousel-inner bg-light rounded-5 shadow">
+            <div className="carousel-inner bg-light rounded-5 shadow-sm">
               {selectedFAQs.map((faq, index) => (
                 <div
                   key={index}
@@ -54,20 +54,20 @@ export default function FAQ() {
               style={{ filter: "invert(1)" }}
             >
               <span
-                className="carousel-control-prev-icon"
+                className="carousel-control-prev-icon position-absolute start-0 ps-5"
                 aria-hidden="true"
               ></span>
               <span className="visually-hidden">Previous</span>
             </button>
             <button
-              className="carousel-control-next"
+              className="carousel-control-next "
               type="button"
               data-bs-target="#faqCarousel"
               data-bs-slide="next"
               style={{ filter: "invert(1)" }}
             >
               <span
-                className="carousel-control-next-icon"
+                className="carousel-control-next-icon position-absolute end-0 pe-5"
                 aria-hidden="true"
               ></span>
               <span className="visually-hidden">Next</span>
