@@ -16,7 +16,6 @@ import RemoveAdmin from "../Controllers/Admin/RemoveAdmin.js";
 
 import ShareFiles from "../Controllers/SharedFiles/ShareFile.js";
 import GetSharedHistory from "../Controllers/SharedFiles/GetSharedHistory.js";
-import GetSharedHistoryBySharingId from "../Controllers/SharedFiles/GetSharedHistoryBySharingId.js";
 import GetSharedHistoryByUsername from "../Controllers/SharedFiles/GetSharedHistoryByUsername.js";
 import DownloadFiles from "../Helper/DownloadFiles/DownloadFiles.js";
 import DeletionOtp from "../Controllers/Users/DeletionOtp.js";
@@ -102,7 +101,6 @@ router.post("/share/:username", UploadFileShare.array("files", 10), ShareFiles);
 router.get("/share/download/:sharingId", DownloadFiles);
 router.get("/share/history", GetSharedHistory);
 router.get("/share/history/user/:username", GetSharedHistoryByUsername);
-// router.get("/share/history/id/:sharingId", GetSharedHistoryBySharingId);
 router.get("/share/history/downloader/:username", GetDataByDownloadLink);
 
 //? Storage Routes

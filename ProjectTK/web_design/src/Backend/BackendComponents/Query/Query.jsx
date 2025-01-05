@@ -49,7 +49,7 @@ export default function Query() {
               <th>Delete</th>
             </tr>
           </thead>
-          <tbody className="tableBodyCustom">
+          <tbody className="tableBodyCustom text-center">
             {displayedData.length === 0 ? (
               <tr>
                 <td colSpan="7" className="text-center fw-bold fs-1">
@@ -72,7 +72,7 @@ export default function Query() {
                   <td className="align-content-center">
                     {query.subject || "N/A"}
                   </td>
-                  <td className="align-content-center textJustify">
+                  <td className="align-content-center">
                     {query.message || "N/A"}
                   </td>
                   <td className="align-content-center">
