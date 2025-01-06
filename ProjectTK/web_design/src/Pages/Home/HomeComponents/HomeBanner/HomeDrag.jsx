@@ -14,15 +14,15 @@ export default function HomeDrag() {
     onDrop: (acceptedFiles) => {
       if (acceptedFiles.length > 0) {
         setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
-        setShowModal(true); // Show modal when a file is uploaded
+        setShowModal(true);
       }
     },
     multiple: true,
   });
 
   const handleModalClose = () => {
-    setShowModal(false); // Close modal
-    setFiles([]); // Clear files
+    setShowModal(false);
+    setFiles([]);
   };
 
   const handleSubmit = (e) => {
@@ -154,7 +154,7 @@ export default function HomeDrag() {
               <button
                 type="button"
                 className="btn-close"
-                onClick={handleModalClose} // Close modal and reset files
+                onClick={handleModalClose}
               ></button>
             </div>
             <div className="modal-body text-center">
