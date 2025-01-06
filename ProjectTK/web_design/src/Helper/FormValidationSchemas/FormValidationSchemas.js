@@ -3,11 +3,6 @@ import * as Yup from "yup";
 export const LoginValidationSchema = () => {
   return Yup.object({
     email: Yup.string()
-      .matches(/^[^\s]+$/, "Email must not contain spaces")
-      .matches(
-        /^[a-zA-Z0-9._%+-]+@gmail\.com$/,
-        "Email must end with @gmail.com"
-      )
       .email("Invalid email format")
       .required("Email is required"),
     password: Yup.string()
@@ -20,19 +15,14 @@ export const RegisterValidationSchema = () => {
   return Yup.object({
     username: Yup.string()
       .matches(
-        /^[a-zA-Z0-9]{11}[0-9]{4}$/,
-        "Username must be 15 characters, with the last 4 as digits and no spaces"
+        /^[a-zA-Z0-9]*[0-9]{4}$/,
+        "Username must end with 4 digits and have no spaces"
       )
       .required("Username is required"),
     name: Yup.string()
       .min(3, "Full Name must be at least 3 characters")
       .required("Full Name is required"),
     email: Yup.string()
-      .matches(/^[^\s]+$/, "Email must not contain spaces")
-      .matches(
-        /^[a-zA-Z0-9._%+-]+@gmail\.com$/,
-        "Email must end with @gmail.com"
-      )
       .email("Invalid email format")
       .required("Email is required"),
     contact: Yup.string()
@@ -85,3 +75,10 @@ export const ContactUsSchema = () => {
     message: Yup.string().min(5, "Message must be at least 10 characters"),
   });
 };
+
+// password: Yup.string()
+//   .min(8, "Password must be at least 8 characters")
+//   .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+//   .matches(/[0-9]/, "Password must contain at least one number")
+//   .matches(/[!@#$%^&*(),.?":{}|<>]/, "Password must contain at least one special character")
+//   .required("Password is required"),
