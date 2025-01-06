@@ -155,6 +155,16 @@ export default function Navbar() {
                       Queries
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    <Link
+                      className={`nav-link fw-bold fs-5 ${isActive(
+                        "/admin/dashboard/newsletter"
+                      )}`}
+                      to="/admin/dashboard/newsletter"
+                    >
+                      Newsletters
+                    </Link>
+                  </li>
                 </>
               ) : (
                 ""

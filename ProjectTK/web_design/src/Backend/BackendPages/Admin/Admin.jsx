@@ -5,6 +5,7 @@ import Footer from "../../../Components/Footer/Footer";
 import AdminTable from "../../BackendComponents/AdminTable/AdminTable";
 import UsersTable from "../../BackendComponents/UsersTable/UsersTable";
 import Query from "../../BackendComponents/Query/Query";
+import Newsletter from "../../BackendComponents/Newsletter/Newsletter";
 import Data from "./AdminPagesData.json";
 
 export default function Admin() {
@@ -26,6 +27,8 @@ export default function Admin() {
       ? UsersTable
       : type === "query"
       ? Query
+      : type === "newsletter"
+      ? Newsletter
       : null;
 
   return (
@@ -42,7 +45,7 @@ export default function Admin() {
                 >
                   {pageData.mainHeading}
                 </h2>
-                <p className="px-5 text-center">{pageData.para}</p>
+                <p className="px-5 text-center">{pageData.sectionPara}</p>
                 <div className="col">
                   {TableComponent && <TableComponent />}
                 </div>
