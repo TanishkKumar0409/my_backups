@@ -5,6 +5,7 @@ import UsersTable from "../../BackendComponents/UsersTable/UsersTable";
 import AdminTable from "../../BackendComponents/AdminTable/AdminTable";
 import Query from "../../BackendComponents/Query/Query";
 import SectionsData from "./DashboardData.json";
+import Newsletter from "../../BackendComponents/Newsletter/Newsletter";
 
 export default function Dashboard() {
   const BannerData = {
@@ -17,6 +18,7 @@ export default function Dashboard() {
     AdminTable: <AdminTable />,
     UsersTable: <UsersTable />,
     Query: <Query />,
+    Newsletter: <Newsletter />,
   };
 
   return (

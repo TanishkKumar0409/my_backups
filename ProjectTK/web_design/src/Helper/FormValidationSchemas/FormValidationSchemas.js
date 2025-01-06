@@ -13,12 +13,7 @@ export const LoginValidationSchema = () => {
 
 export const RegisterValidationSchema = () => {
   return Yup.object({
-    username: Yup.string()
-      .matches(
-        /^[a-zA-Z0-9]*[0-9]{4}$/,
-        "Username must end with 4 digits and have no spaces"
-      )
-      .required("Username is required"),
+    username: Yup.string().required("Username is required"),
     name: Yup.string()
       .min(3, "Full Name must be at least 3 characters")
       .required("Full Name is required"),
