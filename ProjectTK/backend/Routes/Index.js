@@ -32,6 +32,8 @@ import GetRecents from "../Controllers/Storage/GetRecents.js";
 import GetAdmin from "../Controllers/Admin/GetAdmins.js";
 import GetContactQuery from "../Controllers/Users/GetContactQuery.js";
 import DeleteContactQuery from "../Controllers/Users/DeleteContactQuery.js";
+import NewsletterAdd from "../Controllers/Users/NewsletterAdd.js";
+import GetNewsletter from "../Controllers/Users/GetNewsletters.js";
 
 const router = express.Router();
 
@@ -89,6 +91,8 @@ router.post("/user/delete/otp", DeletionOtp);
 router.post("/user/contact", UserContactUs);
 router.get("/user/contact/query", GetContactQuery);
 router.delete("/user/contact/query/:id", DeleteContactQuery);
+router.post("/user/newsletter", NewsletterAdd);
+router.get("/user/newsletter/all", GetNewsletter);
 
 //? Admin Actions
 router.put("/user/block/:username", BlockUser);

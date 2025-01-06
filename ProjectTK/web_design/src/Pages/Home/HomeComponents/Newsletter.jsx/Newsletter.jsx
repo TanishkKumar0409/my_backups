@@ -3,11 +3,12 @@ import { toast } from "react-toastify";
 import { noFileAPI } from "../../../../Services/API/API";
 
 export default function Newsletter() {
-  const [newsEmail, setNewsEmail] = useState();
+  const [newsEmail, setNewsEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!newsEmail) {
       setErrorMessage("Email is required");
       toast.error("Email is required");
@@ -16,14 +17,22 @@ export default function Newsletter() {
 
     const newsData = {
       email: newsEmail,
-      message: "From Newsletter",
     };
 
     try {
-      const response = await noFileAPI.post("/user/contact", newsData);
-      toast.success(response.data.message);
+      const response = await noFileAPI.post("/user/newsletter", newsData);
+
+      if (response.status === 200 || response.data.success) {
+        toast.success(response.data.message);
+        setNewsEmail("");
+        setErrorMessage("");
+      }
     } catch (error) {
-      toast.error(error.response.data.error);
+      if (error.response && error.response.data.error) {
+        toast.error(error.response.data.error);
+      } else {
+        toast.error("An error occurred. Please try again later.");
+      }
     }
   };
 
@@ -49,6 +58,7 @@ export default function Newsletter() {
                     placeholder="Enter your email address"
                     aria-label="Email"
                     id="newsletter"
+                    value={newsEmail}
                     onChange={(e) => setNewsEmail(e.target.value)}
                   />
                   <button className="btn btn-custom custom-btn">
