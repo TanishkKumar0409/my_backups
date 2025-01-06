@@ -13,6 +13,9 @@ export default function HomeDrag() {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
       setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
+      if (acceptedFiles.length > 0) {
+        setShowModal(true); // Show modal when files are added
+      }
     },
     multiple: true,
   });
