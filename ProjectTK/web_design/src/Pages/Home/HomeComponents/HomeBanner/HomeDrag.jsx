@@ -12,18 +12,13 @@ export default function HomeDrag() {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
+      setFiles([]);
       if (acceptedFiles.length > 0) {
-        setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
         setShowModal(true);
       }
     },
     multiple: true,
   });
-
-  const handleModalClose = () => {
-    setShowModal(false);
-    setFiles([]);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,6 +29,8 @@ export default function HomeDrag() {
       toast.error("Email is required");
       return;
     }
+
+    setShowModal(true);
 
     setFiles([]);
     setEmail("");
@@ -154,7 +151,7 @@ export default function HomeDrag() {
               <button
                 type="button"
                 className="btn-close"
-                onClick={handleModalClose}
+                onClick={() => setShowModal(false)}
               ></button>
             </div>
             <div className="modal-body text-center">
