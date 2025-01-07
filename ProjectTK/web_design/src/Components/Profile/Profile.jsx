@@ -15,6 +15,14 @@ export default function Profile(props) {
 
   const APIurl = process.env.REACT_APP_API;
 
+  const displaySize = (sizeInBytes) => {
+    if (sizeInBytes >= 1024 * 1024 * 1024) {
+      return `${(sizeInBytes / 1024 / 1024 / 1024).toFixed(2)} GB`;
+    } else {
+      return `${(sizeInBytes / 1024 / 1024).toFixed(2)} MB`;
+    }
+  };
+
   return (
     <>
       <div
@@ -76,6 +84,16 @@ export default function Profile(props) {
                 <p className="fs-4 text-muted">Contact:</p>
                 <p className="fs-4">{userData.contact}</p>
               </div>
+
+              <div className="d-flex justify-content-between mb-2">
+                <p className="fs-4 text-muted">Used Storage:</p>
+                <p className="fs-4">{displaySize(userData.usedStorage)}</p>
+              </div>
+
+              <div className="d-flex justify-content-between mb-2">
+                <p className="fs-4 text-muted">Total Storage:</p>
+                <p className="fs-4">{displaySize(userData.totalStorage)}</p>
+              </div>
             </div>
           )}
           <hr />
@@ -107,7 +125,7 @@ export default function Profile(props) {
             </div>
           )}
           {!isUpdating && !isDeleting && (
-            <div className="col text-end mt-5">
+            <div className="col text-end ">
               <button
                 type="button"
                 className="btn btn-custom custom-btn btn-sm"

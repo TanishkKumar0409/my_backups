@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { noFileAPI } from "../../../Services/API/API";
-import { toast } from "react-toastify";
 
 export default function Newsletter() {
   const [data, setData] = useState([]);
