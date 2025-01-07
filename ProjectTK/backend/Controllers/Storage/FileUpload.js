@@ -6,8 +6,8 @@ const FileUpload = async (req, res) => {
     const { parentId } = req.body;
     const { username } = req.params;
 
-    if (!parentId || !req.file) {
-      return res.status(400).json({ error: "Required fields missing" });
+    if (!parentId || !req.files || req.files.length === 0) {
+      return res.status(400).json({ error: "Required fields missing or no files uploaded" });
     }
 
     const isUser = await Users.findOne({ username });
@@ -30,62 +30,55 @@ const FileUpload = async (req, res) => {
 
     const currentUsedSize = isUser.usedStorage;
     const totalSize = isUser.totalStorage;
-    const remainingSize = totalSize - currentUsedSize;
-    const usedSize = req.file ? req.file.size + currentUsedSize : "0";
+    let totalUploadedSize = req.files.reduce((acc, file) => acc + file.size, 0);
+    let newUsedSize = currentUsedSize + totalUploadedSize;
 
     if (currentUsedSize >= totalSize) {
       return res.status(400).json({ error: "Storage Full" });
     }
 
-    if (req.file.size > remainingSize) {
+    if (newUsedSize > totalSize) {
       return res.status(400).json({ error: "Do not have Enough Space" });
     }
 
-    let parentFolder = null;
-    if (parentId) {
-      parentFolder = await Storage.findOne({ folderId: parentId, username });
-      if (!parentFolder) {
-        return res.status(404).json({ error: "Parent folder not found" });
+    const uploadedFiles = [];
+    const lastFolder = await Storage.findOne({ username }).sort({ folderId: -1 });
+    let fileId = lastFolder ? lastFolder.folderId + 1 : 1;
+
+    for (let file of req.files) {
+      const newFile = new Storage({
+        folderId: fileId,
+        username,
+        root: file.originalname,
+        type: "file",
+        parentId: folder.folderId,
+        children: [],
+        filePath: file.path,
+        fileSize: file.size,
+      });
+
+      const savedFile = await newFile.save();
+      if (savedFile) {
+        uploadedFiles.push(savedFile);
+        await Storage.findOneAndUpdate(
+          { folderId: folder.folderId, username },
+          { $push: { children: savedFile.folderId } },
+          { new: true }
+        );
+        fileId += 1;
       }
     }
 
-    const lastFolder = await Storage.findOne({ username }).sort({
-      folderId: -1,
+    await Users.findOneAndUpdate(
+      { username },
+      { $set: { usedStorage: newUsedSize } },
+      { new: true }
+    );
+
+    res.status(201).json({
+      message: "Files uploaded successfully",
+      uploadedFiles,
     });
-    const fileId = lastFolder ? lastFolder.folderId + 1 : 1;
-
-    const newFile = new Storage({
-      folderId: fileId,
-      username,
-      root: req.file.originalname,
-      type: "file",
-      parentId: folder.folderId,
-      children: [],
-      filePath: req.file.path,
-      fileSize: req.file.size,
-    });
-
-    const savedFile = await newFile.save();
-    if (savedFile) {
-      await Storage.findOneAndUpdate(
-        { folderId: parentFolder.folderId, username },
-        { $push: { children: savedFile.folderId } },
-        { new: true }
-      );
-
-      await Users.findOneAndUpdate(
-        { username },
-        { $set: { usedStorage: usedSize } },
-        { new: true }
-      );
-
-      res.status(201).json({
-        message: "File uploaded successfully",
-        savedFile,
-      });
-    } else {
-      return res.status(500).json({ error: "File upload failed" });
-    }
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

@@ -112,7 +112,7 @@ router.post("/storage/folder/create", CreateFolder);
 router.get("/storage/folder/:username", GetFolder);
 router.post(
   "/storage/file/upload/:username",
-  uploadFile.single("file"),
+  uploadFile.array("files",10),
   FileUpload
 );
 router.delete("/storage/folder/delete", DeleteFolder);

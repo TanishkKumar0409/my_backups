@@ -33,13 +33,21 @@ const DeleteFolder = async (req, res) => {
       "recentFiles.folderId": folderId,
     });
 
+    let totalSizeFreed = 0;
+
     const deleteChildren = async (parentFolderId) => {
       const children = await Storage.find({
         username,
         parentId: parentFolderId,
       });
+
       for (const child of children) {
         await deleteChildren(child.folderId);
+
+        if (child.type === "file") {
+          totalSizeFreed += child.fileSize || 0;
+        }
+
         await Storage.findOneAndDelete({ username, folderId: child.folderId });
       }
     };
@@ -61,26 +69,32 @@ const DeleteFolder = async (req, res) => {
         );
 
         if (deletedFolder.type === "file") {
-          const currentUsedSize = isUser.usedStorage || 0;
-          const updatedUsedSize = currentUsedSize - deletedFolder.fileSize;
+          totalSizeFreed += deletedFolder.fileSize || 0;
+        }
 
-          if (isRecent) {
-            await Recent.findOneAndUpdate(
-              { username },
-              { $pull: { recentFiles: { folderId: folderId } } }
-            );
-          }
-
-          await Users.findOneAndUpdate(
+        if (isRecent) {
+          await Recent.findOneAndUpdate(
             { username },
-            { $set: { usedStorage: updatedUsedSize } },
-            { new: true }
+            { $pull: { recentFiles: { folderId: folderId } } }
           );
         }
       }
     }
 
-    return res.status(200).json({ message: "Foler/File Delete Successfully" });
+    if (totalSizeFreed > 0) {
+      const currentUsedSize = isUser.usedStorage || 0;
+      const updatedUsedSize = Math.max(0, currentUsedSize - totalSizeFreed);
+      await Users.findOneAndUpdate(
+        { username },
+        { $set: { usedStorage: updatedUsedSize } },
+        { new: true }
+      );
+    }
+
+    return res.status(200).json({
+      message: "Folder/File deleted successfully",
+      storageFreed: totalSizeFreed,
+    });
   } catch (error) {
     console.error(error.message);
     return res.status(500).json({ error: error.message });

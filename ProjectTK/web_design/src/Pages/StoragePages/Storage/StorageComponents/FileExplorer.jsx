@@ -66,33 +66,48 @@ export default function FileExplorer({ username }) {
   };
 
   const handleFileUpload = async (event) => {
-    const file = event.target.files[0];
-    if (!file || !currentFolder)
-      return toast("No valid folder or file selected.");
-
-    const formData = new FormData();
-    formData.append("parentId", currentFolderId);
-    formData.append("file", file);
-
-    try {
-      const response = await API.post(
-        `/storage/file/upload/${username}`,
-        formData
-      );
-
-      const uploadedFile = response.data;
-      folderData.push(uploadedFile);
-      currentFolder.children.push(uploadedFile.id);
-      setSelectedItemId(uploadedFile.id);
-
-      const updatedData = await noFileAPI.get(`storage/folder/${username}`);
-      setFolderData(updatedData.data);
-
-      toast.success(response.data.message);
-    } catch (error) {
-      toast.error(error.response?.data?.error || "Error uploading file.");
-      console.error(error);
+    const files = event.target.files;
+    if (!files.length || !currentFolder) {
+      toast("No valid folder or files selected.");
+      return;
     }
+
+    let successCount = 0;
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+
+      const formData = new FormData();
+      formData.append("parentId", currentFolderId);
+      formData.append("files", file);
+
+      try {
+        const response = await API.post(
+          `/storage/file/upload/${username}`,
+          formData
+        );
+
+        const uploadedFile = response.data;
+        folderData.push(uploadedFile);
+        currentFolder.children.push(uploadedFile.id);
+        setSelectedItemId(uploadedFile.id);
+
+        successCount++;
+      } catch (error) {
+        toast.error(
+          `Error uploading ${file.name}: ${
+            error.response?.data?.error || "Unknown error"
+          }`
+        );
+        console.error(error);
+      }
+    }
+
+    if (successCount > 0) {
+      toast.success(`${successCount} file(s) uploaded successfully`);
+    }
+
+    const updatedData = await noFileAPI.get(`storage/folder/${username}`);
+    setFolderData(updatedData.data);
 
     event.target.value = "";
   };
@@ -190,6 +205,7 @@ export default function FileExplorer({ username }) {
               <i className="fa fa-upload text-success me-md-2"></i>
               <input
                 type="file"
+                multiple
                 onChange={handleFileUpload}
                 style={{ display: "none" }}
               />
