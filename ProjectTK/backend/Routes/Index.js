@@ -34,6 +34,7 @@ import GetContactQuery from "../Controllers/Users/GetContactQuery.js";
 import DeleteContactQuery from "../Controllers/Users/DeleteContactQuery.js";
 import NewsletterAdd from "../Controllers/Users/NewsletterAdd.js";
 import GetNewsletter from "../Controllers/Users/GetNewsletters.js";
+import VerifyOTP from "../Controllers/Users/VerifyOtp.js";
 
 const router = express.Router();
 
@@ -93,6 +94,7 @@ router.get("/user/contact/query", GetContactQuery);
 router.delete("/user/contact/query/:id", DeleteContactQuery);
 router.post("/user/newsletter", NewsletterAdd);
 router.get("/user/newsletter/all", GetNewsletter);
+router.post("/user/verify/:username", VerifyOTP);
 
 //? Admin Actions
 router.put("/user/block/:username", BlockUser);
@@ -112,7 +114,7 @@ router.post("/storage/folder/create", CreateFolder);
 router.get("/storage/folder/:username", GetFolder);
 router.post(
   "/storage/file/upload/:username",
-  uploadFile.array("files",10),
+  uploadFile.array("files", 10),
   FileUpload
 );
 router.delete("/storage/folder/delete", DeleteFolder);

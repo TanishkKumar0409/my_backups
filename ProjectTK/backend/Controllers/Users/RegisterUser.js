@@ -2,6 +2,7 @@ import Users from "../../Modals/Users.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import Storage from "../../Modals/Storage.js";
+import VerifyMail from "../../Helper/Mailers/VerifyMail.js";
 
 const registerUser = async (req, res) => {
   try {
@@ -71,6 +72,8 @@ const registerUser = async (req, res) => {
       });
 
       const savedFolder = await createFolder.save();
+
+      VerifyMail({ username, email, emailType: "VERIFY" });
 
       return res.status(201).json({
         message: "User Registered Successfully",

@@ -18,8 +18,12 @@ export default function FileExplorer({ username }) {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await noFileAPI.get(`storage/folder/${username}`);
-      setFolderData(response.data);
+      try {
+        const response = await noFileAPI.get(`storage/folder/${username}`);
+        setFolderData(response.data);
+      } catch (error) {
+        console.warn(error.response.data.error);
+      }
     };
     getData();
   }, [username]);

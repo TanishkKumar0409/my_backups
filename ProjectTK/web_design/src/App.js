@@ -21,6 +21,7 @@ import ContactUs from "./Pages/CotactUs/ContactUs";
 import Dashboard from "./Backend/BackendPages/Dashboard/Dashboard";
 import Admin from "./Backend/BackendPages/Admin/Admin";
 import ViewUser from "./Backend/BackendComponents/ViewUsers/ViewUser";
+import VerifyUser from "./Pages/VerifyUser/VerifyUser";
 
 function App() {
   const loginToken = localStorage.getItem("loginToken");
@@ -38,6 +39,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
         <Route path="/form" element={<ProtectedRoutes><Forms /></ProtectedRoutes>} />
+        <Route path="/verify" element={<VerifyUser/>}/>
 
         <Route path="/main" element={<ProtectedRoutes><Main /></ProtectedRoutes>} />
         <Route path="/main/history" element={<ProtectedRoutes><History /></ProtectedRoutes>} />
