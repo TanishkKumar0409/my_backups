@@ -39,7 +39,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
         <Route path="/form" element={<ProtectedRoutes><Forms /></ProtectedRoutes>} />
-        <Route path="/verify/:username" element={<VerifyUser/>}/>
+        <Route path="/verify/:username" element={<ProtectedRoutes><VerifyUser/></ProtectedRoutes>}/>
 
         <Route path="/main" element={<ProtectedRoutes><Main /></ProtectedRoutes>} />
         <Route path="/main/history" element={<ProtectedRoutes><History /></ProtectedRoutes>} />
