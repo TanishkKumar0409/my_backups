@@ -20,20 +20,24 @@ const VerifyMail = async ({ username, email, emailType }) => {
     }
 
     const transport = nodemailer.createTransport({
-      host: "smtp-relay.brevo.com",
-      port: 2525,
+      host: "smtp.gmail.com",
+      port: 587,
       auth: {
-        user: "8224fa001@smtp-brevo.com",
-        pass: "yYcAgGKSVm19Nw34",
+        user: "tanishkk60@gmail.com",
+        pass: " ntij pdqd jzcn hycy",
       },
     });
+
+    const verifyLink = `http://localhost:3000/verify/${username}`;
 
     const MailSchema = {
       from: "tanishkk60@gmail.com",
       to: email,
       subject: "Verifier",
       text: "You Got Email With File Download Link",
-      html: "<h1>Verify</h1>",
+      html: `
+      otp:${verifyOTP}
+      <a href='${verifyLink}'>Verify</a>`,
     };
 
     const info = await transport.sendMail(MailSchema);

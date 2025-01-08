@@ -20,6 +20,10 @@ export default function HomeDrag() {
     multiple: true,
   });
 
+  const handleClick = () => {
+    setShowModal(true);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrorMessage("");
@@ -43,6 +47,7 @@ export default function HomeDrag() {
         <form onSubmit={handleSubmit}>
           <div
             {...getRootProps()}
+            onClick={handleClick}
             className="dropzone cursorPointer bg-white position-relative align-content-center rounded text-center p-5 border-dashed-1 overflow-hidden"
           >
             <input {...getInputProps()} />

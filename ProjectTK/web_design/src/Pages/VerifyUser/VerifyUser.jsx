@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { noFileAPI } from "../../Services/API/API";
 import { useNavigate, useParams } from "react-router-dom";
@@ -7,6 +7,12 @@ export default function VerifyUser() {
   const [otp, setOtp] = useState("");
   const redirector = useNavigate();
   const { username } = useParams();
+
+  useEffect(() => {
+    if (username !== JSON.parse(localStorage.getItem("user"))) {
+      redirector(`/verify/${JSON.parse(localStorage.getItem("user"))}`);
+    }
+  }, [username,redirector]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

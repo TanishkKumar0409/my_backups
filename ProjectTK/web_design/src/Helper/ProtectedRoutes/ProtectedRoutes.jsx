@@ -60,7 +60,6 @@ export default function ProtectedRoutes({ children }) {
   if (isPathMatching(["/verify/:username"])) {
     if (user) {
       if (!user.verifyOTP) {
-        console.log(path);
         return <Navigate to="/" replace />;
       }
     }
@@ -68,3 +67,4 @@ export default function ProtectedRoutes({ children }) {
 
   return children;
 }
+// ntij pdqd jzcn hycy
