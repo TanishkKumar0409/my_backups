@@ -14,7 +14,8 @@ const VerifyOTP = async (req, res) => {
       return res.status(404).json({ error: "User not found." });
     }
 
-    if (isUser.verifyOTP !== otp) {
+
+    if (isUser.verifyOTP !== parseInt(otp)) {
       return res.status(400).json({ error: "Invalid OTP." });
     }
 

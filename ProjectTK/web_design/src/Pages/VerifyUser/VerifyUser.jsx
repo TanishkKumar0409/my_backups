@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { noFileAPI } from "../../Services/API/API";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function VerifyUser() {
   const [otp, setOtp] = useState("");
+  const redirector = useNavigate();
+  const { username } = useParams();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -11,10 +14,17 @@ export default function VerifyUser() {
       toast.error("Enter OTP");
     }
     try {
-      const response = await noFileAPI.post(`/user/verify/prince11`, { otp });
-      console.log(response)
+      const response = await noFileAPI.post(`/user/verify/${username}`, {
+        otp,
+      });
+      console.log(response);
+      if (response) {
+        window.location.reload();
+        redirector("/");
+      }
     } catch (error) {
       console.log(error);
+      toast.error(error.response.data.error);
     }
   };
 
