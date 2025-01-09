@@ -39,13 +39,12 @@ export default function Register(props) {
 
       toast.success(response.data.message);
 
-      localStorage.setItem("loginToken", response.data.loginToken);
-      localStorage.setItem(
-        "user",
-        JSON.stringify(response.data.loginUser.username)
-      );
+      const regiseteredUsername = response.data.loginUser.username;
 
-      redirector(`/verify/${response.data.loginUser.username}`);
+      localStorage.setItem("loginToken", response.data.loginToken);
+      localStorage.setItem("user", JSON.stringify(regiseteredUsername));
+
+      redirector(`/verify/${regiseteredUsername}`);
 
       window.location.reload();
     } catch (error) {
@@ -125,6 +124,7 @@ export default function Register(props) {
                 <div className="text-danger">{formik.errors.username}</div>
               )}
             </div>
+
             <div className="col-md-6">
               <label htmlFor="name" className="form-label">
                 Full Name
@@ -164,6 +164,7 @@ export default function Register(props) {
                 <div className="text-danger">{formik.errors.email}</div>
               )}
             </div>
+
             <div className="col-md-6">
               <label htmlFor="contact" className="form-label">
                 Contact Number
