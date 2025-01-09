@@ -16,19 +16,23 @@ export default function VerifyUser() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!otp) {
       toast.error("Enter OTP");
     }
+
     try {
       const response = await noFileAPI.post(`/user/verify/${username}`, {
         otp,
       });
+
       if (response) {
         toast.success(response.data.message);
+
         redirector("/");
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.response.data.error);
     }
   };
