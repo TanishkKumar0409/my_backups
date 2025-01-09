@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RegisterValidationSchema } from "../../../Helper/FormValidationSchemas/FormValidationSchemas";
 import { API } from "../../../Services/API/API";
 import { toast } from "react-toastify";
@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 export default function Register(props) {
   const [profileImage, setProfileImage] = useState(null);
   const fileInputRef = useRef(null);
+
+  const redirector = useNavigate();
 
   const APIurl = process.env.REACT_APP_API;
 
@@ -42,6 +44,8 @@ export default function Register(props) {
         "user",
         JSON.stringify(response.data.loginUser.username)
       );
+
+      redirector(`/verify/${response.data.loginUser.username}`);
 
       window.location.reload();
     } catch (error) {

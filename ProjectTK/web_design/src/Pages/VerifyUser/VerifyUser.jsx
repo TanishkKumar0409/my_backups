@@ -12,7 +12,7 @@ export default function VerifyUser() {
     if (username !== JSON.parse(localStorage.getItem("user"))) {
       redirector(`/verify/${JSON.parse(localStorage.getItem("user"))}`);
     }
-  }, [username,redirector]);
+  }, [username, redirector]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,9 +23,8 @@ export default function VerifyUser() {
       const response = await noFileAPI.post(`/user/verify/${username}`, {
         otp,
       });
-      console.log(response);
       if (response) {
-        window.location.reload();
+        toast.success(response.data.message);
         redirector("/");
       }
     } catch (error) {
