@@ -103,7 +103,7 @@ router.put("/user/demote/:username", RemoveAdmin);
 router.get("/user/admin/all", GetAdmin);
 
 //? Sharing Routes
-router.post("/share/:username", UploadFileShare.array("files", 10), ShareFiles);
+router.post("/share/:username", UploadFileShare.array("files"), ShareFiles);
 router.get("/share/download/:sharingId", DownloadFiles);
 router.get("/share/history", GetSharedHistory);
 router.get("/share/history/user/:username", GetSharedHistoryByUsername);
@@ -114,7 +114,7 @@ router.post("/storage/folder/create", CreateFolder);
 router.get("/storage/folder/:username", GetFolder);
 router.post(
   "/storage/file/upload/:username",
-  uploadFile.array("files", 10),
+  uploadFile.array("files"),
   FileUpload
 );
 router.delete("/storage/folder/delete", DeleteFolder);
