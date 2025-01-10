@@ -19,7 +19,11 @@ export default function AdminTable() {
       }
     };
 
-    getData();
+    const intervalId = setInterval(() => {
+      getData();
+    }, 1000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   const handleDemote = async (username) => {
@@ -33,8 +37,6 @@ export default function AdminTable() {
 
     try {
       const demoteResponse = await noFileAPI.put(`/user/demote/${username}`);
-      const response = await noFileAPI.get("/user/admin/all");
-      setData(response.data);
       toast.success(demoteResponse.data.message);
     } catch (error) {
       toast.error(error.response.data.error);
@@ -52,8 +54,6 @@ export default function AdminTable() {
 
     try {
       const blockingResponse = await noFileAPI.put(`/user/block/${username}`);
-      const response = await noFileAPI.get("/user/admin/all");
-      setData(response.data);
       toast.success(blockingResponse.data.message);
     } catch (error) {
       console.error(error);

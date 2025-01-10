@@ -18,7 +18,7 @@ const CreateAdmin = async (req, res) => {
     );
 
     if (newAdmin) {
-      return res.status(200).json({ message: "User is Promoted", newAdmin });
+      return res.status(200).json({ message:  `${username} is Promoted`, newAdmin });
     } else {
       return res.status(404).json({ error: "User not Found" });
     }

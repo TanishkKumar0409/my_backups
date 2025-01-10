@@ -19,7 +19,11 @@ export default function UsersTable() {
       }
     };
 
-    getData();
+    const intervalId = setInterval(() => {
+      getData();
+    }, 1000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   const handleBlock = async (username) => {
@@ -33,8 +37,6 @@ export default function UsersTable() {
 
     try {
       const blockingResponse = await noFileAPI.put(`/user/block/${username}`);
-      const response = await noFileAPI.get("/user/all");
-      setData(response.data);
       toast.success(blockingResponse.data.message);
     } catch (error) {
       console.error(error);
@@ -53,10 +55,7 @@ export default function UsersTable() {
 
     try {
       const promoteResponse = await noFileAPI.put(`/user/promote/${username}`);
-      const response = await noFileAPI.get("/user/all");
-      setData(response.data);
       toast.success(promoteResponse.data.message);
-      window.location.reload();
     } catch (error) {
       toast.error(error.response.data.error);
       console.error(error);
