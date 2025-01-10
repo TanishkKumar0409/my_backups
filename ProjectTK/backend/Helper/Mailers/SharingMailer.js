@@ -8,12 +8,17 @@ const SharingMailer = async ({ email, downloadLink }) => {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
 
+    const MailHost = process.env.MailHost;
+    const MailPort = process.env.MailPort;
+    const MailUser = process.env.MailUser;
+    const MailPassword = process.env.MailPassword;
+
     const transport = nodemailer.createTransport({
-      host: "smtp-relay.brevo.com",
-      port: 2525,
+      host: MailHost,
+      port: MailPort,
       auth: {
-        user: "8224fa001@smtp-brevo.com",
-        pass: "yYcAgGKSVm19Nw34",
+        user: MailUser,
+        pass: MailPassword,
       },
     });
 
@@ -24,7 +29,7 @@ const SharingMailer = async ({ email, downloadLink }) => {
     const htmlContent = await ejs.renderFile(templatePath, { downloadLink });
 
     const MailSchema = {
-      from: "tanishkk60@gmail.com",
+      from: MailUser,
       to: email,
       subject: "Shared Files Email",
       text: "You Got Email With File Download Link",

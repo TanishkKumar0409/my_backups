@@ -24,17 +24,22 @@ const DeletionOtp = async (req, res) => {
 
     const otp = Math.floor(1000 + Math.random() * 9000);
 
+    const MailHost = process.env.MailHost;
+    const MailPort = process.env.MailPort;
+    const MailUser = process.env.MailUser;
+    const MailPassword = process.env.MailPassword;
+
     const transport = nodemailer.createTransport({
-      host: "smtp-relay.brevo.com",
-      port: 2525,
+      host: MailHost,
+      port: MailPort,
       auth: {
-        user: "8224fa001@smtp-brevo.com",
-        pass: "yYcAgGKSVm19Nw34",
+        user: MailUser,
+        pass: MailPassword,
       },
     });
 
     const MailSchema = {
-      from: "tanishkk60@gmail.com",
+      from: MailUser,
       to: email,
       subject: "Your Deletion OTP",
       text: `Your OTP is: ${otp}`,

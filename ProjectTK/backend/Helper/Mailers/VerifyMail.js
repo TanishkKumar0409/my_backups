@@ -19,19 +19,24 @@ const VerifyMail = async ({ username, email, emailType }) => {
       );
     }
 
+    const MailHost = process.env.MailHost;
+    const MailPort = process.env.MailPort;
+    const MailUser = process.env.MailUser;
+    const MailPassword = process.env.MailPassword;
+
     const transport = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
+      host: MailHost,
+      port: MailPort,
       auth: {
-        user: "tanishkk60@gmail.com",
-        pass: " ntij pdqd jzcn hycy",
+        user: MailUser,
+        pass: MailPassword,
       },
     });
 
     const verifyLink = `http://localhost:3000/verify/${username}`;
 
     const MailSchema = {
-      from: "tanishkk60@gmail.com",
+      from: MailUser,
       to: email,
       subject: "Verifier",
       text: "You Got Email With File Download Link",
