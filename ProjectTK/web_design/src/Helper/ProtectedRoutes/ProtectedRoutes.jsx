@@ -33,6 +33,8 @@ export default function ProtectedRoutes({ children }) {
     "/main/history",
     "/main/storage",
     "/main/file/view/:folderId",
+    "/main/user/:username",
+    "/main/user/delete/account",
   ];
   const adminPaths = [
     "/admin/dashboard",
