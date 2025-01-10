@@ -15,7 +15,9 @@ const RecentFile = async (req, res) => {
     }
 
     if (isUser.status === "BLOCKED") {
-      return res.status(403).json({ error: "Sorry, You are Blocked" });
+      return res
+        .status(403)
+        .json({ error: `Sorry ${username}, You are Blocked` });
     }
 
     const isRecent = await Recent.findOne({ username });

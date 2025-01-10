@@ -6,7 +6,9 @@ const NewsletterAdd = async (req, res) => {
 
     const isExisting = await Newsletter.findOne({ email });
     if (isExisting) {
-      return res.status(409).json({ error: "Already Subscribed" });
+      return res
+        .status(409)
+        .json({ error: `${isExisting.username} you are already Subscribed` });
     }
 
     const newsletter = Newsletter({ email });

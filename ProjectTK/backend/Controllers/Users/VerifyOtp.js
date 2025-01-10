@@ -14,7 +14,6 @@ const VerifyOTP = async (req, res) => {
       return res.status(404).json({ error: "User not found." });
     }
 
-
     if (isUser.verifyOTP !== parseInt(otp)) {
       return res.status(400).json({ error: "Invalid OTP." });
     }
@@ -31,7 +30,7 @@ const VerifyOTP = async (req, res) => {
 
     return res
       .status(200)
-      .json({ message: "User verified successfully.", user: verified });
+      .json({ message: `${username} verified successfully.`, user: verified });
   } catch (error) {
     console.error("Error verifying OTP:", error);
     return res.status(500).json({ error: "Internal Server Error." });

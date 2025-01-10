@@ -13,7 +13,9 @@ const ShareFiles = async (req, res) => {
     }
 
     if (isExisting.status === "BLOCKED") {
-      return res.status(403).json({ error: "Sorry, You are Blocked" });
+      return res
+        .status(403)
+        .json({ error: `Sorry ${username}, You are Blocked` });
     }
 
     if (!message) {

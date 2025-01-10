@@ -7,7 +7,9 @@ const FileUpload = async (req, res) => {
     const { username } = req.params;
 
     if (!parentId || !req.files || req.files.length === 0) {
-      return res.status(400).json({ error: "Required fields missing or no files uploaded" });
+      return res
+        .status(400)
+        .json({ error: "Required fields missing or no files uploaded" });
     }
 
     const isUser = await Users.findOne({ username });
@@ -16,7 +18,9 @@ const FileUpload = async (req, res) => {
     }
 
     if (isUser.status === "BLOCKED") {
-      return res.status(403).json({ error: "Sorry, You are Blocked" });
+      return res
+        .status(403)
+        .json({ error: `Sorry ${username}, You are Blocked` });
     }
 
     const folder = await Storage.findOne({
@@ -42,7 +46,9 @@ const FileUpload = async (req, res) => {
     }
 
     const uploadedFiles = [];
-    const lastFolder = await Storage.findOne({ username }).sort({ folderId: -1 });
+    const lastFolder = await Storage.findOne({ username }).sort({
+      folderId: -1,
+    });
     let fileId = lastFolder ? lastFolder.folderId + 1 : 1;
 
     for (let file of req.files) {

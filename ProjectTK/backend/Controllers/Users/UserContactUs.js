@@ -16,7 +16,9 @@ const UserContactUs = async (req, res) => {
 
     const savedQuery = await newQuery.save();
     if (savedQuery) {
-      return res.status(201).json({ message: "Message Send", savedQuery });
+      return res
+        .status(201)
+        .json({ message: `${name} Message sent`, savedQuery });
     }
   } catch (error) {
     return res.status(500).json({ error: error.message });

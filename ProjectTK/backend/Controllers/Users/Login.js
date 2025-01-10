@@ -10,7 +10,9 @@ const Login = async (req, res) => {
 
     const blockedUser = await Users.findOne({ email, status: "BLOCKED" });
     if (blockedUser) {
-      return res.status(403).json({ error: "Sorry, You are Blocked." });
+      return res
+        .status(403)
+        .json({ error: `Sorry ${blockedUser.username}, You are Blocked` });
     }
 
     const loginUser = await Users.findOne({ email });

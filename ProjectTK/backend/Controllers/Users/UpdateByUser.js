@@ -10,7 +10,9 @@ const UpdateByUser = async (req, res) => {
     const existingUser = await Users.findOne({ username });
 
     if (existingUser.status === "BLOCKED") {
-      return res.status(403).json({ error: "Sorry, You are Blocked." });
+      return res
+        .status(403)
+        .json({ error: `Sorry ${username}, You are Blocked.` });
     }
 
     let updatedPassword = existingUser.password;
@@ -64,7 +66,7 @@ const UpdateByUser = async (req, res) => {
     if (updatedUser) {
       return res
         .status(200)
-        .json({ message: "Update Successfully", updatedUser });
+        .json({ message: `${username} Update Successfully`, updatedUser });
     }
   } catch (error) {
     return res.status(500).json({ error: error.message });

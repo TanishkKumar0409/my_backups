@@ -30,7 +30,9 @@ const registerUser = async (req, res) => {
       status: "BLOCKED",
     });
     if (blockedUser) {
-      return res.status(403).json({ error: "Sorry, You are Blocked." });
+      return res
+        .status(403)
+        .json({ error: `Sorry ${username}, You are Blocked.` });
     }
 
     const isExistingUsername = await Users.findOne({ username });
@@ -76,7 +78,7 @@ const registerUser = async (req, res) => {
       VerifyMail({ username, email, emailType: "VERIFY" });
 
       return res.status(201).json({
-        message: "User Registered Successfully",
+        message: `${username} Registered Successfully`,
         loginUser,
         loginToken,
         savedFolder,

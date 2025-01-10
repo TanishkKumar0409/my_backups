@@ -12,7 +12,9 @@ const DeletionOtp = async (req, res) => {
     }
 
     if (existingUser.status === "BLOCKED") {
-      return res.status(403).json({ error: "Sorry, You are Blocked" });
+      return res
+        .status(403)
+        .json({ error: `Sorry ${existingUser.username}, You are Blocked` });
     }
 
     const isMatch = await bcryptjs.compare(password, existingUser.password);
