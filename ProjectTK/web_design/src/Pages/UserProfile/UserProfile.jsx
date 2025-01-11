@@ -53,71 +53,71 @@ export default function UserProfile() {
   return (
     <>
       <section className="py-5 bgGradient">
-        <div className="container rounded mt-5 p-5 bg-light">
+        <div className="container rounded mt-5 shadow-sm p-4 bg-light">
           <div className="row">
-            <div className="col-md-6 text-center align-content-center">
+            <div className="col-md-5 text-center d-flex justify-content-center align-items-center">
               <img
                 src={`${APIurl}${data.profile}`}
-                className="img-fluid rounded shadow w-100"
-                style={{ aspectRatio: "4/3" }}
-                alt={"User Profile"}
+                className="img-fluid rounded shadow-sm"
+                style={{ aspectRatio: "4/3", maxWidth: "100%" }}
+                alt="User Profile"
               />
             </div>
-            <div className="col-md-6 align-content-center">
-              <h3 className="mb-4 fs-1 fw-bold">
+            <div className="col-md-7">
+              <h3 className="mb-4 fw-bold">
                 {data.username || "User Details"}
               </h3>
-              <div className="table-responsive">
-                <table className="table table-striped table-bordered">
+              <div className="table-responsive " style={{overflow:"unset"}}>
+                <table className="table table-bordered table-hover">
                   <tbody>
                     <tr>
-                      <th>Name</th>
+                      <th scope="row" className="text-secondary">Name</th>
                       <td>{data.name || "N/A"}</td>
                     </tr>
                     <tr>
-                      <th>Email</th>
+                      <th scope="row" className="text-secondary">Email</th>
                       <td>{data.email || "N/A"}</td>
                     </tr>
                     <tr>
-                      <th>Contact</th>
+                      <th scope="row" className="text-secondary">Contact</th>
                       <td>{data.contact || "N/A"}</td>
                     </tr>
                     <tr>
-                      <th>Role</th>
+                      <th scope="row" className="text-secondary">Role</th>
                       <td>{data.role || "N/A"}</td>
                     </tr>
                     <tr>
-                      <th>Status</th>
+                      <th scope="row" className="text-secondary">Status</th>
                       <td>{data.status || "N/A"}</td>
                     </tr>
                     <tr>
-                      <th>Used Storage</th>
+                      <th scope="row" className="text-secondary">Used Storage</th>
                       <td>{formatStorage(data.usedStorage)}</td>
                     </tr>
                     <tr>
-                      <th>Total Storage</th>
+                      <th scope="row" className="text-secondary">Total Storage</th>
                       <td>{formatStorage(data.totalStorage)}</td>
                     </tr>
                     <tr>
-                      <td colSpan={`2`} className="text-center">
-                        <Link
-                          to={`/main/user/update/account/${username}`}
-                          className="btn btn-custom custom-btn w-50 rounded-0 rounded-start-3 text-nowrap"
-                        >
-                          Update Profile
-                        </Link>
-                        <button
-                          className="btn btn-custom custom-btn rounded-0 rounded-end-3 w-50"
-                          type="button"
-                          id="dropdownMenuButton"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                        >
-                          Actions
-                        </button>
-                        <div className="dropdown">
+                      <td colSpan="2" className="text-center">
+                        <div className="btn-group w-100">
+                          <Link
+                            to={`/main/user/update/account/${username}`}
+                            className="btn btn-custom custom-btn rounded-start w-100"
+                          >
+                            Update Profile
+                          </Link>
+                          <button
+                            className="btn btn-custom custom-btn rounded-end w-100"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          >
+                            Actions
+                          </button>
                           <ul
-                            className="dropdown-menu dropdown-menu-top overflow-hidden text-center p-0"
+                            className="dropdown-menu dropdown-menu-end text-center p-0 overflow-hidden"
                             aria-labelledby="dropdownMenuButton"
                           >
                             <li>
@@ -139,7 +139,7 @@ export default function UserProfile() {
                             <li>
                               <Link
                                 to={`/main/user/delete/account/${username}`}
-                                className="dropdown-item btn-custom custom-btn"
+                                className="dropdown-item btn btn-custom custom-btn"
                               >
                                 Delete Account
                               </Link>
