@@ -129,9 +129,12 @@ export default function UserProfile() {
                               </button>
                             </li>
                             <li>
-                              <button className="dropdown-item btn btn-custom custom-btn">
+                              <Link
+                                to={`/main/user/account/password/${username}`}
+                                className="dropdown-item btn btn-custom custom-btn"
+                              >
                                 Change Password
-                              </button>
+                              </Link>
                             </li>
                             <li>
                               <Link
