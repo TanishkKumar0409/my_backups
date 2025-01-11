@@ -28,6 +28,8 @@ export default function HomeDrag() {
     }
 
     setShowModal(true);
+    console.log(files,"R")
+    console.log(JSON.stringify(files),"t")
 
     setFiles([]);
     localStorage.setItem("userInfo", JSON.stringify({ email, message }));
