@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { noFileAPI } from "../../../Services/API/API";
+import { toast } from "react-toastify";
 
 export default function ChangePassword() {
-  const [step, setStep] = useState(1); // 1: Email, 2: OTP, 3: New Password
-  const [isOTPVisible, setIsOTPVisible] = useState(false);
-  const [timer, setTimer] = useState(180); // 3 minutes countdown in seconds
+  const [step, setStep] = useState(1);
+  const [timer, setTimer] = useState(180);
   const [isTimerActive, setIsTimerActive] = useState(false);
+  const [apiError, setApiError] = useState(null);
   const redirector = useNavigate();
 
   useEffect(() => {
@@ -17,7 +20,7 @@ export default function ChangePassword() {
         setTimer((prev) => prev - 1);
       }, 1000);
     } else if (timer === 0) {
-      redirector("/"); // Redirect to home if timer expires
+      redirector("/");
     }
     return () => clearInterval(interval);
   }, [isTimerActive, timer, redirector]);
@@ -38,55 +41,70 @@ export default function ChangePassword() {
               .required("OTP is required")
           : Yup.string(),
       password:
-        step === 3
+        step === 2
           ? Yup.string()
               .min(6, "Password must be at least 6 characters")
               .required("Required")
           : Yup.string(),
       confirmPassword:
-        step === 3
+        step === 2
           ? Yup.string()
               .oneOf([Yup.ref("password"), null], "Passwords must match")
               .required("Confirm password is required")
           : Yup.string(),
     }),
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
       if (step === 1) {
-        // Step 1: Submit Email, show OTP field
-        setIsOTPVisible(true);
-        setStep(2); // Move to OTP step
-        setIsTimerActive(true); // Start the timer for OTP step
+        try {
+          const response = await noFileAPI.post("/user/change/password/otp", {
+            email: values.email,
+          });
+          if (response.status === 200) {
+            setStep(2);
+            setIsTimerActive(true);
+            toast.success(response.data.message);
+            setApiError("");
+          }
+        } catch (error) {
+          setApiError(error.response.data.error);
+          toast.error(error.response.data.error);
+        }
       } else if (step === 2) {
-        // Step 2: Verify OTP and move to password change
-        setStep(3); // Move to password reset step
-      } else if (step === 3) {
-        // Step 3: Submit New Password
-        alert("Password changed successfully!");
-        redirector("/"); // Redirect after password change
+        try {
+          const response = await noFileAPI.put("/user/change/password", {
+            email: values.email,
+            otp: values.otp,
+            password: values.password,
+          });
+          if (response.status === 200) {
+            toast.success(response.data.message);
+            setApiError("");
+            redirector("/");
+          }
+        } catch (error) {
+          setApiError(error.response.data.error);
+          toast.error(error.response.data.error);
+        }
       }
     },
   });
 
   return (
-    <section className="bgGradient py-5 vh-100 align-content-center">
-      <div className="container mt-5">
+    <section className="bgGradient py-5">
+      <div className="container vh-100 align-content-center">
         <div className="row">
           <div className="col-md-6 p-5 bg-light rounded mx-auto">
             <h3 className="text-center text-dark">
               {step === 1
                 ? "Enter Your Email"
-                : step === 2
-                ? "Verify OTP"
-                : "Set New Password"}
+                : "Verify OTP and Set New Password"}
             </h3>
             <p className="text-center mb-4 text-dark">
               {step === 1
                 ? "Please enter your email to receive a password reset OTP."
-                : step === 2
-                ? "Enter the OTP sent to your email."
-                : "Enter your new password and confirm it."}
+                : "Enter the OTP sent to your email and set your new password."}
             </p>
+            {apiError && <div className="text-danger mb-3">{apiError}</div>}
             <form onSubmit={formik.handleSubmit}>
               {step === 1 && (
                 <div className="mb-3">
@@ -108,35 +126,33 @@ export default function ChangePassword() {
                 </div>
               )}
 
-              {step === 2 && isOTPVisible && (
-                <div className="mb-3">
-                  <label htmlFor="otp" className="form-label">
-                    OTP (4 digits)
-                  </label>
-                  <input
-                    type="text"
-                    id="otp"
-                    name="otp"
-                    className="form-control"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.otp}
-                  />
-                  {formik.touched.otp && formik.errors.otp && (
-                    <div className="text-danger">{formik.errors.otp}</div>
-                  )}
-                  <div className="mt-2 text-muted">
-                    Time remaining:{" "}
-                    <span className="text-danger">
-                      {Math.floor(timer / 60)}:{timer % 60 < 10 ? "0" : ""}
-                      {timer % 60}
-                    </span>
-                  </div>
-                </div>
-              )}
-
-              {step === 3 && (
+              {step === 2 && (
                 <>
+                  <div className="mb-3">
+                    <label htmlFor="otp" className="form-label">
+                      OTP (4 digits)
+                    </label>
+                    <input
+                      type="text"
+                      id="otp"
+                      name="otp"
+                      className="form-control"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.otp}
+                    />
+                    {formik.touched.otp && formik.errors.otp && (
+                      <div className="text-danger">{formik.errors.otp}</div>
+                    )}
+                    <div className="mt-2 text-muted">
+                      Time remaining:{" "}
+                      <span className="text-danger">
+                        {Math.floor(timer / 60)}:{timer % 60 < 10 ? "0" : ""}
+                        {timer % 60}
+                      </span>
+                    </div>
+                  </div>
+
                   <div className="mb-3">
                     <label htmlFor="password" className="form-label">
                       New Password
@@ -181,11 +197,7 @@ export default function ChangePassword() {
               )}
 
               <button type="submit" className="btn btn-custom custom-btn w-100">
-                {step === 1
-                  ? "Submit Email"
-                  : step === 2
-                  ? "Verify OTP"
-                  : "Submit New Password"}
+                {step === 1 ? "Submit Email" : "Submit OTP and Password"}
               </button>
             </form>
           </div>

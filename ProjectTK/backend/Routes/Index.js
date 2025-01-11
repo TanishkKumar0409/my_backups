@@ -35,6 +35,8 @@ import DeleteContactQuery from "../Controllers/Users/DeleteContactQuery.js";
 import NewsletterAdd from "../Controllers/Users/NewsletterAdd.js";
 import GetNewsletter from "../Controllers/Users/GetNewsletters.js";
 import VerifyOTP from "../Controllers/Users/VerifyOtp.js";
+import ChangePasswordSendOtp from "../Controllers/Users/ChangePasswordSendOtp.js";
+import ChangePassword from "../Controllers/Users/ChangePassword.js";
 
 const router = express.Router();
 
@@ -95,6 +97,8 @@ router.delete("/user/contact/query/:id", DeleteContactQuery);
 router.post("/user/newsletter", NewsletterAdd);
 router.get("/user/newsletter/all", GetNewsletter);
 router.post("/user/verify/:username", VerifyOTP);
+router.post("/user/change/password/otp", ChangePasswordSendOtp);
+router.put("/user/change/password", ChangePassword);
 
 //? Admin Actions
 router.put("/user/block/:username", BlockUser);
