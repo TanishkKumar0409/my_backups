@@ -102,7 +102,7 @@ export default function UserProfile() {
                       <td colSpan={`2`} className="text-center">
                         <Link
                           to={`/main/user/update/account/${username}`}
-                          className="btn btn-custom custom-btn w-50 rounded-0 rounded-start-3"
+                          className="btn btn-custom custom-btn w-50 rounded-0 rounded-start-3 text-nowrap"
                         >
                           Update Profile
                         </Link>
