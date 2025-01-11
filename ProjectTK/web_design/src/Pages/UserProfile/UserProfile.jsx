@@ -59,7 +59,7 @@ export default function UserProfile() {
               <img
                 src={`${APIurl}${data.profile}`}
                 className="img-fluid rounded shadow w-100"
-                style={{ aspectRatio: "4/4" }}
+                style={{ aspectRatio: "4/3" }}
                 alt={"User Profile"}
               />
             </div>
@@ -100,9 +100,12 @@ export default function UserProfile() {
                     </tr>
                     <tr>
                       <td colSpan={`2`} className="text-center">
-                        <button className="btn btn-custom custom-btn w-50 rounded-0 rounded-start-3">
+                        <Link
+                          to={`/main/user/update/account/${username}`}
+                          className="btn btn-custom custom-btn w-50 rounded-0 rounded-start-3"
+                        >
                           Update Profile
-                        </button>
+                        </Link>
                         <button
                           className="btn btn-custom custom-btn rounded-0 rounded-end-3 w-50"
                           type="button"

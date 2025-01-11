@@ -24,6 +24,7 @@ import ViewUser from "./Backend/BackendComponents/ViewUsers/ViewUser";
 import VerifyUser from "./Pages/VerifyUser/VerifyUser";
 import UserProfile from "./Pages/UserProfile/UserProfile";
 import DeleteAccount from "./Pages/UserProfile/DeleteAccount/DeleteAccount";
+import UpdateProfile from "./Pages/UserProfile/UpdateProfile/UpdateProfile";
 
 function App() {
   const loginToken = localStorage.getItem("loginToken");
@@ -50,6 +51,7 @@ function App() {
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/main/user/:username" element={<ProtectedRoutes><UserProfile/></ProtectedRoutes>} />
         <Route path="/main/user/delete/account/:username" element={<ProtectedRoutes><DeleteAccount/></ProtectedRoutes>} />
+        <Route path="/main/user/update/account/:username" element={<ProtectedRoutes><UpdateProfile/></ProtectedRoutes>}/>
         <Route path="*" element={<Navigate to={"/"} replace />} />
 
         <Route path="/admin/dashboard" element={<ProtectedRoutes ><Dashboard /></ProtectedRoutes>} />

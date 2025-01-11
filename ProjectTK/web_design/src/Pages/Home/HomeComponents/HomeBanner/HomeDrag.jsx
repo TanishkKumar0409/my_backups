@@ -28,11 +28,10 @@ export default function HomeDrag() {
     }
 
     setShowModal(true);
-    console.log(files,"R")
-    console.log(JSON.stringify(files),"t")
 
     setFiles([]);
-    localStorage.setItem("userInfo", JSON.stringify({ email, message }));
+    setEmail("");
+    setMessage("");
   };
 
   return (
@@ -41,6 +40,7 @@ export default function HomeDrag() {
         <form onSubmit={handleSubmit}>
           <div
             {...getRootProps()}
+            onClick={() => setShowModal(true)}
             className="dropzone cursorPointer bg-white position-relative align-content-center rounded text-center p-5 border-dashed-1 overflow-hidden"
           >
             <input {...getInputProps()} />
