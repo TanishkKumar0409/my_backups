@@ -30,8 +30,7 @@ export default function HomeDrag() {
     setShowModal(true);
 
     setFiles([]);
-    setEmail("");
-    setMessage("");
+    localStorage.setItem("userInfo", JSON.stringify({ email, message }));
   };
 
   return (

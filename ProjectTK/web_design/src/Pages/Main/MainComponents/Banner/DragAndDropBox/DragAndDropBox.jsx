@@ -10,6 +10,7 @@ export default function DragAndDropBox(props) {
   const [files, setFiles] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const username = JSON.parse(localStorage.getItem("user"));
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
@@ -19,8 +20,8 @@ export default function DragAndDropBox(props) {
   });
 
   const initialValues = {
-    email: "",
-    message: "",
+    email: userInfo?.email || "",
+    message: userInfo?.message || "",
   };
 
   const handleSubmit = async (values) => {
@@ -43,6 +44,7 @@ export default function DragAndDropBox(props) {
       props.onSend();
 
       setFiles([]);
+      localStorage.removeItem("userInfo");
     } catch (error) {
       setErrorMessage(error.response.data.error);
       toast.error(error.response.data.error);

@@ -36,7 +36,11 @@ export default function ShareFilesTable() {
       }
     };
 
-    getData();
+    const intervalId = setInterval(() => {
+      getData();
+    }, 1000);
+
+    return () => clearInterval(intervalId);
   }, [username]);
 
   const handleSearch = (event) => {
@@ -156,7 +160,9 @@ export default function ShareFilesTable() {
             <tr className="text-center">
               <th>Id</th>
               <th>Shared Date</th>
+              <th>Shared Time</th>
               <th>Shared To</th>
+              <th>Shared Message</th>
               <th>File Shared</th>
             </tr>
           </thead>
@@ -172,7 +178,16 @@ export default function ShareFilesTable() {
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{new Date(file.sharedAt).toLocaleDateString("en-GB")}</td>
+                  <td>
+                    {new Date(file.sharedAt).toLocaleTimeString({
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: true,
+                    })}
+                  </td>
+
                   <td>{file.receiverEmail}</td>
+                  <td>{file.message}</td>
                   <td>{file.fileName.length} Files</td>
                 </tr>
               ))
