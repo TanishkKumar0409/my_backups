@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { noFileAPI } from "../../../Services/API/API";
 import { toast } from "react-toastify";
 
