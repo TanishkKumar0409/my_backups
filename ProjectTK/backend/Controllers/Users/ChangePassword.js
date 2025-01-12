@@ -22,6 +22,13 @@ const ChangePassword = async (req, res) => {
       return res.status(400).json({ error: "Invalid OTP" });
     }
 
+    const isCurrentPasswort = await bcryptjs.compare(password, isUser.password);
+    if (isCurrentPasswort) {
+      return res
+        .status(400)
+        .json({ error: "This Your Current Password. Use Another" });
+    }
+
     const salt = bcryptjs.genSaltSync(10);
     const hashedPassword = bcryptjs.hashSync(password, salt);
 
