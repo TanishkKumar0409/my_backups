@@ -6,6 +6,7 @@ import AdminTable from "../../BackendComponents/AdminTable/AdminTable";
 import Query from "../../BackendComponents/Query/Query";
 import SectionsData from "./DashboardData.json";
 import Newsletter from "../../BackendComponents/Newsletter/Newsletter";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   const BannerData = {
@@ -36,6 +37,14 @@ export default function Dashboard() {
               </h2>
               <p className="px-5 text-center">{section.description}</p>
               <div className="col">{componentMapping[section.component]}</div>
+              <div className="text-center">
+                <Link
+                  to={`/admin/dashboard/${section.link}`}
+                  className="btn btn-custom custom-btn"
+                >
+                  Show All
+                </Link>
+              </div>
             </div>
           </div>
         </section>
