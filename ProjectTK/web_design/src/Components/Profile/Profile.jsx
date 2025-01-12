@@ -27,7 +27,10 @@ export default function Profile(props) {
       aria-labelledby="offcanvasProfileLabel"
     >
       <div className="offcanvas-header bg-light border-bottom">
-        <h5 className="offcanvas-title text-dark fs-2 fw-bold" id="offcanvasProfileLabel">
+        <h5
+          className="offcanvas-title text-dark fs-2 fw-bold"
+          id="offcanvasProfileLabel"
+        >
           Profile
         </h5>
         <button
@@ -37,7 +40,7 @@ export default function Profile(props) {
           aria-label="Close"
         ></button>
       </div>
-      <div className="offcanvas-body text-center bg-light overflow-hidden">
+      <div className="offcanvas-body text-center bg-light">
         {/* User Avatar */}
         <img
           src={`${APIurl}${userData.profile}`}
@@ -81,12 +84,22 @@ export default function Profile(props) {
           >
             View Profile
           </Link>
+
           <button
             onClick={handleLogout}
             className="btn btn-custom custom-btn text-nowrap w-50"
           >
             Logout
           </button>
+        </div>
+        <div className="text-end ">
+          {userData.status === "UNVERIFIED" ? (
+            <button className="btn btn-sm btn-custom custom-btn text-nowrap w-50">
+              Verify {userData.username}
+            </button>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

@@ -59,7 +59,11 @@ export default function UserProfile() {
               <img
                 src={`${APIurl}${data.profile}`}
                 className="img-fluid rounded shadow-sm"
-                style={{ aspectRatio: "4/3", maxWidth: "100%" }}
+                style={{
+                  aspectRatio: "4/3",
+                  maxWidth: "100%",
+                  objectFit: "cover",
+                }}
                 alt="User Profile"
               />
             </div>

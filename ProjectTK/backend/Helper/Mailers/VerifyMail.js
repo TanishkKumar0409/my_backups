@@ -1,6 +1,5 @@
 import nodemailer from "nodemailer";
 import Users from "../../Modals/Users.js";
-import jwt from "jsonwebtoken";
 
 const VerifyMail = async ({ username, email, emailType }) => {
   try {
@@ -47,6 +46,10 @@ const VerifyMail = async ({ username, email, emailType }) => {
 
     const info = await transport.sendMail(MailSchema);
     console.log(info.response);
+
+    if (info.response) {
+      return "Otp Sent Successfully";
+    }
   } catch (error) {
     console.log(error.message);
   }

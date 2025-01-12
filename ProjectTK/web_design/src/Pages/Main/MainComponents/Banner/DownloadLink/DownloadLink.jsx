@@ -57,7 +57,7 @@ export default function DownloadLink() {
           </li>
           <li className="list-group-item d-flex justify-content-between align-items-center">
             <p className="text-center fs-6">
-              Total Files Shared: <strong>1</strong>
+              Total Files Shared: <strong>{data.fileName.length}</strong>
             </p>
           </li>
           <li className="list-group-item d-flex justify-content-between align-items-center">

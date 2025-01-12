@@ -37,6 +37,7 @@ import GetNewsletter from "../Controllers/Users/GetNewsletters.js";
 import VerifyOTP from "../Controllers/Users/VerifyOtp.js";
 import ChangePasswordSendOtp from "../Controllers/Users/ChangePasswordSendOtp.js";
 import ChangePassword from "../Controllers/Users/ChangePassword.js";
+import VerifySendOtp from "../Controllers/Users/VerifySendOtp.js";
 
 const router = express.Router();
 
@@ -99,6 +100,7 @@ router.get("/user/newsletter/all", GetNewsletter);
 router.post("/user/verify/:username", VerifyOTP);
 router.post("/user/change/password/otp", ChangePasswordSendOtp);
 router.put("/user/change/password", ChangePassword);
+router.post("/user/verify/send/:username",VerifySendOtp)
 
 //? Admin Actions
 router.put("/user/block/:username", BlockUser);
