@@ -28,7 +28,10 @@ export default function Navbar() {
       const response = await noFileAPI.get(`/user/${username}`);
       setUserData(response.data);
     };
-    getData();
+
+    const intervalId = setInterval(() => getData(), 1000);
+
+    return () => clearInterval(intervalId);
   }, [username]);
 
   const APIurl = process.env.REACT_APP_API;
