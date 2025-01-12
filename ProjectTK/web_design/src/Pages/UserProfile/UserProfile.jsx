@@ -162,6 +162,15 @@ export default function UserProfile() {
                                 Delete Account
                               </Link>
                             </li>
+                            <li>
+                              {data.status === "UNVERIFIED" ? (
+                                <Link to={`/verify/send/${username}`} className="dropdown-item btn btn-custom custom-btn">
+                                  Verify {data.username}
+                                </Link>
+                              ) : (
+                                ""
+                              )}
+                            </li>
                           </ul>
                         </div>
                       </td>

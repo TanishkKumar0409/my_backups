@@ -24,7 +24,10 @@ export default function ProtectedRoutes({ children }) {
         console.log(error);
       }
     };
-    getData();
+
+    const intervalId = setInterval(() => getData(), 100);
+
+    return () => clearInterval(intervalId);
   }, [username]);
 
   const nonLoginPaths = ["/", "/form"];
@@ -37,6 +40,7 @@ export default function ProtectedRoutes({ children }) {
     "/main/user/delete/account",
     "/main/user/delete/account/:username",
     "/main/user/update/account/:username",
+    "/verify/send/:username",
   ];
   const adminPaths = [
     "/admin/dashboard",

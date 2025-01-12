@@ -26,6 +26,7 @@ import UserProfile from "./Pages/UserProfile/UserProfile";
 import DeleteAccount from "./Pages/UserProfile/DeleteAccount/DeleteAccount";
 import UpdateProfile from "./Pages/UserProfile/UpdateProfile/UpdateProfile";
 import ChangePassword from "./Pages/UserProfile/ChangePassword/ChangePassword";
+import SendVerifyMail from "./Pages/VerifyUser/SendVerifyMail";
 
 function App() {
   const loginToken = localStorage.getItem("loginToken");
@@ -44,6 +45,7 @@ function App() {
         <Route path="/" element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
         <Route path="/form" element={<ProtectedRoutes><Forms /></ProtectedRoutes>} />
         <Route path="/verify/:username" element={<ProtectedRoutes><VerifyUser/></ProtectedRoutes>}/>
+        <Route path="/verify/send/:username" element={<ProtectedRoutes><SendVerifyMail/></ProtectedRoutes>} />
 
         <Route path="/main" element={<ProtectedRoutes><Main /></ProtectedRoutes>} />
         <Route path="/main/history" element={<ProtectedRoutes><History /></ProtectedRoutes>} />

@@ -28,7 +28,7 @@ export default function VerifyUser() {
 
       if (response) {
         toast.success(response.data.message);
-
+        window.location.reload()
         redirector("/");
       }
     } catch (error) {

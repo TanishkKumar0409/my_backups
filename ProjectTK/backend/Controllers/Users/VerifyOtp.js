@@ -24,7 +24,10 @@ const VerifyOTP = async (req, res) => {
 
     const verified = await Users.findOneAndUpdate(
       { username },
-      { $unset: { verifyOTP: "", verifyOtpExpiry: "" } },
+      {
+        $unset: { verifyOTP: "", verifyOtpExpiry: "" },
+        $set: { status: "ACTIVE" },
+      },
       { new: true }
     );
 

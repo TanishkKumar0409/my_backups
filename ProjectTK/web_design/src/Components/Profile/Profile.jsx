@@ -94,9 +94,9 @@ export default function Profile(props) {
         </div>
         <div className="text-end ">
           {userData.status === "UNVERIFIED" ? (
-            <button className="btn btn-sm btn-custom custom-btn text-nowrap w-50">
+            <Link to={`/verify/send/${userData.username}`} className="btn btn-sm btn-custom custom-btn text-nowrap w-50">
               Verify {userData.username}
-            </button>
+            </Link>
           ) : (
             ""
           )}
