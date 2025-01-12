@@ -12,7 +12,7 @@ const VerifyMail = async ({ username, email, emailType }) => {
         {
           $set: {
             verifyOTP: verifyOTP,
-            verifyOtpExpiry: Date.now() + 3600000,
+            verifyOtpExpiry: Date.now() + 60000,
           },
         },
         { new: true }

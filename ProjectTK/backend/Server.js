@@ -11,6 +11,7 @@ import ProfilesCleaner from "./Helper/folderCleaner/UserProfileCleaner.js";
 import CancelDelete from "./Helper/DbCleaner/CancelDelete.js";
 import StorageCleaner from "./Helper/folderCleaner/DeleteExplorerFiles.js";
 import NotChangedPassword from "./Helper/DbCleaner/NotChangedPassword.js";
+import UnVerifyed from "./Helper/DbCleaner/UnVerifyed.js";
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ setInterval(() => {
   CancelDelete();
   NotChangedPassword();
   StorageCleaner();
+  UnVerifyed()
 }, 1000);
 
 mongoose
