@@ -10,6 +10,7 @@ import deleteShareingFiles from "./Helper/folderCleaner/DeleteSharingFiles.js";
 import ProfilesCleaner from "./Helper/folderCleaner/UserProfileCleaner.js";
 import CancelDelete from "./Helper/DbCleaner/CancelDelete.js";
 import StorageCleaner from "./Helper/folderCleaner/DeleteExplorerFiles.js";
+import NotChangedPassword from "./Helper/DbCleaner/NotChangedPassword.js";
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ setInterval(() => {
   deleteShareingFiles();
   ProfilesCleaner();
   CancelDelete();
+  NotChangedPassword();
   StorageCleaner();
 }, 1000);
 

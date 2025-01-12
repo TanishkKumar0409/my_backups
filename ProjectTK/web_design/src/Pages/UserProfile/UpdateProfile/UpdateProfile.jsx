@@ -71,7 +71,6 @@ export default function UpdateProfile() {
       try {
         const response = await noFileAPI.get(`/user/${username}`);
 
-        // Only set the profile image from fetched data if no custom image has been selected
         if (!selectedImage) {
           setProfileImage(
             `${APIurl}${response.data.profile}` ||
@@ -97,17 +96,17 @@ export default function UpdateProfile() {
     };
 
     getData();
-  }, [username, APIurl, formik, selectedImage]); // Add selectedImage as dependency to prevent reset when selecting an image
+  }, [username, APIurl, formik, selectedImage]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setProfileImage(reader.result); // Set the preview image to selected file
+        setProfileImage(reader.result);
       };
       reader.readAsDataURL(file);
-      setSelectedImage(file); // Save the selected image
+      setSelectedImage(file);
     }
   };
 
@@ -211,7 +210,7 @@ export default function UpdateProfile() {
               </div>
 
               <div className="d-grid">
-                <button type="submit" className="btn btn-dark">
+                <button type="submit" className="btn btn-custom custom-btn">
                   Update Profile
                 </button>
               </div>
