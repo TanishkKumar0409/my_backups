@@ -7,6 +7,7 @@ import { noFileAPI } from "../../../Services/API/API";
 
 export default function Login(props) {
   const redirector = useNavigate();
+  const username = JSON.parse(localStorage.getItem(`user`));
   const initialValues = { email: "", password: "" };
 
   const handleSubmit = async (values) => {
@@ -82,6 +83,14 @@ export default function Login(props) {
             {formik.touched.password && formik.errors.password && (
               <div className="text-danger">{formik.errors.password}</div>
             )}
+          </div>
+          <div className="mb-3 text-end">
+            <Link
+              to={`/main/user/account/password/${username || "forgot"}`}
+              className="text-muted text-decoration-none"
+            >
+              Forgot Password
+            </Link>
           </div>
 
           <div className="d-grid">

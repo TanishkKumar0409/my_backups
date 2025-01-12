@@ -1,9 +1,12 @@
 import Users from "../../Modals/Users.js";
 import bcryptjs from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const ChangePassword = async (req, res) => {
   try {
     const { email, otp, password } = req.body;
+
+    const PrivateKey = process.env.PrivateKey;
 
     const isUser = await Users.findOne({ email });
     if (!isUser) {
@@ -33,9 +36,26 @@ const ChangePassword = async (req, res) => {
       );
 
       if (changedPassword) {
-        return res
-          .status(200)
-          .json({ message: "Password Changed Successfully", changedPassword });
+        const loginToken = jwt.sign({ email, password }, PrivateKey);
+
+        const isAdmin = isUser.role;
+
+        if (isAdmin === "ADMIN") {
+          const adminToken = jwt.sign({ email, password, isAdmin }, PrivateKey);
+
+          return res.status(200).json({
+            message: "Password Changed Successfully",
+            changedPassword,
+            loginToken,
+            adminToken,
+          });
+        }
+
+        return res.status(200).json({
+          message: "Password Changed Successfully",
+          changedPassword,
+          loginToken,
+        });
       }
     }
   } catch (error) {

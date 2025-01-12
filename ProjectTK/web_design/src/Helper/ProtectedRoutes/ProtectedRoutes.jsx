@@ -37,7 +37,6 @@ export default function ProtectedRoutes({ children }) {
     "/main/user/delete/account",
     "/main/user/delete/account/:username",
     "/main/user/update/account/:username",
-    "/main/user/account/password/:username",
   ];
   const adminPaths = [
     "/admin/dashboard",

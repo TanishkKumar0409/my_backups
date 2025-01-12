@@ -67,35 +67,49 @@ export default function UserProfile() {
               <h3 className="mb-4 fw-bold">
                 {data.username || "User Details"}
               </h3>
-              <div className="table-responsive " style={{overflow:"unset"}}>
+              <div className="table-responsive " style={{ overflow: "unset" }}>
                 <table className="table table-bordered table-hover">
                   <tbody>
                     <tr>
-                      <th scope="row" className="text-secondary">Name</th>
+                      <th scope="row" className="text-secondary">
+                        Name
+                      </th>
                       <td>{data.name || "N/A"}</td>
                     </tr>
                     <tr>
-                      <th scope="row" className="text-secondary">Email</th>
+                      <th scope="row" className="text-secondary">
+                        Email
+                      </th>
                       <td>{data.email || "N/A"}</td>
                     </tr>
                     <tr>
-                      <th scope="row" className="text-secondary">Contact</th>
+                      <th scope="row" className="text-secondary">
+                        Contact
+                      </th>
                       <td>{data.contact || "N/A"}</td>
                     </tr>
                     <tr>
-                      <th scope="row" className="text-secondary">Role</th>
+                      <th scope="row" className="text-secondary">
+                        Role
+                      </th>
                       <td>{data.role || "N/A"}</td>
                     </tr>
                     <tr>
-                      <th scope="row" className="text-secondary">Status</th>
+                      <th scope="row" className="text-secondary">
+                        Status
+                      </th>
                       <td>{data.status || "N/A"}</td>
                     </tr>
                     <tr>
-                      <th scope="row" className="text-secondary">Used Storage</th>
+                      <th scope="row" className="text-secondary">
+                        Used Storage
+                      </th>
                       <td>{formatStorage(data.usedStorage)}</td>
                     </tr>
                     <tr>
-                      <th scope="row" className="text-secondary">Total Storage</th>
+                      <th scope="row" className="text-secondary">
+                        Total Storage
+                      </th>
                       <td>{formatStorage(data.totalStorage)}</td>
                     </tr>
                     <tr>

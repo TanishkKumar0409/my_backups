@@ -75,10 +75,27 @@ export default function ChangePassword() {
             otp: values.otp,
             password: values.password,
           });
-          if (response.status === 200) {
+          console.log(response);
+          if (response) {
+            if (response.data.loginToken) {
+              localStorage.setItem(
+                "user",
+                JSON.stringify(response.data.changedPassword.username)
+              );
+
+              localStorage.setItem("loginToken", response.data.loginToken);
+
+              if (response.data.adminToken) {
+                localStorage.setItem("adminToken", response.data.adminToken);
+              }
+            }
+
             toast.success(response.data.message);
             setApiError("");
+
             redirector("/");
+
+            window.location.reload();
           }
         } catch (error) {
           setApiError(error.response.data.error);
