@@ -20,49 +20,74 @@ const DownloadFiles = async (req, res) => {
       filePath: filePaths,
     } = historyRecord;
 
-    if (!filePaths || filePaths.length === 0) {
-      return res.status(400).json({ error: "Download link has expired" });
+    if (
+      !filePaths ||
+      !Array.isArray(filePaths) ||
+      filePaths.length === 0 ||
+      filePaths.some((filePath) => !filePath)
+    ) {
+      return res.status(400).json({ error: "Download link has expired." });
+    }
+
+    if (!fileNames || fileNames.length !== filePaths.length) {
+      return res
+        .status(500)
+        .json({ error: "Mismatch between file names and file paths." });
     }
 
     const zipFilename = `shared-files-${senderUsername}.zip`;
     const zipPath = path.resolve("./Uploads/shareFiles", zipFilename);
-    const archive = archiver("zip", { zlib: { level: 9 } });
+
+    const zipDirectory = path.dirname(zipPath);
+    if (!fs.existsSync(zipDirectory)) {
+      fs.mkdirSync(zipDirectory, { recursive: true });
+    }
 
     const output = fs.createWriteStream(zipPath);
+    const archive = archiver("zip", { zlib: { level: 9 } });
+
     archive.pipe(output);
 
+    const addedFiles = new Set();
+
     filePaths.forEach((filePath, index) => {
-      archive.file(filePath, { name: fileNames[index] });
+      const resolvedFilePath = path.resolve(filePath);
+
+      if (fs.existsSync(resolvedFilePath)) {
+        const safeFileName = fileNames[index] || path.basename(filePath);
+
+        if (!addedFiles.has(resolvedFilePath)) {
+          addedFiles.add(resolvedFilePath);
+          archive.file(resolvedFilePath, { name: safeFileName });
+        } else {
+          console.warn(`Skipping duplicate file: ${resolvedFilePath}`);
+        }
+      } else {
+        console.warn(`File not found: ${resolvedFilePath}`);
+      }
     });
 
-    await archive.finalize();
+    archive.finalize();
 
     output.on("close", () => {
       console.log(`ZIP file created: ${zipPath} (${archive.pointer()} bytes)`);
 
-      fs.access(zipPath, fs.constants.F_OK, (err) => {
-        if (err) {
-          console.error("ZIP file does not exist:", err);
-          return res.status(500).json({ error: "ZIP file creation failed." });
+      res.download(zipPath, zipFilename, (error) => {
+        if (error) {
+          console.error("Error downloading the ZIP file:", error);
+          return res
+            .status(500)
+            .json({ error: "Error downloading the file." });
         }
 
-        res.download(zipPath, zipFilename, (error) => {
+        console.log("File downloaded successfully");
+
+        fs.unlink(zipPath, (error) => {
           if (error) {
-            console.error("Error downloading the ZIP file:", error);
-            return res
-              .status(500)
-              .json({ error: "Error downloading the file." });
+            console.error("Error deleting the ZIP file:", error);
+          } else {
+            console.log("ZIP file deleted successfully");
           }
-
-          console.log("File downloaded successfully");
-
-          fs.unlink(zipPath, (error) => {
-            if (error) {
-              console.error("Error deleting the ZIP file:", error);
-            } else {
-              console.log("ZIP file deleted successfully");
-            }
-          });
         });
       });
     });

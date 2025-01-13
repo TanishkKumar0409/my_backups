@@ -7,6 +7,8 @@ const ShareFiles = async (req, res) => {
     let { email, message } = req.body;
     const { username } = req.params;
 
+    console.log(req.files.length)
+
     const isExisting = await Users.findOne({ username });
     if (!isExisting) {
       return res.status(401).json({ error: "Please Register" });
@@ -16,6 +18,10 @@ const ShareFiles = async (req, res) => {
       return res
         .status(403)
         .json({ error: `Sorry ${username}, You are Blocked` });
+    }
+
+    if (req.files.some((file) => !file.originalname)) {
+      return res.status(400).json({ error: "Some files failed to upload." });
     }
 
     if (!message) {

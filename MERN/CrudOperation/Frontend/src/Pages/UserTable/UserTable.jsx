@@ -9,9 +9,13 @@ export default function UserTable() {
 
   useEffect(() => {
     const getData = async () => {
+     try {
       const fetchData = await fetch("http://localhost:8000/api/user");
       const jsonData = await fetchData.json();
       setData(jsonData);
+     } catch (error) {
+      console.log(error)
+     }
     };
 
     getData();

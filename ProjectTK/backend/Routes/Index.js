@@ -61,11 +61,17 @@ const FileShare = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const originalExtension = path.extname(file.originalname);
-    cb(null, "Uploads/shareFiles/" + Date.now() + originalExtension);
+    const randomNumber = Math.round(Math.random() * 500000);
+    cb(
+      null,
+      "Uploads/shareFiles/" + randomNumber + Date.now() + originalExtension
+    );
   },
 });
 
-const UploadFileShare = multer({ storage: FileShare });
+const UploadFileShare = multer({
+  storage: FileShare,
+});
 
 //? Storage File Multer
 const storage = multer.diskStorage({
@@ -74,7 +80,11 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const originalExtension = path.extname(file.originalname);
-    cb(null, Date.now() + originalExtension);
+    const randomNumber = Math.round(Math.random() * 500000);
+    cb(
+      null,
+      "Uploads/shareFiles/" + randomNumber + Date.now() + originalExtension
+    );
   },
 });
 
@@ -100,7 +110,7 @@ router.get("/user/newsletter/all", GetNewsletter);
 router.post("/user/verify/:username", VerifyOTP);
 router.post("/user/change/password/otp", ChangePasswordSendOtp);
 router.put("/user/change/password", ChangePassword);
-router.post("/user/verify/send/:username",VerifySendOtp)
+router.post("/user/verify/send/:username", VerifySendOtp);
 
 //? Admin Actions
 router.put("/user/block/:username", BlockUser);
@@ -109,7 +119,7 @@ router.put("/user/demote/:username", RemoveAdmin);
 router.get("/user/admin/all", GetAdmin);
 
 //? Sharing Routes
-router.post("/share/:username", UploadFileShare.array("files"), ShareFiles);
+router.post("/share/:username", UploadFileShare.any("files"), ShareFiles);
 router.get("/share/download/:sharingId", DownloadFiles);
 router.get("/share/history", GetSharedHistory);
 router.get("/share/history/user/:username", GetSharedHistoryByUsername);
