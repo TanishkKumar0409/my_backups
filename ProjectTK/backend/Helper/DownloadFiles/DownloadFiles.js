@@ -7,6 +7,7 @@ const DownloadFiles = async (req, res) => {
   try {
     const { sharingId } = req.params;
 
+    // Fetch the history record
     const historyRecord = await History.findOne({ sharingId: sharingId });
     if (!historyRecord) {
       return res
@@ -20,6 +21,7 @@ const DownloadFiles = async (req, res) => {
       filePath: filePaths,
     } = historyRecord;
 
+    // Validate file paths and names
     if (
       !filePaths ||
       !Array.isArray(filePaths) ||
@@ -35,9 +37,11 @@ const DownloadFiles = async (req, res) => {
         .json({ error: "Mismatch between file names and file paths." });
     }
 
+    // Prepare ZIP file
     const zipFilename = `shared-files-${senderUsername}.zip`;
     const zipPath = path.resolve("./Uploads/shareFiles", zipFilename);
 
+    // Ensure the directory for ZIP file exists
     const zipDirectory = path.dirname(zipPath);
     if (!fs.existsSync(zipDirectory)) {
       fs.mkdirSync(zipDirectory, { recursive: true });
@@ -46,16 +50,21 @@ const DownloadFiles = async (req, res) => {
     const output = fs.createWriteStream(zipPath);
     const archive = archiver("zip", { zlib: { level: 9 } });
 
+    // Pipe the archive to the output file
     archive.pipe(output);
 
+    // Track added files to avoid duplicates
     const addedFiles = new Set();
 
+    // Add files to the archive
     filePaths.forEach((filePath, index) => {
       const resolvedFilePath = path.resolve(filePath);
 
+      // Ensure the file exists
       if (fs.existsSync(resolvedFilePath)) {
         const safeFileName = fileNames[index] || path.basename(filePath);
 
+        // Avoid adding duplicate files
         if (!addedFiles.has(resolvedFilePath)) {
           addedFiles.add(resolvedFilePath);
           archive.file(resolvedFilePath, { name: safeFileName });
@@ -67,8 +76,10 @@ const DownloadFiles = async (req, res) => {
       }
     });
 
+    // Finalize the archive
     archive.finalize();
 
+    // Handle successful archive creation
     output.on("close", () => {
       console.log(`ZIP file created: ${zipPath} (${archive.pointer()} bytes)`);
 
@@ -82,6 +93,7 @@ const DownloadFiles = async (req, res) => {
 
         console.log("File downloaded successfully");
 
+        // Delete the ZIP file after successful download
         fs.unlink(zipPath, (error) => {
           if (error) {
             console.error("Error deleting the ZIP file:", error);
@@ -92,6 +104,7 @@ const DownloadFiles = async (req, res) => {
       });
     });
 
+    // Handle archive stream errors
     output.on("error", (error) => {
       console.error("Stream error:", error);
       res.status(500).json({ error: "Error creating the ZIP file." });

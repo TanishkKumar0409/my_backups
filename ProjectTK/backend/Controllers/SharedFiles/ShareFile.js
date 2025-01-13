@@ -7,8 +7,6 @@ const ShareFiles = async (req, res) => {
     let { email, message } = req.body;
     const { username } = req.params;
 
-    console.log(req.files.length)
-
     const isExisting = await Users.findOne({ username });
     if (!isExisting) {
       return res.status(401).json({ error: "Please Register" });
