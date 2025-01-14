@@ -116,7 +116,7 @@ export default function RecentFiles() {
                           ></i>
                         </div>
                         <div className="cardCustomBody h-50 d-flex justify-content-center align-items-center text-center p-4 flex-column">
-                          <h2 className="fs-5 fw-bold text-break text-capitalize">
+                          <h2 className=" fw-bold text-break text-capitalize" style={{fontSize:"80%"}}>
                             {item.file.root}
                           </h2>
                           <Link

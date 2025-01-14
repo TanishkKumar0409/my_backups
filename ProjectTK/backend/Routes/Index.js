@@ -76,14 +76,14 @@ const UploadFileShare = multer({
 //? Storage File Multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./Uploads/Explorer");
+    cb(null, "./");
   },
   filename: function (req, file, cb) {
     const originalExtension = path.extname(file.originalname);
     const randomNumber = Math.round(Math.random() * 500000);
     cb(
       null,
-      "Uploads/shareFiles/" + randomNumber + Date.now() + originalExtension
+      "Uploads/Explorer/" + randomNumber + Date.now() + originalExtension
     );
   },
 });

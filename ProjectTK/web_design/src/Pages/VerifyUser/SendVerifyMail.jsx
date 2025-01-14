@@ -7,8 +7,9 @@ export default function SendVerifyMail() {
   const [email, setEmail] = useState("");
   const localUsername = JSON.parse(localStorage.getItem("user"));
   const { username } = useParams();
-  const redirector = useNavigate();
   const [data, setData] = useState();
+  const [btnMessage, setBtnMessage] = useState("Send OTP");
+  const redirector = useNavigate();
 
   useEffect(() => {
     if (username !== localUsername) {
@@ -36,6 +37,7 @@ export default function SendVerifyMail() {
 
   const handleSendOtp = async () => {
     try {
+      setBtnMessage("Sending....");
       const response = await noFileAPI.post(`/user/verify/send/${username}`, {
         email,
       });
@@ -51,8 +53,8 @@ export default function SendVerifyMail() {
 
   return (
     <>
-      <section className="bgGradient py-5">
-        <div className="container mt-5">
+      <section className="bgGradient">
+        <div className="container vh-100 align-content-center">
           <div className="row">
             <div className="col-md-6 rounded shadow-sm p-5 mx-auto text-center bg-light">
               <h3 className="text-center mb-4 text-dark">
@@ -68,8 +70,11 @@ export default function SendVerifyMail() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <button className="btn btn-primary" onClick={handleSendOtp}>
-                Send OTP
+              <button
+                className="btn btn-custom custom-btn"
+                onClick={handleSendOtp}
+              >
+                {btnMessage}
               </button>
             </div>
           </div>

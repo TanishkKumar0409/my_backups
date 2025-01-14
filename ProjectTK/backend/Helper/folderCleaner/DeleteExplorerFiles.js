@@ -22,7 +22,7 @@ const StorageCleaner = async () => {
       if (!files.includes(file)) {
         const filePath = path.join(unKnownFiles, file);
         await fs.unlink(filePath);
-        console.log(`Deleting file: ${filePath}`);
+        console.log(`Deleting Uploaded File: ${filePath}`);
       }
     }
   } catch (error) {

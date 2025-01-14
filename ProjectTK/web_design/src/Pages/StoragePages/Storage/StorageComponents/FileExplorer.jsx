@@ -147,6 +147,7 @@ export default function FileExplorer({ username }) {
       case "rar":
         return "fa-file-archive text-secondary";
       case "mkv":
+      case "mp4":
         return "fa-file-video";
       case "mp3":
       case "wav":
