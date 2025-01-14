@@ -75,9 +75,7 @@ const DownloadFiles = async (req, res) => {
       res.download(zipPath, zipFilename, (error) => {
         if (error) {
           console.error("Error downloading the ZIP file:", error);
-          return res
-            .status(500)
-            .json({ error: "Error downloading the file." });
+          return res.status(500).json({ error: "Error downloading the file." });
         }
 
         console.log("File downloaded successfully");
