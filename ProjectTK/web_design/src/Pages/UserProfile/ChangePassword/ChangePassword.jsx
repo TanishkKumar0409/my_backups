@@ -9,6 +9,7 @@ export default function ChangePassword() {
   const [step, setStep] = useState(1);
   const [timer, setTimer] = useState(180);
   const [isTimerActive, setIsTimerActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState(null);
   const redirector = useNavigate();
 
@@ -54,6 +55,7 @@ export default function ChangePassword() {
     }),
     onSubmit: async (values) => {
       if (step === 1) {
+        setIsLoading(true);
         try {
           const response = await noFileAPI.post("/user/change/password/otp", {
             email: values.email,
@@ -67,6 +69,8 @@ export default function ChangePassword() {
         } catch (error) {
           setApiError(error.response.data.error);
           toast.error(error.response.data.error);
+        } finally {
+          setIsLoading(false);
         }
       } else if (step === 2) {
         try {
@@ -75,7 +79,6 @@ export default function ChangePassword() {
             otp: values.otp,
             password: values.password,
           });
-          console.log(response);
           if (response) {
             if (response.data.loginToken) {
               localStorage.setItem(
@@ -135,6 +138,7 @@ export default function ChangePassword() {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.email}
+                    disabled={isLoading}
                   />
                   {formik.touched.email && formik.errors.email && (
                     <div className="text-danger">{formik.errors.email}</div>
@@ -212,8 +216,16 @@ export default function ChangePassword() {
                 </>
               )}
 
-              <button type="submit" className="btn btn-custom custom-btn w-100">
-                {step === 1 ? "Submit Email" : "Submit OTP and Password"}
+              <button
+                type="submit"
+                className="btn btn-custom custom-btn w-100"
+                disabled={isLoading}
+              >
+                {isLoading
+                  ? "Sending..."
+                  : step === 1
+                  ? "Submit Email"
+                  : "Submit OTP and Password"}
               </button>
             </form>
           </div>

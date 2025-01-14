@@ -9,6 +9,7 @@ export default function DeleteAccount() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { username } = useParams();
   const localUsername = JSON.parse(localStorage.getItem("user"));
   const redirector = useNavigate();
@@ -40,7 +41,7 @@ export default function DeleteAccount() {
     };
 
     getData();
-  }, [username, localUsername, redirector, data]);
+  }, [username, data, localUsername, redirector]);
 
   useEffect(() => {
     let timer;
@@ -58,33 +59,37 @@ export default function DeleteAccount() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await noFileAPI.post("/user/delete/otp", {
         email,
         password,
       });
-      console.log(response);
       toast.success(response.data.message);
-      if (response) {
-        setIsSubmitted(true);
-      }
+      setIsSubmitted(true);
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      toast.error("Failed to send OTP. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await noFileAPI.delete(`/user/delete/${username}`, {
         data: { deletionOtp: otp },
       });
       localStorage.clear();
       window.location.reload();
-      console.log(response);
       toast.success(response.data.message);
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      toast.error("Failed to verify OTP. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -134,8 +139,12 @@ export default function DeleteAccount() {
                   />
                 </div>
 
-                <button type="submit" className="btn btn-custom custom-btn w-100">
-                  Submit
+                <button
+                  type="submit"
+                  className="btn btn-custom custom-btn w-100"
+                  disabled={loading}
+                >
+                  {loading ? "Sending..." : "Submit"}
                 </button>
               </form>
             ) : (
@@ -158,8 +167,12 @@ export default function DeleteAccount() {
                   Time left: {formatTime(timeLeft)}
                 </div>
 
-                <button type="submit" className="btn btn-custom custom-btn w-100">
-                  Verify OTP
+                <button
+                  type="submit"
+                  className="btn btn-custom custom-btn w-100"
+                  disabled={loading}
+                >
+                  {loading ? "Sending..." : "Verify OTP"}
                 </button>
 
                 {timeoutExpired && (
