@@ -36,7 +36,7 @@ const DownloadFiles = async (req, res) => {
     }
 
     const zipFilename = `shared-files-${senderUsername}.zip`;
-    const zipPath = path.resolve("./Uploads/shareFiles", zipFilename);
+    const zipPath = path.resolve("./Uploads/ZipFolder", zipFilename);
 
     const zipDirectory = path.dirname(zipPath);
     if (!fs.existsSync(zipDirectory)) {
