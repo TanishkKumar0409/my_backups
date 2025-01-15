@@ -18,7 +18,7 @@ export default function RecentFiles() {
       0: { items: 1 },
       600: { items: 2 },
       1000: { items: 3 },
-      1200: { items: 4 },
+      1200: { items: 3 },
     },
   };
 
@@ -108,15 +108,15 @@ export default function RecentFiles() {
                   {fileData.map((item, index) => (
                     <div className="item" key={index}>
                       <div className="cardCustom rounded-3 overflow-hidden bg-white">
-                        <div className="cardCustomHead h-50 d-flex justify-content-center align-items-center">
+                        <div className="cardCustomHead bgGradient h-50 d-flex justify-content-center align-items-center">
                           <i
-                            className={`fa text-light fa-beat-fade ${getFileIcon(
+                            className={`fa text-white ${getFileIcon(
                               item.file.root || "default"
                             )}`}
                           ></i>
                         </div>
                         <div className="cardCustomBody h-50 d-flex justify-content-center align-items-center text-center p-4 flex-column">
-                          <h2 className=" fw-bold text-break text-capitalize" style={{fontSize:"80%"}}>
+                          <h2 className=" fw-bold fs-6 text-break text-capitalize">
                             {item.file.root}
                           </h2>
                           <Link

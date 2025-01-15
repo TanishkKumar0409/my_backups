@@ -106,7 +106,7 @@ export default function Footer() {
           </div>
 
           <div className="col-md-3">
-            <div className="p-4 border rounded shadow-sm bg-light">
+            <div className="p-4 rounded bg-white border">
               <h5 className="fw-bold fs-6 text-center mb-3">
                 Subscribe to our Newsletter
               </h5>
@@ -117,13 +117,13 @@ export default function Footer() {
                 <div className="input-group">
                   <input
                     type="email"
-                    className="form-control border-dark"
+                    className="form-control border-secondary-subtle"
                     placeholder="Enter your email"
                     aria-label="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  <button className="btn btn-dark" type="submit">
+                  <button className="btn btn-custom custom-btn" type="submit">
                     <i className="fa fa-paper-plane"></i>
                   </button>
                 </div>
