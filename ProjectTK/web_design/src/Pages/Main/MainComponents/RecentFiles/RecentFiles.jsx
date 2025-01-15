@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export default function RecentFiles() {
   const owlOptions = {
     loop: true,
-    margin: 10,
+    margin: 30,
     dots: true,
     items: 4,
     autoplay: true,
