@@ -8,7 +8,7 @@ const NewsletterAdd = async (req, res) => {
     if (isExisting) {
       return res
         .status(409)
-        .json({ error: `${isExisting.username} you are already Subscribed` });
+        .json({ error: `You are already Subscribed` });
     }
 
     const newsletter = Newsletter({ email });

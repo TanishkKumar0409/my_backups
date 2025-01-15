@@ -35,8 +35,8 @@ setInterval(() => {
   CancelDelete();
   NotChangedPassword();
   StorageCleaner();
-  UnVerifyed()
-}, 1000);
+  UnVerifyed();
+}, 300000);
 
 mongoose
   .connect(DbName)

@@ -652,3 +652,76 @@ iframe {
 .socialIcons:hover {
   transform: scale(1.2) translateY(-5px);
 }
+
+/* Footer Base Styles */
+footer {
+  background-color: #f8f9fa;
+  color: #343a40;
+  padding: 2rem 0;
+}
+
+footer a {
+  color: #343a40;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Logo Styles */
+footer .img-fluid {
+  transition: transform 0.3s ease;
+}
+
+footer .img-fluid:hover {
+  transform: scale(1.1);
+}
+
+/* Social Icons */
+footer .fa-brands {
+  font-size: 1.5rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+footer .fa-brands:hover {
+  transform: scale(1.2);
+}
+
+/* Navigation Links */
+.footer-nav-link {
+  margin-bottom: 0.5rem;
+  transition: 0.3s;
+}
+
+.footer-nav-link:hover {
+  transform: translateX(5px);
+}
+
+/* Contact Section */
+footer p {
+  margin-bottom: 0.5rem;
+}
+
+footer a:hover {
+  transform: translateX(5px);
+}
+
+/* Newsletter */
+footer .input-group input {
+  border: 1px solid #343a40;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+footer .input-group input:focus {
+  box-shadow: none;
+  border-color: #007bff;
+}
+
+/* Newsletter Card */
+footer .p-4 {
+  background-color: #e9ecef;
+  border-radius: 0.5rem;
+  transition: box-shadow 0.3s ease;
+}
+
+footer .p-4:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}

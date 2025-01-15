@@ -13,7 +13,6 @@ import Forms from "./Pages/Forms/Forms";
 import History from "./Pages/History/History";
 import Home from "./Pages/Home/Home";
 import LoginNavbar from "./Components/Navbar/LoginNavbar/LoginNavbar";
-import AutoScroller from "./Helper/AutoScroller/AutoScroller";
 import ProtectedRoutes from "./Helper/ProtectedRoutes/ProtectedRoutes";
 import Storage from "./Pages/StoragePages/Storage/Storage";
 import FileView from "./Pages/FileView/FileView";
@@ -39,7 +38,6 @@ function App() {
   return (
     <BrowserRouter>
       <ToastContainer position="top-center" />
-      <AutoScroller />
       {loginToken ? <Navbar /> : <LoginNavbar />}
       <Routes>
         <Route path="/" element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
