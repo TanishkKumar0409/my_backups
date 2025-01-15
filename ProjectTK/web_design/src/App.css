@@ -1,13 +1,3 @@
-@font-face {
-  font-family: "Lucida Sans";
-  src: url("./Assets/Fonts/lucida-sans/LSANS.TTF") format("truetype");
-}
-
-* {
-  font-family: "Lucida Sans", "Franklin Gothic Medium", "Arial Narrow",
-    sans-serif;
-}
-
 :root {
   --primary-dark-blue: #1e3a8a;
   --primary-soft-gray: #ececec;
