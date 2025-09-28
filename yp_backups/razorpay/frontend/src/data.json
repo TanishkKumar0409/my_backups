@@ -1,0 +1,17 @@
+[
+  { "id": 1, "name": "Desktop Computer", "price": 45000 },
+  { "id": 2, "name": "Mechanical Keyboard", "price": 2500 },
+  { "id": 3, "name": "Wireless Mouse", "price": 1500 },
+  { "id": 4, "name": "24-inch Monitor", "price": 8500 },
+  { "id": 5, "name": "Gaming Headset", "price": 3200 },
+  { "id": 6, "name": "Webcam HD 1080p", "price": 2100 },
+  { "id": 7, "name": "External Hard Drive 1TB", "price": 4700 },
+  { "id": 8, "name": "USB-C Hub", "price": 1400 },
+  { "id": 9, "name": "Laptop Stand", "price": 1100 },
+  { "id": 10, "name": "Graphics Card RTX 4060", "price": 32000 },
+  { "id": 11, "name": "SSD 512GB NVMe", "price": 3800 },
+  { "id": 12, "name": "Wi-Fi Router Dual Band", "price": 2600 },
+  { "id": 13, "name": "Bluetooth Speaker", "price": 1800 },
+  { "id": 14, "name": "Laser Printer", "price": 9500 },
+  { "id": 15, "name": "Office Chair", "price": 7200 }
+]
