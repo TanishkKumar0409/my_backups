@@ -1,0 +1,39 @@
+import mongoose from 'mongoose';
+
+export interface IChat {
+  userMessage: string;
+  aiResponse: string;
+  fileName?: string;
+  fileType?: string;
+  filePath?: string;
+  createdAt: Date;
+}
+
+const ChatSchema = new mongoose.Schema<IChat>({
+  userMessage: {
+    type: String,
+    required: true,
+  },
+  aiResponse: {
+    type: String,
+    required: true,
+  },
+  fileName: {
+    type: String,
+    required: false,
+  },
+  fileType: {
+    type: String,
+    required: false,
+  },
+  filePath: {
+    type: String,
+    required: false,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+export default mongoose.models.Chat || mongoose.model<IChat>('Chat', ChatSchema);

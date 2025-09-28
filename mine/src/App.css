@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+.swiper-pagination {
+  position: relative !important;
+  margin-top: 20px;
+}
+
+.swiper-pagination-bullet {
+  background: oklch(45.7% 0.24 277.023) !important;
+  width: 15px !important;
+  height: 15px !important;
+}
