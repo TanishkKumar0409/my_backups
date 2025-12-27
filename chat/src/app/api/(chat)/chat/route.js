@@ -21,7 +21,7 @@ export async function POST(req) {
     }
 
     const { prompt, chatId: incomingChatId, userTime } = await req.json();
-
+    
     if (!prompt || prompt.trim() === "") {
       return new Response(JSON.stringify({ error: "Prompt is required" }), {
         status: 400,
@@ -33,9 +33,10 @@ export async function POST(req) {
         status: 400,
       });
     }
-
+    
     // system instruction
     const systemInstruction = `You are a helpful, intelligent AI assistant designed to assist ${user.name}. Always respond with clarity, friendliness, and respect. Maintain a helpful tone, and ensure responses are tailored for ${user.name}'s needs.`;
+    console.log(prompt,"sys");
 
     let chat;
 
@@ -82,10 +83,9 @@ export async function POST(req) {
     chat.chats.push(message);
     await chat.save();
 
-    return new Response(
-      JSON.stringify({ chat, respond: assistantReply }),
-      { status: 200 }
-    );
+    return new Response(JSON.stringify({ chat, respond: assistantReply }), {
+      status: 200,
+    });
   } catch (err) {
     const status =
       err.message === "Unauthorized" || err.message === "Invalid token"

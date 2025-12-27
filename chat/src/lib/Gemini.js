@@ -12,26 +12,48 @@ export async function getGeminiResponse(history, systemInstruction = "") {
 
   const body = { contents };
 
+  // ✅ Correct field name
   if (systemInstruction) {
-    body.system_instruction = {
+    body.systemInstruction = {
       role: "system",
       parts: [{ text: systemInstruction }],
     };
   }
 
-  const response = await fetch(`${GEMINI_API_URL}${GEMINI_API_KEY}`, {
+  // 🔹 Make sure URL ends with `?key=YOUR_KEY`
+  const url = `${GEMINI_API_URL}${GEMINI_API_KEY}`;
+
+  const response = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
 
-  const data = await response.json();
+  // 🔹 Read raw text (prevents JSON parse crash)
+  const raw = await response.text();
+
+  if (!raw) {
+    console.error("❌ Gemini returned empty body");
+    throw new Error("Empty response from Gemini API");
+  }
+
+  let data;
+  try {
+    data = JSON.parse(raw);
+  } catch (err) {
+    console.error("❌ Gemini returned non-JSON:", raw);
+    throw new Error("Invalid JSON from Gemini API");
+  }
 
   if (!response.ok) {
-    console.log(data.error);
+    console.error("❌ Gemini error:", data.error);
     throw new Error(data.error?.message || "Gemini API error");
   }
 
-  const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+  const text =
+    data.candidates?.[0]?.content?.parts?.[0]?.text ||
+    data.candidates?.[0]?.output_text ||
+    "";
+
   return text;
 }
